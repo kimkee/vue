@@ -1,8 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <h1>{{ db }}dsf</h1>
-    <p>
+    <!-- <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
       <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
@@ -27,24 +26,51 @@
       <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+    </ul> -->
+
+    <ul class="board-list">
+      <li v-for="board in Boards" :key="board.key">
+          <h4 class="tits">{{ board.title }}</h4>
+          <p class="cont">{{ board.content }}</p>
+          <p class="date">{{ board.date }}</p>
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
+import db  from '../firebaseConfig.js';
+import { collection, onSnapshot } from "firebase/firestore";
 export default {
   name: 'HelloWorld',
   props: {
-    msg: String,
-    db: String,
+    msg: String
+  },
+  data() {
+      return {
+          Boards: []
+      }
   },
   created(){
     console.log("created");
     this.read();
+    // console.log(db);
   },
   methods:{
-    async read(){
-      console.log();
+    read(){
+      onSnapshot(collection(db, "test"), (querySnapshot) => {
+        console.log("afsd");
+        this.Boards = [];
+        querySnapshot.forEach((doc) => {
+          console.log(doc.data().title);
+          this.Boards.push({
+            key: doc.id,
+            title: doc.data().title,
+            content: doc.data().content,
+            date:  new Intl.DateTimeFormat('ko-KR').format( doc.data().date )
+          })
+        })
+      });
     }
   }
 }
@@ -52,18 +78,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+/* @import url("../assets/css/style.css"); */
 </style>
