@@ -1,14 +1,23 @@
 <template>
-  <img alt="Vue logo" class="logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue"/>
+  <Header/>
+  <Nav/>
+  <div class="container">
+    <main class="contents">
+      <HelloWorld/>
+    </main>
+  </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import Nav from './components/Nav.vue'
+import Header from './components/Header.vue'
 
 export default {
   name: 'App',
   components: {
+    Header,
+    Nav,
     HelloWorld
   }
 }
@@ -16,11 +25,4 @@ export default {
 
 <style>
 
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: left; color: #2c3e50;
-  margin-top: 20px;
-}
-#app .logo{width: 40px;}
 </style>
