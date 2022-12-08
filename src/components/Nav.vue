@@ -2,10 +2,10 @@
   <nav id="menubar" class="menubar">
     <div class="inr">
       <ul class="menu">
-        <li class="home"><a href="javascript:;">HOME</a></li>
-        <li class="adds"><a href="javascript:;">MENU1</a></li>
-        <li class="look"><a href="javascript:;">MENU2</a></li>
-        <li class="look"><a href="javascript:;">MENU3</a></li>
+        <li class="home"><router-link class="bt" to="/">Home</router-link> </li>
+        <li class="adds"><router-link class="bt" to="/list">List</router-link></li>
+        <li class="look"><router-link class="bt" to="/list">List</router-link></li>
+        <li class="look"><router-link class="bt" to="/list">List</router-link></li>
       </ul>
     </div>
   </nav>

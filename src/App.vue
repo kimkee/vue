@@ -1,15 +1,15 @@
 <template>
   <Header/>
   <Nav/>
-  <div class="container">
-    <main class="contents">
-      <HelloWorld/>
-    </main>
-  </div>
+  <transition name="fade">
+    <router-view />
+  </transition>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+
+import Home from './components/Home.vue'
 import Nav from './components/Nav.vue'
 import Header from './components/Header.vue'
 
@@ -18,11 +18,17 @@ export default {
   components: {
     Header,
     Nav,
-    HelloWorld
+    Home
   }
 }
 </script>
 
-<style>
+<style scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 1.5s;
+}
 
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>
