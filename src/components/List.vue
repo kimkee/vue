@@ -17,7 +17,7 @@
 import db  from '../firebaseConfig.js';
 import { collection, onSnapshot } from "firebase/firestore";
 export default {
-  name: 'HelloWorld',
+  name: 'List',
   props: {
     msg: String
   },

@@ -1,9 +1,14 @@
 <template>
+  <!-- <router-view   name="Header"></router-view>
+  <router-view   name="Nav"></router-view> -->
   <Header/>
   <Nav/>
-  <transition name="fade">
-    <router-view />
-  </transition>
+
+  <router-view v-slot="{ Component }" class="router">
+    <transition name="fade" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
@@ -25,7 +30,7 @@ export default {
 
 <style scoped>
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 1.5s;
+  transition: opacity 0.3s;
 }
 
 .fade-enter, .fade-leave-to {
