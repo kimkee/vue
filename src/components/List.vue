@@ -5,9 +5,11 @@
       <p class="tot">게시물 : {{Boards.length}} 개</p>
       <ul class="board-list">
         <li v-for="board in Boards" :key="board.key">
-            <h4 class="tits">{{ board.title }} : {{ board.key }}</h4>
-            <p class="cont">{{ board.content }}</p>
-            <p class="date">{{ board.date }}</p>
+            <router-link class="bt reg" :to="{ name: 'view', params: { id: board.key }}">
+              <h4 class="tits">{{ board.title }} : {{ board.key }}</h4>
+              <p class="cont">{{ board.content }}</p>
+              <p class="date">{{ board.date }}</p>
+            </router-link>
         </li>
       </ul>
 
@@ -23,7 +25,7 @@
 import db  from '../firebaseConfig.js';
 import { collection, onSnapshot , orderBy } from "firebase/firestore";
 export default {
-  name: 'Write',
+  name: 'List',
   props: {
     msg: String
   },
