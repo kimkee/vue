@@ -1,27 +1,32 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 import Nav from "../components/Nav.vue";
 import Header from "../components/Header.vue";
+import HeaderSub from "../components/HeaderSub.vue";
 import Home from "../components/Home.vue";
 import List from "../components/List.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
+        // {
+            // path: "/",
+            // redirect: '/home' 
+        // },
         {
-            path: "/",
-            redirect: '/home' 
-        },
-        {
-            path: '/home',
+            path: '/',
             components: {
                 default: Home,
-                Header : Header,
-                Nav : Nav,
+                Header,
+                Nav
             }
         },
         {
             path: "/list",
-            component: List
+            components: {
+                default: List,
+                HeaderSub,
+                Nav
+            }
         }
     ],
 });

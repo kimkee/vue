@@ -1,9 +1,11 @@
 <template>
   <!-- <router-view   name="Header"></router-view>
-  <router-view   name="Nav"></router-view> -->
-  <Header/>
-  <Nav/>
+  <router-view   name="Nav"></router-view>
+  <router-view class="router"></router-view> -->
 
+  <router-view   name="Nav"></router-view>
+  <router-view   name="Header"></router-view>
+  <router-view   name="HeaderSub"></router-view>
   <router-view v-slot="{ Component }" class="router">
     <transition name="fade" mode="out-in">
       <component :is="Component" />

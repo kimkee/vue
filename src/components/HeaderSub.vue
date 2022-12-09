@@ -1,11 +1,11 @@
 <template>
-  <header class="header">
+  <header class="header sub">
     <div class="inr">
       <div class="ldt">
-        <h1 class="logo"><router-link class="btlogo" to="/">Home</router-link></h1>
+        <button type="button" class="bt back" onclick="history.back(-1)">뒤로</button>
       </div>
+      <div class="cdt"><h3 class="tit">목록</h3></div>
       <div class="rdt">
-        <button type="button" class="bt" onclick="history.back(-1)"><b>뒤로</b></button>
         <button type="button" class="bt gnb"><b>메뉴</b></button>
       </div>
     </div>
