@@ -2,22 +2,28 @@
   <div class="container board">
     <main class="contents">
       <h1>{{ msg }}</h1> 
+      <p class="tot">게시물 : {{Boards.length}} 개</p>
       <ul class="board-list">
         <li v-for="board in Boards" :key="board.key">
-            <h4 class="tits">{{ board.title }}</h4>
+            <h4 class="tits">{{ board.title }} : {{ board.key }}</h4>
             <p class="cont">{{ board.content }}</p>
             <p class="date">{{ board.date }}</p>
         </li>
       </ul>
+
+      <div class="floatnav">
+        <router-link class="bt reg" to="/write">게시글동록</router-link>
+      </div>
+
     </main>
   </div>
 </template>
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, onSnapshot } from "firebase/firestore";
+import { collection, onSnapshot , orderBy } from "firebase/firestore";
 export default {
-  name: 'List',
+  name: 'Write',
   props: {
     msg: String
   },
@@ -33,8 +39,8 @@ export default {
   },
   methods:{
     read(){
-      onSnapshot(collection(db, "test"), (querySnapshot) => {
-        console.log("afsd");
+      const result = collection(db, "test")
+      onSnapshot( result, orderBy('createdAt',"desc"),  (querySnapshot) => {
         this.Boards = [];
         querySnapshot.forEach((doc) => {
           console.log(doc.data().title);
@@ -42,11 +48,12 @@ export default {
             key: doc.id,
             title: doc.data().title,
             content: doc.data().content,
-            date:  new Intl.DateTimeFormat('ko-KR').format( doc.data().date )
+            date:  doc.data().date
           })
         })
       });
     }
+
   }
 }
 </script>

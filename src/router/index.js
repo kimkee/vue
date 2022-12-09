@@ -4,6 +4,7 @@ import Header from "../components/Header.vue";
 import HeaderSub from "../components/HeaderSub.vue";
 import Home from "../components/Home.vue";
 import List from "../components/List.vue";
+import Write from "../components/Write.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -24,6 +25,14 @@ const router = createRouter({
             path: "/list",
             components: {
                 default: List,
+                HeaderSub,
+                Nav
+            }
+        },
+        {
+            path: "/write",
+            components: {
+                default: Write,
                 HeaderSub,
                 Nav
             }

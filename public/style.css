@@ -70,14 +70,18 @@ caption{display:none;}
 .menubar.hide{transform: translateY(100%);}
 .menubar.hide>.inr{ }
 
-.menubar .menu{ width: 100%; height:100%; align-items: center; display: flex;padding: 0px 22px 0px 14px;justify-content: space-between;}
+.menubar .menu{ width: 100%; height:100%; align-items: center; display: flex;padding: 0px 22px 0px 14px;justify-content: space-around;}
 .menubar .menu>li{width: 50px;text-align: center;}
-.menubar .menu>li .bt{width: 44px;height: 44px; display:flex; align-items: center; margin: 0px auto 0px auto;padding: 2px 0px 0px 0px;position: relative;}
+.menubar .menu>li .bt{width: 44px;height: 44px; display:flex; align-items: center;justify-content: center; margin: 0px auto 0px auto;padding: 2px 0px 0px 0px;position: relative;}
 .menubar .menu>li.active .bt,
 .menubar .menu>li .bt:hover{ color: #dddddd;}
-.menubar .menu>li.himt{}
-.menubar .menu>li.home{}
-.menubar .menu>li.mypg{}
-.menubar .menu>li.chat{}
-.menubar .menu>li.comu{}
-.menubar .menu>li.himt{}
+
+/* 플로팅 탑버튼 글쓰기버튼 */
+.floatnav{position:fixed;right: 20px;z-index: 500;transition: all 0.3s;min-width: 55px;bottom: 82px;bottom: calc(82px + env(safe-area-inset-bottom));}
+.floatnav.is-top{bottom: 20px;bottom: calc(20px + env(safe-area-inset-bottom));transition: none;}
+.floatnav .bt{font-size: 0px;width: 42px;height: 42px;display:block;background: no-repeat #555555;background-size: 100% auto;margin: 10px auto 0 auto;border-radius: 35px;}
+.floatnav .bt::before{width:16px;height:16px;background: center no-repeat;background-size: 16px auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';}
+.floatnav .bt.top{display: none;background: rgb(255 255 255 / 80%);border: solid rgba(0, 0, 0, 0.1) 1px;text-align: center;width: 45px;height: 45px;}
+.floatnav .bt.top::before{background-image: url();background-size: 32px auto;margin: -1px 0px 0px 0px;}
+.floatnav .bt.reg{background: #545454;box-shadow: rgb(0 0 0 / 20%) 2px 2px 10px; position: relative;}
+.floatnav .bt.reg::before{content: "+";font-size: 22rem;margin: -11px auto 0px auto;color: #dddddd;padding: 12px; text-align:center; display: block;line-height: 1;transition: all 0.3s;}
