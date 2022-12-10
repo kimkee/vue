@@ -1,11 +1,11 @@
 import { createWebHashHistory, createRouter } from "vue-router";
-import Nav from "../components/Nav.vue";
-import Header from "../components/Header.vue";
-import HeaderSub from "../components/HeaderSub.vue";
-import Home from "../components/Home.vue";
-import List from "../components/List.vue";
-import Write from "../components/Write.vue";
-import View from "../components/View.vue";
+import Nav from "./views/Nav.vue";
+import Header from "./components/Header.vue";
+import HeaderSub from "./components/HeaderSub.vue";
+import Home from "./views/Home.vue";
+import List from "./views/List.vue";
+import Write from "./views/Write.vue";
+import View from "./views/View.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),

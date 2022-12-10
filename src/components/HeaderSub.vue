@@ -16,7 +16,7 @@
 
 
 export default {
-  name: 'Header',
+  name: 'HeaderSubItem',
   props: {
     
   },

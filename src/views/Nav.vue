@@ -3,7 +3,7 @@
     <div class="inr">
       <ul class="menu">
         <li class="home"><router-link class="bt" to="/">Home</router-link> </li>
-        <li class="adds"><router-link class="bt" to="/list">List</router-link></li>
+        <li class="adds"><router-link class="bt" to="/list">Board</router-link></li>
         <li class="look"><router-link class="bt" to="/list">List</router-link></li>
         <li class="look"><router-link class="bt" to="/list">List</router-link></li>
       </ul>
@@ -15,7 +15,7 @@
 
 
 export default {
-  name: 'Nav',
+  name: 'NavItem',
   props: {
     
   },
