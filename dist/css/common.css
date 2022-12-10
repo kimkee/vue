@@ -32,7 +32,7 @@ caption{display:none;}
 .header .cdt .htit{font-size:17rem; font-weight: 700;}
 .header .rdt{ display: flex; align-items: center; }
 .header .logo{display: inline-block;margin: -1px 0px 0px 0px;}
-.header .logo .btlogo{width:24px;height: 24px;background:url('logo.png') no-repeat center;background-size: 24px auto;font-size:0rem;display:inline-block;vertical-align:middle;}
+.header .logo .btlogo{width:24px;height: 24px;background:url('../img/logo.png') no-repeat center;background-size: 24px auto;font-size:0rem;display:inline-block;vertical-align:middle;}
 .header .bt{width: 24px; height: 24px; font-size:0rem; background: no-repeat center; background-size: 24px auto; color: #aaaaaa;}
 .header .bt+.bt{margin-left: 20px;}
 .header .bt.back{color: #aaaaaa;}
