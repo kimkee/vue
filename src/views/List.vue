@@ -8,8 +8,10 @@
           <li v-for="board in Boards" :key="board.key">
               <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
                 <h4 class="tits">{{ board.title }} : {{ board.key }}</h4>
-                <p class="cont">{{ board.content }}</p>
-                <p class="date">{{ board.timestamp }}</p>
+                <div class="cont">
+                  <div class="text">{{ board.content }}</div>
+                </div>
+                <div class="date">{{ board.timestamp }}</div>
               </router-link>
           </li>
         </ul>
@@ -25,7 +27,10 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import {onSnapshot, collection, orderBy  } from "firebase/firestore";
+import { collection, query, getDocs, orderBy } from "firebase/firestore";
+
+
+
 export default {
   name: 'ListItem',
   props: {
@@ -46,18 +51,18 @@ export default {
   },
   methods:{
     async read(){
-      onSnapshot( collection(db, "test"), orderBy("timestamp", "desc"), (querySnapshot) => {
-        this.Boards = [];
-        querySnapshot.forEach((doc) => {
-          console.log(doc.data().title);
-          this.Boards.push({
-            key: doc.id,
-            title: doc.data().title,
-            content: doc.data().content,
-            timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
-            // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
-          })
-        })
+      const q = query(collection(db, "test"), orderBy("timestamp", "desc"));
+      const querySnapshot = await getDocs(q);
+      this.Boards = [];
+      querySnapshot.forEach((doc) => {
+        console.log(doc.data().title);
+        this.Boards.push({
+          key: doc.id,
+          title: doc.data().title,
+          content: doc.data().content,
+          timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
+          // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
+        });
       });
     }
 

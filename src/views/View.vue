@@ -15,7 +15,9 @@
           <p class="date">{{ Views.timestamp }}</p>
         </dd>
         <div class="btn-set">
-          <router-link class="btn" to="/list">목록</router-link>
+          <router-link class="btn sm" to="/list">목록</router-link>
+          <!-- <router-link class="btn sm" to="/list">수정</router-link>
+          <router-link class="btn sm" to="/list">삭제</router-link> -->
         </div>
       </div>
 
@@ -25,7 +27,7 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, onSnapshot ,where  } from "firebase/firestore";
+import { collection, query, getDocs, orderBy } from "firebase/firestore";
 import { useRoute } from 'vue-router';
 
 
@@ -48,28 +50,24 @@ export default {
     const route = useRoute();  
     const id = route.params.id; // read parameter id (it is reactive) 
     this.view(id);
-    console.log(id);
+    console.log(`페이지 :  ${id}`);
 
   },
   mounted(){
     document.querySelector(".header .cdt .tit").textContent = '보기';
   },
   methods:{
-    view(ids){
-      const result = collection(db, "test")
-      // console.log(result);
-      onSnapshot( result,where("documentId", "==", "JfcGr6zKJn0kucXVWZVV"), (querySnapshot) => {
-        console.log(querySnapshot);
-        querySnapshot.forEach( doc => {
-          console.log(doc.id);
-          if( doc.id == ids ){
-            this.Views.title = doc.data().title;
-            this.Views.content = doc.data().content;
-            this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) ;
-            
-          }
-        });
-        console.log(this.Views);
+    async view(ids){
+      const q = query(collection(db, "test"), orderBy("timestamp", "desc"));
+      const querySnapshot = await getDocs(q);
+      this.Boards = [];
+      querySnapshot.forEach( doc => {
+        console.log(doc.id);
+        if( doc.id == ids ){
+          this.Views.title = doc.data().title;
+          this.Views.content = doc.data().content;
+          this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) ;
+        }
       });
     }
 
