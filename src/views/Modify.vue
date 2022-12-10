@@ -20,9 +20,9 @@
             </div>
           </li>
         </ul>
-        <br><br>
         <div class="btn-set">
-          <button type="button" class="btn" @click="modify">수정</button>
+          <router-link class="btn sm" to="/list">목록</router-link>
+          <button type="button" class="btn sm" @click="modify">수정</button>
         </div>
     </div>
     </main>
