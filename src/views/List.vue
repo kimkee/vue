@@ -27,7 +27,7 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, query, getDocs, orderBy } from "firebase/firestore";
+import { collection, query, getDocs, orderBy, limit , limitToLast } from "firebase/firestore";
 
 
 
@@ -51,7 +51,7 @@ export default {
   },
   methods:{
     async read(){
-      const q = query(collection(db, "test"), orderBy("timestamp", "desc"));
+      const q = query(collection(db, "test"), orderBy("timestamp", "desc") , limit(), limitToLast() );
       const querySnapshot = await getDocs(q);
       this.Boards = [];
       querySnapshot.forEach((doc) => {
