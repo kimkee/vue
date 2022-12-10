@@ -195,12 +195,12 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-list .tot{margin-bottom: 10px;}
 .board-list .list{}
 .board-list .list>li{word-break: break-all;border: #444444 solid 1px;}
-.board-list .list>li+li{margin-top:10px}
+.board-list .list>li+li{margin-top:20px}
 .board-list .list>li .box{ display: block;}
 .board-list .list>li .box:hover{background-color: #272727;}
-.board-list .list>li .box .tits{padding: 6px 7px;font-size: 13px;text-align: left;}
+.board-list .list>li .box .tits{ color: #aaa;padding: 6px 7px;font-size: 13px;text-align: left; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
 .board-list .list>li .box .cont{padding: 10px 7px; border-top: #444444 solid 1px; font-size:12px;}
-.board-list .list>li .box .cont .text{-webkit-line-clamp:2;max-height: 60rem;line-height:1.5em;-webkit-box-orient:vertical;display:-webkit-box;text-overflow:ellipsis;overflow:hidden;word-break:break-all;}
+.board-list .list>li .box .cont .text{ color: #666666; -webkit-line-clamp:2;max-height: 60rem;line-height:1.5em;-webkit-box-orient:vertical;display:-webkit-box;text-overflow:ellipsis;overflow:hidden;word-break:break-all;}
 .board-list .list>li .box .date{padding: 5px 7px;border-top: #444444 solid 1px;font-size:10px;text-align: right;}
 
 .board-view{}
