@@ -6,16 +6,17 @@
 
       <div class="board-view">
         <div class="dt">
-          <h4 class="tits">{{ Views.title }} {{ Views.key }}</h4>
+          <h4 class="tits">{{ Views.title }}</h4>
         </div>
         <dd class="dd">
           <div class="cont">{{ Views.content }}</div>
-          <p class="date">{{ Views.timestamp }}</p>
+          <p class="date">작성일 : {{ Views.timestamp }}</p>
+          
         </dd>
         <div class="btn-set">
           <router-link class="btn sm" to="/list">목록</router-link>
-          <router-link class="btn sm" to="/list">수정</router-link>
-          <router-link class="btn sm" to="/list">삭제</router-link>
+          <router-link class="btn sm" :to="`/modify/${this.pram}`">수정</router-link>
+          <button type="button" class="btn sm" @click="delpost">삭제</button>
         </div>
       </div>
 
@@ -25,7 +26,7 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import { getDoc, doc } from "firebase/firestore";
+import { getDoc, doc ,deleteDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 
 export default {
@@ -35,7 +36,7 @@ export default {
   },
   data() {
       return {
-          Views: {}
+          Views: {},
       }
   },
   created(){
@@ -44,6 +45,7 @@ export default {
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.view(ids);
+    this.pram = ids;
   },
   mounted(){
     document.querySelector(".header .cdt .tit").textContent = '보기';
@@ -63,6 +65,15 @@ export default {
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
       } catch(error) {
         console.log(error)
+      }
+    },
+    async delpost(){
+      if (confirm("이 글을 작세하시겠습니까?")) {
+        await deleteDoc(doc(db, "test",  this.pram ));
+        console.log("삭제 성공: ");
+        this.$router.push('/list');
+      }else{
+        console.log("안지움 ㄷㄷㄷ");
       }
     }
 

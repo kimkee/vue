@@ -5,6 +5,7 @@ import HeaderSub from "./components/HeaderSub.vue";
 import Home from "./views/Home.vue";
 import List from "./views/List.vue";
 import Write from "./views/Write.vue";
+import Modify from "./views/Modify.vue";
 import View from "./views/View.vue";
 
 const router = createRouter({
@@ -34,6 +35,14 @@ const router = createRouter({
             path: "/write",
             components: {
                 default: Write,
+                HeaderSub,
+                Nav
+            }
+        },
+        {
+            path: "/modify/:id",
+            components: {
+                default: Modify,
                 HeaderSub,
                 Nav
             }

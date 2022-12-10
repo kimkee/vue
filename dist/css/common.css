@@ -21,6 +21,16 @@ button{cursor:pointer;background: none;border: none;padding: 0; color: #aaaaaa;}
 select::-ms-expand {display:none;}
 caption{display:none;}
 
+
+input::-webkit-input-placeholder {color: #444444; font-weight: normal;}
+input:-ms-input-placeholder {color: #444444; font-weight: normal;}
+textarea::-webkit-input-placeholder {color: #444444; font-weight: normal;}
+textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
+
+
+
+
+
 #app{margin: 0px 0px;text-align: left;}
 
 
@@ -170,7 +180,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 
 /* textarea */
 .textarea{padding: 15px 15px 15px 15px;border-radius: 5px;}
-.textarea>textarea{display: block;height: 121px;border: none;padding: 0;line-height: 1.45;word-break: break-all;vertical-align: middle;}
+.textarea>textarea{display: block;height: 321px;border: none;padding: 0;line-height: 1.45;word-break: break-all;vertical-align: middle;}
 .textarea{border: #666 solid 1px;}
 .textarea.focus{border-color: #000000;}
 .textarea .num{font-size:12rem;position: relative;margin: 6px 0px -1px 0px;display: block;text-align: right;color: #666666;}
@@ -195,12 +205,12 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-list .tot{margin-bottom: 10px;}
 .board-list .list{}
 .board-list .list>li{word-break: break-all;border: #444444 solid 1px;}
-.board-list .list>li+li{margin-top:10px}
+.board-list .list>li+li{margin-top:20px}
 .board-list .list>li .box{ display: block;}
 .board-list .list>li .box:hover{background-color: #272727;}
-.board-list .list>li .box .tits{padding: 6px 7px;font-size: 13px;text-align: left;}
+.board-list .list>li .box .tits{ color: #aaa;padding: 6px 7px;font-size: 13px;text-align: left; text-overflow:ellipsis; overflow:hidden; white-space:nowrap;}
 .board-list .list>li .box .cont{padding: 10px 7px; border-top: #444444 solid 1px; font-size:12px;}
-.board-list .list>li .box .cont .text{-webkit-line-clamp:2;max-height: 60rem;line-height:1.5em;-webkit-box-orient:vertical;display:-webkit-box;text-overflow:ellipsis;overflow:hidden;word-break:break-all;}
+.board-list .list>li .box .cont .text{ color: #666666; -webkit-line-clamp:2;max-height: 60rem;line-height:1.5em;-webkit-box-orient:vertical;display:-webkit-box;text-overflow:ellipsis;overflow:hidden;word-break:break-all;}
 .board-list .list>li .box .date{padding: 5px 7px;border-top: #444444 solid 1px;font-size:10px;text-align: right;}
 
 .board-view{}

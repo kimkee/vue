@@ -15,7 +15,7 @@
             <div class="dd">
               <span class="textarea">
                 <textarea class="reply" id="content" data-ui="autoheight" placeholder="입력하세요"></textarea>
-                <span class="num"><i class="i">102</i>/<b class="n">3,000</b></span>
+                <!-- <span class="num"><i class="i">102</i>/<b class="n">3,000</b></span> -->
               </span>
             </div>
           </li>
@@ -48,7 +48,7 @@ export default {
   mounted(){
     document.querySelector("input#title").value = "";
     document.querySelector("textarea#content").value = "";
-    document.querySelector(".header .cdt .tit").textContent = '쓰기';
+    document.querySelector(".header .cdt .tit").textContent = '글 쓰기';
   },
   methods: {
     write(){
