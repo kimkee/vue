@@ -1,7 +1,7 @@
 <template>
   <div class="container home">
     <main class="contents">
-      <h1>홈</h1> 
+      
       <!-- <p>
         For a guide and recipes on how to configure / customize this project,<br>
         check out the
@@ -28,6 +28,17 @@
         <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
         <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
       </ul> -->
+      <div class="mn-box">
+        <div class="top"><router-link class="bt" to="/list"><img src="../../public/img/logo.png" alt=""></router-link></div>
+        <div class="icos">
+          <span><img src="../../public/img/ico_vue.svg" alt=""></span>
+          <span><img src="../../public/img/ico_firebase.svg" alt=""></span>
+          <!-- <span><img src="../../public/img/ico_react.svg" alt=""></span> -->
+        </div>
+      </div>
+
+      
+      
     </main>
   </div>
 </template>

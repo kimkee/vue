@@ -3,7 +3,7 @@
   <router-view  name="Nav"></router-view>
   <router-view  name="Header"></router-view>
   <router-view  name="HeaderSub"></router-view>
-  <router-view v-slot="{ Component }" class="router">
+  <router-view v-slot="{ Component }" class="page">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -15,7 +15,7 @@
 
 
 import Home from './views/Home.vue'
-import Nav from './views/Nav.vue'
+import Nav from './components/Nav.vue'
 import Header from './components/Header.vue'
 
 export default {

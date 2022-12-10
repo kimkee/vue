@@ -1,5 +1,5 @@
 import { createWebHashHistory, createRouter } from "vue-router";
-import Nav from "./views/Nav.vue";
+import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import HeaderSub from "./components/HeaderSub.vue";
 import Home from "./views/Home.vue";
