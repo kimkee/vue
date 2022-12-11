@@ -6,17 +6,21 @@
       </div>
       <div class="cdt"><h3 class="htit"></h3></div>
       <div class="rdt">
-        <router-link class="bt gnb" to="/"><b>메뉴</b></router-link> 
+        <button type="button" class="bt gnb" id="btn-gnb"><b>메뉴</b></button>
       </div>
     </div>
   </header>
+  <Gnb/>
 </template>
 
 <script>
-
+import Gnb from '../components/Gnb.vue'
 
 export default {
   name: 'HeaderSubItem',
+  components: {
+    Gnb,
+  },
   props: {
     
   },

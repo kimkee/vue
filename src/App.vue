@@ -17,6 +17,7 @@
 import Home from './views/Home.vue'
 import Nav from './components/Nav.vue'
 import Header from './components/Header.vue'
+// import ui from './ui.js'
 
 export default {
   name: 'App',
@@ -24,6 +25,15 @@ export default {
     Header,
     Nav,
     Home
+  },
+  created(){
+    
+  },
+  mounted(){
+
+  },
+  methods:{
+    
   }
 }
 </script>

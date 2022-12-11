@@ -54,6 +54,7 @@ export default {
     // console.log(db);
   },
   mounted(){
+    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '목록';
   },
   methods:{

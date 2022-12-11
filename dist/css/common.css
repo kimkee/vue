@@ -69,6 +69,43 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .pagehead .rdt .bt + .bt{margin-left: 18px;}
 
 
+
+/* GNB */
+nav.gnb{position:fixed;width: 70%;height: 100%;z-index: 900;top: 0px;right: -100%;/* display: none; */transition: right 0.4s;}
+
+nav.gnb::after{left: -100%;width: 100%;height:100%;/* background-color: rgba(0, 0, 0, 0.3); */content:"";display:block;position: fixed;top: 0;/* left: 0px; */}
+nav.gnb .bt.close{display:block;position:absolute;right: 20px;top: 14px;z-index: 1900;width: 36px;height: 36px;font-size: 0;background: url(../img/btn_close.png) no-repeat center;background-size: 24px auto;/* background: #fff; */}
+nav.gnb>.inr{padding: 55px 30px 0px 30px;height: 100vh;background-color: #26384e;}
+nav.gnb .menu{margin-top: 20px;/* background-color: #ffffff; */height: calc(100% - 0px);/* padding: 20px 20px 20px 20px; */overflow-y: auto;}
+nav.gnb .menu .mCustomScrollBox{background-color: transparent;border-top:1px solid #ddd;outline: initial;}
+nav.gnb .menu .mCSB_scrollTools .mCSB_draggerRail{/* background-color: transparent; */}
+nav.gnb .menu .mCSB_scrollTools .mCSB_draggerContainer{ /* right: 4px; */ }
+nav.gnb .menu .mCSB_scrollTools.mCSB_scrollTools_vertical{/* right: 3px; *//* top: 5px; *//* bottom: 5px; *//* width: 6px; */}
+nav.gnb .menu .mCSB_scrollTools.mCSB_scrollTools_vertical .mCSB_dragger .mCSB_dragger_bar{/* border-radius: 4px; */width: 8px;/* opacity: 1; */background: #bbb;}
+nav.gnb .menu{}
+nav.gnb .menu>li{}
+nav.gnb .menu>li{border-top: #3b516c solid 1px;}
+nav.gnb .menu>li:first-child{}
+nav.gnb .menu>li:last-child{border-bottom: #3b516c solid 1px;}
+nav.gnb .menu>li>.bt{display:block;padding: 15px 20px 15px 15px;font-size: 15px;font-weight: 400;position: relative;}
+nav.gnb .menu>li>.bt::before{content:"-";position: absolute;left: 1px;top: 13px;}
+nav.gnb .menu>li>.bt.router-link-active{color: #ffffff;}
+body.is-gnb nav.gnb{right: 0%;/* display: block; *//* width: 70%; */}
+body.is-gnb nav.gnb::after{/* left: 0%; */}
+body.is-gnb .btn-gnb{/* left: 57%; */}
+.gnb-screen {display: none;background-color: rgba(0,0,0,0.3);width: 100%;height: 100%;zoom: 1;position: fixed;left: 0px;z-index: 700;top: 0px;/* transition: all 0.4s ease 0.0s;*/}
+
+
+
+
+
+
+
+
+
+
+
+
 /* 하단메뉴바 */
 .menubar{position: fixed;left: 0;bottom: 0;right: 0;z-index: 500;transition: transform 0.3s;}
 .menubar>.inr{height: 60px;height: calc(60px + env(safe-area-inset-bottom));background: #1d2736;border-top: #343b46 solid 1px;}
@@ -78,8 +115,8 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .menubar .menu{width: 100%;height:100%;align-items: center;display: flex;padding: 0px 22px 0px 14px;justify-content: space-around;}
 .menubar .menu>li{width: 100%;height: 100%;text-align: center;}
 .menubar .menu>li .bt{/* width: 44px; */height: 100%;display:flex;align-items: center;justify-content: center;margin: 0px auto 0px auto;padding: 0px 0px 2px 0px;padding-bottom: calc(2rem + env(safe-area-inset-bottom));position: relative;}
-.menubar .menu>li.active .bt,
-.menubar .menu>li .bt:hover{ color: #dddddd;}
+.menubar .menu>li .bt.router-link-active,
+.menubar .menu>li .bt:hover{ color: #fff;}
 
 /* 플로팅 탑버튼 글쓰기버튼 */
 .floatnav{position:fixed;right: 20px;z-index: 500;transition: all 0.3s;min-width: 55px;bottom: 82px;bottom: calc(82px + env(safe-area-inset-bottom));}
@@ -243,10 +280,11 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .page.home .mn-box .top{width: 110rem;}
 .page.home .mn-box .top a{display:block;}
 .page.home .mn-box .top img{display:block;max-width: 100%;}
-.page.home .mn-box .icos{}
-.page.home .mn-box .icos span{margin-top: 12px;display: block;}
+.page.home .mn-box .icos{margin-top: 22px;display: block;}
+.page.home .mn-box .icos span{}
 .page.home .mn-box .icos span img{display: inline-block; vertical-align: middle;}
-
+.page.home .mn-box .icos .ico{display: block;}
+.page.home .mn-box .icos .pls{display: block; color: #ffffff; padding: 0rem 0rem;}
 
 ::-webkit-scrollbar{  width:12rem;  height:12rem}
 ::-webkit-scrollbar-track{background-color: #bbbbbb;box-shadow: inset 0rem 0rem 6rem #8c8c8c;}

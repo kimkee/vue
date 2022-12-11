@@ -4,8 +4,8 @@
       <ul class="menu">
         <li class="home"><router-link class="bt" to="/">Home</router-link> </li>
         <li class="adds"><router-link class="bt" to="/list">Board</router-link></li>
-        <li class="look"><router-link class="bt" to="/list">List</router-link></li>
-        <li class="look"><router-link class="bt" to="/list">List</router-link></li>
+        <li class="look"><a href="javascript:;" class="bt">Contact</a></li>
+        <li class="look"><a href="javascript:;" class="bt">Join</a></li>
       </ul>
     </div>
   </nav>

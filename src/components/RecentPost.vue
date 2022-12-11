@@ -56,7 +56,7 @@ export default {
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {
-        console.log(doc.data().title);
+        // console.log(doc.data().title);
         this.Recents.push({
           key: doc.id,
           title: doc.data().title,
