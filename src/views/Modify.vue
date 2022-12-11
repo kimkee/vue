@@ -7,7 +7,7 @@
           <li>
             <label class="dt">제목</label>
             <div class="dd">
-              <span class="input"><input type="text" id="title" placeholder="입력하세요" :value="Views.title"></span>
+              <span class="input"><input type="text" id="title" placeholder="입력하세요" v-model="Views.title"></span>
             </div>
           </li>
           <li>

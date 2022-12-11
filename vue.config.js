@@ -3,6 +3,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   lintOnSave:false,
   publicPath:"../dist/",
+  configureWebpack: require('./webpack.config.js'), 
   // publicPath:"/"
   // configureWebpack: {
   //   devServer: {

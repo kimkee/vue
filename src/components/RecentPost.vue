@@ -15,7 +15,7 @@
                   <div class="text" v-html="recent.content"></div>
                 </div> -->
                 <div class="info">
-                  <div class="keys"><!-- {{ recent.key }} --></div>
+                  <div class="keys">{{ recent.key }}</div>
                   <div class="date">{{ recent.timestamp }}</div>
                 </div>
               </router-link>
