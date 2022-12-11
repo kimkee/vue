@@ -3,7 +3,10 @@
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-list">
-        <p class="tot">게시물 : {{Boards.length}} 개</p>
+        <div class="bbs-opt">
+          <div class="tots">게시물 : {{Boards.length}} 개</div>
+          <div class="more"></div>
+        </div>
         <ul class="list">
           <li v-for="board in Boards" :key="board.key">
               <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
