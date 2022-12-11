@@ -1,37 +1,34 @@
 <template>
-  <div class="container board">
-    <main class="contents">
+  
+    <div class="recent">
       <h1>{{ msg }}</h1> 
       <div class="board-list">
-        <p class="tot">게시물 : {{Boards.length}} 개</p>
+        <div class="bbs-opt">
+          <div class="tots">최근 게시물 : {{Recents.length}} 개</div>
+          <div class="more"><router-link class="bt" to="/list">더보기 ></router-link></div>
+        </div>
         <ul class="list">
-          <li v-for="board in Boards" :key="board.key">
-              <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
-                <h4 class="tits">{{ board.title }}</h4>
-                <div class="cont">
-                  
-                  <div class="text" v-html="board.content"></div>
-                </div>
+          <li v-for="recent in Recents" :key="recent.key">
+              <router-link class="box" :to="{ name: 'view', params: { id: recent.key }}">
+                <h4 class="tits">{{ recent.title }}</h4>
+                <!-- <div class="cont">
+                  <div class="text" v-html="recent.content"></div>
+                </div> -->
                 <div class="info">
-                  <div class="keys">{{ board.key }}</div>
-                  <div class="date">{{ board.timestamp }}</div>
+                  <div class="keys"><!-- {{ recent.key }} --></div>
+                  <div class="date">{{ recent.timestamp }}</div>
                 </div>
               </router-link>
           </li>
         </ul>
       </div>
-
-      <div class="floatnav">
-        <router-link class="bt reg" to="/write">게시글동록</router-link>
-      </div>
-
-    </main>
-  </div>
+    </div>
+  
 </template>
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, query, getDocs, orderBy, limit , limitToLast } from "firebase/firestore";
+import { collection, query, getDocs, orderBy, limit  } from "firebase/firestore";
 
 
 
@@ -42,7 +39,7 @@ export default {
   },
   data() {
       return {
-          Boards: []
+          Recents: []
       }
   },
   created(){
@@ -51,19 +48,19 @@ export default {
     // console.log(db);
   },
   mounted(){
-    document.querySelector(".header .cdt .htit").textContent = '목록';
+    
   },
   methods:{
     async read(){
-      const q = query(collection(db, "test"), orderBy("timestamp", "desc") , limit(), limitToLast() );
+      const q = query(collection(db, "test"), orderBy("timestamp", "desc") , limit(5) );
       const querySnapshot = await getDocs(q);
-      this.Boards = [];
+      this.Recents = [];
       querySnapshot.forEach((doc) => {
         console.log(doc.data().title);
-        this.Boards.push({
+        this.Recents.push({
           key: doc.id,
           title: doc.data().title,
-          content: doc.data().content,
+          // content: doc.data().content,
           timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
           // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
         });

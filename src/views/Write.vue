@@ -64,7 +64,7 @@ export default {
       try {
         const docRef = addDoc(collection(db, "test"), {
           title: $title.value,
-          content: $content.value,
+          content: $content.value.replace(/\n/g,'<br>'),
           timestamp: today
           // date: new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( today )
         });

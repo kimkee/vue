@@ -37,6 +37,7 @@
         </div>
       </div>
 
+      <RecentPost/>
       
       
     </main>
@@ -44,10 +45,12 @@
 </template>
 
 <script>
+import RecentPost from '../components/RecentPost.vue'
+
 export default {
   name: 'HomeItem',
-  props: {
-    msg: String
+  components: {
+    RecentPost
   },
   data() {
       return {
@@ -55,7 +58,7 @@ export default {
       }
   },
   created(){
-    console.log("home created");
+    console.log("RecentPostItem created");
   },
   methods:{
 

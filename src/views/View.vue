@@ -10,7 +10,7 @@
         </div>
         <dd class="dd">
           <p class="date">작성일 : {{ Views.timestamp }}</p>
-          <div class="cont">{{ Views.content }}</div>
+          <div class="cont" v-html="Views.content"></div>
           
         </dd>
         

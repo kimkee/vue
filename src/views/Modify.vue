@@ -68,7 +68,7 @@ export default {
         // `);
 
         this.Views.title = docSnap.data().title;
-        this.Views.content = docSnap.data().content;
+        this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
       } catch(error) {
         console.log(error)
@@ -86,7 +86,7 @@ export default {
 
         await updateDoc(thisDoc, {
           title: $title.value,
-          content: $content.value,
+          content: $content.value.replace(/\n/g,'<br>'),
         });
         console.log("수정 성공: ");
         this.$router.push('/view/'+this.pram);
