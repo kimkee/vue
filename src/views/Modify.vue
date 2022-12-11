@@ -20,12 +20,16 @@
             </div>
           </li>
         </ul>
-        <div class="btn-set">
-          <router-link class="btn sm" to="/list">목록</router-link>
-          <button type="button" class="btn sm" @click="modify">수정</button>
-        </div>
-    </div>
+      </div>
     </main>
+    <nav class="floatbots">
+      <div class="inr">
+        <div class="btsbox btn-set">
+          <router-link class="btn" to="/list">목록</router-link>
+          <button type="button" class="btn" @click="modify">수정</button>
+        </div>
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -50,7 +54,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .cdt .tit").textContent = '글 수정';
+    document.querySelector(".header .cdt .htit").textContent = '글 수정';
   },
   methods: {
 

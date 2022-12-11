@@ -53,7 +53,7 @@ const router = createRouter({
             components: {
                 default: View,
                 HeaderSub,
-                Nav
+                
             }
         }
     ],

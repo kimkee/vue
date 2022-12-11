@@ -4,9 +4,9 @@
       <div class="ldt">
         <button type="button" class="bt back" onclick="history.back(-1)">뒤로</button>
       </div>
-      <div class="cdt"><h3 class="tit">목록</h3></div>
+      <div class="cdt"><h3 class="htit"></h3></div>
       <div class="rdt">
-        <button type="button" class="bt gnb"><b>메뉴</b></button>
+        <router-link class="bt gnb" to="/"><b>메뉴</b></router-link> 
       </div>
     </div>
   </header>

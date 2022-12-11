@@ -9,18 +9,25 @@
           <h4 class="tits">{{ Views.title }}</h4>
         </div>
         <dd class="dd">
-          <div class="cont">{{ Views.content }}</div>
           <p class="date">작성일 : {{ Views.timestamp }}</p>
+          <div class="cont">{{ Views.content }}</div>
           
         </dd>
-        <div class="btn-set">
-          <router-link class="btn sm" to="/list">목록</router-link>
-          <router-link class="btn sm" :to="`/modify/${this.pram}`">수정</router-link>
-          <button type="button" class="btn sm" @click="delpost">삭제</button>
-        </div>
+        
       </div>
 
     </main>
+
+    <nav class="floatbots">
+      <div class="inr">
+        <div class="btsbox btn-set">
+        <router-link class="btn" to="/list">목록</router-link>
+        <router-link class="btn" :to="`/modify/${this.pram}`">수정</router-link>
+        <button type="button" class="btn" @click="delpost">삭제</button>
+      </div>
+      </div>
+    </nav>
+    
   </div>
 </template>
 
@@ -48,7 +55,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .cdt .tit").textContent = '보기';
+    document.querySelector(".header .cdt .htit").textContent = '보기';
   },
   methods:{
     async view(ids){

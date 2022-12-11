@@ -7,11 +7,15 @@
         <ul class="list">
           <li v-for="board in Boards" :key="board.key">
               <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
-                <h4 class="tits">{{ board.title }} : {{ board.key }}</h4>
+                <h4 class="tits">{{ board.title }}</h4>
                 <div class="cont">
+                  
                   <div class="text">{{ board.content }}</div>
                 </div>
-                <div class="date">{{ board.timestamp }}</div>
+                <div class="info">
+                  <div class="keys">{{ board.key }}</div>
+                  <div class="date">{{ board.timestamp }}</div>
+                </div>
               </router-link>
           </li>
         </ul>
@@ -47,7 +51,7 @@ export default {
     // console.log(db);
   },
   mounted(){
-    document.querySelector(".header .cdt .tit").textContent = '목록';
+    document.querySelector(".header .cdt .htit").textContent = '목록';
   },
   methods:{
     async read(){

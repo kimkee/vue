@@ -20,12 +20,16 @@
             </div>
           </li>
         </ul>
-        <br><br>
-        <div class="btn-set">
-          <button type="button" class="btn" @click="write">쓰기</button>
-        </div>
-    </div>
+      </div>
     </main>
+    <nav class="floatbots">
+      <div class="inr">
+        <div class="btsbox btn-set">
+            <router-link class="btn" to="/list">목록</router-link>
+            <button type="button" class="btn" @click="write">쓰기</button>
+        </div>
+      </div>
+    </nav>
   </div>
 </template>
 
@@ -48,7 +52,7 @@ export default {
   mounted(){
     document.querySelector("input#title").value = "";
     document.querySelector("textarea#content").value = "";
-    document.querySelector(".header .cdt .tit").textContent = '글 쓰기';
+    document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
   },
   methods: {
     write(){
