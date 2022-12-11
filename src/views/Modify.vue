@@ -1,5 +1,5 @@
 <template>
-  <div class="container board">
+  <div class="container board modify">
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-write">
@@ -54,6 +54,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
+    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '글 수정';
   },
   methods: {

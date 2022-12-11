@@ -1,5 +1,5 @@
 <template>
-  <div class="container board">
+  <div class="container board list">
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-list">

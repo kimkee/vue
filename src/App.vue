@@ -1,6 +1,5 @@
 <template>
   
-  <router-view  name="Nav"></router-view>
   <router-view  name="Header"></router-view>
   <router-view  name="HeaderSub"></router-view>
   <router-view v-slot="{ Component }" class="page">
@@ -8,6 +7,7 @@
       <component :is="Component" />
     </transition>
   </router-view>
+  <router-view  name="Nav"></router-view>
 
 </template>
 
@@ -17,7 +17,7 @@
 import Home from './views/Home.vue'
 import Nav from './components/Nav.vue'
 import Header from './components/Header.vue'
-// import ui from './ui.js'
+// import ui from '../public/js/ui.js'
 
 export default {
   name: 'App',

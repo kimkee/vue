@@ -1,5 +1,5 @@
 <template>
-  <div class="container board">
+  <div class="container board view">
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <!-- {{$route.params.id}} -->
@@ -55,10 +55,28 @@ export default {
     this.pram = ids;
   },
   mounted(){
+    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '보기';
   },
   methods:{
     async view(ids){
+
+
+      const userPatterns = {
+        'email' : /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g,
+        'url'   : /(?:(?:(https?|ftp|telnet):\/\/|[\s\t\r\n\[\]\`\<\>\"\'])((?:[\w$\-_\.+!*\'\(\),]|%[0-9a-f][0-9a-f])*\:(?:[\w$\-_\.+!*\'\(\),;\?&=]|%[0-9a-f][0-9a-f])+\@)?(?:((?:(?:[a-z0-9\-가-힣]+\.)+[a-z0-9\-]{2,})|(?:[\d]{1,3}\.){3}[\d]{1,3})|localhost)(?:\:([0-9]+))?((?:\/(?:[\w$\-_\.+!*\'\(\),;:@&=ㄱ-ㅎㅏ-ㅣ가-힣]|%[0-9a-f][0-9a-f])+)*)(?:\/([^\s\/\?\.:<>|#]*(?:\.[^\s\/\?:<>|#]+)*))?(\/?[\?;](?:[a-z0-9\-]+(?:=[^\s:&<>]*)?\&)*[a-z0-9\-]+(?:=[^\s:&<>]*)?)?(#[\w\-]+)?)/gmi
+      }
+      // userPatterns
+
+      var userReplaceFunctions = {
+        'email': function(_email){return '<a href="mailto:' + _email + '">'+ _email +'</a>'},
+        'url'  : function(_url){return '<a href="' + _url + '" target="_blank">'+ _url +'</a>'}
+      }
+      // userReplaceFunctions
+
+
+
+
       const docRef = doc(db, "test" , ids);
       try {
         const docSnap = await getDoc(docRef);
@@ -68,7 +86,7 @@ export default {
         `);
 
         this.Views.title = docSnap.data().title;
-        this.Views.content = docSnap.data().content;
+        this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
       } catch(error) {
         console.log(error)

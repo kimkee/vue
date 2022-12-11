@@ -242,8 +242,9 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 
 .board-list {}
 .board-list .bbs-opt{ display: flex; align-items: center; justify-content: space-between; }
-.board-list .bbs-opt .tots{margin-bottom: 10px;}
-.board-list .bbs-opt .more{margin-bottom: 10px;text-decoration: underline;}
+.board-list .bbs-opt .tots{font-size:12rem; color: #777; margin-bottom: 10px;}
+.board-list .bbs-opt .more{font-size:12rem; color: #777; margin-bottom: 10px;text-decoration: underline;}
+.board-list .bbs-opt .more a{color: #777;}
 .board-list .list{}
 .board-list .list>li{word-break: break-all;border: 1px solid #21262d;border-radius: 8rem;overflow: hidden;}
 .board-list .list>li+li{margin-top:20px}
@@ -257,12 +258,12 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-list .list>li .box .info .keys{ font-size: 10rem; }
 .board-list .list>li .box .info .date{/* padding: 5px 7px; */font-size:10px;color: #46494e;}
 
-.recent .board-list .list>li+li{margin-top: 10rem;}
+.recent .board-list .list>li+li{margin-top: 10rem;}  
 
 
 .board-view{}
 .board-view .dt{border-bottom: #2c384a solid 1px;padding: 10px 0px;font-size: 17px;word-break: break-all;margin-bottom: 1rem;color: #adb9c9;}
-.board-view .dd .cont{/* border: #444444 solid 1px; */padding: 10px 1px;word-break: break-all;min-height: 200px;line-height: 1.9;min-height: calc(100vh - 290rem);color: #6a717c;}
+.board-view .dd .cont{padding: 10px 1px;word-break: break-all;line-height: 1.9; color: #6a717c;}
 .board-view .dd .date{padding: 7px 1px;word-break: break-all;margin-top: 0rem;text-align: right;font-size:12rem;color: #626b7a;}
 .board-view .btn-set{margin-top: 10rem;}
 .board-write{margin-top: 10rem;}

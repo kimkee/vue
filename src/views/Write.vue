@@ -1,5 +1,5 @@
 <template>
-  <div class="container board">
+  <div class="container board write">
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-write">
@@ -50,6 +50,7 @@ export default {
     
   },
   mounted(){
+    ui.init();
     document.querySelector("input#title").value = "";
     document.querySelector("textarea#content").value = "";
     document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
