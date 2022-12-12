@@ -8,4 +8,4 @@ const app = createApp(App)
 app.use(router).mount('#app')
 
 
-console.log("0000");
+ui.init();

@@ -7,6 +7,7 @@ import List from "./views/List.vue";
 import Write from "./views/Write.vue";
 import Modify from "./views/Modify.vue";
 import View from "./views/View.vue";
+import SignUp from "./views/SignUp.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -54,6 +55,15 @@ const router = createRouter({
                 default: View,
                 HeaderSub,
                 
+            }
+        },
+        {
+            path: "/signup/",
+            name: "signup",
+            components: {
+                default: SignUp,
+                HeaderSub,
+                Nav
             }
         }
     ],

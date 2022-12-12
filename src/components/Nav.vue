@@ -5,7 +5,8 @@
         <li><router-link class="bt" to="/">Home</router-link> </li>
         <li><router-link class="bt" to="/list">Board</router-link></li>
         <li><a href="javascript:;" class="bt">Contact</a></li>
-        <li><a href="javascript:;" class="bt">Sign in</a></li>
+        <!-- <li><a href="javascript:;" class="bt">Sign in</a></li> -->
+        <li><router-link class="bt" to="/signup">Sign up</router-link></li>
       </ul>
     </div>
   </nav>

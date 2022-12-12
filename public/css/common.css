@@ -76,7 +76,7 @@ nav.gnb{position:fixed;width: 70%;height: 100%;z-index: 900;top: 0px;right: -100
 nav.gnb::after{left: -100%;width: 100%;height:100%;/* background-color: rgba(0, 0, 0, 0.3); */content:"";display:block;position: fixed;top: 0;/* left: 0px; */}
 nav.gnb .bt.close{display:block;position:absolute;right: 20px;top: 14px;z-index: 1900;width: 36px;height: 36px;font-size: 0;background: url(../img/btn_close.png) no-repeat center;background-size: 24px auto;/* background: #fff; */}
 nav.gnb>.inr{padding: 55px 30px 0px 30px;height: 100vh;background-color: #26384e;}
-nav.gnb .menu{margin-top: 20px;/* background-color: #ffffff; */height: calc(100% - 0px);/* padding: 20px 20px 20px 20px; */overflow-y: auto;}
+nav.gnb .menu{margin-top: 20px; overflow-y: auto;}
 nav.gnb .menu .mCustomScrollBox{background-color: transparent;border-top:1px solid #ddd;outline: initial;}
 nav.gnb .menu .mCSB_scrollTools .mCSB_draggerRail{/* background-color: transparent; */}
 nav.gnb .menu .mCSB_scrollTools .mCSB_draggerContainer{ /* right: 4px; */ }
@@ -90,6 +90,9 @@ nav.gnb .menu>li:last-child{border-bottom: #3b516c solid 1px;}
 nav.gnb .menu>li>.bt{display:block;padding: 15px 20px 15px 15px;font-size: 15px;font-weight: 400;position: relative;}
 nav.gnb .menu>li>.bt::before{content:"-";position: absolute;left: 1px;top: 13px;}
 nav.gnb .menu>li>.bt.router-link-active{color: #ffffff;}
+nav.gnb .sign{text-align: center; display: flex; justify-content: space-around; position: absolute; bottom: 20px; left: 20rem; right: 20rem;padding: 10px 0;}
+nav.gnb .sign .bt{padding: 5px 0;}
+
 body.is-gnb nav.gnb{right: 0%;/* display: block; *//* width: 70%; */}
 body.is-gnb nav.gnb::after{/* left: 0%; */}
 body.is-gnb .btn-gnb{/* left: 57%; */}
@@ -273,6 +276,17 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-write .list>li .dt{display: block; margin-bottom: 10rem;}
 .board-write .list>li .dd{display: block;}
 .board-write .btn-set{margin-top: 20rem;}
+
+.page.sign{}
+.page.sign .contents{padding-top: calc(50vh - 60%);}
+.sign-form{width: 260rem;margin: 10rem auto 0;}
+.sign-form .hdt{ text-align: center; font-size:15rem; color:#eeeeee}
+.sign-form .list{}
+.sign-form .list>li{}
+.sign-form .list>li+li{margin-top: 20rem;}
+.sign-form .list>li .dt{display: block; margin-bottom: 10rem;}
+.sign-form .list>li .dd{display: block;}
+.sign-form .btn-set{margin-top: 20rem;}
 
 
 

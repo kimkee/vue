@@ -2,30 +2,28 @@
 const ui = {
 	init:function(){
 		this.gnb.init();
-		console.log( 'ui.init();' );
 	},
 	gnb: { // GNB 
 		init: function() {
 			const _this = this;
-			console.log(`gnb.init()`);
 			const isGnb = document.querySelector("body").classList.contains("is-gnb")
-			document.querySelector("#btn-gnb").addEventListener("click", function(){
+			document.querySelector("#btn-gnb")?.addEventListener("click", function(){
 				if (isGnb) {
 					// _this.using("close");
 				} else {
 					_this.using("open");
 				}
 			});
-
+			
 			
 			// document.querySelector("nav.gnb").removeEventListener('transitionend');
 
-			document.querySelector("nav.gnb .bt.close").addEventListener("click", function(){
-				_this.using("close");			
+			document.querySelector("nav.gnb .bt.close")?.addEventListener("click", function(){
+				ui.gnb.using("close");			
 			});
-			document.querySelectorAll("nav.gnb .menu li .bt").forEach( bt => {
+			document.querySelectorAll(".gnb-screen, nav.gnb .bt ").forEach( bt => {
 				bt.addEventListener("click", function(){
-					_this.using("close");			
+					ui.gnb.using("close");			
 				});
 			});
 			//ui.gnb.using("open");
@@ -79,4 +77,3 @@ const ui = {
 		}
 	}
 }
-console.log(ui);
