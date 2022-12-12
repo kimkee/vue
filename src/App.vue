@@ -1,23 +1,24 @@
 <template>
   
-  <router-view  name="Header"></router-view>
-  <router-view  name="HeaderSub"></router-view>
-  <router-view v-slot="{ Component }" class="page">
+  <router-view  name="Header" :userstate="this.userstate" :userInfo="this.userInfo"></router-view>
+  <router-view  name="HeaderSub" :userstate="this.userstate" :userInfo="this.userInfo"></router-view>
+  <router-view v-slot="{ Component }" class="page" :userstate="this.userstate">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
   </router-view>
-  <router-view  name="Nav"></router-view>
+  <router-view  name="Nav" :userstate="this.userstate"></router-view>
 
 </template>
 
 <script>
 
 
-import Home from './views/Home.vue'
-import Nav from './components/Nav.vue'
-import Header from './components/Header.vue'
-// import ui from '../public/js/ui.js'
+import Home from './views/Home.vue';
+import Nav from './components/Nav.vue';
+import Header from './components/Header.vue';
+// import ui from '../public/js/ui.js';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 export default {
   name: 'App',
@@ -26,14 +27,43 @@ export default {
     Nav,
     Home
   },
+  props: {
+    // userstate: String
+  },
+  data() {
+      return {
+        userstate:"false",
+        userInfo:{}
+      }
+  },
   created(){
     
   },
   mounted(){
-
+   
+    this.authState();
+    // console.log(this.userstate);
+  },
+  watch(){
   },
   methods:{
-    
+    authState(){
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // 사용자 로그인 시 동작
+          this.userstate = "true";
+          this.userInfo = user;
+          console.log('login 된 상태' , user.email ,this.userstate );
+          return;
+        }
+        // 사용자 로그아웃 시 동작
+        this.userstate = "false";
+        this.userInfo = null;
+        console.log('logout 된 상태' , this.userstate);
+        
+      });
+    }
   }
 }
 </script>

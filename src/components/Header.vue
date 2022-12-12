@@ -5,13 +5,13 @@
         <h1 class="logo"><router-link class="btlogo" to="/">Home</router-link></h1>
       </div>
       <div class="rdt">
-        <button type="button" class="bt" onclick="history.back(-1)"><b>뒤로</b></button>
         <button type="button" class="bt gnb" id="btn-gnb"><b>메뉴</b></button>
+        
       </div>
     </div>
   </header>
 
-  <Gnb/>
+  <Gnb :userstate="userstate" :userInfo="this.userInfo"/>
 
 </template>
 
@@ -25,7 +25,8 @@ export default {
     Gnb,
   },
   props: {
-    
+    userstate: String,
+    userInfo: Object
   },
   data() {
       return {

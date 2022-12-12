@@ -43,7 +43,6 @@ export default {
       }
   },
   created(){
-    console.log("list created");
     this.read();
     // console.log(db);
   },

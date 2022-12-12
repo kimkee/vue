@@ -9,9 +9,17 @@
         <!-- <li><a href="javascript:;" class="bt">Contact</a></li>
         <li><a href="javascript:;" class="bt">Sign in</a></li> -->
       </ul>
+      
       <div class="sign">
-        <router-link class="bt" to="/signin">Login</router-link>
-        <router-link class="bt" to="/signup">Join</router-link>
+        
+        <!-- <div v-if="userstate == true">로긴됨</div>
+        <div v-if="userstate == false">로긴아웃</div> -->
+        <router-link v-if="userstate == 'false'" class="bt" to="/signin">Login</router-link>
+        <router-link v-if="userstate == 'false'" class="bt" to="/signup">Join</router-link>
+        
+        <span v-if="userstate == 'true'">{{userInfo.email}}</span>
+        <button v-if="userstate == 'true'" class="bt" @click="logout">Logout</button>
+
       </div>
     </div>
   </nav>
@@ -20,12 +28,13 @@
 </template>
 
 <script>
-
+import { getAuth, signOut } from 'firebase/auth';
 
 export default {
   name: 'GnbItem',
   props: {
-    
+    userstate: String,
+    userInfo: Object
   },
   data() {
       return {
@@ -33,10 +42,26 @@ export default {
       }
   },
   created(){
-
+    
   },
   methods:{
+    logout(){
+      // console.log(isLogOut);
+     // const isLogOut = window.confirm(authMessage['auth/logout-confirm']);
+      //if (!isLogOut) return;
+
+      try {
+        const auth = getAuth();
+        signOut(auth);
+        // setAuthInfo(initialState);
+        alert("로그아웃 성공");
+        this.$router.push('/');
+      } catch ({ code, message }) {
+        console.log({ code, message });
+        // alert(errorMessage[code]);
+      }
     
+    }
   }
 }
 </script>
