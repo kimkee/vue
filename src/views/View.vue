@@ -21,10 +21,10 @@
     <nav class="floatbots">
       <div class="inr">
         <div class="btsbox btn-set">
-        <router-link class="btn" to="/list">목록</router-link>
-        <router-link class="btn" :to="`/modify/${this.pram}`">수정</router-link>
-        <button type="button" class="btn" @click="delpost">삭제</button>
-      </div>
+          <router-link class="btn" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+          <router-link class="btn" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+          <button type="button" class="btn" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+        </div>
       </div>
     </nav>
     

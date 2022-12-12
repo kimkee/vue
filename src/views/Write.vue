@@ -25,8 +25,8 @@
     <nav class="floatbots">
       <div class="inr">
         <div class="btsbox btn-set">
-            <router-link class="btn" to="/list">목록</router-link>
-            <button type="button" class="btn" @click="write">쓰기</button>
+          <router-link class="btn" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+            <button type="button" class="btn" @click="write"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>  
         </div>
       </div>
     </nav>

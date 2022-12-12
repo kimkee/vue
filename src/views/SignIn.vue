@@ -20,8 +20,8 @@
         <div class="btsbox btn-set">
             <button type="button" class="btn" @click="login">로그인</button>
         </div>
-        <div class="btsbox btn-set">
-            <router-link class="bt" to="/signup">회원가입 >></router-link>
+        <div class="link">
+            <router-link class="bt" to="/signup">회원가입 ></router-link>
         </div>
       </div>
     </main>

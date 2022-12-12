@@ -25,7 +25,7 @@
       </div>
 
       <div class="floatnav">
-        <router-link class="bt reg" to="/write">게시글동록</router-link>
+        <router-link class="bt reg" to="/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
       </div>
 
     </main>

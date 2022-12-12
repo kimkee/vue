@@ -1,7 +1,7 @@
 <template>
   
   <nav class="gnb" id="gnb">
-    <div class="bts"><button class="bt close" tabindex="-1">메뉴닫기</button></div>
+    <div class="bts"><button class="bt close" tabindex="-1"><i class="fa-solid fa-xmark"></i></button></div>
     <div class="inr">
       <ul class="menu">
         <li><router-link class="bt" to="/">Home</router-link></li>
@@ -12,13 +12,16 @@
       
       <div class="sign">
         
+        <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em>{{userInfo.email}}</em></span>
+        
         <!-- <div v-if="userstate == true">로긴됨</div>
         <div v-if="userstate == false">로긴아웃</div> -->
-        <router-link v-if="userstate == 'false'" class="bt" to="/signin">Login</router-link>
-        <router-link v-if="userstate == 'false'" class="bt" to="/signup">Join</router-link>
-        
-        <span v-if="userstate == 'true'" class="bt email">{{userInfo.email}}</span>
-        <router-link v-if="userstate == 'true'" class="bt" to="/signout">Logout</router-link>
+        <div class="bts">
+          <router-link v-if="userstate == 'false'" class="bt" to="/signin"><i class="fa-solid fa-right-to-bracket"></i><em> Login</em></router-link>
+          <router-link v-if="userstate == 'false'" class="bt" to="/signup"><i class="fa-solid fa-user-plus"></i><em> Join</em></router-link>
+          
+          <router-link v-if="userstate == 'true'" class="bt" to="/signout"><i class="fa-solid fa-right-from-bracket"></i><em>Logout</em></router-link>
+        </div>
 
       </div>
     </div>
