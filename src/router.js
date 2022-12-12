@@ -9,6 +9,7 @@ import Modify from "./views/Modify.vue";
 import View from "./views/View.vue";
 import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
+import SignOut from "./views/SignOut.vue";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -74,6 +75,13 @@ const router = createRouter({
                 default: SignIn,
                 HeaderSub,
                 Nav
+            }
+        },
+        {
+            path: "/signout/",
+            name: "signout",
+            components: {
+                default: SignOut,
             }
         }
     ],

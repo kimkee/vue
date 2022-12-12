@@ -21,7 +21,7 @@ const ui = {
 			document.querySelector("nav.gnb .bt.close")?.addEventListener("click", function(){
 				ui.gnb.using("close");			
 			});
-			document.querySelectorAll(".gnb-screen, nav.gnb .bt ").forEach( bt => {
+			document.querySelectorAll(".gnb-screen, nav.gnb .bt ")?.forEach( bt => {
 				bt.addEventListener("click", function(){
 					ui.gnb.using("close");			
 				});
@@ -40,10 +40,11 @@ const ui = {
 			}); */
 		},
 		using: function(opt) {
+			const gnbScreen = document.querySelector(".gnb-screen");
 			if (opt === "open") {
 				console.log(opt);
 				document.querySelector("body").classList.add("is-gnb");
-				document.querySelector(".gnb-screen").style.display = "block";
+				if(gnbScreen )document.querySelector(".gnb-screen").style.display = "block";
 
 				// ui.lock.using(true);
 				// $("nav.gnb").after('<div class="gnb-screen" tabindex="-1"></div>');
@@ -56,7 +57,7 @@ const ui = {
 			if (opt === "close") {
 				console.log(opt);
 				document.querySelector("body").classList.remove("is-gnb");
-				document.querySelector(".gnb-screen").style.display = "none";
+				if(gnbScreen )document.querySelector(".gnb-screen").style.display = "none";
 				// $("nav.gnb").animate({"left": "-100%"}, 300,function(){
 				// 	$("body").removeClass("is-gnb");
 				// 	$(".gnb-screen").hide().remove();

@@ -5,7 +5,10 @@
         <li><router-link class="bt" to="/">Home</router-link> </li>
         <li><router-link class="bt" to="/list">Board</router-link></li>
         <li><a href="javascript:;" class="bt">Photo</a></li>
-        <li><a href="javascript:;" class="bt">{{userstate}}</a></li>
+        <li>
+          <router-link v-if="userstate == 'false'" class="bt" to="/signin">Login</router-link>
+          <router-link v-if="userstate == 'true'" class="bt" to="/signout">Logout</router-link>
+        </li>
       </ul>
     </div>
   </nav>

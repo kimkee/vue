@@ -17,8 +17,8 @@
         <router-link v-if="userstate == 'false'" class="bt" to="/signin">Login</router-link>
         <router-link v-if="userstate == 'false'" class="bt" to="/signup">Join</router-link>
         
-        <span v-if="userstate == 'true'">{{userInfo.email}}</span>
-        <button v-if="userstate == 'true'" class="bt" @click="logout">Logout</button>
+        <span v-if="userstate == 'true'" class="bt email">{{userInfo.email}}</span>
+        <router-link v-if="userstate == 'true'" class="bt" to="/signout">Logout</router-link>
 
       </div>
     </div>
@@ -28,8 +28,6 @@
 </template>
 
 <script>
-import { getAuth, signOut } from 'firebase/auth';
-
 export default {
   name: 'GnbItem',
   props: {
@@ -45,23 +43,7 @@ export default {
     
   },
   methods:{
-    logout(){
-      // console.log(isLogOut);
-     // const isLogOut = window.confirm(authMessage['auth/logout-confirm']);
-      //if (!isLogOut) return;
-
-      try {
-        const auth = getAuth();
-        signOut(auth);
-        // setAuthInfo(initialState);
-        alert("로그아웃 성공");
-        this.$router.push('/');
-      } catch ({ code, message }) {
-        console.log({ code, message });
-        // alert(errorMessage[code]);
-      }
     
-    }
   }
 }
 </script>

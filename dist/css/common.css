@@ -90,9 +90,9 @@ nav.gnb .menu>li:last-child{border-bottom: #3b516c solid 1px;}
 nav.gnb .menu>li>.bt{display:block;padding: 15px 20px 15px 15px;font-size: 15px;font-weight: 400;position: relative;}
 nav.gnb .menu>li>.bt::before{content:"-";position: absolute;left: 1px;top: 13px;}
 nav.gnb .menu>li>.bt.router-link-active{color: #ffffff;}
-nav.gnb .sign{text-align: center; display: flex; justify-content: space-around; position: absolute; bottom: 20px; left: 20rem; right: 20rem;padding: 10px 0;}
+nav.gnb .sign{text-align: center; display: flex; align-items: center; justify-content: space-around; position: absolute; bottom: 20px; left: 20rem; right: 20rem;padding: 10px 0;}
 nav.gnb .sign .bt{padding: 5px 0;}
-
+nav.gnb .sign .bt.email{color: #bbbbbb;}
 body.is-gnb nav.gnb{right: 0%;/* display: block; *//* width: 70%; */}
 body.is-gnb nav.gnb::after{/* left: 0%; */}
 body.is-gnb .btn-gnb{/* left: 57%; */}

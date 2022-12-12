@@ -19,7 +19,10 @@
         </ul>
         <div class="btsbox btn-set">
             <!-- <router-link class="btn" to="/signin">로그인</router-link> -->
-            <button type="button" class="btn" @click="join">가입</button>
+          <button type="button" class="btn" @click="join">가입</button>
+        </div>
+        <div class="btsbox btn-set">
+          <router-link class="bt" to="/signin">로그인</router-link>
         </div>
       </div>
     </main>
