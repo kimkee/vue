@@ -1,7 +1,15 @@
 
 const ui = {
 	init:function(){
+		console.log("ui.init();");
 		this.gnb.init();
+	},
+	test:{
+		using:function(target){
+			console.log(target.tagName);
+			target.classList.toggle('d');
+			
+		}
 	},
 	gnb: { // GNB 
 		init: function() {
@@ -14,10 +22,6 @@ const ui = {
 					_this.using("open");
 				}
 			});
-			
-			
-			// document.querySelector("nav.gnb").removeEventListener('transitionend');
-
 			document.querySelector("nav.gnb .bt.close")?.addEventListener("click", function(){
 				ui.gnb.using("close");			
 			});

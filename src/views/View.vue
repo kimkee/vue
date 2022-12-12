@@ -48,7 +48,6 @@ export default {
   },
   created(){
     console.log("view created");
-    console.clear();
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.view(ids);
@@ -80,10 +79,7 @@ export default {
       const docRef = doc(db, "test" , ids);
       try {
         const docSnap = await getDoc(docRef);
-        console.log(`
-          제목 : ${docSnap.data().title} 
-          내용 : ${docSnap.data().content}
-        `);
+        console.log(`제목 : ${docSnap.data().title} || 내용 : ${docSnap.data().content}`);
 
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
@@ -108,5 +104,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* @import url("../assets/css/style.css"); */
+
 </style>

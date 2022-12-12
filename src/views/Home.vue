@@ -3,7 +3,8 @@
     <main class="contents">
 
       <div class="mn-box">
-        <div class="top"><router-link class="bt" to="/list"><img src="../../public/img/logo.png" alt=""></router-link></div>
+        <div class="top" onclick="ui.test.using(this.target)"><img src="../../public/img/logo.png" alt=""></div>
+        <div class="msg">게시판 : 읽기,쓰기,수정,삭제 <br> 회원: 로그인,가입</div>
         <div class="icos">
           <span class="ico"><img src="../../public/img/ico_vue.svg" alt=""></span>
           <span class="pls">+</span>
@@ -43,8 +44,6 @@ export default {
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* @import url("../assets/css/style.css"); */
 </style>

@@ -295,7 +295,8 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .page.home .mn-box .top{width: 110rem;}
 .page.home .mn-box .top a{display:block;}
 .page.home .mn-box .top img{display:block;max-width: 100%;}
-.page.home .mn-box .icos{margin-top: 22px;display: block;}
+.page.home .mn-box .msg{ font-size:12rem; margin-top: 5rem; color:#9abbac;}
+.page.home .mn-box .icos{margin-top: 12px;display: block;}
 .page.home .mn-box .icos span{}
 .page.home .mn-box .icos span img{display: inline-block; vertical-align: middle;}
 .page.home .mn-box .icos .ico{display: block;}
