@@ -30,8 +30,19 @@ export default {
     this.logout();
   },
   methods: {
-    
     logout(){
+      const auth = getAuth();
+      signOut(auth).then(() => {
+        // Sign-out successful.
+        alert("로그아웃 성공!!");
+      }).catch((error) => {
+        console.log(error);
+        // An error happened.
+      });
+      this.$router.push('/');
+    },
+
+    logout2(){
       // console.log(isLogOut);
      // const isLogOut = window.confirm(authMessage['auth/logout-confirm']);
       //if (!isLogOut) return;
@@ -40,7 +51,7 @@ export default {
         const auth = getAuth();
         signOut(auth);
         // setAuthInfo(initialState);
-        // alert("로그아웃 성공");
+        alert("로그아웃 성공");
         this.$router.push('/');
       } catch ({ code, message }) {
         console.log({ code, message });
@@ -48,7 +59,9 @@ export default {
       }
     
     }
-      
+    ,
+  
+
     
   }
 }

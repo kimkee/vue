@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 
 export default {
   name: 'JoinItem',
@@ -39,9 +39,18 @@ export default {
     msg: String
   },
   data() {
-      return {
-         
+    return {
+      erMsg : {
+        "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
+        "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
+        "auth/too-many-requests" : "연속된 로그인 요청이 여러 번 감지되어 로그인 요청이 금지됨",
+        "auth/weak-password" : "비밀번호가 6자리 미만인 경우 발생",
+        "auth/invalid-email" : "잘못된 포맷의 이메일을 입력한 경우 발생",
+        "auth/email-already-in-use" :	"이미 사용 중인 이메일 계정 ID로 회원 가입을 시도하는 경우 발생",
+        "auth/invalid-phone-number" : "잘못된 포맷의 핸드폰 번호를 입력한 경우 발생",
+        "auth/internal-error" : "비밀번호를 입력하세요.",
       }
+    }
   },
   created(){
     
@@ -51,46 +60,55 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = '회원가입';
   },
   methods: {
-    
+
     async join () {
       const email = document.querySelector("input#email").value;
       const password = document.querySelector("input#password").value;
-      
-      console.log(email, password);
-      try {
-        const auth = getAuth();
-        const { user } = await createUserWithEmailAndPassword(auth, email, password);
-        const { stsTokenManager, uid  } = user;
-        console.log(user.email  );
-        console.log("uid : "+uid );
-        console.log("액세스토큰: "+stsTokenManager.accessToken);
-        
-        alert("가입되었습니다.\n" + user.email +"\n "+ uid  );
-        this.$router.push('/');
-      } catch ({ code, message }) {
-        console.log({ code, message });
-        // alert(errorMessage[code]);
-        if (code == 'auth/invalid-email') {
-          alert("이메일 형식이 아닙니다.")
-        }
-        if (code == 'auth/email-already-in-use') {
-          alert("이미 가입된 메일입니다.")
-        }
-      }
+      const auth = getAuth();
+      createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user  );
+        console.log("uid : "+user.uid );
+        console.log("액세스토큰: "+ user.accessToken);
+        alert("가입되었습니다.\n" + user.email +"\n "+ user.uid  );
 
-      const erMsg = {
-        "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
-        "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
-        "auth/too-many-requests" : "연속된 로그인 요청이 여러 번 감지되어 로그인 요청이 금지됨",
-        "auth/weak-password" : "비밀번호가 6자리 미만인 경우 발생",
-        "auth/invalid-email" : "잘못된 포맷의 이메일을 입력한 경우 발생",
-        "auth/email-already-in-use" :	"이미 사용 중인 이메일 계정 ID로 회원 가입을 시도하는 경우 발생",
-        "auth/invalid-phone-number" : "잘못된 포맷의 핸드폰 번호를 입력한 경우 발생",
-      }
-      erMsg;
-
-
+      })
+      .catch((error) => {
+        console.log( error.code);
+        const emsg = this.erMsg[error.code] 
+        alert(  emsg );
+        // ..
+      });
     }
+    
+    // async join () {
+    //   const email = document.querySelector("input#email").value;
+    //   const password = document.querySelector("input#password").value;
+      
+    //   console.log(email, password);
+    //   try {
+    //     const auth = getAuth();
+    //     const { user } = await createUserWithEmailAndPassword(auth, email, password);
+    //     const { stsTokenManager, uid  } = user;
+    //     console.log(user.email  );
+    //     console.log("uid : "+uid );
+    //     console.log("액세스토큰: "+stsTokenManager.accessToken);
+        
+    //     alert("가입되었습니다.\n" + user.email +"\n "+ uid  );
+    //     this.$router.push('/');
+    //   } catch ({ code, message }) {
+    //     console.log({ code, message });
+    //     // alert(errorMessage[code]);
+    //     if (code == 'auth/invalid-email') {
+    //       alert("이메일 형식이 아닙니다.")
+    //     }
+    //     if (code == 'auth/email-already-in-use') {
+    //       alert("이미 가입된 메일입니다.")
+    //     }
+    //   }
+    // }
       
 
       
