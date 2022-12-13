@@ -12,7 +12,7 @@
           <p class="date">작성일 : {{ Views.timestamp }}</p>
           <div class="cont">
             <!-- {{Views.img}} -->
-            <div class="pics"><img :src="Views.img" alt="" onerror="this.src = '/img/logo.png';"></div>
+            <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src = '/img/logo.png';"></div>
             <div class="text" v-html="Views.content"></div>
           </div>
           
