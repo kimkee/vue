@@ -18,9 +18,9 @@
 
           <div class="inr">
             <div class="btsbox btn-set">
-              <router-link class="btn" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link class="btn" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-              <button type="button" class="btn" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+              <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+              <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+              <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
             </div>
           </div>
 
