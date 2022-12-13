@@ -16,7 +16,7 @@
                 <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
                   <h4 class="tits">{{ board.title }}</h4>
                   <div class="cont">
-                    <div v-if="board.img" class="pics"><img class="img" :src="board.img" onerror="this.src = '../img/logo.png';"></div>
+                    <div v-if="board.img" class="pics"><img class="img" :src="board.img" onerror="this.src = './img/logo.png';"></div>
                     <div class="text" v-html="board.content"></div>
                   </div>
                   <div class="info">
