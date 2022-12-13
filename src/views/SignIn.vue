@@ -18,10 +18,10 @@
           </li>
         </ul>
         <div class="btsbox btn-set">
-            <button type="button" class="btn" @click="login">로그인</button>
+            <button type="button" class="btn" @click="login"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
         </div>
         <div class="link">
-            <router-link class="bt" to="/signup">회원가입 ></router-link>
+            <router-link class="bt" to="/signup">회원가입하러 가기 <i class="fa-solid fa-chevron-right"></i></router-link>
         </div>
       </div>
     </main>

@@ -4,7 +4,7 @@
       <h1>{{ msg }}</h1> 
       <div class="board-list">
         <div class="bbs-opt">
-          <div class="tots">게시물 : {{Boards.length}} 개</div>
+          <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{Boards.length}} 개</div>
           <div class="more"></div>
         </div>
         <ul class="list">
