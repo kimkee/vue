@@ -60,7 +60,7 @@ export default {
   methods: {
 
     async read(ids){
-      const docRef = doc(db, "test" , ids);
+      const docRef = doc(db, "bbs" , ids);
       try {
         const docSnap = await getDoc(docRef);
         // console.log(`
@@ -83,7 +83,7 @@ export default {
 
       try {
         console.log(this.pram);
-        const thisDoc = doc(db, "test", this.pram );
+        const thisDoc = doc(db, "bbs", this.pram );
 
         await updateDoc(thisDoc, {
           title: $title.value,

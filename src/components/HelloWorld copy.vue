@@ -58,7 +58,7 @@ export default {
   },
   methods:{
     read(){
-      onSnapshot(collection(db, "test"), (querySnapshot) => {
+      onSnapshot(collection(db, "bbs"), (querySnapshot) => {
         console.log("afsd");
         this.Boards = [];
         querySnapshot.forEach((doc) => {

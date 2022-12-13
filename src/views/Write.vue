@@ -63,7 +63,7 @@ export default {
       const today = new Date();
 
       try {
-        const docRef = addDoc(collection(db, "test"), {
+        const docRef = addDoc(collection(db, "bbs"), {
           title: $title.value,
           content: $content.value.replace(/\n/g,'<br>'),
           timestamp: today

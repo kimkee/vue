@@ -76,7 +76,7 @@ export default {
 
 
 
-      const docRef = doc(db, "test" , ids);
+      const docRef = doc(db, "bbs" , ids);
       try {
         const docSnap = await getDoc(docRef);
         console.log(`제목 : ${docSnap.data().title} || 내용 : ${docSnap.data().content}`);
@@ -90,7 +90,7 @@ export default {
     },
     async delpost(){
       if (confirm("이 글을 작세하시겠습니까?")) {
-        await deleteDoc(doc(db, "test",  this.pram ));
+        await deleteDoc(doc(db, "bbs",  this.pram ));
         console.log("삭제 성공: ");
         this.$router.push('/list');
       }else{

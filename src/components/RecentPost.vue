@@ -51,7 +51,7 @@ export default {
   },
   methods:{
     async read(){
-      const q = query(collection(db, "test"), orderBy("timestamp", "desc") , limit(5) );
+      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(5) );
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {
