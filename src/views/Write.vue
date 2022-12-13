@@ -19,6 +19,12 @@
               </span>
             </div>
           </li>
+          <li>
+            <label class="dt">사진</label>
+            <div class="dd">
+              <span class="input"><input type="file" id="fileInput" placeholder="선택하세요"></span>
+            </div>
+          </li>
         </ul>
       </div>
     </main>
@@ -36,6 +42,8 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { collection, addDoc } from "firebase/firestore";
+import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
+
 export default {
   name: 'WriteItem',
   props: {
@@ -52,21 +60,49 @@ export default {
   mounted(){
     ui.init();
     document.querySelector("input#title").value = "";
+    document.querySelector("input#fileInput").value = "";
     document.querySelector("textarea#content").value = "";
     document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
   },
   methods: {
-    write(){
+    async write(){
       console.log("쓰기");
       const $title = document.querySelector("input#title");
       const $content = document.querySelector("textarea#content")
+      const $fileInput = document.querySelector("input#fileInput");
       const today = new Date();
+      let imgUrl = "";
+      /* 업로드  */
+      const storage = getStorage();
+      // const mountainsRef = ref(storage, $fileInput.files[0].name);
+      const metadata = {
+        contentType: 'image/jpeg',
+      };
+      console.log($fileInput.files[0]);
+      if ($fileInput.files[0]) {
+        const filename = $fileInput.files[0].name;
+        const storageRef = ref(storage, "images/"+filename);
 
+        await uploadBytes( storageRef ,filename, metadata ).then((snapshot) => {
+          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
+        });
+        
+        await getDownloadURL(ref(storage, storageRef.fullPath))
+        .then((url) => {
+          imgUrl = url;
+          console.log(imgUrl);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+      
       try {
         const docRef = addDoc(collection(db, "bbs"), {
           title: $title.value,
           content: $content.value.replace(/\n/g,'<br>'),
-          timestamp: today
+          timestamp: today,
+          img:imgUrl
           // date: new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( today )
         });
         console.log("쓰기 성공: ", docRef.title ,docRef.content , docRef);

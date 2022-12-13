@@ -3,25 +3,30 @@
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-list">
-        <div class="bbs-opt">
-          <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{Boards.length}} 개</div>
-          <div class="more"></div>
+        <div v-if="Boards.length == 0" class="nodata">
+          <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
         </div>
-        <ul class="list">
-          <li v-for="board in Boards" :key="board.key">
-              <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
-                <h4 class="tits">{{ board.title }}</h4>
-                <div class="cont">
-                  
-                  <div class="text" v-html="board.content"></div>
-                </div>
-                <div class="info">
-                  <div class="keys">{{ board.key }}</div>
-                  <div class="date">{{ board.timestamp }}</div>
-                </div>
-              </router-link>
-          </li>
-        </ul>
+        <div v-if="Boards.length > 0">
+          <div class="bbs-opt">
+            <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{Boards.length}} 개</div>
+            <div class="more"></div>
+          </div>
+          <ul class="list">
+            <li v-for="board in Boards" :key="board.key">
+                <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
+                  <h4 class="tits">{{ board.title }}</h4>
+                  <div class="cont">
+                    <div v-if="board.img" class="pics"><img class="img" :src="board.img" onerror="this.src = '/img/logo.png';"></div>
+                    <div class="text" v-html="board.content"></div>
+                  </div>
+                  <div class="info">
+                    <div class="keys">{{ board.key }}</div>
+                    <div class="date">{{ board.timestamp }}</div>
+                  </div>
+                </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <div class="floatnav">
@@ -68,12 +73,13 @@ export default {
           key: doc.id,
           title: doc.data().title,
           content: doc.data().content,
+          img: doc.data().img,
           timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
           // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
         });
       });
+      document.querySelector(".board-list").classList.add("load");
     }
-
   }
 }
 </script>

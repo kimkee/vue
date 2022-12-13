@@ -10,7 +10,11 @@
         </div>
         <dd class="dd">
           <p class="date">작성일 : {{ Views.timestamp }}</p>
-          <div class="cont" v-html="Views.content"></div>
+          <div class="cont">
+            <!-- {{Views.img}} -->
+            <div class="pics"><img :src="Views.img" alt="" onerror="this.src = '/img/logo.png';"></div>
+            <div class="text" v-html="Views.content"></div>
+          </div>
           
         </dd>
         
@@ -84,6 +88,7 @@ export default {
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
+        this.Views.img = docSnap.data().img;
       } catch(error) {
         console.log(error)
       }
