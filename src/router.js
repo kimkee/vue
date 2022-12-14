@@ -20,6 +20,8 @@ const router = createRouter({
         // },
         {
             path: '/',
+            name: "home",
+            // components: ()=> import ("./views/Home.vue")
             components: {
                 default: Home,
                 Header,
