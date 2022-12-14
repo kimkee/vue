@@ -69,6 +69,9 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = '보기';
   },
   methods:{
+    dateForm(d){
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+    },
     async view(ids){
 
 
@@ -94,7 +97,7 @@ export default {
 
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
-        this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
+        this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
        

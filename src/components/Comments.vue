@@ -83,6 +83,9 @@ export default {
         
       });
     },
+    dateForm(d){
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+    },
     async comtList(ids){
       const docRef = doc(db, "bbs" , ids);
       try {
@@ -92,7 +95,8 @@ export default {
           this.Coments.forEach((c, i) => {         
             this.Coments[i] = ( c );
             this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
-            this.Coments[i].date = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'short'}).format( this.Coments[i].date );
+            this.Coments[i].date = this.dateForm( this.Coments[i].date );
+            // this.Coments[i].date = new Intl.RelativeTimeFormat('ko-KR', { style: 'narrow' }).format(this.Coments[i].date);
             
           });
           console.log(  `댓글 수 = ${ this.Coments.length }` );
@@ -123,7 +127,7 @@ export default {
 
       document.querySelector(".ut-reply ul.rlist.a").insertAdjacentHTML("beforeend",rHTML);
  */
-      const today = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'short'}).format( new Date() ) ;
+      const today = this.dateForm( new Date() ) ;
       // const today = new Date();
       this.comtSed({
         author : "홍길동",

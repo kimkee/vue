@@ -68,6 +68,9 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = '목록';
   },
   methods:{
+    dateForm(d){
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+    },
     async read(){
       const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(), limitToLast() );
       const querySnapshot = await getDocs(q);
@@ -79,8 +82,7 @@ export default {
           title: doc.data().title,
           content: doc.data().content,
           img: doc.data().img,
-          timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
-          // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
+          timestamp:  this.dateForm(doc.data().timestamp.toDate() ) 
         });
       });
       document.querySelector(".board-list").classList.add("load");

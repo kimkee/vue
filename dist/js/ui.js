@@ -80,5 +80,10 @@ const ui = {
 			// 	}
 			// });
 		}
+	},
+	userinfo : {
+		stat:'',
+		email:'',
+		uid:''
 	}
 }

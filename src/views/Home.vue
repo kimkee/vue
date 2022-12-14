@@ -4,7 +4,12 @@
 
       <div class="mn-box">
         <div class="top" onclick="ui.test.using(this.target)"><img src="../../public/img/logo.png" alt=""></div>
-        <div class="msg"><i class="fa-sharp fa-solid fa-cube"></i> 읽기, 쓰기, 수정, 삭제, 로그인, 가입</div>
+        <div class="msg">
+          <i class="fa-sharp fa-solid fa-cube"></i>
+          <p>로그인, 가입</p>
+          <p>게시글:[읽기, 쓰기, 수정, 삭제]</p>
+          <p>댓글[읽기,쓰기]</p>
+        </div>
         <div class="icos">
           <span class="ico"><img src="../../public/img/ico_vue.svg" alt=""></span>
           <span class="pls">+</span>
