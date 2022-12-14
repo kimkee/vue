@@ -15,75 +15,29 @@
             <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src = './img/logo.png';"></div>
             <div class="text" v-html="Views.content"></div>
           </div>
-
-          <div class="inr">
-            <div class="btsbox btn-set">
-              <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-              <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
-            </div>
-          </div>
-
-          <div class="comts">
-            
-            <!-- <div v-for="cmt in Coments" :key="cmt.key">
-              {{cmt.author}} : {{cmt.reply}}
-            </div> -->
-            <div class="ut-reply">
-              <div class="rplist">
-                <ul class="rlist a">
-                  <li v-for="cmt in Coments" :key="cmt.key">
-                    <div class="rpset">
-                      <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/logo.png';" class="img"></a></div>
-                      <div class="infs">
-                        <div class="name"><em class="nm">{{cmt.author}}</em></div>
-                        <!-- <div class="desc">
-                          <em class="loct">수색동</em><em class="time">4일전</em>
-                        </div> -->
-                        
-                        <div class="ment" v-html="cmt.reply"></div>
-                        <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
-                        <!-- <div class="bts"><button type="button" class="bt accu">신고하기</button></div> -->
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-
-
-
-
-
-
+         
+          <div class="btsbox btn-set">
+            <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+            <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+            <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
           </div>
         </dd>
         
       </div>
+      
+      <Comments/>
+
 
     </main>
 
-    <nav class="floatbots">
-      <div class="inr">
-        <div class="ut-rpwrite">
-          <div class="mtion"><em class="n">김하이하이</em>님에게 답급을 작성합니다 <button type="button" class="bt close" id="bt_mention_close">닫기</button></div>
-          <div class="rwset">
-            <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/logo.png';" class="img"></a></div>
-            <div class="form">
-              <textarea data-ui="autoheight" class="ment" id="input_reply" placeholder="댓글을 입력해주세요" style="height: 19px;"></textarea>
-              <div class="bts"><button type="button" class="btsend"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </nav>
+
     
   </div>
 </template>
 
 <script>
 import db  from '../firebaseConfig.js';
+import Comments from '../components/Comments.vue'
 import { getDoc, doc ,deleteDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 
@@ -97,6 +51,9 @@ export default {
           Views: {},
           Coments: [],
       }
+  },
+  components:{
+    Comments
   },
   created(){
     console.log("view created");
@@ -139,13 +96,13 @@ export default {
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
         console.log("this.Views.coments" + this.Views.coments);
-        this.Views.coments.forEach((c, i) => {
+        // this.Views.coments.forEach((c, i) => {
           
-          console.log( JSON.parse(c));
-          this.Coments[i] = ( JSON.parse(c) );
-          this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
-        });
-        console.log( this.Coments );
+        //   console.log( JSON.parse(c));
+        //   this.Coments[i] = ( JSON.parse(c) );
+        //   this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
+        // });
+        // console.log( this.Coments );
       } catch(error) {
         console.log(error)
       }

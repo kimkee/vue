@@ -6,6 +6,11 @@
         <div v-if="Boards.length == 0" class="nodata">
           <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
         </div>
+        <div class="ui-loading-dot">
+          <div class="bx">
+            <em><i></i></em>
+          </div>
+        </div>
         <div v-if="Boards.length > 0">
           <div class="bbs-opt">
             <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{Boards.length}} 개</div>
@@ -79,6 +84,7 @@ export default {
         });
       });
       document.querySelector(".board-list").classList.add("load");
+      document.querySelector(".ui-loading-dot").classList.add("load");
     }
   }
 }
