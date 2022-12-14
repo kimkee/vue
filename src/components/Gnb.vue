@@ -9,7 +9,7 @@
         <!-- <li><a href="javascript:;" class="bt">Contact</a></li>
         <li><a href="javascript:;" class="bt">Sign in</a></li> -->
       </ul>
-      
+      {{userstate}}
       <div class="sign">
         
         <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em>{{userInfo.email}}</em></span>

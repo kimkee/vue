@@ -2,7 +2,7 @@
   
   <router-view  name="Header" :userstate="this.userstate" :userInfo="this.userInfo"></router-view>
   <router-view  name="HeaderSub" :userstate="this.userstate" :userInfo="this.userInfo"></router-view>
-  <router-view v-slot="{ Component }" class="page" :userstate="this.userstate">
+  <router-view v-slot="{ Component }" class="page" :userstate="this.userstate" :userInfo="this.userInfo">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -37,10 +37,10 @@ export default {
       }
   },
   created(){
-    
+    ui.init();
   },
   mounted(){
-   
+
     this.authState();
     // console.log(this.userstate);
   },
@@ -54,12 +54,17 @@ export default {
           // 사용자 로그인 시 동작
           this.userstate = "true";
           this.userInfo = user;
-          console.log('login 된 상태' , user.email ,this.userstate );
+          console.log('login 된 상태' , user ,this.userstate );
+          ui.userinfo.stat = "true";
+          ui.userinfo.email = user.email;
+          ui.userinfo.uid = user.uid;
           return;
         }
         // 사용자 로그아웃 시 동작
         this.userstate = "false";
         this.userInfo = null;
+        ui.userinfo.stat = "false";
+        ui.userinfo.uid = "";
         console.log('logout 된 상태' , this.userstate);
         
       });

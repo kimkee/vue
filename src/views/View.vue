@@ -25,7 +25,7 @@
         
       </div>
       
-      <Comments/>
+      <Comments :userstate="userstate" :userInfo="this.userInfo"/>
 
 
     </main>
@@ -44,7 +44,9 @@ import { useRoute } from 'vue-router';
 export default {
   name: 'ViewItem',
   props: {
-    msg: String
+    msg: String,
+    userstate: String,
+    userInfo: Object
   },
   data() {
       return {
@@ -88,14 +90,14 @@ export default {
       const docRef = doc(db, "bbs" , ids);
       try {
         const docSnap = await getDoc(docRef);
-        console.log(`제목 : ${docSnap.data().title} || 내용 : ${docSnap.data().content}`);
+        // console.log(`제목 : ${docSnap.data().title} || 내용 : ${docSnap.data().content}`);
 
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
-        console.log("this.Views.coments" + this.Views.coments);
+       
         // this.Views.coments.forEach((c, i) => {
           
         //   console.log( JSON.parse(c));

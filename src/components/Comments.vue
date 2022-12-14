@@ -1,7 +1,7 @@
 <template>
-  
+  <!-- {{userInfo.email}} {{userstate}} -->
   <div class="comts">
-
+    <!-- <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em> {{userInfo.email}}</em></span> -->
     <div class="ut-reply">
       <div class="rplist">
         <ul class="rlist a">
@@ -10,10 +10,7 @@
               <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/user.png';" class="img"></a></div>
               <div class="infs">
                 <div class="name"><em class="nm">{{cmt.author}}</em></div>
-                <div class="desc">
-                  <em class="time">4일전</em>
-                </div>
-                
+                <div class="desc"><em class="time">4일전</em></div>
                 <div class="ment" v-html="cmt.reply"></div>
                 <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
                 <!-- <div class="bts"><button type="button" class="bt accu">신고하기</button></div> -->
@@ -21,6 +18,7 @@
             </div>
           </li>
         </ul>
+        
       </div>
     </div>
 
@@ -28,7 +26,6 @@
       <div class="inr">
         <div class="ut-rpwrite">
           <div class="rwset">
-            
             <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.userId" onerror="this.src = './img/user.png';" class="img"></a></div>
             <div class="form">
               <textarea data-ui="autoheight" class="ment" id="input_reply" placeholder="댓글을 입력해주세요"  spellcheck="false"></textarea>
@@ -45,13 +42,15 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { getDoc, doc  } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRoute } from 'vue-router';
 
 
 export default {
   name: 'CommentsItem',
   props: {
-    msg: String
+    msg: String,
+
   },
   data() {
     return {
@@ -66,11 +65,26 @@ export default {
     this.comtList(ids);
   },
   mounted(){
+    this.authState();
     this.autoHeight();
   },
   methods:{
+    authState(){
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          this.userstate = "true";
+          this.userInfo = user;
+          console.log(this.userInfo.email , this.userstate);
+          return;
+        }
+        // 사용자 로그아웃 시 동작
+
+        
+      });
+    },
     async comtList(ids){
-      console.log("댓글" + ids);
+      console.log("uid === " + ids);
       const docRef = doc(db, "bbs" , ids);
       try {
           const docSnap = await getDoc(docRef);
@@ -84,30 +98,51 @@ export default {
         console.log(error);
       }
     },
+    comtSed(opt){
+      console.log("댓글 전송 =======");
+      console.table(opt);
+    },
     comtWrite(e){
-      console.log(e.currentTarget, e);
       const sendBtn = e.currentTarget;
       const inputReply =  sendBtn.closest(".ut-rpwrite").querySelector("#input_reply");
-      console.log(inputReply.value.replace(/\n/g,'<br>') );
+      if(inputReply.value == "") return;     
+
+      const rHTML = `
+        <li>
+          <div class="rpset">
+            <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/user.png';" class="img"></a></div>
+            <div class="infs">
+              <div class="name"><em class="nm">${this.userInfo.email}</em></div>
+              <div class="desc"><em class="time">4일전</em></div>
+              <div class="ment">${inputReply.value.replace(/\n/g,'<br>')}</div>
+              <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
+              <!-- <div class="bts"><button type="button" class="bt accu">신고하기</button></div> -->
+            </div>
+          </div>
+        </li>`;
+
+      document.querySelector(".ut-reply ul.rlist.a").insertAdjacentHTML("beforeend",rHTML);
+
+      this.comtSed({
+        uid : this.userInfo.uid,
+        email : this.userInfo.email,
+        ment: inputReply.value.replace(/\n/g,'<br>'),
+        date: new Date()
+      });
+
+      // inputReply.style = ""
       inputReply.value = "";
       inputReply.focus();
+      inputReply.dispatchEvent(new Event('input'));
     },
     autoHeight(){ // 댓글에 자동높이 기능
       document.querySelector('[data-ui="autoheight"]').addEventListener("input",e =>{
-
-        // if( $els.value.indexOf("\n") > -1 ) {
-        //   const newval = $els.value.replace(/\n/gi, '');
-        //   $els.value = newval;
-        //   return false;
-        // }      
-        
-        console.log(e.currentTarget.value);
+        // console.log(e.currentTarget.value);
         const $els = e.currentTarget;
-        const tboxH = $els.offsetHeight;
         let tboxS;
         $els.style.height = "1px";
         tboxS = $els.scrollHeight ;
-        console.log( tboxH , tboxS);
+        // console.log(  tboxS);
         $els.style.height = tboxS+"px";
       });
     }
