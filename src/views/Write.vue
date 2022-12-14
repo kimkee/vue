@@ -65,6 +65,9 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
   },
   methods: {
+    dateForm(d){
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+    },
     async write(){
       console.log("쓰기");
       const $title = document.querySelector("input#title");
@@ -102,6 +105,7 @@ export default {
           title: $title.value,
           content: $content.value.replace(/\n/g,'<br>'),
           timestamp: today,
+          date: this.dateForm( today ),
           img:imgUrl
           // date: new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( today )
         });

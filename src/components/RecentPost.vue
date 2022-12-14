@@ -16,7 +16,7 @@
                 </div> -->
                 <div class="info">
                   <div class="keys">{{ recent.key }}</div>
-                  <div class="date">{{ recent.timestamp }}</div>
+                  <div class="date">{{ recent.date }}</div>
                 </div>
               </router-link>
           </li>
@@ -50,6 +50,9 @@ export default {
     
   },
   methods:{
+    dateForm(d){
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'short'}).format( d )
+    },
     async read(){
       const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(7) );
       const querySnapshot = await getDocs(q);
@@ -60,7 +63,8 @@ export default {
           key: doc.id,
           title: doc.data().title,
           // content: doc.data().content,
-          timestamp:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( doc.data().timestamp.toDate() ) 
+          date: this.dateForm( doc.data().timestamp.toDate() ) 
+
           // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
         });
       });

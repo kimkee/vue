@@ -26,7 +26,7 @@
                   </div>
                   <div class="info">
                     <div class="keys">{{ board.key }}</div>
-                    <div class="date">{{ board.timestamp }}</div>
+                    <div class="date">{{ board.date }}</div>
                   </div>
                 </router-link>
             </li>
@@ -69,7 +69,7 @@ export default {
   },
   methods:{
     dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium' }).format( d )
     },
     async read(){
       const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(), limitToLast() );
@@ -82,7 +82,7 @@ export default {
           title: doc.data().title,
           content: doc.data().content,
           img: doc.data().img,
-          timestamp:  this.dateForm(doc.data().timestamp.toDate() ) 
+          date: this.dateForm(doc.data().timestamp.toDate() )
         });
       });
       document.querySelector(".board-list").classList.add("load");

@@ -4,6 +4,7 @@
     <!-- <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em> {{userInfo.email}}</em></span> -->
     <div class="ut-reply">
       <div class="rplist">
+        
         <ul class="rlist a">
           <li v-for="cmt in Coments" :key="cmt.key">
             <div class="rpset">
@@ -95,9 +96,7 @@ export default {
           this.Coments.forEach((c, i) => {         
             this.Coments[i] = ( c );
             this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
-            this.Coments[i].date = this.dateForm( this.Coments[i].date );
-            // this.Coments[i].date = new Intl.RelativeTimeFormat('ko-KR', { style: 'narrow' }).format(this.Coments[i].date);
-            
+            this.Coments[i].date = this.dateForm(this.Coments[i].timestamp.toDate() )
           });
           console.log(  `댓글 수 = ${ this.Coments.length }` );
       }catch(error) {
@@ -127,14 +126,15 @@ export default {
 
       document.querySelector(".ut-reply ul.rlist.a").insertAdjacentHTML("beforeend",rHTML);
  */
-      const today = this.dateForm( new Date() ) ;
+      const today = new Date() ;
       // const today = new Date();
       this.comtSed({
         author : "홍길동",
         uid : this.userInfo.uid,
         email : this.userInfo.email,
         reply: inputReply.value.replace(/\n/g,'<br>'),
-        date: today
+        timestamp: today,
+        date: this.dateForm( today )
       });
 
       // inputReply.style = ""
@@ -145,14 +145,13 @@ export default {
     async comtSed(opt){
 
       console.log("댓글 전송 =======");
-      console.table(JSON.stringify(opt));
+      console.table(opt);
 
       this.Coments.push(opt)
       const thisDoc = doc(db, "bbs", this.userId);
       await updateDoc ( thisDoc, {
         coments : this.Coments
       });
-
 
 
 
