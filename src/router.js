@@ -3,6 +3,8 @@ import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import HeaderSub from "./components/HeaderSub.vue";
 import Home from "./views/Home.vue";
+import Photo from "./views/Photo.vue";
+import Works from "./views/Works.vue";
 import List from "./views/List.vue";
 import Write from "./views/Write.vue";
 import Modify from "./views/Modify.vue";
@@ -25,6 +27,22 @@ const router = createRouter({
             components: {
                 default: Home,
                 Header,
+                Nav
+            }
+        },
+        {
+            path: "/works",
+            components: {
+                default: Works,
+                HeaderSub,
+                Nav
+            }
+        },
+        {
+            path: "/photo",
+            components: {
+                default: Photo,
+                HeaderSub,
                 Nav
             }
         },

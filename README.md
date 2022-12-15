@@ -29,7 +29,8 @@
 	- [Vue Router 사용하기 ( + query , params )](https://im-designloper.tistory.com/19)
 	- [새-버전ver.9으로-CRUD-구현하기](https://velog.io/@tai/Firebase-%EC%83%88-%EB%B2%84%EC%A0%84ver.9%EC%9C%BC%EB%A1%9C-CRUD-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0)
 	- [Firebase - 웹에서 Firebase auth로 로그인/회원가입 구현](https://guiyomi.tistory.com/123)
-
+- 아이콘
+	- [fontawesome](https://fontawesome.com/icons/house?s=regular&f=classic)
 
 
 <br><br><br><br><br><br>

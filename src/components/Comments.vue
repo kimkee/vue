@@ -8,7 +8,7 @@
         <ul class="rlist a">
           <li v-for="cmt in Coments" :key="cmt.key" :data-coment-idx="cmt.idx">
             <div class="rpset">
-              <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/user.png';" class="img"></a></div>
+              <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src='./img/user.png';" class="img"></a></div>
               <div class="infs">
                 <div class="name"><em class="nm">{{cmt.author}}</em></div>
                 <div class="desc">
@@ -30,9 +30,9 @@
       <div class="inr">
         <div class="ut-rpwrite">
           <div class="rwset">
-            <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.postId" onerror="this.src = './img/user.png';" class="img"></a></div>
+            <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.postId" onerror="this.src='./img/user.png';" class="img"></a></div>
             <div class="form">
-              <textarea data-ui="autoheight" class="ment" id="input_reply" placeholder="댓글을 입력해주세요"  spellcheck="false"></textarea>
+              <textarea data-ui="autoheight" class="ment" v-model="inputReply" placeholder="댓글을 입력해주세요"  spellcheck="false"></textarea>
             </div>
             <div class="bts"><button type="button" class="btsend" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
           </div>
@@ -59,7 +59,8 @@ export default {
   data() {
     return {
         Coments: [],
-        postId:''
+        postId:'',
+        inputReply:null
     }
   },
   created(){
@@ -108,10 +109,11 @@ export default {
       console.log(this.Coments);
     },
     
-    comtWrite(e){
-      const sendBtn = e.currentTarget;
-      const inputReply =  sendBtn.closest(".ut-rpwrite").querySelector("#input_reply");
-      if(inputReply.value == "") return;     
+    comtWrite(){
+      console.log(this.inputReply);
+
+      const $textarea =  document.querySelector('[data-ui="autoheight"]');
+      if(this.inputReply == "") return;     
       console.log(!this.userInfo?.uid);
       if (this.userInfo == null) { 
         if(confirm("로그인이 필요합니다.")){
@@ -129,15 +131,14 @@ export default {
         author : "홍길동",
         uid : this.userInfo.uid,
         email : this.userInfo.email,
-        reply: inputReply.value.replace(/\n/g,'<br>'),
+        reply: this.inputReply.replace(/\n/g,'<br>'),
         timestamp: today,
         date: this.dateForm( today )
       });
 
-      // inputReply.style = ""
-      inputReply.value = "";
-      inputReply.focus();
-      inputReply.dispatchEvent(new Event('input'));
+      this.inputReply = "";
+      // $textarea.dispatchEvent(new Event('input'));
+      $textarea.style.height ="";
     },
     async comtSed(opt){
 
@@ -148,8 +149,14 @@ export default {
       const thisDoc = doc(db, "bbs", this.postId);
       await updateDoc ( thisDoc, {
         coments : this.Coments
+      }).then(()=>{
+        const li = document.querySelector('li[data-coment-idx='+opt.idx+']');
+        const liTop = li.offsetTop;
+        console.log(liTop);
+        window.scrollTo(0,liTop);
+        li.focus();
+        // setTimeout(() => { },100);
       });
-
     },
     async comtDelete(cmtIdx){
       console.log(cmtIdx);
