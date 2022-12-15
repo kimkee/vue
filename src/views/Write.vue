@@ -7,14 +7,14 @@
           <li>
             <label class="dt">제목</label>
             <div class="dd">
-              <span class="input"><input type="text" id="title" placeholder="입력하세요"></span>
+              <span class="input"><input type="text" v-model="Views.title" spellcheck="false" placeholder="입력하세요"></span>
             </div>
           </li>
           <li>
             <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
-                <textarea class="reply" id="content" data-ui="autoheight" placeholder="입력하세요"></textarea>
+                <textarea class="reply" spellcheck="false" v-model="Views.content" data-ui="autoheight" placeholder="입력하세요"></textarea>
                 <!-- <span class="num"><i class="i">102</i>/<b class="n">3,000</b></span> -->
               </span>
             </div>
@@ -51,7 +51,7 @@ export default {
   },
   data() {
       return {
-         
+        Views:{}
       }
   },
   created(){
@@ -59,9 +59,7 @@ export default {
   },
   mounted(){
     ui.init();
-    document.querySelector("input#title").value = "";
     document.querySelector("input#fileInput").value = "";
-    document.querySelector("textarea#content").value = "";
     document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
   },
   methods: {
@@ -70,8 +68,8 @@ export default {
     },
     async write(){
       console.log("쓰기");
-      const $title = document.querySelector("input#title");
-      const $content = document.querySelector("textarea#content")
+      const $title = this.Views.title;
+      const $content = this.Views.content;
       const $fileInput = document.querySelector("input#fileInput");
       const today = new Date();
       let imgUrl = "";
@@ -100,20 +98,20 @@ export default {
         });
       }
       
-      try {
-        const docRef = addDoc(collection(db, "bbs"), {
-          title: $title.value,
-          content: $content.value.replace(/\n/g,'<br>'),
-          timestamp: today,
-          date: this.dateForm( today ),
-          img:imgUrl
-          // date: new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( today )
-        });
-        console.log("쓰기 성공: ", docRef.title ,docRef.content , docRef);
+      // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
+      const docRef = await addDoc(collection(db, "bbs"), {
+        title: $title,
+        content: $content.replace(/\n/g,'<br>'),
+        timestamp: today,
+        date: this.dateForm( today ),
+        img:imgUrl
+      }).then(()=>{
+        console.log("쓰기 성공: ");
         this.$router.push('/list');
-      } catch (e) {
+      }).catch (e =>{
         console.error("Error adding document: ", e);
-      }
+      });
+      docRef
       
     }
   }

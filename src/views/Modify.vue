@@ -7,14 +7,14 @@
           <li>
             <label class="dt">제목</label>
             <div class="dd">
-              <span class="input"><input type="text" id="title" placeholder="입력하세요" v-model="Views.title"></span>
+              <span class="input"><input type="text" spellcheck="false" placeholder="입력하세요" v-model="Views.title"></span>
             </div>
           </li>
           <li>
             <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
-                <textarea class="reply" id="content" data-ui="autoheight" placeholder="입력하세요" v-model="Views.content"></textarea>
+                <textarea class="reply" spellcheck="false" data-ui="autoheight" placeholder="입력하세요" v-model="Views.content"></textarea>
                 <!-- <span class="num"><i class="i">102</i>/<b class="n">3,000</b></span> -->
               </span>
             </div>
@@ -44,8 +44,8 @@ export default {
   },
   data() {
     return {
-          Views: {}
-      }
+      Views: {}
+    }
   },
   created(){
     const route = useRoute();  
@@ -58,42 +58,34 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = '글 수정';
   },
   methods: {
-
+    // 데이터 가져오기 https://firebase.google.com/docs/firestore/query-data/get-data?hl=ko&authuser=0
     async read(ids){
       const docRef = doc(db, "bbs" , ids);
-      try {
-        const docSnap = await getDoc(docRef);
-        // console.log(`
-        //   제목 : ${docSnap.data().title} 
-        //   내용 : ${docSnap.data().content}
-        // `);
-
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
-      } catch(error) {
-        console.log(error)
-      }
+      }else{
+        console.log("No such document!");
+      }      
     }
     ,
     async modify(){
-      console.log("수정");
-      const $title = document.querySelector("input#title");
-      const $content = document.querySelector("textarea#content")
-
-      try {
-        console.log(this.pram);
-        const thisDoc = doc(db, "bbs", this.pram );
-
-        await updateDoc(thisDoc, {
-          title: $title.value,
-          content: $content.value.replace(/\n/g,'<br>'),
-        });
+      // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
+      const $title = this.Views.title;
+      const $content = this.Views.content
+      console.log("수정" + this.pram);
+      const docRef = doc(db, "bbs", this.pram );
+      await updateDoc(docRef, {
+        title: $title,
+        content: $content.replace(/\n/g,'<br>'),
+      }).then(()=>{
         console.log("수정 성공: ");
         this.$router.push('/view/'+this.pram);
-      } catch (e) {
+      }).catch (e =>{
         console.error("Error adding document: ", e);
-      }
+      });
       
     }
   }

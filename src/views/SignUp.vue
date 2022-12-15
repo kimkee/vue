@@ -7,13 +7,13 @@
           <li>
             <label class="dt">이메일</label>
             <div class="dd">
-              <span class="input"><input type="email" id="email" placeholder="입력하세요"></span>
+              <span class="input"><input v-model="userEmail" type="email" id="email" placeholder="입력하세요"></span>
             </div>
           </li>
           <li>
             <label class="dt">비밀번호</label>
             <div class="dd">
-              <span class="input"><input type="password" id="password" placeholder="입력하세요"></span>
+              <span class="input"><input v-model="userPassword" type="password" id="password" placeholder="입력하세요"></span>
             </div>
           </li>
         </ul>
@@ -40,6 +40,8 @@ export default {
   },
   data() {
     return {
+      userEmail:null,
+      userPassword:null,
       erMsg : {
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -62,8 +64,8 @@ export default {
   methods: {
 
     async join () {
-      const email = document.querySelector("input#email").value;
-      const password = document.querySelector("input#password").value;
+      const email = this.userEmail;
+      const password = this.userPassword;
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
@@ -73,7 +75,7 @@ export default {
         console.log("uid : "+user.uid );
         console.log("액세스토큰: "+ user.accessToken);
         alert("가입되었습니다.\n" + user.email +"\n "+ user.uid  );
-
+        this.$router.push('/');
       })
       .catch((error) => {
         console.log( error.code);
