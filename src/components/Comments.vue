@@ -6,12 +6,15 @@
       <div class="rplist">
         
         <ul class="rlist a">
-          <li v-for="cmt in Coments" :key="cmt.key">
+          <li v-for="cmt in Coments" :key="cmt.key" :data-coment-idx="cmt.idx">
             <div class="rpset">
               <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/user.png';" class="img"></a></div>
               <div class="infs">
                 <div class="name"><em class="nm">{{cmt.author}}</em></div>
-                <div class="desc"><em class="time">{{cmt.date}}</em></div>
+                <div class="desc">
+                  <em class="time">{{cmt.date}}</em>
+                  <button type="button" class="bt delt" title="삭제" @click="comtDelete"><i class="fa-solid fa-xmark"></i></button>
+                </div>
                 <div class="ment" v-html="cmt.reply"></div>
                 <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
                 <!-- <div class="bts"><button type="button" class="bt accu">신고하기</button></div> -->
@@ -27,7 +30,7 @@
       <div class="inr">
         <div class="ut-rpwrite">
           <div class="rwset">
-            <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.userId" onerror="this.src = './img/user.png';" class="img"></a></div>
+            <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.postId" onerror="this.src = './img/user.png';" class="img"></a></div>
             <div class="form">
               <textarea data-ui="autoheight" class="ment" id="input_reply" placeholder="댓글을 입력해주세요"  spellcheck="false"></textarea>
             </div>
@@ -56,12 +59,12 @@ export default {
   data() {
     return {
         Coments: [],
-        userId:''
+        postId:''
     }
   },
   created(){
     const route = useRoute();  
-    this.userId = route.params.id
+    this.postId = route.params.id
     const ids = route.params.id;
     this.comtList(ids);
   },
@@ -85,7 +88,7 @@ export default {
       });
     },
     dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
     async comtList(ids){
       const docRef = doc(db, "bbs" , ids);
@@ -109,10 +112,17 @@ export default {
       const sendBtn = e.currentTarget;
       const inputReply =  sendBtn.closest(".ut-rpwrite").querySelector("#input_reply");
       if(inputReply.value == "") return;     
-
+      console.log(!this.userInfo?.uid);
+      if (this.userInfo == null) { 
+        if(confirm("로그인이 필요합니다.")){
+          this.$router.push('/signin');
+        }else{
+          return;
+        }
+      }
       const today = new Date() ;
-      // const today = new Date();
       this.comtSed({
+        idx: this.Coments.length,
         author : "홍길동",
         uid : this.userInfo.uid,
         email : this.userInfo.email,
@@ -132,7 +142,7 @@ export default {
       console.table(opt);
 
       this.Coments.push(opt)
-      const thisDoc = doc(db, "bbs", this.userId);
+      const thisDoc = doc(db, "bbs", this.postId);
       await updateDoc ( thisDoc, {
         coments : this.Coments
       });

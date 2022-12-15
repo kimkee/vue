@@ -22,7 +22,7 @@
           <li>
             <label class="dt">사진</label>
             <div class="dd">
-              <span class="input"><input type="file" id="fileInput" placeholder="선택하세요"></span>
+              <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
             </div>
           </li>
         </ul>
@@ -32,7 +32,7 @@
       <div class="inr">
         <div class="btsbox btn-set">
           <router-link class="btn" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-            <button type="button" class="btn" @click="write"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>  
+          <button type="button" class="btn" @click="write"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>  
         </div>
       </div>
     </nav>
