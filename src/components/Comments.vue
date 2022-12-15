@@ -13,7 +13,7 @@
                 <div class="name"><em class="nm">{{cmt.author}}</em></div>
                 <div class="desc">
                   <em class="time">{{cmt.date}}</em>
-                  <button type="button" class="bt delt" title="삭제" @click="comtDelete"><i class="fa-solid fa-xmark"></i></button>
+                  <button type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="ment" v-html="cmt.reply"></div>
                 <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
@@ -121,8 +121,11 @@ export default {
         }
       }
       const today = new Date() ;
+      const random = (length = 6) => {
+        return Math.random().toString(16).substr(2, length);
+      };
       this.comtSed({
-        idx: this.Coments.length,
+        idx: this.postId+"_comt_"+random(),
         author : "홍길동",
         uid : this.userInfo.uid,
         email : this.userInfo.email,
@@ -147,7 +150,26 @@ export default {
         coments : this.Coments
       });
 
-
+    },
+    async comtDelete(cmtIdx){
+      console.log(cmtIdx);
+      if (confirm("댓글을 삭제하시겠습니까?")) {
+        this.Coments.forEach( (e,i)=>{ 
+            if( e.idx == cmtIdx ){
+                console.log(i)
+                this.Coments.splice(i, 1);
+            }
+        })
+  
+        const docRef = doc(db, "bbs", this.postId );
+        await updateDoc(docRef, {
+          coments:this.Coments
+        }).then(()=>{
+          console.log("댓글삭제 됨");
+        }).catch (e =>{
+          console.error("댓글삭제 Error " ,e);
+        });
+      }
 
     },
     autoHeight(){ // 댓글에 자동높이 기능

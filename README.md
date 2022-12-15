@@ -1,4 +1,4 @@
-# VUE + FIREBASE
+# VUE3 + FIREBASE9
 
 > https://kimkee.github.io/vue-cli/dist/
 
