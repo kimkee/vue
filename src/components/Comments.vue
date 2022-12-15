@@ -109,23 +109,7 @@ export default {
       const sendBtn = e.currentTarget;
       const inputReply =  sendBtn.closest(".ut-rpwrite").querySelector("#input_reply");
       if(inputReply.value == "") return;     
-/* 
-      const rHTML = `
-        <li>
-          <div class="rpset">
-            <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src = './img/user.png';" class="img"></a></div>
-            <div class="infs">
-              <div class="name"><em class="nm">${this.userInfo.email}</em></div>
-              <div class="desc"><em class="time">4일전</em></div>
-              <div class="ment">${inputReply.value.replace(/\n/g,'<br>')}</div>
-              <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
-              <!-- <div class="bts"><button type="button" class="bt accu">신고하기</button></div> -->
-            </div>
-          </div>
-        </li>`;
 
-      document.querySelector(".ut-reply ul.rlist.a").insertAdjacentHTML("beforeend",rHTML);
- */
       const today = new Date() ;
       // const today = new Date();
       this.comtSed({

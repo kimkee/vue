@@ -9,14 +9,12 @@
             <div class="dd">
               <span class="input"><input type="email" id="email" placeholder="입력하세요" v-model="userEmail"></span>
             </div>
-            {{userEmail}}
           </li>
           <li>
             <label class="dt">비밀번호</label>
             <div class="dd">
               <span class="input"><input type="password" id="password" v-model="userPassword" placeholder="입력하세요"></span>
             </div>
-            {{userPassword}}
           </li>
         </ul>
         <div class="btsbox btn-set">
