@@ -7,14 +7,16 @@
           <li>
             <label class="dt">이메일</label>
             <div class="dd">
-              <span class="input"><input type="email" id="email" placeholder="입력하세요"></span>
+              <span class="input"><input type="email" id="email" placeholder="입력하세요" v-model="userEmail"></span>
             </div>
+            {{userEmail}}
           </li>
           <li>
             <label class="dt">비밀번호</label>
             <div class="dd">
-              <span class="input"><input type="password" id="password" placeholder="입력하세요"></span>
+              <span class="input"><input type="password" id="password" v-model="userPassword" placeholder="입력하세요"></span>
             </div>
+            {{userPassword}}
           </li>
         </ul>
         <div class="btsbox btn-set">
@@ -30,7 +32,7 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword} from 'firebase/auth';
+import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence} from 'firebase/auth';
 
 export default {
   name: 'LoginItem',
@@ -39,6 +41,8 @@ export default {
   },
   data() {
     return {
+      userEmail:null,
+      userPassword:null,
       erMsg : {
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -61,8 +65,8 @@ export default {
   methods: {
    
     async login(){
-      const email = document.querySelector("input#email").value;
-      const password = document.querySelector("input#password").value;  
+      const email = this.userEmail;
+      const password = this.userPassword;  
       const auth = getAuth();
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -81,32 +85,19 @@ export default {
           // const errorMessage = error.message;
         });
 
-    }
+        // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
+        setPersistence(auth, browserSessionPersistence)
+        .then(() => {
+          return signInWithEmailAndPassword(auth, email, password);
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode,"====",errorMessage);
+        });
 
-    
-    /*     async login () {
-        const email = document.querySelector("input#email").value;
-        const password = document.querySelector("input#password").value;  
-        try {
-          const auth = getAuth();
-          const { user } = await signInWithEmailAndPassword(auth, email, password);
-          const { stsTokenManager, uid } = user;
-          console.log(user.email  );
-          console.log("uid : "+uid );
-          console.log("액세스토큰: "+stsTokenManager.accessToken);
-          // setAuthInfo({ uid, email, authToken: stsTokenManager });
-          alert(user.email + "\n 로그인 성공!");
-          this.$router.push('/');
-        } catch ({ code, message }) {
-          alert(user.email + "\n 로그인 실패!");
-          console.log({ code, message });
-          // alert(errorMessage[code]);
-        }
-      
-    } */
-      
-      
-      
+    }     
     
   }
 }
