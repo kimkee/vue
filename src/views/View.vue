@@ -3,26 +3,29 @@
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <!-- {{$route.params.id}} -->
-
       <div class="board-view">
-        <div class="dt">
-          <h4 class="tits">{{ Views.title }}</h4>
+        <div class="ui-loading-dot">
+          <div class="bx"><em><i></i></em></div>
         </div>
-        <dd class="dd">
-          <p class="date">작성일 : {{ Views.timestamp }}</p>
-          <div class="cont">
-            <!-- {{Views.img}} -->
-            <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src = './img/logo.png';"></div>
-            <div class="text" v-html="Views.content"></div>
+          <div class="vcont">
+          <div class="dt">
+            <h4 class="tits">{{ Views.title }}</h4>
           </div>
-         
-          <div class="btsbox btn-set">
-            <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-            <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-            <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
-          </div>
-        </dd>
-        
+          <dd class="dd">
+            <p class="date">작성일 : {{ Views.timestamp }}</p>
+            <div class="cont">
+              <!-- {{Views.img}} -->
+              <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src = './img/logo.png';"></div>
+              <div class="text" v-html="Views.content"></div>
+            </div>
+          
+            <div class="btsbox btn-set">
+              <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+              <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+              <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+            </div>
+          </dd>
+        </div>
       </div>
       
       <Comments :userstate="userstate" :userInfo="this.userInfo"/>
@@ -87,27 +90,16 @@ export default {
       }
       // userReplaceFunctions
 
-
-
-
       const docRef = doc(db, "bbs" , ids);
       try {
         const docSnap = await getDoc(docRef);
-        // console.log(`제목 : ${docSnap.data().title} || 내용 : ${docSnap.data().content}`);
 
         this.Views.title = docSnap.data().title;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
-       
-        // this.Views.coments.forEach((c, i) => {
-          
-        //   console.log( JSON.parse(c));
-        //   this.Coments[i] = ( JSON.parse(c) );
-        //   this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
-        // });
-        // console.log( this.Coments );
+        document.querySelector(".board-view").classList.add("load");
       } catch(error) {
         console.log(error)
       }

@@ -1,6 +1,11 @@
 <template>
   
     <div class="recent">
+      <div class="ui-loading-dot">
+        <div class="bx">
+          <em><i></i></em>
+        </div>
+      </div>
       <h1>{{ msg }}</h1> 
       <div class="board-list">
         <div class="bbs-opt">
@@ -63,11 +68,10 @@ export default {
           key: doc.id,
           title: doc.data().title,
           // content: doc.data().content,
-          date: this.dateForm( doc.data().timestamp.toDate() ) 
-
-          // date:  new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'long'}).format( doc.data().date ) 
+          date: this.dateForm( doc.data().timestamp.toDate() )
         });
       });
+      document.querySelector(".recent").classList.add("load");
     }
 
   }

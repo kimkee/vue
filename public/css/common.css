@@ -274,12 +274,25 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-list .list>li .box .info .keys{font-size: 10rem;color: #707887; }
 .board-list .list>li .box .info .date{ font-size: 10rem; color: #707887;}
 
+
+.recent{}
+.recent.load .ui-loading-dot{display: none	;}
+.recent.load .board-list{display: block	;}
+.recent .board-list{display: none	;}
+.recent .ui-loading-dot{padding-top: calc(20vh - 60rem); display: block;}
 .recent .board-list .list>li+li{margin-top: 10rem;}  
 
 .nodata{text-align:center; padding:30vh 10rem; display: none;}
 .nodata p{}
 .load .nodata{display: block;}
 .board-view{ padding-bottom: 11rem; }
+
+.board-view .vcont{display: none;}
+.board-view.load .ui-loading-dot{display: none;}
+.board-view.load .vcont{display: block	;}
+.board-view .ui-loading-dot{padding-top: calc(40vh - 60rem); display: block;}
+
+
 .board-view .dt{border-bottom: #2c384a solid 1px;padding: 10px 0px 20px 0px;font-size: 17px;word-break: break-all;margin-bottom: 1rem;color: #adb9c9;}
 .board-view .dd .cont{}
 .board-view .dd .cont .pics{padding: 10px 0px; text-align: center;}
@@ -320,6 +333,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .page.home .mn-box .icos span img{display: inline-flex; vertical-align: middle;}
 .page.home .mn-box .icos .ico{display: inline-flex;}
 .page.home .mn-box .icos .pls{display: inline-flex; color: #ffffff; margin: 0rem 4rem;}
+
 
 
 
