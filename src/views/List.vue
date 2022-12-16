@@ -65,7 +65,7 @@ export default {
   },
   mounted(){
     ui.init();
-    document.querySelector(".header .cdt .htit").textContent = '목록';
+    document.querySelector(".header .cdt .htit").textContent = 'Board';
   },
   methods:{
     dateForm(d){

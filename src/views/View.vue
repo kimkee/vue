@@ -70,7 +70,7 @@ export default {
   },
   mounted(){
     ui.init();
-    document.querySelector(".header .cdt .htit").textContent = '보기';
+    document.querySelector(".header .cdt .htit").textContent = '';
   },
   methods:{
     dateForm(d){

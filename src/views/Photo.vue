@@ -2,9 +2,9 @@
   <div class="container photo">
     <main class="contents">
 
-
+      <div class="ui-loading-dot"><div class="bx"><em><i></i></em></div></div>
       <div class="ut-tblist">
-        <ul class="list load" id="dp_list">
+        <ul class="list" id="dp_list">
           <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/1.jpg" alt=""></div></a></div></li>
           <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/2.jpg" alt=""></div></a></div></li>
           <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/3.jpg" alt=""></div></a></div></li>
@@ -64,11 +64,14 @@ export default {
   },
   created(){
     ui.init();
-    
+    document.querySelector(".header .cdt .htit").textContent = 'Photo';
+  },
+  mounted() {
+    document.querySelector(".page.photo").classList.add("load");
   },
   methods:{
     photoLoad(){
-      
+
     }
   }
 }
