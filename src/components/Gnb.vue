@@ -4,15 +4,17 @@
     <div class="bts"><button class="bt close" tabindex="-1"><i class="fa-solid fa-xmark"></i></button></div>
     <div class="inr">
       <ul class="menu">
-        <li><router-link class="bt" to="/">Home</router-link></li>
-        <li><router-link class="bt" to="/list">Board</router-link></li>
+        <li><router-link class="bt" to="/"><i class="fa-solid fa-house"></i> <em>Home</em></router-link></li>
+        <li><router-link class="bt" to="/list"><i class="fa-solid fa-list"></i> <em>Board</em></router-link></li>
+        <li><router-link class="bt" to="/photo"><i class="fa-solid fa-camera"></i> <em>Photo</em></router-link></li>
+        <li><router-link class="bt" to="/works"><i class="fa-solid fa-briefcase"></i> <em>Works</em></router-link></li>
         <!-- <li><a href="javascript:;" class="bt">Contact</a></li>
         <li><a href="javascript:;" class="bt">Sign in</a></li> -->
       </ul>
       {{userstate}}
       <div class="sign">
         
-        <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em>{{userInfo.email}}</em></span>
+        <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i> <em>{{userInfo.email}}</em></span>
         
         <!-- <div v-if="userstate == true">로긴됨</div>
         <div v-if="userstate == false">로긴아웃</div> -->

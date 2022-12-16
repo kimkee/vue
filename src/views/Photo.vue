@@ -3,9 +3,44 @@
     <main class="contents">
 
 
-      <h2>Photo</h2>
-      
-      
+      <div class="ut-tblist">
+        <ul class="list load" id="dp_list">
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/1.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/2.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/3.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/4.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/5.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/7.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/6.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/8.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/9.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/10.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/1.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/2.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/3.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/4.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/5.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/7.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/6.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/8.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/9.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/10.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/1.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/2.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/3.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/4.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/5.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/7.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/6.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/8.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/9.jpg" alt=""></div></a></div></li>
+          <li><div class="box"><a href="javascript:;"><div class="img"><img src="//kimkee.github.io/ui/static/img/temp/10.jpg" alt=""></div></a></div></li>
+        </ul>
+        <div class="ui-loadmore active">
+          <em></em>
+          <button type="button" class="btn-load" onclick="addItem.using()" id="btn_list_more" disabled="">불러오기</button>
+        </div>
+      </div>
       
     </main>
   </div>
@@ -24,24 +59,17 @@ export default {
   },
   data() {
       return {
-        workData:{}
+        Photos:{}
       }
   },
   created(){
     ui.init();
-    // this.workData = data;
-    // console.log(this.workData);
-
-    
-    fetch('https://kimkee.github.io/js/data.json').then( res => res.ok && res.text() ).then( res => { 
-        // console.log(  JSON.parse( res  )  );
-        // console.log(  res  );
-        this.workData = JSON.parse( res);
-    });
     
   },
   methods:{
-
+    photoLoad(){
+      
+    }
   }
 }
 </script>

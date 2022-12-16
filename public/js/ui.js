@@ -3,6 +3,7 @@ const ui = {
 	init:function(){
 		console.log("ui.init();");
 		this.gnb.init();
+		clearInterval(ui.clockInterval);
 	},
 	test:{
 		using:function(target){
@@ -85,5 +86,6 @@ const ui = {
 		stat:'',
 		email:'',
 		uid:''
-	}
+	},
+	clockInterval : null,
 }
