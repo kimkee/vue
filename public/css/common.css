@@ -275,10 +275,21 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-list .list>li .box .info .date{ font-size: 10rem; color: #707887;}
 
 
+.page.home .contents{}
+.page.home .mn-box,
+.page.home .recent,
+.page.home .clocksvg{visibility: hidden;}
+.page.home.load .mn-box,
+.page.home.load .recent,
+.page.home.load .clocksvg{visibility: visible;}
+.page.home .ui-loading-dot{padding-top: calc(40vh - 60rem); }
+.page.home.load .ui-loading-dot{display: none;}
+
+
 .recent{}
 .recent.load .ui-loading-dot{display: none	;}
 .recent.load .board-list{display: block	;}
-.recent .board-list{display: none	;}
+.recent .board-list{/* display: none	; */}
 .recent .ui-loading-dot{padding-top: calc(20vh - 60rem); display: block;}
 .recent .board-list .list>li+li{margin-top: 10rem;}  
 

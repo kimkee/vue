@@ -2,11 +2,21 @@
   <div class="container home">
     <main class="contents">
 
+
+      <div class="ui-loading-dot">
+        <div class="bx">
+          <em><i></i></em>
+        </div>
+      </div>
+
+      <Clock/>
+
+
+
       <div class="mn-box">
         <div class="top" onclick="ui.test.using(this.target)"><img src="../../public/img/logo.png" alt=""></div>
 
         
-        <Clock/>
 
 
         <div class="msg">

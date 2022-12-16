@@ -1,11 +1,11 @@
 <template>
   
     <div class="recent">
-      <div class="ui-loading-dot">
+      <!-- <div class="ui-loading-dot">
         <div class="bx">
           <em><i></i></em>
         </div>
-      </div>
+      </div> -->
       <h1>{{ msg }}</h1> 
       <div class="board-list">
         <div class="bbs-opt">
@@ -71,7 +71,7 @@ export default {
           date: this.dateForm( doc.data().timestamp.toDate() )
         });
       });
-      document.querySelector(".recent").classList.add("load");
+      document.querySelector(".page.home").classList.add("load");
     }
 
   }
