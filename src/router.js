@@ -56,6 +56,15 @@ const router = createRouter({
         },
         {
             path: "/write",
+            beforeEnter: (to, from, next) => {
+                console.log(ui.userinfo.stat);
+                if (ui.userinfo.stat == "true") {
+                    return next();
+                }
+                if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
+                    next('/signin');        
+                }
+            },
             components: {
                 default: Write,
                 HeaderSub,
