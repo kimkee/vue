@@ -42,6 +42,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { collection, addDoc } from "firebase/firestore";
+// import { doc, setDoc  } from "firebase/firestore";
 import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
 
 export default {
@@ -99,6 +100,7 @@ export default {
       }
       
       // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
+      // const docRef = await setDoc(doc(db, "bbs"), {
       const docRef = await addDoc(collection(db, "bbs"), {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
