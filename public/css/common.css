@@ -497,8 +497,8 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .ut-tblist>.list>li{width: calc(33.3333% - 2px);margin-right: 2px;margin-bottom: 2px;float:left;overflow: hidden;}
 .ut-tblist>.list>li .box{}
 .ut-tblist>.list>li .box a{display:block;}
-.ut-tblist>.list>li .box .img{display:block; position:relative; padding-bottom: 100%;}
-.ut-tblist>.list>li .box .img img{position:absolute;left:0px;top: 50%;width:100%;height:100%;transform: translateY(-50%);}
+.ut-tblist>.list>li .box .pic{display:block; position:relative; padding-bottom: 100%;}
+.ut-tblist>.list>li .box .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;}
 .ut-tblist>.list>li:nth-child(10n+1){}
 .ut-tblist>.list>li:nth-child(10n+2){}
 .ut-tblist>.list>li:nth-child(10n+3){}
