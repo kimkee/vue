@@ -11,6 +11,12 @@
             </div>
           </li>
           <li>
+            <label class="dt">이름</label>
+            <div class="dd">
+              <span class="input"><input type="text" v-model="Views.author" spellcheck="false" placeholder="입력하세요"></span>
+            </div>
+          </li>
+          <li>
             <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
@@ -105,6 +111,7 @@ export default {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
         timestamp: today,
+        author: "홍길동",
         date: this.dateForm( today ),
         img:imgUrl
       }).then(()=>{

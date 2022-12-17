@@ -20,8 +20,19 @@
                   <div class="text" v-html="recent.content"></div>
                 </div> -->
                 <div class="info">
-                  <div class="keys">{{ recent.key }}</div>
-                  <div class="date">{{ recent.date }}</div>
+                  <div class="dd">
+                    <div class="user"><i class="fa-solid fa-user"></i> {{recent.author}}</div>
+                    <div class="keys">{{ recent.key }}</div>
+                  </div>
+                  <div class="dd">
+                    <div class="hits">
+                      <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
+                      <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
+                    </div>
+                    <div class="date">
+                      <i class="fa-solid fa-calendar-days"></i> {{ recent.date }}
+                    </div>
+                  </div>
                 </div>
               </router-link>
           </li>
@@ -67,6 +78,7 @@ export default {
         this.Recents.push({
           key: doc.id,
           title: doc.data().title,
+          author: doc.data().author || "익명",
           // content: doc.data().content,
           date: this.dateForm( doc.data().timestamp.toDate() )
         });

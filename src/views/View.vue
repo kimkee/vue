@@ -8,16 +8,36 @@
           <div class="bx"><em><i></i></em></div>
         </div>
           <div class="vcont">
-          <div class="dt">
-            <h4 class="tits">{{ Views.title }}</h4>
+          <div class="hdt">
+            <div class="tits">
+              <h4 class="tit">{{ Views.title }}</h4>
+            </div>
+            <div class="info">
+              <div class="dd">
+                <div class="user"><i class="fa-solid fa-user"></i> {{Views.author}}</div>
+              </div>
+              <div class="dd">
+                <div class="hits">
+                    <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
+                    <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
+                 </div>
+                <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
+              </div>
+            </div>
           </div>
-          <dd class="dd">
-            <p class="date">작성일 : {{ Views.timestamp }}</p>
+          <dd class="cdt">
             <div class="cont">
-              <!-- {{Views.img}} -->
+              
               <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src='./img/noimage.png';"></div>
               
               <div class="text" v-html="Views.content"></div>
+
+              <div class="vote">
+                <button type="button" class="bt-vote">
+                  <i class="fa-solid fa-heart"></i>
+                  <p>좋아요</p>
+                </button>
+              </div>
             </div>
           
             <div class="btsbox btn-set">
@@ -96,6 +116,7 @@ export default {
         const docSnap = await getDoc(docRef);
 
         this.Views.title = docSnap.data().title;
+        this.Views.author = docSnap.data().author || "익명";
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;

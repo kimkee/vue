@@ -25,8 +25,19 @@
                     <div class="text" v-html="board.content"></div>
                   </div>
                   <div class="info">
-                    <div class="keys">{{ board.key }}</div>
-                    <div class="date">{{ board.date }}</div>
+                    <div class="dd">
+                      <div class="user"><i class="fa-solid fa-user"></i> {{board.author}}</div>
+                      <div class="keys">{{ board.key }}</div>
+                    </div>
+                    <div class="dd">
+                      <div class="hits">
+                        <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
+                        <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
+                      </div>
+                      <div class="date">
+                        <i class="fa-solid fa-calendar-days"></i> {{ board.date }}
+                      </div>
+                    </div>
                   </div>
                 </router-link>
             </li>
@@ -79,6 +90,7 @@ export default {
         // console.log(doc.data().title);
         this.Boards.push({
           key: doc.id,
+          author: doc.data().author || "익명",
           title: doc.data().title,
           content: doc.data().content,
           img: doc.data().img,
