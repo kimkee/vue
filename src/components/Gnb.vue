@@ -11,18 +11,18 @@
         <!-- <li><a href="javascript:;" class="bt">Contact</a></li>
         <li><a href="javascript:;" class="bt">Sign in</a></li> -->
       </ul>
-      {{userstate}}
+      {{$store.state.userInfo.stat}} {{$store.state.userInfo.email}}
       <div class="sign">
         
-        <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i> <em>{{userInfo.email}}</em></span>
+        <span v-if="$store.state.userInfo.stat == true" class="bt email"><i class="fa-solid fa-envelope"></i> <em>{{$store.state.userInfo.email}}</em></span>
         
         <!-- <div v-if="userstate == true">로긴됨</div>
         <div v-if="userstate == false">로긴아웃</div> -->
         <div class="bts">
-          <router-link v-if="userstate == 'false'" class="bt" to="/signin"><i class="fa-solid fa-right-to-bracket"></i><em> Login</em></router-link>
-          <router-link v-if="userstate == 'false'" class="bt" to="/signup"><i class="fa-solid fa-user-plus"></i><em> Join</em></router-link>
+          <router-link v-if="$store.state.userInfo.stat == false" class="bt" to="/signin"><i class="fa-solid fa-right-to-bracket"></i><em> Login</em></router-link>
+          <router-link v-if="$store.state.userInfo.stat == false" class="bt" to="/signup"><i class="fa-solid fa-user-plus"></i><em> Join</em></router-link>
           
-          <router-link v-if="userstate == 'true'" class="bt" to="/signout"><i class="fa-solid fa-right-from-bracket"></i><em>Logout</em></router-link>
+          <router-link v-if="$store.state.userInfo.stat == true" class="bt" to="/signout"><i class="fa-solid fa-right-from-bracket"></i><em>Logout</em></router-link>
         </div>
 
       </div>

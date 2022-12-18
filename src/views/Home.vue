@@ -11,8 +11,6 @@
 
       <Clock/>
 
-
-
       <div class="mn-box">
         <div class="top" onclick="ui.test.using(this.target)"><img src="../../public/img/logo.png" alt=""></div>
 
@@ -25,7 +23,7 @@
           <p>게시글:[읽기, 쓰기, 수정, 삭제] , 댓글: [읽기,쓰기, 삭제]</p>
         </div>
         <div class="icos">
-          <span class="ico"><img src="../../public/img/ico_vue.svg" alt=""></span>
+          <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
           <span class="pls">+</span>
           <span class="ico"><img src="../../public/img/ico_firebase.svg" alt=""></span>
           <!-- <span><img src="../../public/img/ico_react.svg" alt=""></span> -->
@@ -42,6 +40,7 @@
 <script>
 import RecentPost from '../components/RecentPost.vue'
 import Clock from '../components/Clock.vue'
+import store from '../store';
 
 export default {
   name: 'HomeItem',
@@ -60,14 +59,19 @@ export default {
   created(){
     ui.init();
     this.init();
+    console.log("home created");
   },
   mounted() {
-   
+   console.table( store.state.userInfo);
   },
   methods:{
     init(){
       
       
+    },
+    sss(){
+      console.log(store.state.todos);
+      store.state.todos = "1111111111111111111111111111"
     }
   }
 }

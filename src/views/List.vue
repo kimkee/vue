@@ -55,6 +55,7 @@
 
 <script>
 import db  from '../firebaseConfig.js';
+import store from '../store';
 import { collection, query, getDocs, orderBy, limit , limitToLast } from "firebase/firestore";
 
 
@@ -76,6 +77,7 @@ export default {
   },
   mounted(){
     ui.init();
+    console.log(store.state.todos);
     document.querySelector(".header .cdt .htit").textContent = 'Board';
   },
   methods:{

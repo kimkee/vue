@@ -10,7 +10,7 @@
       </div>
     </div>
   </header>
-  <Gnb :userstate="userstate" :userInfo="this.userInfo"/>
+  <Gnb/>
 </template>
 
 <script>

@@ -126,7 +126,7 @@ export default {
                 const temp = (Math.floor(data.main.temp * 10) / 10).toFixed(1); /* 소수점 첫째자리만 */
                 const icon = (data.weather[0].icon).substr(0,2);
                 tits.innerHTML = '<i class="' + icons[icon] +'" title="'+data.weather[0].description+' - '+data.weather[0].icon+'"></i> <em>' + city + '</em> <b>'+ temp + '</b>';
-                console.log( data, icon , temp , city , data.weather[0].description , data.weather[0].icon ,gap);
+                // console.log( data, icon , temp , city , data.weather[0].description , data.weather[0].icon ,gap);
                 _this.tgap = gap;
                 _this.draw( _this.tgap );
               });
