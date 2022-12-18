@@ -345,8 +345,8 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-write .btn-set{margin-top: 20rem;}
 
 .page.sign{}
-.page.sign .contents{padding-top: calc(50vh - 230rem);}
-.sign-form{width: 260rem;margin: 10rem auto 0;}
+.page.sign .contents{/* padding-top: calc(50vh - 230rem); */}
+.sign-form{max-width: 350rem;margin: 10rem auto 0;}
 .sign-form .hdt{ text-align: center; font-size:15rem; color:#eeeeee}
 .sign-form .list{}
 .sign-form .list>li{}
@@ -355,7 +355,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .sign-form .list>li .dd{display: block;}
 .sign-form .btn-set{margin-top: 20rem;}
 .sign-form .link{margin-top: 20rem; font-size:12rem;}
-
+.sign-form .link a{color: #d5d5d5;}
 
 
 .page.home {/* text-align: center; */min-height: calc(100vh - 100rem);/* display: flex; */align-items: center;justify-content: center;}
@@ -555,7 +555,12 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .clocksvg .selt .bt:active{ transform: scale(0.95);}
 .clocksvg .test{display: none;}
 
-
+.ut-avata{display: flex;gap: 10rem 15rem;flex-wrap: wrap;}
+.ut-avata label{display: inline-flex;position: relative;}
+.ut-avata label input{position: absolute;width: 34rem;height: 34rem;}
+.ut-avata label input:checked + .txt{border-color: #41b883;}
+.ut-avata label .txt{display: inline-flex;width: 36rem;height: 36rem;border: solid 3rem transparent;border-radius: 20rem;overflow: hidden;}
+.ut-avata label .txt .img{ width: 30rem; height: 30rem; }
 
 
 ::-webkit-scrollbar{  width:12rem;  height:12rem}

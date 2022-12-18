@@ -17,8 +17,8 @@
             <div class="more"></div>
           </div>
           <ul class="list">
-            <li v-for="board in Boards" :key="board.key">
-                <router-link class="box" :to="{ name: 'view', params: { id: board.key }}">
+            <li v-for="board in Boards" :key="board.id">
+                <router-link class="box" :to="{ name: 'view', params: { id: board.id }}">
                   <h4 class="tits">{{ board.title }}</h4>
                   <div class="cont">
                     <div v-if="board.img" class="pics"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
@@ -27,7 +27,7 @@
                   <div class="info">
                     <div class="dd">
                       <div class="user"><i class="fa-solid fa-user"></i> {{board.author}}</div>
-                      <div class="keys">{{ board.key }}</div>
+                      <div class="keys">{{ board.id }}</div>
                     </div>
                     <div class="dd">
                       <div class="hits">
@@ -91,7 +91,7 @@ export default {
       querySnapshot.forEach((doc) => {
         // console.log(doc.data().title);
         this.Boards.push({
-          key: doc.id,
+          id: doc.id,
           author: doc.data().author || "익명",
           title: doc.data().title,
           content: doc.data().content,

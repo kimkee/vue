@@ -7,13 +7,30 @@
           <li>
             <label class="dt">이메일</label>
             <div class="dd">
-              <span class="input"><input v-model="userEmail" type="email" id="email" placeholder="입력하세요"></span>
+              <span class="input"><input v-model="userEmail" type="email" placeholder="입력하세요"></span>
             </div>
           </li>
           <li>
             <label class="dt">비밀번호</label>
             <div class="dd">
-              <span class="input"><input v-model="userPassword" type="password" id="password" placeholder="입력하세요"></span>
+              <span class="input"><input v-model="userPwd" type="password" placeholder="6자리 이상 "></span>
+            </div>
+          </li>
+          <li>
+            <label class="dt">닉네임</label>
+            <div class="dd">
+              <span class="input"><input v-model="userNick" type="text" placeholder="입력하세요"></span>
+            </div>
+          </li>
+          <li>
+            <label class="dt">아바타</label>
+            <div class="dd">
+              <!-- {{this.avatarVal}} -->
+              <div class="ut-avata">
+                <label  v-for="(icon,index) in $store.state.avatar" :key="index">
+                  <input type="radio" name="avatar" :value="index" v-model="avatarVal" :checked=" index == 0 ? true : false"> <span class="txt"><img class="img" :src="icon" alt=""></span>
+                </label>
+              </div>
             </div>
           </li>
         </ul>
@@ -22,7 +39,7 @@
           <button type="button" class="btn" @click="join"><i class="fa-solid fa-right-to-bracket"></i><em>회원가입</em></button>
         </div>
         <div class="link">
-          <router-link class="bt" to="/signin">로그인 하러가기 <i class="fa-solid fa-chevron-right"></i></router-link>
+          이미 회원이신가요? <router-link class="bt" to="/signin">로그인 하러가기 <i class="fa-solid fa-chevron-right"></i></router-link>
         </div>
       </div>
     </main>
@@ -32,7 +49,6 @@
 
 <script>
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
-
 export default {
   name: 'JoinItem',
   props: {
@@ -40,8 +56,10 @@ export default {
   },
   data() {
     return {
+      avatarVal:0,
       userEmail:null,
-      userPassword:null,
+      userPwd:null,
+      userNick:null,
       erMsg : {
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -59,13 +77,14 @@ export default {
   },
   mounted(){
     ui.init();
+    console.log(this.avatarVal);
     document.querySelector(".header .cdt .htit").textContent = '회원가입';
+    // document.querySelectorAll('input[name="avatar"]')[0].checked = true;
   },
   methods: {
-
     async join () {
       const email = this.userEmail;
-      const password = this.userPassword;
+      const password = this.userPwd;
       const auth = getAuth();
       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
