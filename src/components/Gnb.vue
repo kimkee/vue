@@ -13,8 +13,8 @@
       </ul>
       {{$store.state.userInfo.stat}} {{$store.state.userInfo.email}}
       <div class="sign">
-        
-        <span v-if="$store.state.userInfo.stat == true" class="bt email"><i class="fa-solid fa-envelope"></i> <em>{{$store.state.userInfo.email}}</em></span>
+        <div class="user"><span class="pic"><img :src="$store.state.avatar[$store.state.userInfo.avatar]" alt="" class="img"></span> <span class="txt">{{$store.state.userInfo.nick}}</span></div>
+        <div v-if="$store.state.userInfo.stat == true" class="bt email"><i class="fa-solid fa-envelope"></i> <em>{{$store.state.userInfo.email}}</em></div>
         
         <!-- <div v-if="userstate == true">로긴됨</div>
         <div v-if="userstate == false">로긴아웃</div> -->

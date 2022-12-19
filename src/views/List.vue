@@ -17,7 +17,7 @@
             <div class="more"></div>
           </div>
           <ul class="list">
-            <li v-for="board in Boards" :key="board.id">
+            <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
                 <router-link class="box" :to="{ name: 'view', params: { id: board.id }}">
                   <h4 class="tits">{{ board.title }}</h4>
                   <div class="cont">
@@ -26,7 +26,7 @@
                   </div>
                   <div class="info">
                     <div class="dd">
-                      <div class="user"><i class="fa-solid fa-user"></i> {{board.author}}</div>
+                      <div class="user"><span class="pic"><img :src="$store.state.avatar[board.avatar]" alt="" class="img"></span> <span class="txt">{{board.author}}</span></div>
                       <div class="keys">{{ board.id }}</div>
                     </div>
                     <div class="dd">
@@ -92,7 +92,9 @@ export default {
         // console.log(doc.data().title);
         this.Boards.push({
           id: doc.id,
+          uid: doc.data().uid,
           author: doc.data().author || "익명",
+          avatar: doc.data().avatar || 0,
           title: doc.data().title,
           content: doc.data().content,
           img: doc.data().img,

@@ -14,7 +14,7 @@
             </div>
             <div class="info">
               <div class="dd">
-                <div class="user"><i class="fa-solid fa-user"></i> {{Views.author}}</div>
+                <div class="user"><span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span> <span class="txt"> {{Views.author}}</span></div>
               </div>
               <div class="dd">
                 <div class="hits">
@@ -32,12 +32,12 @@
               
               <div class="text" v-html="Views.content"></div>
 
-              <div class="vote">
-                <button type="button" class="bt-vote">
-                  <i class="fa-solid fa-heart"></i>
-                  <p>좋아요</p>
-                </button>
-              </div>
+            </div>
+            <div class="vote">
+              <button type="button" class="bt-vote">
+                <i class="fa-solid fa-heart"></i>
+                <p>좋아요</p>
+              </button>
             </div>
           
             <div class="btsbox btn-set">
@@ -117,6 +117,7 @@ export default {
 
         this.Views.title = docSnap.data().title;
         this.Views.author = docSnap.data().author || "익명";
+        this.Views.avatar = docSnap.data().avatar || 0;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
         this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;

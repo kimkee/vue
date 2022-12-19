@@ -37,6 +37,7 @@
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
 import { useRoute } from 'vue-router';
+import store from '@/store';
 export default {
   name: 'ModifyItem',
   props: {
@@ -80,6 +81,8 @@ export default {
       await updateDoc(docRef, {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
+        author: store.state.userInfo.nick,
+        avatar: store.state.userInfo.avatar,
       }).then(()=>{
         console.log("수정 성공: ");
         this.$router.push('/view/'+this.pram);

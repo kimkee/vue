@@ -12,6 +12,7 @@ import View from "./views/View.vue";
 import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
+import store from "./store";
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -57,8 +58,8 @@ const router = createRouter({
         {
             path: "/write",
             beforeEnter: (to, from, next) => {
-                console.log(ui.userinfo.stat);
-                if (ui.userinfo.stat == "true") {
+                console.log(store.state.userInfo.stat);
+                if (store.state.userInfo.stat == true) {
                     return next();
                 }
                 if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){

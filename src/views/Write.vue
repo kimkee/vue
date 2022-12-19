@@ -13,7 +13,7 @@
           <li>
             <label class="dt">이름</label>
             <div class="dd">
-              <span class="input"><input type="text" v-model="Views.author" spellcheck="false" placeholder="입력하세요"></span>
+              <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
             </div>
           </li>
           <li>
@@ -47,9 +47,10 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc  } from "firebase/firestore";
 // import { doc, setDoc  } from "firebase/firestore";
 import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
+import store from '@/store';
 
 export default {
   name: 'WriteItem',
@@ -111,7 +112,9 @@ export default {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
         timestamp: today,
-        author: "홍길동",
+        uid:store.state.userInfo.uid,
+        author: store.state.userInfo.nick,
+        avatar: store.state.userInfo.avatar,
         date: this.dateForm( today ),
         img:imgUrl
       }).then(()=>{

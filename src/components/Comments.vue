@@ -8,9 +8,11 @@
         <ul class="rlist a">
           <li v-for="cmt in Coments" :key="cmt.key" :data-coment-idx="cmt.idx">
             <div class="rpset">
-              <div class="user"><a href="javascript:;" class="pic"><img src="" alt="사진" onerror="this.src='./img/user.png';" class="img"></a></div>
+              <div class="user"><a href="javascript:;" class="pic"><img :src="$store.state.avatar[cmt.avatar]" alt="사진"  class="img"></a></div>
               <div class="infs">
-                <div class="name"><em class="nm">{{cmt.author}}</em></div>
+                <div class="name">
+                  <em class="nm">{{cmt.author}}</em>
+                </div>
                 <div class="desc">
                   <em class="time">{{cmt.date}}</em>
                   <button type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
@@ -30,9 +32,17 @@
       <div class="inr">
         <div class="ut-rpwrite">
           <div class="rwset">
-            <div class="user"><a href="javascript:;" class="pic"><img src="" :alt="this.postId" onerror="this.src='./img/user.png';" class="img"></a></div>
+            <div class="user">
+              <a href="javascript:;" class="pic">
+                <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" :alt="this.postId" class="img">
+                <img v-if="!$store.state.userInfo.stat" src="" onerror="this.src='./img/user.png';" class="img">
+              </a>
+            </div>
             <div class="form">
-              <textarea data-ui="autoheight" class="ment" v-model="inputReply" placeholder="댓글을 입력해주세요"  spellcheck="false"></textarea>
+              <textarea data-ui="autoheight" class="ment" v-model="inputReply" 
+              :placeholder="$store.state.userInfo.stat ? '댓글을 입력해주세요' : '로그인해주세요'"
+              :disabled="$store.state.userInfo.stat ? false : true"
+              spellcheck="false"></textarea>
             </div>
             <div class="bts"><button type="button" class="btsend" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
           </div>
@@ -46,9 +56,8 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
-import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useRoute } from 'vue-router';
-
+import store from '@/store';
 
 export default {
   name: 'CommentsItem',
@@ -70,24 +79,9 @@ export default {
     this.comtList(ids);
   },
   mounted(){
-    this.authState();
     this.autoHeight();
   },
   methods:{
-    authState(){
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          this.userstate = "true";
-          this.userInfo = user;
-          console.log(this.userInfo.email , this.userstate);
-          return;
-        }
-        // 사용자 로그아웃 시 동작
-
-        
-      });
-    },
     dateForm(d){
       return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
@@ -114,8 +108,8 @@ export default {
 
       const $textarea =  document.querySelector('[data-ui="autoheight"]');
       if(this.inputReply == "") return;     
-      console.log(!this.userInfo?.uid);
-      if (this.userInfo == null) { 
+      console.log(store.state.userInfo.uid);
+      if (!store.state.userInfo.uid ) { 
         if(confirm("로그인이 필요합니다.")){
           this.$router.push('/signin');
         }else{
@@ -128,9 +122,10 @@ export default {
       };
       this.comtSed({
         idx: this.postId+"_comt_"+random(),
-        author : "홍길동",
-        uid : this.userInfo.uid,
-        email : this.userInfo.email,
+        author : store.state.userInfo.nick,
+        avatar : store.state.userInfo.avatar,
+        uid : store.state.userInfo.uid,
+        email : store.state.userInfo.email,
         reply: this.inputReply.replace(/\n/g,'<br>'),
         timestamp: today,
         date: this.dateForm( today )

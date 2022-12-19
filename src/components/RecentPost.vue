@@ -21,7 +21,7 @@
                 </div> -->
                 <div class="info">
                   <div class="dd">
-                    <div class="user"><i class="fa-solid fa-user"></i> {{recent.author}}</div>
+                    <div class="user"><span class="pic"><img :src="$store.state.avatar[recent.avatar]" alt="" class="img"></span> <span class="txt">{{recent.author}}</span></div>
                     <div class="keys">{{ recent.key }}</div>
                   </div>
                   <div class="dd">
@@ -79,6 +79,7 @@ export default {
           key: doc.id,
           title: doc.data().title,
           author: doc.data().author || "익명",
+          avatar: doc.data().avatar || 0,
           // content: doc.data().content,
           date: this.dateForm( doc.data().timestamp.toDate() )
         });

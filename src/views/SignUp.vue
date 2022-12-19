@@ -18,7 +18,7 @@
           </li>
           <li>
             <label class="dt">닉네임</label>
-            <div class="dd">
+            <div class="dd">{{userNick}}
               <span class="input"><input v-model="userNick" type="text" placeholder="입력하세요"></span>
             </div>
           </li>
@@ -48,7 +48,9 @@
 </template>
 
 <script>
+import db  from '../firebaseConfig.js';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { doc, setDoc  } from "firebase/firestore";
 export default {
   name: 'JoinItem',
   props: {
@@ -93,8 +95,9 @@ export default {
         console.log(user  );
         console.log("uid : "+user.uid );
         console.log("액세스토큰: "+ user.accessToken);
-        alert("가입되었습니다.\n" + user.email +"\n "+ user.uid  );
-        this.$router.push('/');
+
+        this.addMember(user)
+
       })
       .catch((error) => {
         console.log( error.code);
@@ -102,8 +105,30 @@ export default {
         alert(  emsg );
         // ..
       });
+      
+    },
+    async addMember(user){
+      await setDoc(doc(db, "member" ,user.uid), {
+        id: user.uid,
+        email: user.email,
+        nick : this.userNick,
+        avatar: this.avatarVal,
+        date: new Date(),
+      }).then((user)=>{
+        alert("가입되었습니다.\n"  );
+        console.log("멤버 생성: "+user);
+        this.$router.push('/');
+      }).catch (e =>{
+        console.error("멤버 생성 Error : ", e);
+      });
     }
     
+
+
+
+
+
+
     // async join () {
     //   const email = document.querySelector("input#email").value;
     //   const password = document.querySelector("input#password").value;

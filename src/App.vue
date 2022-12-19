@@ -17,9 +17,11 @@
 import Home from './views/Home.vue';
 import Nav from './components/Nav.vue';
 import Header from './components/Header.vue';
+import db  from './firebaseConfig.js';
 import store from './store';
 // import ui from '../public/js/ui.js';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { getDoc, doc } from "firebase/firestore";
 
 export default {
   name: 'App',
@@ -52,37 +54,36 @@ export default {
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-          // 사용자 로그인 시 동작
-          // this.userstate = "true";
-          // this.userInfo = user;
-          // ui.userinfo.stat = "true";
-          // ui.userinfo.email = user.email;
-          // ui.userinfo.uid = user.uid;
-          
-          
-          store.state.userInfo.stat = true;
-          store.state.userInfo.email = user.email;
-          store.state.userInfo.phone = user.phone;
-          store.state.userInfo.uid = user.uid;
-          console.log('login 된 상태', user);
-          console.table(store.state.userInfo);
+
+          this.getUser(user);   
+
           return;
         }
-        // 사용자 로그아웃 시 동작
-        // this.userstate = "false";
-        // this.userInfo = null;
-        // ui.userinfo.stat = "false";
-        // ui.userinfo.uid = "";
-
+        store.state.userInfo = {};
         store.state.userInfo.stat = false;
-        store.state.userInfo.email = null;
-        store.state.userInfo.phone = null;
-        store.state.userInfo.uid = null;
-
         console.log('logout 된 상태' , store.state.userInfo);
         console.table(store.state.userInfo);
         
       });
+    },
+    async getUser(user){
+      const docRef =  doc(db, "member" , user.uid);
+      try {
+        const docSnap = await getDoc(docRef);
+        console.log( docSnap.data().nick);
+
+        store.state.userInfo.stat = true;
+        store.state.userInfo.email = docSnap.data().email;
+        store.state.userInfo.avatar = docSnap.data().avatar;
+        store.state.userInfo.nick = docSnap.data().nick;
+        store.state.userInfo.uid = user.uid;
+        console.log('login 된 상태', user);
+        console.table(store.state.userInfo);
+
+
+      } catch(error) {
+        console.log(error)
+      }
     }
   }
 }
