@@ -7,18 +7,18 @@
           <li>
             <label class="dt">이메일</label>
             <div class="dd">
-              <span class="input"><input v-model="userEmail" type="email" placeholder="입력하세요"></span>
+              <span class="input"><input v-model="userEmail" type="email" placeholder="예) test@naver.com"></span>
             </div>
           </li>
           <li>
             <label class="dt">비밀번호</label>
             <div class="dd">
-              <span class="input"><input v-model="userPwd" type="password" placeholder="6자리 이상 "></span>
+              <span class="input"><input v-model="userPwd" type="password" placeholder="6자리 이상 예) 111111 "></span>
             </div>
           </li>
           <li>
             <label class="dt">닉네임</label>
-            <div class="dd">{{userNick}}
+            <div class="dd">
               <span class="input"><input v-model="userNick" type="text" placeholder="입력하세요"></span>
             </div>
           </li>

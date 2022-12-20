@@ -110,6 +110,12 @@ const router = createRouter({
         {
             path: "/signout/",
             name: "signout",
+            beforeEnter: (to, from, next) => {
+                console.table(store.state.userInfo);
+                if(confirm("로그아웃 하시겠습니까?")){
+                    return next();      
+                }
+            },
             components: {
                 default: SignOut,
             }
