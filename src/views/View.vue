@@ -18,7 +18,7 @@
               </div>
               <div class="dd">
                 <div class="hits">
-                    <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
+                    <em><i class="fa-solid fa-eye"></i> <b>{{ Views.count }}</b></em>
                     <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
                  </div>
                 <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
@@ -62,7 +62,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import Comments from '../components/Comments.vue'
-import { getDoc, doc ,deleteDoc} from "firebase/firestore";
+import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 
 export default {
@@ -91,6 +91,7 @@ export default {
   mounted(){
     ui.init();
     document.querySelector(".header .cdt .htit").textContent = '';
+    
   },
   methods:{
     dateForm(d){
@@ -122,7 +123,12 @@ export default {
         this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
+        this.Views.count = docSnap.data().count ;
         document.querySelector(".page.board.view").classList.add("load");
+        const newHits = this.Views.count + 1;
+        setTimeout(() => {
+          this.hits( newHits );
+        }, 1000);
       } catch(error) {
         console.log(error)
       }
@@ -135,6 +141,18 @@ export default {
       }else{
         console.log("안지움 ㄷㄷㄷ");
       }
+    },
+    async hits(newHits){
+      console.log(newHits);
+      const docRef = doc(db, "bbs", this.pram );
+      this.Views.count = newHits;
+      await updateDoc(docRef, {
+        count: newHits,
+      }).then(()=>{
+        console.log("조회수 UP: ",newHits);
+      }).catch (e =>{
+        console.error("Error adding document: ", e);
+      });
     }
 
   }

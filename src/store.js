@@ -4,7 +4,13 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    userInfo:{},
+    userInfo:{
+      stat: null,
+      uid: null,
+      email: null,
+      nick: null,
+      avatar: null,
+    },
     avatar:[
       "https://cdn-icons-png.flaticon.com/512/3899/3899618.png",
       "https://cdn-icons-png.flaticon.com/512/805/805370.png ",

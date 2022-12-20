@@ -116,6 +116,8 @@ export default {
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
         date: this.dateForm( today ),
+        count: 0,
+        coments:[],
         img: imgUrl
       }).then(()=>{
         console.log("쓰기 성공: ");

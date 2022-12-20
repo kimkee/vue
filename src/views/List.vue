@@ -32,11 +32,11 @@
                     <div class="dd">
                       <div class="hits">
                         <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                        <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
+                        <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
                         <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
                       </div>
                       <div class="date">
-                        <i class="fa-solid fa-calendar-days"></i> {{ board.date }}
+                        <i class="fa-solid fa-calendar-days"></i> <b>{{ board.date }}</b>
                       </div>
                     </div>
                   </div>
@@ -83,7 +83,7 @@ export default {
   },
   methods:{
     dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium' }).format( d )
+      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
     async read(){
       const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(), limitToLast() );
@@ -99,6 +99,7 @@ export default {
           title: doc.data().title,
           content: doc.data().content,
           comtNum: doc.data().coments.length,
+          count: doc.data().count,
           img: doc.data().img,
           date: this.dateForm(doc.data().timestamp.toDate() )
         });
