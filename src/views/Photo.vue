@@ -4,41 +4,10 @@
 
       <div class="ui-loading-dot"><div class="bx"><em><i></i></em></div></div>
       <div class="ut-tblist">
-        <ul class="list" id="dp_list">
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=1" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=2" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=3" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=4" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=5" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=6" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=7" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=8" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=9" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=10" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=11" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/360/640/?v=12" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=13" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=14" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=15" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=16" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=17" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=18" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=19" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=20" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=21" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=22" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=23" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=24" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=25" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=26" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=27" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=28" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=29" alt=""></div></a></div></li>
-          <li><div class="box"><a href="javascript:;"><div class="pic"><img class="img" loading="lazy" src="//picsum.photos/640/360/?v=30" alt=""></div></a></div></li>
-        </ul>
-        <div class="ui-loadmore active">
+        <ul class="list" id="dp_list"></ul>
+        <div class="ui-loadmore">
           <em></em>
-          <button type="button" class="btn-load" @click="photoLoad" id="btn_list_more">불러오기</button>
+          <button type="button" class="" @click="addItem" id="btn_list_more">불러오기</button>
         </div>
       </div>
       
@@ -59,7 +28,8 @@ export default {
   },
   data() {
       return {
-        Photos:{}
+        Photos:[],
+        callStat:true,
       }
   },
   created(){
@@ -67,11 +37,62 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = 'Photo';
   },
   mounted() {
-    document.querySelector(".page.photo").classList.add("load");
-  },
-  methods:{
-    photoLoad(){
+    
+    
+    this.addItem();
+    this.scroll();
 
+  },
+  
+  methods:{
+    addItem(){
+      let pHtml = "";
+      document.querySelector('.ui-loadmore').classList.add("active");
+      this.callStat = false;
+      fetch("./js/photo.json").then( res => res.ok && res.text() ).then( res => { 
+        
+        JSON.parse( res).forEach( (data) =>{
+          pHtml += `<li><div class="box"><a href="javascript:;"><div class="pic"><img class="img"  src="${data.urls}" alt=""></div></a></div></li>`
+        });
+
+        setTimeout(() => {
+          document.querySelector("#dp_list").insertAdjacentHTML("beforeend",pHtml);
+          document.querySelector('.ui-loadmore').classList.remove("active");
+          document.querySelector(".page.photo").classList.add("load");
+          this.callStat = true;
+          this.Photos = [...this.Photos, ...(JSON.parse( res))]
+          console.log(  this.Photos.length );
+        }, 1000);
+        
+      });
+
+    },
+    
+    scroll(){
+      
+      window.addEventListener("scroll", () =>{
+        // console.log(this.callStat,  ui.viewport.height() ,ui.viewport.scrollTop() , ui.viewport.docHeight() );
+        const wHt = ui.viewport.height() ;
+        const docH =  ui.viewport.docHeight();
+        const scr = ui.viewport.scrollTop() + wHt + 10; 
+        if (docH <= scr && this.callStat == true) {
+          console.log("바닥도착");
+          this.addItem();
+        }
+      });
+      /* 
+      $(window).on("scroll resize", function() { 
+        var wHt = ui.viewport.height() ;
+        var docH = $(document).height();
+        var scr = $(window).scrollTop() + wHt + 10; 
+        // console.log(docH,scr);
+        if (docH <= scr  && _this.stat == true) {
+          console.log("바닥도착");
+          _this.using();
+          _this.stat = false;
+        }
+      }); 
+      */
     }
   }
 }
