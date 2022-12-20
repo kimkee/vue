@@ -112,11 +112,11 @@ export default {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
         timestamp: today,
-        uid:store.state.userInfo.uid,
+        uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
         date: this.dateForm( today ),
-        img:imgUrl
+        img: imgUrl
       }).then(()=>{
         console.log("쓰기 성공: ");
         this.$router.push('/list');

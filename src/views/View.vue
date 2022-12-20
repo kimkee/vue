@@ -3,10 +3,10 @@
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <!-- {{$route.params.id}} -->
+      <div class="ui-loading-dot">
+        <div class="bx"><em><i></i></em></div>
+      </div>
       <div class="board-view">
-        <div class="ui-loading-dot">
-          <div class="bx"><em><i></i></em></div>
-        </div>
           <div class="vcont">
           <div class="hdt">
             <div class="tits">
@@ -122,7 +122,7 @@ export default {
         this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
-        document.querySelector(".board-view").classList.add("load");
+        document.querySelector(".page.board.view").classList.add("load");
       } catch(error) {
         console.log(error)
       }

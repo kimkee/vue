@@ -38,7 +38,7 @@
         </ul>
         <div class="ui-loadmore active">
           <em></em>
-          <button type="button" class="btn-load" onclick="addItem.using()" id="btn_list_more" disabled="">불러오기</button>
+          <button type="button" class="btn-load" @click="photoLoad" id="btn_list_more">불러오기</button>
         </div>
       </div>
       

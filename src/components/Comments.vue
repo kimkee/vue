@@ -4,7 +4,12 @@
     <!-- <span v-if="userstate == 'true'" class="bt email"><i class="fa-solid fa-envelope"></i><em> {{userInfo.email}}</em></span> -->
     <div class="ut-reply">
       <div class="rplist">
-        
+        <div class="rtop r1" v-if="Coments.length == 0">
+          첫 댓글을 남겨 보세요!
+        </div>
+        <div class="rtop r2" v-else>
+          댓글 {{Coments.length}} 개
+        </div>
         <ul class="rlist a">
           <li v-for="cmt in Coments" :key="cmt.key" :data-coment-idx="cmt.idx">
             <div class="rpset">

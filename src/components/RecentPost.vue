@@ -26,6 +26,7 @@
                   </div>
                   <div class="dd">
                     <div class="hits">
+                      <em><i class="fa-solid fa-comment-dots"></i> <b>{{ recent.comtNum }}</b></em>
                       <em><i class="fa-solid fa-eye"></i> <b>0</b></em>
                       <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
                     </div>
@@ -80,6 +81,7 @@ export default {
           title: doc.data().title,
           author: doc.data().author || "익명",
           avatar: doc.data().avatar || 0,
+          comtNum: doc.data().coments.length,
           // content: doc.data().content,
           date: this.dateForm( doc.data().timestamp.toDate() )
         });
