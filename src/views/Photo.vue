@@ -37,13 +37,14 @@ export default {
     document.querySelector(".header .cdt .htit").textContent = 'Photo';
   },
   mounted() {
-    
-    
+    window.addEventListener("scroll", this.scrollEvent);
+    this.callStat = true;
     this.addItem();
-    this.scroll();
-
+    console.log("================================");
   },
-  
+  unmounted(){
+    window.removeEventListener("scroll", this.scrollEvent);
+  },
   methods:{
     addItem(){
       let pHtml = "";
@@ -63,36 +64,17 @@ export default {
           this.Photos = [...this.Photos, ...(JSON.parse( res))]
           console.log(  this.Photos.length );
         }, 1000);
-        
       });
-
     },
-    
-    scroll(){
-      
-      window.addEventListener("scroll", () =>{
-        // console.log(this.callStat,  ui.viewport.height() ,ui.viewport.scrollTop() , ui.viewport.docHeight() );
-        const wHt = ui.viewport.height() ;
-        const docH =  ui.viewport.docHeight();
-        const scr = ui.viewport.scrollTop() + wHt + 10; 
-        if (docH <= scr && this.callStat == true) {
-          console.log("바닥도착");
-          this.addItem();
-        }
-      });
-      /* 
-      $(window).on("scroll resize", function() { 
-        var wHt = ui.viewport.height() ;
-        var docH = $(document).height();
-        var scr = $(window).scrollTop() + wHt + 10; 
-        // console.log(docH,scr);
-        if (docH <= scr  && _this.stat == true) {
-          console.log("바닥도착");
-          _this.using();
-          _this.stat = false;
-        }
-      }); 
-      */
+    scrollEvent(){
+      // console.log(this.callStat,  ui.viewport.height() ,ui.viewport.scrollTop() , ui.viewport.docHeight() );
+      const wHt = ui.viewport.height() ;
+      const docH =  ui.viewport.docHeight();
+      const scr = ui.viewport.scrollTop() + wHt + 10; 
+      if (docH <= scr && this.callStat == true) {
+        console.log("바닥도착");
+        this.addItem();
+      }
     }
   }
 }

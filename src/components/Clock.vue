@@ -229,6 +229,9 @@ export default {
    
     this.clock.init();
   },
+  unmounted(){
+    clearInterval(ui.clockInterval);
+  },
   methods:{
     
   },

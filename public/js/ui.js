@@ -3,7 +3,7 @@ const ui = {
     init:function(){
         console.log("ui.init();");
         this.gnb.init();
-        clearInterval(ui.clockInterval);
+        
     },
     viewport:{
         height:    ()=> parseInt( window.visualViewport ? visualViewport.height : window.innerHeight ),
