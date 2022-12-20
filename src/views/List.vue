@@ -77,7 +77,7 @@ export default {
   },
   mounted(){
     ui.init();
-    console.log(store.state.todos);
+    console.table(store.state.userInfo);
     document.querySelector(".header .cdt .htit").textContent = 'Board';
   },
   methods:{
