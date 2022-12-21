@@ -24,8 +24,7 @@ export default {
     Gnb,
   },
   props: {
-    userstate: String,
-    userInfo: Object
+
   },
   data() {
       return {

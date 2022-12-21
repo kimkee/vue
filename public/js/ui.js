@@ -1,4 +1,3 @@
-
 const ui = {
     init:function(){
         console.log("ui.init();");
@@ -87,11 +86,5 @@ const ui = {
             // 	}
             // });
         }
-    },
-    userinfo : {
-        stat:'',
-        email:'',
-        uid:''
-    },
-    clockInterval : null,
-}
+    }
+};

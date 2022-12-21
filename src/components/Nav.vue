@@ -21,7 +21,7 @@
 export default {
   name: 'NavItem',
   props: {
-    userstate: String
+    
   },
   data() {
       return {

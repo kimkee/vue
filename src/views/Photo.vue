@@ -7,7 +7,7 @@
         <ul class="list" id="dp_list"></ul>
         <div class="ui-loadmore">
           <em></em>
-          <button type="button" class="" @click="addItem" id="btn_list_more">불러오기</button>
+          <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
         </div>
       </div>
       
@@ -51,8 +51,8 @@ export default {
       document.querySelector('.ui-loadmore').classList.add("active");
       this.callStat = false;
       fetch("./js/photo.json").then( res => res.ok && res.text() ).then( res => { 
-        
-        JSON.parse( res).forEach( (data) =>{
+        const result = JSON.parse( res);
+        result.forEach( (data) =>{
           pHtml += `<li><div class="box"><a href="javascript:;"><div class="pic"><img class="img"  src="${data.urls}" alt=""></div></a></div></li>`
         });
 
@@ -61,9 +61,14 @@ export default {
           document.querySelector('.ui-loadmore').classList.remove("active");
           document.querySelector(".page.photo").classList.add("load");
           this.callStat = true;
-          this.Photos = [...this.Photos, ...(JSON.parse( res))]
+          this.Photos = [...this.Photos, ...(result)]
           console.log(  this.Photos.length );
         }, 1000);
+      }).catch( e=>{
+        console.log("오프라인");
+        document.querySelector('.ui-loadmore').classList.remove("active");
+        document.querySelector('.ui-loadmore').classList.add("error");
+        console.log(e);
       });
     },
     scrollEvent(){
