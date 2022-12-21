@@ -52,6 +52,7 @@ import { collection, addDoc  } from "firebase/firestore";
 import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
 import store from '@/store';
 
+
 export default {
   name: 'WriteItem',
   props: {
@@ -91,11 +92,9 @@ export default {
       if ($fileInput.files[0]) {
         const filename = $fileInput.files[0].name;
         const storageRef = ref(storage, "images/"+filename);
-
-        uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
+        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
           console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
         });
-        
         await getDownloadURL(ref(storage, "images/"+filename))
         .then((url) => {
           imgUrl = url;
