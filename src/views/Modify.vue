@@ -19,6 +19,12 @@
               </span>
             </div>
           </li>
+          <li>
+            <label class="dt">사진</label>
+            <div class="dd">
+              <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
+            </div>
+          </li>
         </ul>
       </div>
     </main>
@@ -37,6 +43,7 @@
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
 import { useRoute } from 'vue-router';
+import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
 import store from '@/store';
 export default {
   name: 'ModifyItem',
@@ -73,16 +80,44 @@ export default {
     }
     ,
     async modify(){
-      // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       const $title = this.Views.title;
       const $content = this.Views.content
+      const $fileInput = document.querySelector("input#fileInput");
       console.log("수정" + this.pram);
+      
+      /* 업로드  */
+      let imgUrl = "";
+      const storage = getStorage();
+      console.log($fileInput.files[0]);
+      if ($fileInput.files[0]) {
+        const filename = $fileInput.files[0].name;
+        const storageRef = ref(storage, "images/"+filename);
+        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
+          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
+        });
+        await getDownloadURL(ref(storage, "images/"+filename))
+        .then((url) => {
+          imgUrl = url;
+          console.log(imgUrl);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+
+
+
+
+      // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
+
       const docRef = doc(db, "bbs", this.pram );
       await updateDoc(docRef, {
         title: $title,
         content: $content.replace(/\n/g,'<br>'),
+        uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
+        img: imgUrl
       }).then(()=>{
         console.log("수정 성공: ");
         this.$router.push('/view/'+this.pram);

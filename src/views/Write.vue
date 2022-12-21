@@ -81,13 +81,9 @@ export default {
       const $content = this.Views.content;
       const $fileInput = document.querySelector("input#fileInput");
       const today = new Date();
-      let imgUrl = "";
       /* 업로드  */
+      let imgUrl = "";
       const storage = getStorage();
-      // const mountainsRef = ref(storage, $fileInput.files[0].name);
-      /* const metadata = {
-        contentType: 'image/jpeg',
-      }; */
       console.log($fileInput.files[0]);
       if ($fileInput.files[0]) {
         const filename = $fileInput.files[0].name;
