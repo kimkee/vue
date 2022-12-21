@@ -11,6 +11,12 @@
             </div>
           </li>
           <li>
+            <label class="dt">이름</label>
+            <div class="dd">
+              <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
+            </div>
+          </li>
+          <li>
             <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
@@ -21,6 +27,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
+            <div class="pic"><img class="img" :src="this.Views.img" alt=""></div>
             <div class="dd">
               <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
             </div>
@@ -72,6 +79,7 @@ export default {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.Views.title = docSnap.data().title;
+        this.Views.img = docSnap.data().img;
         this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
       }else{
@@ -86,10 +94,10 @@ export default {
       console.log("수정" + this.pram);
       
       /* 업로드  */
-      let imgUrl = "";
       const storage = getStorage();
       console.log($fileInput.files[0]);
-      if ($fileInput.files[0]) {
+      let imgUrl = "";
+      if ($fileInput.files[0] != undefined) {
         const filename = $fileInput.files[0].name;
         const storageRef = ref(storage, "images/"+filename);
         await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
@@ -117,7 +125,7 @@ export default {
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
-        img: imgUrl
+        img: imgUrl || this.Views.img
       }).then(()=>{
         console.log("수정 성공: ");
         this.$router.push('/view/'+this.pram);

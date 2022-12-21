@@ -16,9 +16,10 @@
           <li v-for="recent in Recents" :key="recent.key">
               <router-link class="box" :to="{ name: 'view', params: { id: recent.key }}">
                 <h4 class="tits">{{ recent.title }}</h4>
-                <!-- <div class="cont">
+                <div class="cont">
+                  <div v-if="recent.img" class="pics"><img class="img" :src="recent.img" onerror="this.src='./img/noimage.png';"></div>
                   <div class="text" v-html="recent.content"></div>
-                </div> -->
+                </div>
                 <div class="info">
                   <div class="dd">
                     <div class="user"><span class="pic"><img :src="$store.state.avatar[recent.avatar]" alt="" class="img"></span> <span class="txt">{{recent.author}}</span></div>
@@ -82,8 +83,9 @@ export default {
           author: doc.data().author || "익명",
           avatar: doc.data().avatar || 0,
           comtNum: doc.data().coments.length,
+          content: doc.data().content,
           count: doc.data().count,
-          // content: doc.data().content,
+          img: doc.data().img,
           date: this.dateForm( doc.data().timestamp.toDate() )
         });
       });
