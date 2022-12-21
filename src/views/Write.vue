@@ -84,19 +84,19 @@ export default {
       /* 업로드  */
       const storage = getStorage();
       // const mountainsRef = ref(storage, $fileInput.files[0].name);
-      const metadata = {
+      /* const metadata = {
         contentType: 'image/jpeg',
-      };
+      }; */
       console.log($fileInput.files[0]);
       if ($fileInput.files[0]) {
         const filename = $fileInput.files[0].name;
         const storageRef = ref(storage, "images/"+filename);
 
-        await uploadBytes( storageRef ,filename, metadata ).then((snapshot) => {
+        uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
           console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
         });
         
-        await getDownloadURL(ref(storage, storageRef.fullPath))
+        await getDownloadURL(ref(storage, "images/"+filename))
         .then((url) => {
           imgUrl = url;
           console.log(imgUrl);
