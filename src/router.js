@@ -64,6 +64,8 @@ const router = createRouter({
                 }
                 if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
                     next('/signin');        
+                }else{
+                    return next();
                 }
             },
             components: {

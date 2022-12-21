@@ -17,8 +17,8 @@
               <router-link class="box" :to="{ name: 'view', params: { id: recent.key }}">
                 <h4 class="tits">{{ recent.title }}</h4>
                 <div class="cont">
-                  <div v-if="recent.img" class="pics"><img class="img" :src="recent.img" onerror="this.src='./img/noimage.png';"></div>
                   <div class="text" v-html="recent.content"></div>
+                  <div class="pics" v-if="recent.img"><img class="img" :src="recent.img" onerror="this.src='./img/noimage.png';"></div>
                 </div>
                 <div class="info">
                   <div class="dd">
@@ -72,7 +72,7 @@ export default {
       return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
     async read(){
-      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(7) );
+      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(5) );
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {
