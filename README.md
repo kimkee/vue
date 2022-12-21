@@ -1,6 +1,6 @@
 # VUE3 + FIREBASE9
 
-> https://kimkee.github.io/vue-cli/dist/
+> https://kimkee.github.io/vue/app/
 
 
 
