@@ -493,9 +493,9 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 30px;height: 30px;border-radius: 100px;/* font-size:0rem; */color: #fff;text-align: center;}
 .ut-rpwrite .rwset .bts .btsend em{font-size:0rem;}
 
-.ui-loading-dot{}
+.ui-loading-dot{    position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 9000; }
 .ui-loading-dot.load{display: none;}
-.ui-loading-dot>.bx{position: relative; margin-top: 40px;}
+.ui-loading-dot>.bx{position: absolute; margin-top: -28px; top: 50%; left: 0; right: 0; text-align: center;}
 .ui-loading-dot>.bx em{display: flex; justify-content: center;}
 .ui-loading-dot>.bx em i,
 .ui-loading-dot>.bx em::before,

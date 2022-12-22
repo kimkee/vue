@@ -87,7 +87,7 @@ const ui = {
             // });
         }
     },
-    time: function(date) {
+    timeForm: function(date) {
         const start = new Date(date);
         const end = new Date(); // 현재 날짜
         
