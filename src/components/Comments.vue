@@ -20,7 +20,8 @@
                 </div>
                 <div class="desc">
                   <em class="time" v-html="cmt.date"></em>
-                  <button type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
+                  <button v-if="cmt.uid == $store.state.userInfo.uid" type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
+
                 </div>
                 <div class="ment" v-html="cmt.reply"></div>
                 <!-- <div class="rbt"><button type="button" class="bt repy">답글달기</button></div> -->
@@ -93,12 +94,11 @@ export default {
     async comtList(ids){
       const docRef = doc(db, "bbs" , ids);
       try {
-        console.log("uid === " + ids);
+        console.log("글 id === " + ids);
           const docSnap = await getDoc(docRef);
           this.Coments = docSnap.data().coments || [] ;
           this.Coments.forEach((c, i) => {         
             this.Coments[i] = ( c );
-            this.Coments[i].reply = this.Coments[i].reply.replace(/\n/g,'<br>');
             this.Coments[i].date = this.dateForm(this.Coments[i].timestamp.toDate() )
           });
           console.log(  `댓글 수 = ${ this.Coments.length }` );
@@ -109,20 +109,25 @@ export default {
     },
     
     comtWrite(){
-      console.log(this.inputReply);
+      console.log(this.inputReply );
 
       const $textarea =  document.querySelector('[data-ui="autoheight"]');
-      if(this.inputReply == "") return;     
+
       console.log(store.state.userInfo.uid);
       if (!store.state.userInfo.uid ) { 
         if(confirm("로그인이 필요합니다.")){
           this.$router.push('/signin');
+          return;
         }else{
           return;
         }
       }
+      if (this.inputReply == null) {
+        alert("댓글을 입력하세요");
+        return;
+      }
       const today = new Date() ;
-      const random = (length = 6) => {
+      const random = (length = 6) => { // 댓글마다 유니크한 아이디 정하기
         return Math.random().toString(16).substr(2, length);
       };
       this.comtSed({
@@ -131,7 +136,7 @@ export default {
         avatar : store.state.userInfo.avatar,
         uid : store.state.userInfo.uid,
         email : store.state.userInfo.email,
-        reply: this.inputReply.replace(/\n/g,'<br>'),
+        reply: this.inputReply.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         timestamp: today,
         date: this.dateForm( today )
       });

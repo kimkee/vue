@@ -105,7 +105,7 @@ export default {
       // const docRef = await setDoc(doc(db, "bbs"), {
       const docRef = await addDoc(collection(db, "bbs"), {
         title: $title,
-        content: $content.replace(/\n/g,'<br>'),
+        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         timestamp: today,
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,

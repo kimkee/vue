@@ -27,7 +27,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <div class="pic"><img class="img" :src="this.Views.img" alt=""></div>
+            <div v-show="this.Views.img" class="pic"><img class="img" :src="this.Views.img" alt=""></div>
             <div class="dd">
               <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
             </div>
@@ -71,6 +71,7 @@ export default {
   mounted(){
     ui.init();
     document.querySelector(".header .cdt .htit").textContent = '글 수정';
+    
   },
   methods: {
     // 데이터 가져오기 https://firebase.google.com/docs/firestore/query-data/get-data?hl=ko&authuser=0
@@ -80,8 +81,9 @@ export default {
       if (docSnap.exists()) {
         this.Views.title = docSnap.data().title;
         this.Views.img = docSnap.data().img;
-        this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n');
+        this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
+        console.log(this.Views.content);
       }else{
         console.log("No such document!");
       }      
@@ -121,7 +123,7 @@ export default {
       const docRef = doc(db, "bbs", this.pram );
       await updateDoc(docRef, {
         title: $title,
-        content: $content.replace(/\n/g,'<br>'),
+        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,

@@ -39,15 +39,19 @@ export default {
         userInfo:{}
       }
   },
+  beforeCreate(){
+    console.log("beforCreate" );
+  },
   created(){
     ui.init();
+    this.authState();
   },
   mounted(){
 
-    this.authState();
     console.log(store.state.userInfo);
   },
-  watch(){
+  updated(){
+    console.log("updated");  
   },
   methods:{
     authState(){

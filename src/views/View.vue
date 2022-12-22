@@ -42,8 +42,9 @@
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-              <button type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+                <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+                <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+              
             </div>
           </dd>
         </div>
@@ -116,6 +117,8 @@ export default {
       try {
         const docSnap = await getDoc(docRef);
 
+        this.Views.id = docSnap.id;
+        this.Views.uid = docSnap.data().uid;
         this.Views.title = docSnap.data().title;
         this.Views.author = docSnap.data().author || "익명";
         this.Views.avatar = docSnap.data().avatar || 0;
@@ -129,6 +132,7 @@ export default {
         setTimeout(() => {
           this.hits( newHits );
         }, 1000);
+        console.table(this.Views);
       } catch(error) {
         console.log(error)
       }
