@@ -64,10 +64,9 @@ export default {
       }
   },
   created(){
-    
+    ui.init();
   },
   mounted(){
-    ui.init();
     document.querySelector("input#fileInput").value = "";
     document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
   },

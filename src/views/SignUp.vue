@@ -75,10 +75,10 @@ export default {
     }
   },
   created(){
+    ui.init();
     
   },
   mounted(){
-    ui.init();
     console.log(this.avatarVal);
     document.querySelector(".header .cdt .htit").textContent = '회원가입';
     // document.querySelectorAll('input[name="avatar"]')[0].checked = true;

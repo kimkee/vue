@@ -63,13 +63,13 @@ export default {
     }
   },
   created(){
+    ui.init();
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.read(ids);
     this.pram = ids;
   },
   mounted(){
-    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '글 수정';
     
   },

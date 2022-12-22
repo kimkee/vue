@@ -70,12 +70,12 @@ export default {
       }
   },
   created(){
+    ui.init();
     console.log("list created");
     this.read();
     // console.log(db);
   },
   mounted(){
-    ui.init();
     console.table(store.state.userInfo);
     document.querySelector(".header .cdt .htit").textContent = 'Board';
   },

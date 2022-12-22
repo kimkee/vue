@@ -58,17 +58,12 @@ export default {
   },
   created(){
     ui.init();
-    this.init();
     console.log("home created");
   },
   mounted() {
    console.table( store.state.userInfo);
   },
   methods:{
-    init(){
-      
-      
-    },
     sss(){
       console.log(store.state.todos);
       store.state.todos = "1111111111111111111111111111"

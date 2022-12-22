@@ -2,7 +2,7 @@
   
   <router-view  name="Header" ></router-view>
   <router-view  name="HeaderSub" ></router-view>
-  <router-view v-slot="{ Component }" class="page" >
+  <router-view v-slot="{ Component }" class="page" @load="makeSomeStuff">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -35,8 +35,7 @@ export default {
   },
   data() {
       return {
-        userstate:"false",
-        userInfo:{}
+        
       }
   },
   beforeCreate(){
@@ -46,21 +45,26 @@ export default {
     ui.init();
     this.authState();
   },
+  watch(){
+    
+  },
   mounted(){
-
     console.log(store.state.userInfo);
+  },
+  unmounted(){
   },
   updated(){
     console.log("updated");  
   },
   methods:{
+    makeSomeStuff(){
+      console.log("makeSomeStuff");
+    },
     authState(){
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         if (user) {
-
           this.getUser(user);   
-
           return;
         }
         store.state.userInfo = {};

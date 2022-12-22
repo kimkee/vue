@@ -23,10 +23,10 @@ export default {
       }
   },
   created(){
+    ui.init();
     
   },
   mounted(){
-    ui.init();
     this.logout();
   },
   methods: {

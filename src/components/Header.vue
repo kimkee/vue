@@ -36,7 +36,7 @@ export default {
   },
   methods:{
     gnbOpen(){
-
+      ui.gnb.using("open");
     }
   }
 }

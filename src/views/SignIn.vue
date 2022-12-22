@@ -54,10 +54,10 @@ export default {
     }
   },
   created(){
+    ui.init();
     
   },
   mounted(){
-    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '로그인';
   },
   methods: {

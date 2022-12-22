@@ -91,7 +91,7 @@ export default {
         workData:{}
       }
   },
-  async created(){
+  created(){
     ui.init();
     // this.workData = data;
     // console.log(this.workData);

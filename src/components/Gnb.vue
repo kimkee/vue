@@ -1,7 +1,7 @@
 <template>
   
   <nav class="gnb" id="gnb">
-    <div class="bts"><button class="bt close" tabindex="-1"><i class="fa-solid fa-xmark"></i></button></div>
+    <div class="bts"><button class="bt close" tabindex="-1" @click="gnbClose"><i class="fa-solid fa-xmark"></i></button></div>
     <div class="inr">
       <ul class="menu">
         <li><router-link class="bt" to="/"><i class="fa-solid fa-house"></i> <em>Home</em></router-link></li>
@@ -28,7 +28,7 @@
       </div>
     </div>
   </nav>
-  <div class="gnb-screen" tabindex="-1"></div>
+  <div class="gnb-screen" tabindex="-1" @click="gnbClose"></div>
 
 </template>
 
@@ -45,10 +45,15 @@ export default {
       }
   },
   created(){
-    
+  },
+  updated(){
+    ui.gnb.using("close");
+
   },
   methods:{
-    
+    gnbClose(){
+      ui.gnb.using("close");
+    }
   }
 }
 </script>

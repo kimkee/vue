@@ -83,6 +83,7 @@ export default {
     Comments
   },
   created(){
+    ui.init();
     console.log("view created");
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
@@ -90,7 +91,6 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    ui.init();
     document.querySelector(".header .cdt .htit").textContent = '';
     
   },
