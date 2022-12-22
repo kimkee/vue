@@ -462,7 +462,6 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .loct{font-size: 12rem;color: #666666;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .loct::before{width:9px;height:11px;background:url(../img/pd/icon_location_s@2x.png) no-repeat center;background-size:9px auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';margin: -2px 3px 0px 0px;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .time{font-size: 10rem;color: #999999; text-align: right}
-.ut-reply .rplist ul.rlist>li .rpset .infs .desc .time::before{content:"";display: inline-block;vertical-align: middle;width: 2px;height: 2px;background: #999999;border-radius: 2px;margin: -2px 5px 0px 6px;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .desc .bt.delt{margin: 0rem 0rem 0rem 8rem ;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .ment{font-size: 13rem;line-height: 1.6;margin: 7px 0 0 0; word-break: break-all;}
 .ut-reply .rplist ul.rlist>li .rpset .infs .rbt{ margin: 10px 0 0 0; }

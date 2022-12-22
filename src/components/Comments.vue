@@ -19,7 +19,7 @@
                   <em class="nm">{{cmt.author}}</em>
                 </div>
                 <div class="desc">
-                  <em class="time">{{cmt.date}}</em>
+                  <em class="time" v-html="cmt.date"></em>
                   <button type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
                 </div>
                 <div class="ment" v-html="cmt.reply"></div>

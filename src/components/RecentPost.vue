@@ -31,9 +31,7 @@
                       <em><i class="fa-solid fa-eye"></i> <b>{{ recent.count }}</b></em>
                       <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
                     </div>
-                    <div class="date">
-                      <i class="fa-solid fa-calendar-days"></i> <b>{{ recent.date }}</b>
-                    </div>
+                    <div class="date" v-html="recent.date"></div>
                   </div>
                 </div>
               </router-link>
@@ -86,7 +84,7 @@ export default {
           content: doc.data().content,
           count: doc.data().count,
           img: doc.data().img,
-          date: this.dateForm( doc.data().timestamp.toDate() )
+          date: ui.timeForm( doc.data().timestamp.toDate()  )
         });
       });
       document.querySelector(".page.home").classList.add("load");

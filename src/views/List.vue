@@ -35,9 +35,7 @@
                         <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
                         <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
                       </div>
-                      <div class="date">
-                        <i class="fa-solid fa-calendar-days"></i> <b>{{ board.date }}</b>
-                      </div>
+                      <div class="date" v-html="board.date"></div>
                     </div>
                   </div>
                 </router-link>
@@ -101,7 +99,8 @@ export default {
           comtNum: doc.data().coments.length,
           count: doc.data().count,
           img: doc.data().img,
-          date: this.dateForm(doc.data().timestamp.toDate() )
+          // date: this.dateForm(doc.data().timestamp.toDate() )
+          date: ui.timeForm( doc.data().timestamp.toDate()  )
         });
       });
       document.querySelector(".board-list").classList.add("load");

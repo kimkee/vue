@@ -8,4 +8,4 @@ module.exports = defineConfig({
   configureWebpack: {
     watch: false
   }
-})
+});
