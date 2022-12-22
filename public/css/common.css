@@ -343,11 +343,10 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-view .cdt .cont .pics img[src*="noimage.png"]{max-width:180rem}
 .board-view .cdt .cont .pics img{max-width: 100%;}
 .board-view .cdt .cont .text{padding: 10px 0px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
-.board-view .cdt .vote{text-align: center;margin-bottom: 30rem; margin-top: 20rem;}
+.board-view .cdt .vote{text-align: center;margin-bottom: 30rem; margin-top: 10rem; min-height:58rem;}
 .board-view .cdt .vote .bt-vote{border: #30363d solid 1rem;padding: 7rem 8rem 8rem 8rem;border-radius: 6rem;min-width: 50rem;}
 .board-view .cdt .vote .bt-vote i{ font-size: 18rem; }
 .board-view .cdt .vote .bt-vote p{ font-size: 12rem; margin-top: 8rem; }
-.board-view .cdt .vote .bt-vote:hover,
 .board-view .cdt .vote .bt-vote.on{/* border-color: #41b883; */color: #41b883;}
 
 .board-view .btn-set{margin-top: 10rem;}

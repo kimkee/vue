@@ -85,6 +85,7 @@ export default {
         store.state.userInfo.avatar = docSnap.data().avatar;
         store.state.userInfo.nick = docSnap.data().nick;
         store.state.userInfo.uid = user.uid;
+        store.state.userInfo.liked = docSnap.data().liked;
         console.log('login 된 상태', user);
         console.table(store.state.userInfo);
 

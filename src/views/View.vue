@@ -19,7 +19,7 @@
               <div class="dd">
                 <div class="hits">
                     <em><i class="fa-solid fa-eye"></i> <b>{{ Views.count }}</b></em>
-                    <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
+                    <em><i class="fa-solid fa-heart"></i> <b>{{Views.likes}}</b></em>
                  </div>
                 <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
               </div>
@@ -34,9 +34,9 @@
 
             </div>
             <div class="vote">
-              <button type="button" class="bt-vote">
+              <button type="button" class="bt-vote" @click="likeTog" v-show="likeOn" disabled>
                 <i class="fa-solid fa-heart"></i>
-                <p>좋아요</p>
+                <p>{{ Views.likes }}</p>
               </button>
             </div>
           
@@ -65,7 +65,7 @@ import db  from '../firebaseConfig.js';
 import Comments from '../components/Comments.vue'
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
-
+import store from '../store';
 export default {
   name: 'ViewItem',
   props: {
@@ -77,6 +77,7 @@ export default {
       return {
           Views: {},
           Coments: [],
+          likeOn:''
       }
   },
   components:{
@@ -92,7 +93,6 @@ export default {
   },
   mounted(){
     document.querySelector(".header .cdt .htit").textContent = '';
-    
   },
   methods:{
     dateForm(d){
@@ -127,6 +127,7 @@ export default {
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
         this.Views.count = docSnap.data().count ;
+        this.Views.likes = docSnap.data().likes || 0 ;
         document.querySelector(".page.board.view").classList.add("load");
         const newHits = this.Views.count + 1;
         setTimeout(() => {
@@ -136,6 +137,8 @@ export default {
       } catch(error) {
         console.log(error)
       }
+      // this.getUser();
+      
     },
     async delpost(){
       if (confirm("이 글을 작세하시겠습니까?")) {
@@ -153,12 +156,74 @@ export default {
       await updateDoc(docRef, {
         count: newHits,
       }).then(()=>{
-        console.log("조회수 UP: ",newHits);
+        console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
+        document.querySelector(".bt-vote").disabled = false;
+        this.likeOn = true;
+        store.state.userInfo.liked.map( lk => { 
+          if( lk == this.pram ){
+            document.querySelector(".bt-vote").classList.add("on");
+          }
+        }) 
+
+      }).catch (e =>{
+        console.error("Error adding document: ", e);
+      });
+    },
+    async likeTog(e){
+      const btlike = e.currentTarget;
+      console.log(btlike);
+      const isLiked = btlike.classList.contains("on");
+      let nLike = this.Views.likes;
+      if (isLiked) {
+        btlike.classList.remove("on");
+        nLike--;
+        this.likeAct(nLike);
+        this.likeMem(store.state.userInfo.uid,"rem");
+      }else{
+        btlike.classList.add("on");
+        nLike++;
+        this.likeAct(nLike);
+        this.likeMem(store.state.userInfo.uid,"add");
+      }
+    },
+    likeAct (n){ // 좋아요 +- 
+      const  docRef = doc(db, "bbs", this.pram );
+      this.Views.likes = n;
+      updateDoc(docRef, {
+        likes: n,
+      }).then(()=>{
+        console.log("좋아요: ",this.pram , n);
+      }).catch (e =>{
+        console.error("Error adding document: ", e);
+      });
+    },
+    async getUser(){
+      console.log( store.state.userInfo.liked);
+      
+    },
+    async likeMem (likeID, opt){ // userInfo 에 좋아요 누른 정보 저장
+      const docID = this.pram;
+      const memRef = doc(db, "member", likeID );
+      const memSnap = await getDoc(memRef);
+      const arrLike = memSnap.data().liked || [];
+      let NarrLike;
+      if (opt == "add") {
+        arrLike.push(docID);
+        NarrLike = [...new Set(arrLike)];
+      }else{
+        NarrLike = arrLike.filter( data => data != docID );
+      }
+      
+      console.log(NarrLike);
+      updateDoc(memRef, {
+        liked:NarrLike
+      }).then(()=>{
+        console.log("좋아요: ",likeID );
+        
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
     }
-
   }
 }
 </script>

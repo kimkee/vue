@@ -21,6 +21,7 @@
           <i class="fa-sharp fa-solid fa-cube"></i>
           <p>로그인, 가입 , 파일 업로드</p>
           <p>게시글:[읽기, 쓰기, 수정, 삭제] , 댓글: [읽기,쓰기, 삭제]</p>
+          <p>조회수, 좋아요 , 시간</p>
         </div>
         <div class="icos">
           <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>

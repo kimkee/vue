@@ -29,7 +29,7 @@
                     <div class="hits">
                       <em><i class="fa-solid fa-comment-dots"></i> <b>{{ recent.comtNum }}</b></em>
                       <em><i class="fa-solid fa-eye"></i> <b>{{ recent.count }}</b></em>
-                      <em><i class="fa-solid fa-heart"></i> <b>0</b></em>
+                      <em><i class="fa-solid fa-heart"></i> <b>{{ recent.likes }}</b></em>
                     </div>
                     <div class="date" v-html="recent.date"></div>
                   </div>
@@ -83,6 +83,7 @@ export default {
           comtNum: doc.data().coments.length,
           content: doc.data().content,
           count: doc.data().count,
+          likes: doc.data().likes,
           img: doc.data().img,
           date: ui.timeForm( doc.data().timestamp.toDate()  )
         });

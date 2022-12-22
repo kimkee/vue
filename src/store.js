@@ -10,6 +10,7 @@ export default createStore({
       email: null,
       nick: null,
       avatar: null,
+      liked: null,
     },
     avatar:[
       "https://cdn-icons-png.flaticon.com/512/3899/3899618.png",
