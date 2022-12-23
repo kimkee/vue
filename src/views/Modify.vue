@@ -96,27 +96,19 @@ export default {
     }
     ,
     async fileDelete(){
-      const storage = getStorage();
+      if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
+        const storage = getStorage();
+        console.log(this.Views.img);
+        const desertRef = ref(storage, this.Views.img);
+        const docRef = doc(db, "bbs", this.pram );
 
-      console.log(this.Views.img);
-      const desertRef = ref(storage, this.Views.img);
-      
-      const docRef = doc(db, "bbs", this.pram );
-
-      await deleteObject(desertRef).then(() => {
-        // File deleted successfully
-        console.log("파일삭제 성공 ");
-
-        updateDoc(docRef, {
-          img: ""
-        }).then(()=>{
-          this.Views.img = ''
-        }).catch (e =>{ console.error(e); });
-
-
-      }).catch((error) => {
-        console.log(error);
-      });
+        await deleteObject(desertRef).then(() => {
+          console.log("파일삭제 성공 ");
+          updateDoc(docRef, { img: "" }).then(()=>{ this.Views.img = '' }).catch (e =>{ console.error(e); });
+        }).catch((error) => { console.log(error); });
+      }else{
+        return
+      }
     },
     async modify(){
       const $title = this.Views.title;
