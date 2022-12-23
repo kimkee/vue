@@ -138,6 +138,13 @@ export default {
         console.log(error)
       }
       // this.getUser();
+      document.querySelector(".bt-vote").disabled = false;
+      this.likeOn = true;
+      store.state.userInfo.liked?.map( lk => { 
+        if( lk == this.pram ){
+          document.querySelector(".bt-vote").classList.add("on");
+        }
+      });
       
     },
     async delpost(){
@@ -157,19 +164,20 @@ export default {
         count: newHits,
       }).then(()=>{
         console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
-        document.querySelector(".bt-vote").disabled = false;
-        this.likeOn = true;
-        store.state.userInfo.liked.map( lk => { 
-          if( lk == this.pram ){
-            document.querySelector(".bt-vote").classList.add("on");
-          }
-        }) 
 
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
     },
     async likeTog(e){
+      if(!store.state.userInfo.stat) {
+        if(confirm("로그인 하시겠습니까?.")) {
+          this.$router.push("/signin");
+          return;
+        }else{
+          return;
+        }
+      }
       const btlike = e.currentTarget;
       console.log(btlike);
       const isLiked = btlike.classList.contains("on");
