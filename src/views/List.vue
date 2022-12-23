@@ -77,7 +77,7 @@ export default {
   },
   mounted(){
     console.table(store.state.userInfo);
-    document.querySelector(".header .cdt .htit").textContent = 'Board';
+    document.querySelector(".header .htit").textContent = 'Board';
   },
   methods:{
     dateForm(d){

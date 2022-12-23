@@ -68,7 +68,7 @@ export default {
   },
   mounted(){
     document.querySelector("input#fileInput").value = "";
-    document.querySelector(".header .cdt .htit").textContent = '글 쓰기';
+    document.querySelector(".header .htit").textContent = '글 쓰기';
   },
   methods: {
     dateForm(d){

@@ -40,7 +40,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .header>.inr{display:flex;height: 54px;align-items: center;justify-content: space-between;align-items: center;position: fixed;left: 0;right: 0;z-index: 500;top: 0px;background: #1d2736;border-bottom: #1c232e solid 1px;padding: 0px 20px;touch-action: none;}
 .header .ldt{ display: flex; align-items: center; }
 .header .cdt{position: absolute;left: 64px;right: 64px;text-align: center;z-index: 0;}
-.header .cdt .htit{font-size:17rem;font-weight: 700;color: #ffffff;padding-top: 2rem;}
+.header .htit{font-size:17rem;font-weight: 700;color: #ffffff;padding-top: 2rem; margin: 0rem 15rem;}
 .header .rdt{ display: flex; align-items: center; }
 .header .logo{display: inline-block;margin: -1px 0px 0px 0px;}
 .header .logo .btlogo{width:24px;height: 24px;background:url('../img/logo.png') no-repeat center;background-size: 24px auto;font-size:0rem;display:inline-block;vertical-align:middle;}
@@ -49,7 +49,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .header .bt+.bt{margin-left: 20px;}
 .header .bt.back{color: #aaaaaa;}
 .header .bt.back{color: #eeeeee; background-size: 24px auto;}
-.header .bt.gnb{display:block;position: relative;height: 35px;width: 35px;transition: all 0.2s;font-size:0rem;}
+.header .bt.gnb{display:block;position: relative;height: 35px;width: 35px; margin-right: -5rem; transition: all 0.2s;font-size:0rem;}
 .header .bt.gnb i{font-size: 27rem;}
 /* .header .bt.gnb::before, */
 /* .header .bt.gnb::after, */
@@ -57,6 +57,13 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .header .bt.gnb::before{top: 8px;}
 .header .bt.gnb>b{top: 16px;}
 .header .bt.gnb::after{top: 24px;}
+
+.header .user{display: flex;align-items: center;margin-right: 14rem;}
+.header .user .pic{margin-left: auto; width: 26px;min-width: 26px;height: 26px;padding-bottom: 26px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
+.header .user .pic .img{position: absolute; width: 100%; left: 0; top: 0;}
+.header .user .txt{color: #e1e1e1;	 margin-left: 4rem; margin-top: 4rem; line-height: 1.2;}
+
+
 
 .container{padding-bottom: calc(60rem + env(safe-area-inset-bottom)) ;transition: opacity 1.5s;}
 .container .contents{margin: 0rem 20rem; padding: 20rem 0rem;}

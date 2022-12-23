@@ -96,7 +96,7 @@ export default {
     // this.workData = data;
     // console.log(this.workData);
     
-    document.querySelector(".header .cdt .htit").textContent = 'Works';
+    document.querySelector(".header .htit").textContent = 'Works';
   },
   async mounted() {
     await fetch('https://kimkee.github.io/js/data.json').then( res => res.ok && res.text() ).then( res => { 

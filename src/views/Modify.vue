@@ -76,7 +76,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .cdt .htit").textContent = '글 수정';
+    document.querySelector(".header .htit").textContent = '글 수정';
     
   },
   methods: {
@@ -85,14 +85,21 @@ export default {
       const docRef = doc(db, "bbs" , ids);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
+        this.Views.uid = docSnap.data().uid;
         this.Views.title = docSnap.data().title;
         this.Views.img = docSnap.data().img;
         this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
-        console.log(this.Views.content);
+        console.log(this.Views.uid , store.state.userInfo.uid);
+        if(this.Views.uid != store.state.userInfo.uid){
+          console.log("내글 아님");
+          // alert("내글 아님")
+          this.$router.push('/');
+          return
+        }
       }else{
         console.log("No such document!");
-      }      
+      }
     }
     ,
     async fileDelete(){

@@ -40,9 +40,17 @@ export default {
   },
   beforeCreate(){
     console.log("beforCreate" );
+    const apiKey =  db._app._options.apiKey;
+    const info = JSON.parse(  sessionStorage.getItem("firebase:authUser:"+apiKey+":[DEFAULT]") )
+    if(apiKey){
+      store.state.userInfo.uid = info?.uid;
+      store.state.userInfo.email = info?.email;
+    }
   },
   created(){
     ui.init();
+
+
     this.authState();
   },
   watch(){
@@ -63,6 +71,7 @@ export default {
     authState(){
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
+        console.log("authState" , user);
         if (user) {
           this.getUser(user);   
           return;
@@ -78,18 +87,13 @@ export default {
       const docRef =  doc(db, "member" , user.uid);
       try {
         const docSnap = await getDoc(docRef);
-        console.log( docSnap.data().nick);
-
         store.state.userInfo.stat = true;
         store.state.userInfo.email = docSnap.data().email;
         store.state.userInfo.avatar = docSnap.data().avatar;
         store.state.userInfo.nick = docSnap.data().nick;
         store.state.userInfo.uid = user.uid;
         store.state.userInfo.liked = docSnap.data().liked;
-        console.log('login 된 상태', user);
         console.table(store.state.userInfo);
-
-
       } catch(error) {
         console.log(error)
       }

@@ -58,7 +58,7 @@ export default {
     
   },
   mounted(){
-    document.querySelector(".header .cdt .htit").textContent = '로그인';
+    document.querySelector(".header .htit").textContent = '로그인';
   },
   methods: {
    

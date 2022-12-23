@@ -80,7 +80,7 @@ export default {
   },
   mounted(){
     console.log(this.avatarVal);
-    document.querySelector(".header .cdt .htit").textContent = '회원가입';
+    document.querySelector(".header .htit").textContent = '회원가입';
     // document.querySelectorAll('input[name="avatar"]')[0].checked = true;
   },
   methods: {

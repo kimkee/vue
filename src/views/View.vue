@@ -1,13 +1,12 @@
 <template>
   <div class="container board view">
     <main class="contents">
-      <h1>{{ msg }}</h1> 
       <!-- {{$route.params.id}} -->
       <div class="ui-loading-dot">
         <div class="bx"><em><i></i></em></div>
       </div>
       <div class="board-view">
-          <div class="vcont">
+        <div class="vcont">
           <div class="hdt">
             <div class="tits">
               <h4 class="tit">{{ Views.title }}</h4>
@@ -50,7 +49,7 @@
         </div>
       </div>
       
-      <Comments :userstate="userstate" :userInfo="this.userInfo"/>
+      <Comments/>
 
 
     </main>
@@ -69,9 +68,7 @@ import store from '../store';
 export default {
   name: 'ViewItem',
   props: {
-    msg: String,
-    userstate: String,
-    userInfo: Object
+
   },
   data() {
       return {
@@ -92,7 +89,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .cdt .htit").textContent = '';
+    document.querySelector(".header .htit").textContent = '';
   },
   methods:{
     dateForm(d){
@@ -130,14 +127,14 @@ export default {
         this.Views.likes = docSnap.data().likes || 0 ;
         document.querySelector(".page.board.view").classList.add("load");
         const newHits = this.Views.count + 1;
+        this.hits( newHits );
         setTimeout(() => {
-          this.hits( newHits );
-        }, 1000);
+        }, 10);
         console.table(this.Views);
       } catch(error) {
         console.log(error)
       }
-      // this.getUser();
+      this.getUser();
 
       
     },
@@ -158,19 +155,6 @@ export default {
         count: newHits,
       }).then(()=>{
         console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
-
-
-        document.querySelector(".bt-vote").disabled = false;
-        this.likeOn = true;
-        console.log( store.state.userInfo.stat );
-        if (store.state.userInfo.stat ) {
-          store.state.userInfo.liked.map( lk => { 
-            if( lk == this.pram ){
-              document.querySelector(".bt-vote").classList.add("on");
-            }
-          });
-        }
-
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
@@ -212,8 +196,19 @@ export default {
       });
     },
     async getUser(){
-      console.log( store.state.userInfo.liked);
-      
+      console.log(store.state.userInfo.uid);
+      if( store.state.userInfo.uid ){
+        const memRef = doc(db, "member", store.state.userInfo.uid );
+        const memSnap = await getDoc(memRef);
+        // console.log( memSnap.data().liked);
+        memSnap.data().liked.map( lk => { 
+          if( lk == this.pram ){
+            document.querySelector(".bt-vote").classList.add("on");
+          }
+        });
+      }
+      document.querySelector(".bt-vote").disabled = false;
+      this.likeOn = true;
     },
     async likeMem (likeID, opt){ // userInfo 에 좋아요 누른 정보 저장
       const docID = this.pram;

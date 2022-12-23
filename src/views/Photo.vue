@@ -34,7 +34,7 @@ export default {
   },
   created(){
     ui.init();
-    document.querySelector(".header .cdt .htit").textContent = 'Photo';
+    document.querySelector(".header .htit").textContent = 'Photo';
   },
   mounted() {
     window.addEventListener("scroll", this.scrollEvent);
