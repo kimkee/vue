@@ -160,16 +160,16 @@ export default {
         console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
 
 
-      document.querySelector(".bt-vote").disabled = false;
-      this.likeOn = true;
-      console.log( store.state.userInfo.stat );
-      if (store.state.userInfo.stat ) {
-        store.state.userInfo.liked.map( lk => { 
-          if( lk == this.pram ){
-            document.querySelector(".bt-vote").classList.add("on");
-          }
-        });
-      }
+        document.querySelector(".bt-vote").disabled = false;
+        this.likeOn = true;
+        console.log( store.state.userInfo.stat );
+        if (store.state.userInfo.stat ) {
+          store.state.userInfo.liked.map( lk => { 
+            if( lk == this.pram ){
+              document.querySelector(".bt-vote").classList.add("on");
+            }
+          });
+        }
 
       }).catch (e =>{
         console.error("Error adding document: ", e);

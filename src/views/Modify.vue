@@ -27,7 +27,13 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <div v-show="this.Views.img" class="pic"><img class="img" :src="this.Views.img" alt=""></div>
+            <div class="attach" v-show="this.Views.img">
+              <div class="pic">
+                <img class="img" :src="this.Views.img" alt="">
+                <button class="del" type="button" @click="fileDelete"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              
+            </div>
             <div class="dd">
               <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
             </div>
@@ -50,7 +56,7 @@
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
 import { useRoute } from 'vue-router';
-import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
+import { getStorage, ref,uploadBytes ,getDownloadURL, deleteObject   } from "firebase/storage";
 import store from '@/store';
 export default {
   name: 'ModifyItem',
@@ -89,6 +95,29 @@ export default {
       }      
     }
     ,
+    async fileDelete(){
+      const storage = getStorage();
+
+      console.log(this.Views.img);
+      const desertRef = ref(storage, this.Views.img);
+      
+      const docRef = doc(db, "bbs", this.pram );
+
+      await deleteObject(desertRef).then(() => {
+        // File deleted successfully
+        console.log("파일삭제 성공 ");
+
+        updateDoc(docRef, {
+          img: ""
+        }).then(()=>{
+          this.Views.img = ''
+        }).catch (e =>{ console.error(e); });
+
+
+      }).catch((error) => {
+        console.log(error);
+      });
+    },
     async modify(){
       const $title = this.Views.title;
       const $content = this.Views.content
@@ -114,9 +143,6 @@ export default {
           console.log(error);
         });
       }
-
-
-
 
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
 
