@@ -1,31 +1,22 @@
 # VUE3 + FIREBASE9
 
-> https://kimkee.github.io/vue/app/
+> https://kimkee.github.io/vue/
 
 
 
 - 개발내용
 	- 회원
-		- 가입
-		- 로그인
-		- 로그아웃
+		- 가입, 로그인, 로그아웃
 	- 권한 
 		- 내가쓴 글,댓글만 수정삭제가능
 	- 게시글
-		- 읽기
-		- 쓰기
-		- 수정
-		- 삭제
-		- 첨부파일 
-		- 조회수
-		- 좋아요
-		- 시간
+		- 읽기, 쓰기, 수정, 삭제, 조회수, 좋아요 , 시간
 	- 댓글
-		- 읽기
-		- 쓰기
-		- 삭제
+		- 읽기, 쓰기, 삭제
+	- 파일
+		- 업로드, 삭제
 
-## Reference
+> Reference
 - 영상
 	- [Firebase로 당근마켓 만들기 2시간 컷](https://www.youtube.com/playlist?list=PLfLgtT94nNq3PzZinqs9Afuiai--r5NB_)
 	- [Firebase 웹프로그래밍](https://www.youtube.com/playlist?list=PLrMH-S-UNDVaRADpQaznqvjwxyd_io_z0)
@@ -38,10 +29,12 @@
 - 아이콘
 	- [fontawesome](https://fontawesome.com/icons/house?s=regular&f=classic)
 
-
-<br><br><br><br><br><br>
-
-
+<br><br>
+## Vue setup
+``` 
+npm install -g @vue/cli
+vue create my-project
+```
 
 ## Project setup
 ```
