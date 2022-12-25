@@ -12,7 +12,7 @@
       <Clock/>
 
       <div class="mn-box">
-        <div class="top" onclick="ui.test.using(this.target)"><img src="../../public/img/logo.png" alt=""></div>
+        <div class="top"><img src="../../public/img/logo.png" alt=""></div>
 
         
 
@@ -26,7 +26,7 @@
         <div class="icos">
           <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
           <span class="pls">+</span>
-          <span class="ico"><img src="../../public/img/ico_firebase.svg" alt=""></span>
+          <span class="ico" @click="fff"><img src="../../public/img/ico_firebase.svg" alt=""></span>
           <!-- <span><img src="../../public/img/ico_react.svg" alt=""></span> -->
         </div>
       </div>
@@ -65,6 +65,11 @@ export default {
    console.table( store.state.userInfo);
   },
   methods:{
+    fff(){
+      store.dispatch('increment')
+      // store.state.count ++
+      console.log("Fff",store.state.count);
+    },
     sss(){
       console.log(store.state.todos);
       store.state.todos = "1111111111111111111111111111"

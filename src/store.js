@@ -29,6 +29,17 @@ export default createStore({
       "https://cdn-icons-png.flaticon.com/512/4532/4532510.png",
     ],
     todos : "fdsssssss", 
-    saying : "sssssssss"
-  }, 
+    saying : "sssssssss",
+    count: 0,
+  },
+  mutations: {
+    increment (state) {
+      state.count++
+    }
+  },
+  actions: {
+    increment (context) {
+      context.commit('increment')
+    }
+  }
 });

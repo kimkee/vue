@@ -61,7 +61,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .header .user{display: flex;align-items: center;margin-right: 14rem;}
 .header .user .pic{margin-left: auto; width: 26px;min-width: 26px;height: 26px;padding-bottom: 26px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
 .header .user .pic .img{position: absolute; width: 100%; left: 0; top: 0;}
-.header .user .txt{color: #e1e1e1;	 margin-left: 4rem; margin-top: 4rem; line-height: 1.2;}
+.header .user .txt{color: #e1e1e1;margin-left: 4rem;/* margin-top: 4rem; */line-height: 1.2;}
 
 
 
@@ -156,7 +156,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 .btn{border: 1px solid #30363d;background: #191e24;color: #c9d1d9;height: 40px;overflow:hidden;padding:0 12px;display: inline-flex;justify-content: center;align-items: center;vertical-align:middle;cursor:pointer;white-space:nowrap;border-radius: 4px;line-height: 1.1;font-size: 14px;}
 .btn.db{display:block;}
 .btn.xs{height: 24px;min-width:30px;padding: 0px 6px;font-size: 11px;line-height: 1;}
-.btn.sm{height: 30px;min-width:30px;padding: 0px 6px 0px 6px;font-size: 12px;}
+.btn.sm{height: 32px;min-width:32px;padding: 0px 6px 0px 6px;font-size: 12px;}
 .btn.md{height: 40px;font-size: 14px;}
 .btn.lg{height: 50px;min-width: 40px;padding: 0 15px;font-size: 15px;}
 .btn.xl{height: 60px;min-width: 80px;padding: 0 10px;font-size: 16px;font-weight: 400;}
@@ -368,7 +368,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-view .cdt .hits em i{} 
 .board-view .cdt .hits em b{ margin-left: 5rem; }
 .board-view .cdt .cont{min-height: 160rem;}
-.board-view .cdt .cont .pics{padding: 10px 0px; text-align: center;}
+.board-view .cdt .cont .pics{padding: 10px 0px; text-align: center; max-width: 400rem; margin: 0rem auto;}
 .board-view .cdt .cont .pics img[src*="noimage.png"]{max-width:180rem}
 .board-view .cdt .cont .pics img{max-width: 100%;}
 .board-view .cdt .cont .text{padding: 10px 0px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
