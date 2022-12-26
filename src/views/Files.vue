@@ -1,9 +1,19 @@
 <template>
-<div class="attach" v-show="items.length">
-  <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
-    <img class="img" :src="image" alt="">
-    <button class="del" type="button" @click="this.$parent.fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
+<div class="ut-attfiles">
+  <div class="attach">
+    <div class="adbts">
+      <input type="file" class="file" id="fileInput" @change="this.$parent.fileAdd" accept="image/* , video/*">
+      <span class="btfiles">
+        <i class="fa-solid fa-camera"></i>
+        <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">5</b></span>
+      </span>
+    </div>
+    <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
+      <img class="img" :src="image" alt="">
+      <button class="del" type="button" @click="this.$parent.fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
+    </div>
   </div>
+  
 </div>
 </template>
 

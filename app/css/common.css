@@ -385,15 +385,30 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .board-write .list>li+li{margin-top: 20rem;}
 .board-write .list>li .dt{display: block; margin-bottom: 10rem;}
 .board-write .list>li .dd{display: block;}
-.board-write .list>li .pic{position: relative; min-width:80rem;width: 80rem;height: 80rem;border-radius:4rem;overflow:hidden;}
-.board-write .list>li .pic .img{display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%;}
-.board-write .list>li .pic .del{position: absolute; right: 3rem; top: 3rem; width: 20rem; height: 20rem;border: #000 solid 1rem; border-radius: 30rem; background-color: #ffffff75; color: #000;}
-.board-write .list>li .attach{ margin: 0rem 10rem 20rem 0rem;display: flex;gap: 10rem;align-items: center;}
-.board-write .list>li .attach .pic{}
-.board-write .list>li .attach .checkbox{}
 
 
 .board-write .btn-set{margin-top: 20rem;}
+
+
+.ut-attfiles{display: flex; position: relative; padding: 0rem 0rem 0rem 90rem;}
+.ut-attfiles .attach{ margin: 0rem 10rem 20rem 0rem;display: flex;gap: 10rem;align-items: center;}
+.ut-attfiles .attach .pic{}
+.ut-attfiles .attach .checkbox{}
+.ut-attfiles .adbts{position: absolute;left: 0;/* right: 0; */display: flex;}
+.ut-attfiles .adbts input.file{position: absolute;width: 80px;height: 80px;opacity: 0;font-size: 50rem;cursor: pointer;}
+.ut-attfiles .adbts .btfiles{border: #30363d solid 1px;background: #090c12; border-radius: 5px;width: 80px;height: 80px;padding: 17px 0;display: block;text-align: center;}
+.ut-attfiles .adbts .btfiles i{color: #68c391; font-size: 20rem;}
+.ut-attfiles .adbts .btfiles .num{font-size: 14rem;display: block;margin: 7px 0 0 0;text-align: center;}
+.ut-attfiles .adbts .btfiles .num .i{color: #68c391;font-weight: 700;}
+.ut-attfiles .adbts .btfiles .num .n{ color: #bbbbbb; }
+
+.ut-attfiles .pic{position: relative;border: #30363d solid 1px;background: #191e24; min-width:80rem;width: 80rem;height: 80rem;border-radius:4rem;overflow:hidden;}
+.ut-attfiles .pic .img{display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%;}
+.ut-attfiles .pic .del{position: absolute; right: 3rem; top: 3rem; width: 20rem; height: 20rem;border: #000 solid 1rem; border-radius: 30rem; background-color: #ffffff75; color: #000;}
+
+
+
+
 
 .page.sign{}
 .page.sign .contents{/* padding-top: calc(50vh - 230rem); */}

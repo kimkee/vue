@@ -28,9 +28,7 @@
           <li>
             <label class="dt">사진</label>
             <Files ref="files" :items="this.files"/>
-            <div class="dd">
-              <span class="input"><input type="file" id="fileInput" @change="fileAdd" accept="image/*" placeholder="선택하세요"></span>
-            </div>
+            
           </li>
         </ul>
       </div>

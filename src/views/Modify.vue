@@ -28,10 +28,6 @@
           <li>
             <label class="dt">사진</label>
             <Files ref="files" :items="this.files"/>
-
-            <div class="dd">
-              <span class="input"><input type="file" id="fileInput" @change="fileAdd" accept="image/*" placeholder="선택하세요"></span>
-            </div>
           </li>
         </ul>
       </div>
@@ -118,21 +114,14 @@ export default {
         const storageRef = ref(storage, "images/"+filename);
         await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
           console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
-
         });
         await getDownloadURL(ref(storage, "images/"+filename))
         .then((url) => {
           this.files.push(url);
           console.log(this.files , this.$refs);
           this.$refs.files.itemSet(this.files);
-          /* this.files.forEach( img =>{
-            fileList +=`
-                <div class="pic">
-                  <img class="img" src="${img}" alt="">
-                  <button class="del" type="button" @click="fileDelete"><i class="fa-solid fa-xmark"></i></button>
-                </div>
-            `
-          }); */
+          const docRef = doc(db, "bbs", this.pram );
+          updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
           this.fileList = fileList;
           $fileInput.value = '';
         })
