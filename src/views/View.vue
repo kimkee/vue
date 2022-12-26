@@ -26,8 +26,12 @@
           </div>
           <dd class="cdt">
             <div class="cont">
-              
-              <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src='./img/noimage.png';"></div>
+              <div class="photo" v-if="typeof Views.img == 'object'">
+                <div v-for="image,index in Views.img" :key="index" class="pics"><img :src="image" alt="" onerror="this.src='./img/noimage.png';"></div>
+              </div>
+              <div v-else>
+                <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src='./img/noimage.png';"></div>
+              </div>
               
               <div class="text" v-html="Views.content"></div>
 

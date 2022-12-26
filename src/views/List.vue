@@ -22,7 +22,7 @@
                   <h4 class="tits">{{ board.title }}</h4>
                   <div class="cont">
                     <div class="text" v-html="board.content"></div>
-                    <div class="pics" v-if="board.img"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                    <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
                   </div>
                   <div class="info">
                     <div class="dd">

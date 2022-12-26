@@ -27,15 +27,10 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <div class="attach" v-show="this.Views.img">
-              <div class="pic">
-                <img class="img" :src="this.Views.img" alt="">
-                <button class="del" type="button" @click="fileDelete"><i class="fa-solid fa-xmark"></i></button>
-              </div>
-              
-            </div>
+            <Files ref="files" :items="this.files"/>
+
             <div class="dd">
-              <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
+              <span class="input"><input type="file" id="fileInput" @change="fileAdd" accept="image/*" placeholder="선택하세요"></span>
             </div>
           </li>
         </ul>
@@ -55,6 +50,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
+import Files from './Files.vue';
 import { useRoute } from 'vue-router';
 import { getStorage, ref,uploadBytes ,getDownloadURL, deleteObject   } from "firebase/storage";
 import store from '@/store';
@@ -63,9 +59,13 @@ export default {
   props: {
     msg: String
   },
+  components: {
+    Files
+  },
   data() {
     return {
-      Views: {}
+      Views: {},
+      files:[],
     }
   },
   created(){
@@ -90,6 +90,11 @@ export default {
         this.Views.img = docSnap.data().img;
         this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
+        this.files = this.Views.img;
+        console.log(this.files);
+        // this.$refs.files.items = this.files;
+        this.$refs.files.itemSet(this.files);
+    
         console.log(this.Views.uid , store.state.userInfo.uid);
         if(this.Views.uid != store.state.userInfo.uid){
           console.log("내글 아님");
@@ -100,23 +105,60 @@ export default {
       }else{
         console.log("No such document!");
       }
-    }
-    ,
-    async fileDelete(){
+    },
+    async fileAdd(){
+      const $fileInput = document.querySelector("input#fileInput");
+      /* 업로드  */
+      // let imgUrl = [];
+      let fileList = "";
+      const storage = getStorage();
+      console.log($fileInput.files[0]);
+      if ($fileInput.files[0]) {
+        const filename = $fileInput.files[0].name;
+        const storageRef = ref(storage, "images/"+filename);
+        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
+          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
+
+        });
+        await getDownloadURL(ref(storage, "images/"+filename))
+        .then((url) => {
+          this.files.push(url);
+          console.log(this.files , this.$refs);
+          this.$refs.files.itemSet(this.files);
+          /* this.files.forEach( img =>{
+            fileList +=`
+                <div class="pic">
+                  <img class="img" src="${img}" alt="">
+                  <button class="del" type="button" @click="fileDelete"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+            `
+          }); */
+          this.fileList = fileList;
+          $fileInput.value = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+    },
+    async fileDel(index){
+      console.log(this.files[index]);
       if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
         const storage = getStorage();
-        console.log(this.Views.img);
-        const desertRef = ref(storage, this.Views.img);
+        console.log(this.files[index]);
+        const desertRef = ref(storage, this.files[index]);
         const docRef = doc(db, "bbs", this.pram );
-
         await deleteObject(desertRef).then(() => {
           console.log("파일삭제 성공 ");
-          updateDoc(docRef, { img: "" }).then(()=>{ this.Views.img = '' }).catch (e =>{ console.error(e); });
+          this.files.splice(index, 1);
+          this.$refs.files.itemSet(this.files);
+          updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
         }).catch((error) => { console.log(error); });
       }else{
         return
       }
     },
+    
     async modify(){
       const $title = this.Views.title;
       const $content = this.Views.content

@@ -27,8 +27,9 @@
           </li>
           <li>
             <label class="dt">사진</label>
+            <Files ref="files" :items="this.files"/>
             <div class="dd">
-              <span class="input"><input type="file" id="fileInput" accept="image/*" placeholder="선택하세요"></span>
+              <span class="input"><input type="file" id="fileInput" @change="fileAdd" accept="image/*" placeholder="선택하세요"></span>
             </div>
           </li>
         </ul>
@@ -47,10 +48,11 @@
 
 <script>
 import db  from '../firebaseConfig.js';
-import { collection, addDoc  } from "firebase/firestore";
-// import { doc, setDoc  } from "firebase/firestore";
-import { getStorage, ref,uploadBytes ,getDownloadURL  } from "firebase/storage";
+import { collection, addDoc } from "firebase/firestore";
+import Files from './Files.vue';
+import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
 import store from '@/store';
+
 
 
 export default {
@@ -58,9 +60,13 @@ export default {
   props: {
     msg: String
   },
+  components: {
+    Files
+  },
   data() {
       return {
-        Views:{}
+        Views:{},
+        files:[],
       }
   },
   created(){
@@ -78,27 +84,9 @@ export default {
       console.log("쓰기");
       const $title = this.Views.title;
       const $content = this.Views.content;
-      const $fileInput = document.querySelector("input#fileInput");
+      // const $fileInput = document.querySelector("input#fileInput");
       const today = new Date();
-      /* 업로드  */
-      let imgUrl = "";
-      const storage = getStorage();
-      console.log($fileInput.files[0]);
-      if ($fileInput.files[0]) {
-        const filename = $fileInput.files[0].name;
-        const storageRef = ref(storage, "images/"+filename);
-        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
-          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
-        });
-        await getDownloadURL(ref(storage, "images/"+filename))
-        .then((url) => {
-          imgUrl = url;
-          console.log(imgUrl);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
+      
       
       // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       // const docRef = await setDoc(doc(db, "bbs"), {
@@ -112,7 +100,7 @@ export default {
         date: this.dateForm( today ),
         count: 0,
         coments:[],
-        img: imgUrl
+        img: this.files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
         this.$router.push('/list');
@@ -121,7 +109,48 @@ export default {
       });
       docRef
       
-    }
+    },
+    async fileAdd(){
+      const $fileInput = document.querySelector("input#fileInput");
+      /* 업로드  */
+      // let imgUrl = [];
+      const storage = getStorage();
+      console.log($fileInput.files[0]);
+      if ($fileInput.files[0]) {
+        const filename = $fileInput.files[0].name;
+        const storageRef = ref(storage, "images/"+filename);
+        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
+          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
+
+        });
+        await getDownloadURL(ref(storage, "images/"+filename))
+        .then((url) => {
+          this.files.push(url);
+          console.log(this.files , this.$refs);
+          this.$refs.files.itemSet(this.files);
+          $fileInput.value = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      }
+    },
+    async fileDel(index){
+      console.log(this.files[index]);
+      if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
+        const storage = getStorage();
+        console.log(this.files[index]);
+        const desertRef = ref(storage, this.files[index]);
+        
+        await deleteObject(desertRef).then(() => {
+          console.log("파일삭제 성공 ");
+          this.files.splice(index, 1);
+          this.$refs.files.itemSet(this.files);
+        }).catch((error) => { console.log(error); });
+      }else{
+        return
+      }
+    },
   }
 }
 </script>
