@@ -9,27 +9,43 @@
         </div>
       </div>
 
-      <Clock/>
+      <swiper class="slide"
+        :modules="modules"
+        :auto-height="true" :slides-per-view="1" 
+        :loop="false"
+        :space-between="10" navigation :pagination="{ clickable: true }"
+        @swiper="onSwiper" @slideChange="onSlideChange">
+        <swiper-slide>
+          <Clock/>
+        </swiper-slide>
+        <swiper-slide> 
+          <div class="mn-box">
+            <div class="msg">
+              <i class="fa-sharp fa-solid fa-cube"></i>
+              <p>로그인, 가입 , 파일 업로드</p>
+              <p>댓글: [읽기,쓰기, 삭제]</p>
+              <p>게시글:[읽기, 쓰기, 수정, 삭제]</p>
+              <p>조회수, 좋아요 , 시간</p>
+            </div>
+            <div class="icos">
+              <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
+              <span class="pls">+</span>
+              <span class="ico" @click="fff"><img src="../../public/img/ico_firebase.svg" alt=""></span>
+              <!-- <span class="pls">+</span>
+              <span class="ico"><img src="../../public/img/ico_react.svg" alt=""></span> -->
+            </div>
+          </div>
+        </swiper-slide>
+        <swiper-slide>
+          <img src="https://blog.logrocket.com/wp-content/uploads/2022/03/how-to-build-deploy-vue-js-app-cloud-firestore-vuefire.png" alt="">
+        </swiper-slide>
+      </swiper>
 
-      <div class="mn-box">
-        <div class="top"><img src="../../public/img/logo.png" alt=""></div>
-
-        
 
 
-        <div class="msg">
-          <i class="fa-sharp fa-solid fa-cube"></i>
-          <p>로그인, 가입 , 파일 업로드</p>
-          <p>게시글:[읽기, 쓰기, 수정, 삭제] , 댓글: [읽기,쓰기, 삭제]</p>
-          <p>조회수, 좋아요 , 시간</p>
-        </div>
-        <div class="icos">
-          <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
-          <span class="pls">+</span>
-          <span class="ico" @click="fff"><img src="../../public/img/ico_firebase.svg" alt=""></span>
-          <!-- <span><img src="../../public/img/ico_react.svg" alt=""></span> -->
-        </div>
-      </div>
+      
+
+      
 
       <RecentPost/>
       
@@ -43,11 +59,20 @@ import RecentPost from '../components/RecentPost.vue'
 import Clock from '../components/Clock.vue'
 import store from '../store';
 
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 export default {
   name: 'HomeItem',
   components: {
     RecentPost,
-    Clock
+    Clock,
+    Swiper,
+    SwiperSlide,
   },
   props: {
     userstate: String
@@ -56,6 +81,21 @@ export default {
       return {
           
       }
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = (swiper) => {
+      console.log('slide change'+ swiper + this);
+    };
+    const swiper = useSwiper();
+    return {
+      swiper,
+      onSwiper,
+      onSlideChange,
+      modules: [Navigation, Pagination, Scrollbar, A11y],
+    };
   },
   created(){
     ui.init();
