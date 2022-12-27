@@ -27,7 +27,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <Files ref="files" :items="this.files"/>
+            <Files ref="files" :items="this.files" :max="this.max"/>
             
           </li>
         </ul>
@@ -47,7 +47,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { collection, addDoc } from "firebase/firestore";
-import Files from './Files.vue';
+import Files from '../components/Files.vue';
 import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
 import store from '@/store';
 
@@ -65,6 +65,7 @@ export default {
       return {
         Views:{},
         files:[],
+        max:3,
       }
   },
   created(){

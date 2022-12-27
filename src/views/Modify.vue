@@ -27,7 +27,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <Files ref="files" :items="this.files"/>
+            <Files ref="files" :max="this.max"/>
           </li>
         </ul>
       </div>
@@ -46,7 +46,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
-import Files from './Files.vue';
+import Files from '../components/Files.vue';
 import { useRoute } from 'vue-router';
 import { getStorage, ref,uploadBytes ,getDownloadURL, deleteObject   } from "firebase/storage";
 import store from '@/store';
@@ -62,6 +62,7 @@ export default {
     return {
       Views: {},
       files:[],
+      max:3,
     }
   },
   created(){
@@ -106,6 +107,9 @@ export default {
       const $fileInput = document.querySelector("input#fileInput");
       /* 업로드  */
       // let imgUrl = [];
+      if (this.files.length > this.max) {
+        alert("d")
+      }
       let fileList = "";
       const storage = getStorage();
       console.log($fileInput.files[0]);

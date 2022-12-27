@@ -3,9 +3,9 @@
   <div class="attach">
     <div class="adbts">
       <input type="file" class="file" id="fileInput" @change="this.$parent.fileAdd" accept="image/* , video/*">
-      <span class="btfiles">
+      <span class="btfiles" @click="numCheck" :class="this.btnDis">
         <i class="fa-solid fa-camera"></i>
-        <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">5</b></span>
+        <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{max}}</b></span>
       </span>
     </div>
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
@@ -21,11 +21,14 @@
 export default {
   name: 'FilseItem',
   props: {
-    items: Array,
+    // items: Array,
+    max: Number,
   },
   data() {
       return {
-        Files:[],
+        Files: [],
+        MaxItem: this.max,
+        btnDis:""
       }
   },
   created(){
@@ -38,6 +41,10 @@ export default {
       console.log("itemSet()");
       this.Files = files;
       console.log(!!this.Files);
+      this.btnDis =  this.Files.length >= this.MaxItem ? "off" : "on";
+  },
+  numCheck(){
+      alert(`최대 ${this.MaxItem} 개 까지 가능합니다.`);
     }
   }
 }
