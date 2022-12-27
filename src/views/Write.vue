@@ -65,7 +65,7 @@ export default {
       return {
         Views:{},
         files:[],
-        max:3,
+        max:5,
       }
   },
   created(){

@@ -12,9 +12,9 @@
       <swiper class="slide"
         :modules="modules"
         :auto-height="true" :slides-per-view="1" 
-        :loop="false"
+        :loop="false" effect="fade"
         :space-between="10" navigation :pagination="{ clickable: true }"
-        @swiper="onSwiper" @slideChange="onSlideChange">
+        @swiper="onSwiper" @slideChangeTransitionEnd="onSlideChange">
         <swiper-slide>
           <Clock/>
         </swiper-slide>
@@ -59,7 +59,7 @@ import RecentPost from '../components/RecentPost.vue'
 import Clock from '../components/Clock.vue'
 import store from '../store';
 
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { EffectFade, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -87,13 +87,18 @@ export default {
       console.log(swiper);
     };
     const onSlideChange = (swiper) => {
-      console.log('slide change'+ swiper + this);
+      console.log('slide change  '+ swiper.$el);
+      swiper.$el.forEach(element => {
+        console.log(swiper.activeIndex);
+        element.querySelector(".swiper-slide-active").classList.add("dfsaaaaa")
+      });
     };
     const swiper = useSwiper();
     return {
       swiper,
       onSwiper,
       onSlideChange,
+      EffectFade,
       modules: [Navigation, Pagination, Scrollbar, A11y],
     };
   },
