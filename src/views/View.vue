@@ -26,12 +26,24 @@
           </div>
           <dd class="cdt">
             <div class="cont">
-              <div class="photo" v-if="typeof Views.img == 'object'">
+
+              <swiper class="photo" v-if="typeof Views.img == 'object'" 
+                :modules="modules"
+                :auto-height="true" :slides-per-view="1" 
+                :space-between="10" navigation :pagination="{ clickable: true }"
+                @swiper="onSwiper" @slideChange="onSlideChange">
+                <swiper-slide v-for="image,index in Views.img" :key="index" class="pics">
+                  <img :src="image" alt="" onerror="this.src='./img/noimage.png';">
+                </swiper-slide>
+              </swiper>
+
+              <!-- <div class="photo" v-if="typeof Views.img == 'object'">
                 <div v-for="image,index in Views.img" :key="index" class="pics"><img :src="image" alt="" onerror="this.src='./img/noimage.png';"></div>
               </div>
+
               <div v-else>
                 <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src='./img/noimage.png';"></div>
-              </div>
+              </div> -->
               
               <div class="text" v-html="Views.content"></div>
 
@@ -45,10 +57,10 @@
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-                <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-                <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
-              
+              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+              <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
             </div>
+
           </dd>
         </div>
       </div>
@@ -69,6 +81,14 @@ import Comments from '../components/Comments.vue'
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 import store from '../store';
+
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 export default {
   name: 'ViewItem',
   props: {
@@ -82,7 +102,24 @@ export default {
       }
   },
   components:{
-    Comments
+    Comments,
+    Swiper,
+    SwiperSlide,
+  },
+  setup() {
+    const onSwiper = (swiper) => {
+      console.log(swiper);
+    };
+    const onSlideChange = (swiper) => {
+      console.log('slide change'+ swiper + this);
+    };
+    const swiper = useSwiper();
+    return {
+      swiper,
+      onSwiper,
+      onSlideChange,
+      modules: [Navigation, Pagination, Scrollbar, A11y],
+    };
   },
   created(){
     ui.init();
