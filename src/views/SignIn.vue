@@ -71,8 +71,10 @@ export default {
           // Signed in 
           const user = userCredential.user;
           console.log(user.email);
+          const gourl = localStorage.getItem("preurl").replace("#","");
           alert(user.email + "\n 로그인 성공!");
-          this.$router.push('/');
+
+          this.$router.push(gourl);
         })
         .catch((error) => {
           console.log( error.code);

@@ -35,11 +35,12 @@ export default {
       signOut(auth).then(() => {
         // Sign-out successful.
         // alert("로그아웃 성공!!");
+        const gourl = localStorage.getItem("preurl").replace("#","");
+        this.$router.push(gourl);
       }).catch((error) => {
         console.log(error);
         // An error happened.
       });
-      this.$router.push('/');
     },   
   }
 }

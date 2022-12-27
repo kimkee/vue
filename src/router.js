@@ -104,6 +104,9 @@ const router = createRouter({
         {
             path: "/signin/",
             name: "signin",
+            beforeEnter: () => {
+                localStorage.setItem("preurl", location.hash);
+            },
             components: {
                 default: SignIn,
                 HeaderSub,
@@ -116,6 +119,7 @@ const router = createRouter({
             beforeEnter: (to, from, next) => {
                 console.table(store.state.userInfo);
                 if(confirm("로그아웃 하시겠습니까?")){
+                    localStorage.setItem("preurl", location.hash);
                     return next();      
                 }
             },
