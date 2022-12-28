@@ -2,7 +2,7 @@
   <header class="header">
     <div class="inr">
       <div class="ldt">
-        <h1 class="logo"><router-link class="btlogo" to="/">Home</router-link></h1>
+        <h1 class="logo" @click="testAlert"><router-link class="btlogo" to="/">Home</router-link></h1>
       </div>
       <div class="rdt">
         <div class="user">
@@ -39,6 +39,14 @@ export default {
 
   },
   methods:{
+    testAlert(){
+      ui.alert('알럿 메시지입니다.',{
+        'tit':'타이틀',
+        'ycb': function(){
+          console.log("알럿 확인");
+        }
+      });
+    },
     gnbOpen(){
       ui.gnb.using("open");
     }

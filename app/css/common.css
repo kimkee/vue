@@ -28,9 +28,10 @@ input:-ms-input-placeholder {color: #444444; font-weight: normal;}
 textarea::-webkit-input-placeholder {color: #444444; font-weight: normal;} 
 textarea:-ms-input-placeholder {color: #444444; font-weight: normal;} 
 
-
-
-
+:root {
+    --safe-top: env(safe-area-inset-top);
+    --safe-bottom: env(safe-area-inset-bottom);
+}
 
 #app{margin: 0px 0px;text-align: left;}
 
@@ -284,6 +285,54 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .radio>input:disabled + .txt::before{background-position-y: -60px;}
 .radio>input:checked:disabled + .txt::before{ background-position-y:-90px; }
 .radio>.txt{display: inline-block;vertical-align: middle;padding-top: 0px;}
+
+.body.is-lock{height: 100%; overflow-y:initial;}
+html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
+
+
+
+/* 팝업 알럿 */
+.ui-alert{white-space:nowrap;position:fixed;left:0px;right:0px;top:0px;bottom:0;text-align:center;z-index:1500;background-color: rgba(0,0,0,0.5);outline:none; padding: 0rem 0rem calc(70rem + var(--safe-bottom)) 0rem}
+.ui-alert>.pbd{display:inline-block;max-width: 315px;min-width: 315px;vertical-align:bottom;text-align:left;position:relative;white-space:normal;z-index:200;background-color: #ffffff;border-radius: 10px;overflow: hidden;box-shadow: rgba(0,0,0,0.2) 2px 2px 7px;}
+.ui-alert:after{content:''; width:0; height:100%; display:inline-block; vertical-align:middle;}
+.ui-alert>.pbd>.phd{display:none;padding: 15px 20px 0px 20px;box-sizing:border-box;background-color:#fff;text-align: center;font-size: 16px;font-weight: 700;margin-bottom: -17px;}
+.ui-alert>.pbd>.phd .ptit{font-weight: 700;font-size:16px;color: #333333;}
+.ui-alert>.pbd>.phd.is-tit{display:block;}
+.ui-alert>.pbd>.pct{overflow:auto;padding: 30px 20px 30px 20px;text-align:center;font-size: 15px;color: #000000;line-height: 1.5;min-height: 102px;display: flex;justify-content: center;align-items: center;}
+.ui-alert>.pbd>.pct .msg{word-break: break-all;}
+.ui-alert>.pbd>.pct p{}
+.ui-alert>.pbd>.pct .under{}
+.ui-alert>.pbd>.pct b{color: #f0344d;font-weight: 700;}
+.ui-alert>.pbd>.pbt{padding: 0px 0px 0px 0px;box-sizing:border-box;text-align:center;display: flex;}
+.ui-alert>.pbd>.pbt .btn {width:100%;border-radius: 0px;border: #33445c 0px solid;background: #33445c;color: #ffffff;font-size: 14px;height: 50px;font-weight: 400;}
+.ui-alert>.pbd>.pbt .btn.btn-confirm:active{border-color: #898c9d;background-color: #898c9d;}
+.ui-alert>.pbd>.pbt .btn:disabled{border-color:#cccedb; background-color:#cccedb;}
+.ui-alert>.pbd .btn-close{width: 24px;height: 24px;position:absolute;right: 10px;top: 10px;font-size: 18rem;overflow:hidden;}
+
+
+/* 팝업 컨펌 */
+.ui-confrim{ white-space:nowrap;position:fixed;left:0px;right:0px;top:0px;bottom:0;text-align:center;overflow-y:auto;z-index:1500;background-color: rgba(0,0,0,0.5);outline:none; padding: 0rem 0rem calc(70rem + var(--safe-bottom)) 0rem}
+.ui-confrim>.pbd{ /* transform: translateY(160%); */ /* transition: transform 0.2s; */ display:inline-block;max-width: 315px;min-width: 315px;vertical-align:bottom;text-align:left;position:relative;white-space:normal;z-index:200;box-shadow: rgba(0,0,0,0.2) 2px 2px 7px;border-radius: 10px;background-color: #ffffff;overflow: hidden;}
+.ui-confrim.open>.pbd{/* transform: translateY(0); */}
+.ui-confrim:after{content:''; width:0; height:100%; display:inline-block; vertical-align:middle;}
+.ui-confrim>.pbd>.phd{display: none;padding: 15px 20px 0px 20px;box-sizing: border-box;background-color: #fff;text-align: center;font-size: 16px;font-weight: 700;margin-bottom: -17px;line-height: 1.5;}
+.ui-confrim>.pbd>.phd .ptit{ font-weight: 700; font-size:16px; color: #333333;}
+.ui-confrim>.pbd>.phd.is-tit{display:block;}
+.ui-confrim>.pbd>.pct{overflow:auto;padding: 30px 20px 30px 20px;text-align:center;font-size: 16px;color: #000000;min-height: 102px;display: flex;justify-content: center;align-items: center;}
+.ui-confrim>.pbd>.pct .msg{word-break: break-all;}
+.ui-confrim>.pbd>.pct p{}
+.ui-confrim>.pbd>.pct b{color: #f0344d;font-weight: 700;}
+.ui-confrim>.pbd>.pbt{padding: 0px 0px 0px 0px;box-sizing: border-box;text-align: center;display: flex;margin: 0px 0px;}
+.ui-confrim>.pbd>.pbt .btn {width: 100%;border-radius: 0px;background: #aeb0bd;border: #aeb0bd 1px solid;color: #ffffff;font-size: 14px;height: 50px;font-weight: 400;}
+.ui-confrim>.pbd>.pbt .btn + .btn{border: #33445c solid 1px;color: #ffffff;background: #33445c;}
+.ui-confrim>.pbd>.pbt .btn.btn-confirm:active{border-color: #114c68;background-color: #114c68;}
+.ui-confrim>.pbd>.pbt .btn.btn-cancel:active{border-color:#898c9d; background-color:#898c9d;}
+.ui-confrim>.pbd>.pbt .btn:disabled{border-color:#cccedb; background-color:#cccedb;}
+.ui-confrim>.pbd>.pbt .btn-cancel{color: #ffffff;}
+.ui-confrim>.pbd>.btn-close{width: 24px;height: 24px;position:absolute;right: 10px;top: 10px; font-size: 18rem;overflow:hidden;}
+
+
+
 
 /* swiper */
 .swiper .swiper-wrapper {padding-bottom: 12rem;}

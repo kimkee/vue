@@ -9,7 +9,7 @@
       <h1>{{ msg }}</h1> 
       <div class="board-list">
         <div class="bbs-opt">
-          <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
+          <div class="tots" @click="testConfirm"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
           <div class="more"><router-link class="bt" to="/list">더보기 <i class="fa-solid fa-chevron-right"></i></router-link></div>
         </div>
         <ul class="list">
@@ -66,6 +66,17 @@ export default {
     
   },
   methods:{
+    testConfirm(){
+      ui.confirm('컨펌 메시지입니다.',{
+        'tit':'타이틀',
+        'ycb': ()=> {
+          console.log("확인");
+        },
+        'ncb': ()=> {
+          console.log("취소");
+        }
+      });
+    },
     dateForm(d){
       return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
