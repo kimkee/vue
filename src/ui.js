@@ -5,7 +5,7 @@ const ui = {
         this.update();
     },
     update: function(){
-        ui.gnb.using("close");
+        this.gnb.using("close");
     },
     viewport:{
         height:    ()=> parseInt( window.visualViewport ? visualViewport.height : window.innerHeight ),
@@ -27,11 +27,13 @@ const ui = {
                 console.log(opt);
                 document.querySelector("body").classList.add("is-gnb");
                 if(gnbScreen )document.querySelector(".gnb-screen").style.display = "block";
+				ui.lock.using(true);
             }
             if (opt === "close") {
                 console.log(opt);
                 document.querySelector("body").classList.remove("is-gnb");
                 if(gnbScreen )document.querySelector(".gnb-screen").style.display = "none";
+				ui.lock.using(false);
             }
         }
     },
@@ -191,3 +193,4 @@ const ui = {
 		}
 	},
 };
+export default ui;

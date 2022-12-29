@@ -13,7 +13,7 @@ import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
 import store from "./store";
-
+import ui from './ui.js';
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [

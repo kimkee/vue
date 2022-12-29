@@ -51,6 +51,8 @@
 import db  from '../firebaseConfig.js';
 import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { doc, setDoc  } from "firebase/firestore";
+import ui from '../ui.js';
+
 export default {
   name: 'JoinItem',
   props: {

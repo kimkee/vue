@@ -50,7 +50,7 @@ import { collection, addDoc } from "firebase/firestore";
 import Files from '../components/Files.vue';
 import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
 import store from '@/store';
-
+import ui from '../ui.js';
 
 
 export default {

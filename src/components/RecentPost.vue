@@ -45,7 +45,7 @@
 <script>
 import db  from '../firebaseConfig.js';
 import { collection, query, getDocs, orderBy, limit  } from "firebase/firestore";
-
+import ui from '../ui.js';
 
 
 export default {

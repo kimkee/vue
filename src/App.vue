@@ -18,6 +18,7 @@ import Home from './views/Home.vue';
 import Nav from './components/Nav.vue';
 import Header from './components/Header.vue';
 import db  from './firebaseConfig.js';
+import ui from './ui.js';
 import store from './store';
 // import ui from '../public/js/ui.js';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';

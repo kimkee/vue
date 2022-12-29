@@ -33,6 +33,7 @@
 </template>
 
 <script>
+import ui from '../ui.js';
 export default {
   name: 'GnbItem',
   props: {
@@ -47,7 +48,7 @@ export default {
   created(){
   },
   updated(){
-    ui.gnb.using("close");
+    // ui.gnb.using("close");
 
   },
   methods:{

@@ -17,7 +17,7 @@
 
 <script>
 
-
+import ui from '../ui.js';
 export default {
   name: 'PhotoItem',
   components: {

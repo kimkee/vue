@@ -21,7 +21,7 @@
 <script>
 
 import Gnb from '../components/Gnb.vue'
-
+import ui from '../ui.js';
 export default {
   name: 'HeaderItem',
   components: {

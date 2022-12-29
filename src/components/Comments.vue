@@ -64,7 +64,7 @@ import db  from '../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
 import { useRoute } from 'vue-router';
 import store from '@/store';
-
+import ui from '../ui.js';
 export default {
   name: 'CommentsItem',
   props: {
@@ -183,7 +183,6 @@ export default {
                     this.Coments.splice(i, 1);
                 }
             })
-      
             const docRef = doc(db, this.dbTable.id, this.postId );
             updateDoc(docRef, {
               coments:this.Coments
@@ -193,7 +192,9 @@ export default {
               console.error("댓글삭제 Error " ,e);
             });
           },
-          ccb:()=>{ }
+          ncb:()=>{ },
+          ybt:"예",
+          nbt:"아니오",
       });
 
       // if (confirm("댓글을 삭제하시겠습니까?")) {

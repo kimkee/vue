@@ -12,7 +12,7 @@
       <swiper class="slide"
         :modules="modules"
         :auto-height="true" :slides-per-view="1" 
-        :loop="false" effect="fade"
+        :loop="false" 
         :space-between="10" navigation :pagination="{ clickable: true }"
         @swiper="onSwiper" @slideChangeTransitionEnd="onSlideChange">
         <swiper-slide>
@@ -53,7 +53,7 @@
 import RecentPost from '../components/RecentPost.vue'
 import Clock from '../components/Clock.vue'
 import store from '../store';
-
+import ui from '../ui.js';
 import { EffectFade, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
 import 'swiper/css';

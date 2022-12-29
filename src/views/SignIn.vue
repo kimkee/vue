@@ -31,7 +31,7 @@
 
 <script>
 import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence} from 'firebase/auth';
-
+import ui from '../ui.js';
 export default {
   name: 'LoginItem',
   props: {
