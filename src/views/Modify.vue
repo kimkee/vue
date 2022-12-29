@@ -5,23 +5,23 @@
       <div class="board-write">
         <ul class="list">
           <li>
-            <label class="dt">제목</label>
+            <label class="dt">닉네임</label>
             <div class="dd">
-              <span class="input"><input type="text" spellcheck="false" placeholder="입력하세요" v-model="Views.title"></span>
+              <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
             </div>
           </li>
           <li>
-            <label class="dt">이름</label>
+            <label class="dt">제목</label>
             <div class="dd">
-              <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
+              <span class="input"><input type="text" spellcheck="false" :placeholder="'입력하세요(최대'+titleMax+'글자)'" v-model="title"></span>
             </div>
           </li>
           <li>
             <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
-                <textarea class="reply" spellcheck="false" data-ui="autoheight" placeholder="입력하세요" v-model="Views.content"></textarea>
-                <!-- <span class="num"><i class="i">102</i>/<b class="n">3,000</b></span> -->
+                <textarea class="reply" spellcheck="false" data-ui="autoheight" :placeholder="'입력하세요(최대'+contentMax+'글자)'" v-model="content"></textarea>
+                <span class="num"><i class="i">{{contentNow}}</i>/<b class="n">{{contentMax}}</b></span>
               </span>
             </div>
           </li>
@@ -35,8 +35,8 @@
     <nav class="floatbots">
       <div class="inr">
         <div class="btsbox btn-set">
-          <router-link class="btn" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-          <button type="button" class="btn" @click="modify"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>
+          <button type="button" class="btn" @click="$router.back()"><i class="fa-solid fa-list"></i><em>취소</em></button>
+          <button type="button" class="btn" :disabled="isBtnSave ? false : true" @click="modify"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>
         </div>
       </div>
     </nav>
@@ -60,9 +60,24 @@ export default {
   },
   data() {
     return {
+      title:'',
+      titleMax: 50,
+      content:'',
+      contentNow: 0,
+      contentMax: new Intl.NumberFormat().format(1000),
+      isBtnSave: false,
       Views: {},
       files:[],
       max:5,
+    }
+  },
+  watch:{
+    title(){
+      this.valCheck();
+    },
+    content(){
+      this.contentNow = new Intl.NumberFormat().format(this.content.length);
+      this.valCheck();
     }
   },
   created(){
@@ -77,15 +92,37 @@ export default {
     
   },
   methods: {
+    commasDel(str){
+      console.log(str);
+      if (typeof str == 'number') { return; }
+			return parseInt(str.replace(/,/g , ''));
+		},
+    valCheck(){
+      if (this.title.length > 0 && this.content.length > 0) {
+        this.isBtnSave = true;
+      }else{
+        this.isBtnSave = false;
+      }
+      if(this.title.length > this.titleMax ){
+        console.log("내용 글자수 맥스");
+        this.title = this.title.slice(0, this.titleMax);
+        ui.alert("제목의 글자수는 "+this.titleMax+"자 까지 입니다.");
+      }
+      if(this.content.length > this.commasDel(this.contentMax) ){
+        console.log("내용 글자수 맥스");
+        this.content = this.content.slice(0, this.commasDel(this.contentMax));
+        ui.alert("내용의 글자수는 "+this.contentMax+"자 까지 입니다.");
+      }
+    },
     // 데이터 가져오기 https://firebase.google.com/docs/firestore/query-data/get-data?hl=ko&authuser=0
     async read(ids){
       const docRef = doc(db, "bbs" , ids);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.Views.uid = docSnap.data().uid;
-        this.Views.title = docSnap.data().title;
+        this.title = docSnap.data().title;
         this.Views.img = docSnap.data().img;
-        this.Views.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
+        this.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
         this.files = this.Views.img;
         console.log(this.files);
@@ -153,8 +190,8 @@ export default {
     },
     
     async modify(){
-      const $title = this.Views.title;
-      const $content = this.Views.content
+      const $title = this.title;
+      const $content = this.content
       const $fileInput = document.querySelector("input#fileInput");
       console.log("수정" + this.pram);
       

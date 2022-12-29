@@ -163,7 +163,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 .btn.xl{height: 60px;min-width: 80px;padding: 0 10px;font-size: 16px;font-weight: 400;}
 
 .btn.disabled,
-.btn[disabled]:not(.a){/* opacity: 0.5; */}
+.btn[disabled]:not(.a){color:#dddddd33 /* opacity: 0.5; */}
 
 .btn.a{border-color: #669aff;background-color: #669aff;color:#ffffff;}
 .btn.a:disabled,
@@ -255,7 +255,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .textarea{border: #30363d solid 1px;background-color: #090c12;}
 .textarea.focus{border-color: #000000;}
 .textarea .num{font-size:12rem;position: relative;margin: 6px 0px -1px 0px;display: block;text-align: right;color: #666666;}
-.textarea .num .i{color: #999999;}
+.textarea .num .i{color: #999999;font-weight: normal;}
 .textarea .num .n{color: #999999;font-weight: normal;}
 .textarea.coms .num{}
 .textarea.coms .num .i{color: #f1344d;}
