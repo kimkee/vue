@@ -83,7 +83,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 nav.gnb{position:fixed;width: 70%;height: 100%;z-index: 900;top: 0px;right: -100%;/* display: none; */transition: right 0.4s;}
 
 nav.gnb::after{left: -100%;width: 100%;height:100%;/* background-color: rgba(0, 0, 0, 0.3); */content:"";display:block;position: fixed;top: 0;/* left: 0px; */}
-nav.gnb .bt.close{display:block;position:absolute;right: 20px;top: 11px;z-index: 1900;width: 36px;height: 36px;/* font-size: 0; */background: url(../img/btn_close.png) no-repeat center;background-size: 24px auto;/* background: #fff; */}
+nav.gnb .bt.close{display:block;position:absolute;right: 20px;top: 11px;z-index: 1900;width: 36px;height: 36px;}
 nav.gnb .bt.close i{font-size: 28rem;}
 nav.gnb>.inr{padding: 55px 30px 0px 30px;height: 100vh;background-color: #26384e;}
 nav.gnb .menu{margin-top: 20px; overflow-y: auto;}
