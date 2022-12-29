@@ -34,7 +34,7 @@
             "type": "image/png"
         }
     ],
-    "start_url": "/",
+    "start_url": "/vue",
     "display": "minimal-ui",
     "background_color": "#1d2736",
     "theme_color": "#1d2736"
