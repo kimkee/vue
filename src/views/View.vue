@@ -65,7 +65,7 @@
         </div>
       </div>
       
-      <Comments/>
+      <Comments :dbTable="{'id':'bbs',num:3}"/>
 
 
     </main>

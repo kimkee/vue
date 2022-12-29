@@ -2,7 +2,7 @@
   <header class="header sub">
     <div class="inr">
       <div class="ldt">
-        <button type="button" class="bt back" onclick="history.back(-1)"><i class="fa-solid fa-arrow-left"></i>뒤로</button>
+        <button type="button" class="bt back" @click="$router.go(-1);"><i class="fa-solid fa-arrow-left"></i>뒤로</button>
         <h3 class="htit"></h3>
       </div>
       <div class="cdt"></div>

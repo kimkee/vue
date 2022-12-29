@@ -6,7 +6,7 @@
           <em><i></i></em>
         </div>
       </div> -->
-      <h1>{{ msg }}</h1> 
+      <!-- <h1>{{ this.dbTable.id }}</h1>  -->
       <div class="board-list">
         <div class="bbs-opt">
           <div class="tots" @click="testConfirm"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
@@ -51,7 +51,7 @@ import { collection, query, getDocs, orderBy, limit  } from "firebase/firestore"
 export default {
   name: 'ListItem',
   props: {
-    msg: String
+    dbTable: Object
   },
   data() {
       return {
@@ -81,7 +81,8 @@ export default {
       return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
     async read(){
-      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(5) );
+      console.log("dbTable ======================= " +  this.dbTable['id']  );
+      const q = query(collection(db, this.dbTable.id), orderBy("timestamp", "desc") , limit(this.dbTable.num) );
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {
@@ -99,7 +100,7 @@ export default {
           date: ui.timeForm( doc.data().timestamp.toDate()  )
         });
       });
-      document.querySelector(".page.home").classList.add("load");
+      document.querySelector(".page.home")?.classList.add("load");
     }
 
   }

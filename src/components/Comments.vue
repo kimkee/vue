@@ -69,7 +69,7 @@ export default {
   name: 'CommentsItem',
   props: {
     msg: String,
-
+    dbTable: Object,
   },
   data() {
     return {
@@ -92,7 +92,7 @@ export default {
       return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
     },
     async comtList(ids){
-      const docRef = doc(db, "bbs" , ids);
+      const docRef = doc(db, this.dbTable.id , ids);
       try {
         console.log("글 id === " + ids);
           const docSnap = await getDoc(docRef);
@@ -151,7 +151,7 @@ export default {
       console.table(opt);
 
       this.Coments.push(opt)
-      const thisDoc = doc(db, "bbs", this.postId);
+      const thisDoc = doc(db, this.dbTable.id, this.postId);
       await updateDoc ( thisDoc, {
         coments : this.Coments
       }).then(()=>{
@@ -173,7 +173,7 @@ export default {
             }
         })
   
-        const docRef = doc(db, "bbs", this.postId );
+        const docRef = doc(db, this.dbTable.id, this.postId );
         await updateDoc(docRef, {
           coments:this.Coments
         }).then(()=>{

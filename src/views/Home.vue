@@ -42,12 +42,7 @@
       </swiper>
 
 
-
-      
-
-      
-
-      <RecentPost/>
+      <RecentPost :dbTable="{'id':'bbs',num:3}"/>
       
       
     </main>
@@ -77,7 +72,7 @@ export default {
     SwiperSlide,
   },
   props: {
-    userstate: String
+    
   },
   data() {
       return {

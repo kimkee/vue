@@ -379,7 +379,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 
-.recent{}
+.recent{margin-top: 10rem;}
 .recent.load .ui-loading-dot{display: none	;}
 .recent.load .board-list{display: block	;}
 .recent .board-list{/* display: none	; */}
