@@ -180,13 +180,27 @@ export default {
       
     },
     async delpost(){
-      if (confirm("이 글을 작세하시겠습니까?")) {
-        await deleteDoc(doc(db, "bbs",  this.pram ));
-        console.log("삭제 성공: ");
-        this.$router.push('/list');
-      }else{
-        console.log("안지움 ㄷㄷㄷ");
-      }
+
+      ui.confirm("이 글을 삭제하시겠습니까?",{
+        ycb:()=>{
+          deleteDoc(doc(db, "bbs",  this.pram ));
+          console.log("삭제 성공: ");
+          this.$router.push('/list');
+        },
+        ncb:()=>{
+          console.log("안지움 ㄷㄷㄷ");
+        },
+        ybt:"예",
+        nbt:"아니오",
+      });
+
+      // if (confirm("이 글을 삭제하시겠습니까?")) {
+      //   await deleteDoc(doc(db, "bbs",  this.pram ));
+      //   console.log("삭제 성공: ");
+      //   this.$router.push('/list');
+      // }else{
+      //   console.log("안지움 ㄷㄷㄷ");
+      // }
     },
     async hits(newHits){
       console.log(newHits);
@@ -202,12 +216,19 @@ export default {
     },
     async likeTog(e){
       if(!store.state.userInfo.stat) {
-        if(confirm("로그인 하시겠습니까?.")) {
+        ui.confirm("로그인 하시겠습니까?.",{
+          ycb:()=>{
+            this.$router.push("/signin");
+             
+          }
+        });
+        return;
+        /* if(confirm("로그인 하시겠습니까?.")) {
           this.$router.push("/signin");
           return;
         }else{
           return;
-        }
+        } */ 
       }
       const btlike = e.currentTarget;
       console.log(btlike);

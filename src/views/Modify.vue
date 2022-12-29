@@ -173,7 +173,22 @@ export default {
     },
     async fileDel(index){
       console.log(this.files[index]);
-      if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
+      ui.confirm("첨부한 파일을 삭제하시겠습니까?",{
+        ycb: ()=>{
+          const storage = getStorage();
+          console.log(this.files[index]);
+          const desertRef = ref(storage, this.files[index]);
+          const docRef = doc(db, "bbs", this.pram );
+          deleteObject(desertRef).then(() => {
+            console.log("파일삭제 성공 ");
+            this.files.splice(index, 1);
+            this.$refs.files.itemSet(this.files);
+            updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
+          }).catch((error) => { console.log(error); });
+        }
+      });
+
+/*       if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
         const storage = getStorage();
         console.log(this.files[index]);
         const desertRef = ref(storage, this.files[index]);
@@ -186,7 +201,7 @@ export default {
         }).catch((error) => { console.log(error); });
       }else{
         return
-      }
+      } */
     },
     
     async modify(){

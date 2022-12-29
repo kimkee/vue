@@ -62,11 +62,19 @@ const router = createRouter({
                 if (store.state.userInfo.stat == true) {
                     return next();
                 }else{
+
+                    ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+                        ycb:()=>{ next('/signin'); },
+                        ccb:()=>{ }
+                    });
+
+                    /*
                     if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
                         next('/signin');
                     }else{
                         next('/list');
                     }
+                    */
                 }
             },
             components: {
@@ -118,10 +126,17 @@ const router = createRouter({
             name: "signout",
             beforeEnter: (to, from, next) => {
                 console.table(store.state.userInfo);
-                if(confirm("로그아웃 하시겠습니까?")){
-                    localStorage.setItem("preurl", location.hash);
-                    return next();      
-                }
+                ui.confirm("로그아웃 하시겠습니까?",{
+                    ycb:()=>{
+                        localStorage.setItem("preurl", location.hash);
+                        return next();  
+                    },
+                    ccb:()=>{ }
+                });
+                // if(confirm("로그아웃 하시겠습니까?")){
+                //     localStorage.setItem("preurl", location.hash);
+                //     return next();      
+                // }
             },
             components: {
                 default: SignOut,

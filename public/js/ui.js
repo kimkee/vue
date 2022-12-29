@@ -113,7 +113,7 @@ const ui = {
 	confirm:function(msg,params){ // 커스텀 컨펌
         
         let opt = Object.assign({
-			msg:"컨펌",
+			msg:msg,
 			tit:"",
 			cls:"",
 			ycb:"",

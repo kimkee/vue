@@ -44,7 +44,7 @@ export default {
       this.btnDis =  this.Files.length >= this.MaxItem ? "off" : "on";
   },
   numCheck(){
-      alert(`최대 ${this.MaxItem} 개 까지 가능합니다.`);
+      ui.alert(`최대 ${this.MaxItem} 개 까지 가능합니다.`);
     }
   }
 }

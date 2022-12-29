@@ -75,7 +75,7 @@ export default {
     return {
         Coments: [],
         postId:'',
-        inputReply:null
+        inputReply:'',
     }
   },
   created(){
@@ -115,15 +115,24 @@ export default {
 
       console.log(store.state.userInfo.uid);
       if (!store.state.userInfo.uid ) { 
+
+
+        ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+            ycb:()=>{ this.$router.push('/signin'); return; },
+            ccb:()=>{ return;}
+        });
+        /* 
         if(confirm("로그인이 필요합니다.")){
           this.$router.push('/signin');
           return;
         }else{
           return;
         }
+         */
+         return;
       }
-      if (this.inputReply == null) {
-        alert("댓글을 입력하세요");
+      if (this.inputReply == '') {
+        ui.alert("댓글을 입력하세요");
         return;
       }
       const today = new Date() ;
@@ -165,23 +174,45 @@ export default {
     },
     async comtDelete(cmtIdx){
       console.log(cmtIdx);
-      if (confirm("댓글을 삭제하시겠습니까?")) {
-        this.Coments.forEach( (e,i)=>{ 
-            if( e.idx == cmtIdx ){
-                console.log(i)
-                this.Coments.splice(i, 1);
-            }
-        })
+
+      ui.confirm("댓글을 삭제하시겠습니까?",{
+          ycb:()=>{ 
+            this.Coments.forEach( (e,i)=>{ 
+                if( e.idx == cmtIdx ){
+                    console.log(i)
+                    this.Coments.splice(i, 1);
+                }
+            })
+      
+            const docRef = doc(db, this.dbTable.id, this.postId );
+            updateDoc(docRef, {
+              coments:this.Coments
+            }).then(()=>{
+              console.log("댓글삭제 됨");
+            }).catch (e =>{
+              console.error("댓글삭제 Error " ,e);
+            });
+          },
+          ccb:()=>{ }
+      });
+
+      // if (confirm("댓글을 삭제하시겠습니까?")) {
+      //   this.Coments.forEach( (e,i)=>{ 
+      //       if( e.idx == cmtIdx ){
+      //           console.log(i)
+      //           this.Coments.splice(i, 1);
+      //       }
+      //   })
   
-        const docRef = doc(db, this.dbTable.id, this.postId );
-        await updateDoc(docRef, {
-          coments:this.Coments
-        }).then(()=>{
-          console.log("댓글삭제 됨");
-        }).catch (e =>{
-          console.error("댓글삭제 Error " ,e);
-        });
-      }
+      //   const docRef = doc(db, this.dbTable.id, this.postId );
+      //   await updateDoc(docRef, {
+      //     coments:this.Coments
+      //   }).then(()=>{
+      //     console.log("댓글삭제 됨");
+      //   }).catch (e =>{
+      //     console.error("댓글삭제 Error " ,e);
+      //   });
+      // }
 
     },
     autoHeight(){ // 댓글에 자동높이 기능

@@ -72,9 +72,15 @@ export default {
           const user = userCredential.user;
           console.log(user.email);
           const gourl = localStorage.getItem("preurl").replace("#","");
-          alert(user.email + "\n 로그인 성공!");
+          
+          ui.alert(""+user.email+ "\n 로그인 성공!",{
+            ycb: ()=>{
+              console.log("알럿 확인");
+              this.$router.push(gourl);
+            }
+          });
+          // alert(user.email + "\n 로그인 성공!");
 
-          this.$router.push(gourl);
         })
         .catch((error) => {
           console.log( error.code);
