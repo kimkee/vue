@@ -255,7 +255,7 @@ input[type="checkbox"]{width:30px;height:30px;display:inline-block;vertical-alig
 .textarea{border: #30363d solid 1px;background-color: #090c12;}
 .textarea.focus{border-color: #000000;}
 .textarea .num{font-size:12rem;position: relative;margin: 6px 0px -1px 0px;display: block;text-align: right;color: #666666;}
-.textarea .num .i{color: #999999;font-weight: normal;}
+.textarea .num .i{color: #999999;font-style: normal;}
 .textarea .num .n{color: #999999;font-weight: normal;}
 .textarea.coms .num{}
 .textarea.coms .num .i{color: #f1344d;}

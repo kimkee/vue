@@ -5,7 +5,7 @@
       <div class="board-write">
         <ul class="list">
           <li>
-            <label class="dt">이름</label>
+            <label class="dt">닉네임</label>
             <div class="dd">
               <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
             </div>
