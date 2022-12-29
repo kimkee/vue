@@ -65,6 +65,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import { onMounted } from 'vue';
+
 
 export default {
   name: 'HomeItem',
@@ -94,7 +96,18 @@ export default {
       });
     };
     const swiper = useSwiper();
+    const kkk = ()=> console.log("KKK")
+    onMounted(()=>{
+      console.log("onMounted");
+      kkk();
+    });
+    const fff = ()=>{
+      store.dispatch('increment')
+      // store.state.count ++
+      console.log("Fff",store.state.count);
+    }
     return {
+      fff,
       swiper,
       onSwiper,
       onSlideChange,
@@ -110,11 +123,7 @@ export default {
    console.table( store.state.userInfo);
   },
   methods:{
-    fff(){
-      store.dispatch('increment')
-      // store.state.count ++
-      console.log("Fff",store.state.count);
-    },
+    
     sss(){
       console.log(store.state.todos);
       store.state.todos = "1111111111111111111111111111"
