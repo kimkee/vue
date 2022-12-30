@@ -65,7 +65,7 @@
         </div>
       </div>
       
-      <Comments :dbTable="{'id':'bbs',num:3}"/>
+      <Comments :dbTable="{id:'bbs',num:3}"/>
 
 
     </main>
@@ -219,8 +219,9 @@ export default {
         ui.confirm("로그인 하시겠습니까?.",{
           ycb:()=>{
             this.$router.push("/signin");
-             
-          }
+          },
+          ybt:"예",
+          nbt:"아니오",
         });
         return;
         /* if(confirm("로그인 하시겠습니까?.")) {

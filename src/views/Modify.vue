@@ -187,7 +187,9 @@ export default {
             this.$refs.files.itemSet(this.files);
             updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
           }).catch((error) => { console.log(error); });
-        }
+        },
+        ybt:"예",
+        nbt:"아니오",
       });
 
 /*       if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {

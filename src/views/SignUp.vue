@@ -104,7 +104,7 @@ export default {
       .catch((error) => {
         console.log( error.code);
         const emsg = this.erMsg[error.code] 
-        alert(  emsg );
+        ui.alert( emsg );
         // ..
       });
       
@@ -117,7 +117,7 @@ export default {
         avatar: this.avatarVal,
         date: new Date(),
       }).then((user)=>{
-        alert("가입되었습니다.\n"  );
+        ui.alert("가입되었습니다."  );
         console.log("멤버 생성: "+user);
         this.$router.push('/');
       }).catch (e =>{

@@ -65,7 +65,9 @@ const router = createRouter({
 
                     ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
                         ycb:()=>{ next('/signin'); },
-                        ccb:()=>{ }
+                        ccb:()=>{ },
+                        ybt:"예",
+                        nbt:"아니오",
                     });
 
                     /*
@@ -131,7 +133,9 @@ const router = createRouter({
                         localStorage.setItem("preurl", location.hash);
                         return next();  
                     },
-                    ccb:()=>{ }
+                    ccb:()=>{ },
+                    ybt:"예",
+                    nbt:"아니오",
                 });
                 // if(confirm("로그아웃 하시겠습니까?")){
                 //     localStorage.setItem("preurl", location.hash);

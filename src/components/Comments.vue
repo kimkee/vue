@@ -119,7 +119,9 @@ export default {
 
         ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
             ycb:()=>{ this.$router.push('/signin'); return; },
-            ccb:()=>{ return;}
+            ccb:()=>{ return;},
+            ybt:"예",
+            nbt:"아니오",
         });
         /* 
         if(confirm("로그인이 필요합니다.")){

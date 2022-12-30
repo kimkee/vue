@@ -42,7 +42,7 @@
       </swiper>
 
 
-      <RecentPost :dbTable="{'id':'bbs',num:3}"/>
+      <RecentPost :dbTable="{id:'bbs',num:3}"/>
       
       
     </main>

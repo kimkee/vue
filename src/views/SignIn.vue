@@ -46,6 +46,7 @@ export default {
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
         "auth/too-many-requests" : "연속된 로그인 요청이 여러 번 감지되어 로그인 요청이 금지됨",
         "auth/weak-password" : "비밀번호가 6자리 미만인 경우 발생",
+        "auth/missing-email" : "정확한 이메일을 입력하세요",
         "auth/invalid-email" : "잘못된 포맷의 이메일을 입력한 경우 발생",
         "auth/email-already-in-use" :	"이미 사용 중인 이메일 계정 ID로 회원 가입을 시도하는 경우 발생",
         "auth/invalid-phone-number" : "잘못된 포맷의 핸드폰 번호를 입력한 경우 발생",
@@ -85,7 +86,7 @@ export default {
         .catch((error) => {
           console.log( error.code);
           const emsg = this.erMsg[error.code] 
-          alert("로그인 실패! \n" +  emsg );
+          ui.alert(  emsg ,{tit:"로그인 실패"});
           // alert( error.code , error.message);
           // const errorCode = error.code;
           // const errorMessage = error.message;
