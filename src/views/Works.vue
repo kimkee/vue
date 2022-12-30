@@ -4,8 +4,6 @@
 
       <!-- <p>{{workData.update}}</p> -->
 
-      <div class="ui-loading-dot"><div class="bx"><em><i></i></em></div></div>
-
       <div class="work-list">
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-window-restore"></i> UI/UX Development</h3></div>
         <ul class="wlst">
@@ -93,6 +91,7 @@ export default {
   },
   created(){
     ui.init();
+    ui.loading.show();
     // this.workData = data;
     // console.log(this.workData);
     
@@ -103,6 +102,7 @@ export default {
       
       this.workData = JSON.parse( res);
       console.log(  this.workData  );
+      ui.loading.hide();
     });
     document.querySelector(".page.work").classList.add("load");
     

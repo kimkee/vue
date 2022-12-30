@@ -2,7 +2,6 @@
   <div class="container photo">
     <main class="contents">
 
-      <div class="ui-loading-dot"><div class="bx"><em><i></i></em></div></div>
       <div class="ut-tblist">
         <ul class="list" id="dp_list"></ul>
         <div class="ui-loadmore">
@@ -34,6 +33,7 @@ export default {
   },
   created(){
     ui.init();
+    ui.loading.show();
     document.querySelector(".header .htit").textContent = 'Photo';
   },
   mounted() {
@@ -63,6 +63,7 @@ export default {
           this.callStat = true;
           this.Photos = [...this.Photos, ...(result)]
           console.log(  this.Photos.length );
+          ui.loading.hide();
         }, 1000);
       }).catch( e=>{
         console.log("오프라인");

@@ -2,9 +2,6 @@
   <div class="container board view">
     <main class="contents">
       <!-- {{$route.params.id}} -->
-      <div class="ui-loading-dot">
-        <div class="bx"><em><i></i></em></div>
-      </div>
       <div class="board-view">
         <div class="vcont">
           <div class="hdt">
@@ -123,6 +120,7 @@ export default {
   },
   created(){
     ui.init();
+    ui.loading.show();
     console.log("view created");
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
@@ -177,7 +175,7 @@ export default {
       }
       this.getUser();
 
-      
+      ui.loading.hide();
     },
     async delpost(){
 

@@ -17,7 +17,6 @@
 
 <script>
 
-import ui from '../ui.js';
 export default {
   name: 'NavItem',
   props: {
@@ -32,7 +31,7 @@ export default {
 
   },
   methods:{
-    ui
+    
   }
 }
 </script>

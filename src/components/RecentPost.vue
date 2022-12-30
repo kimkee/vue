@@ -1,11 +1,6 @@
 <template>
   
     <div class="recent">
-      <!-- <div class="ui-loading-dot">
-        <div class="bx">
-          <em><i></i></em>
-        </div>
-      </div> -->
       <!-- <h1>{{ this.dbTable.id }}</h1>  -->
       <div class="board-list">
         <div class="bbs-opt">
@@ -101,6 +96,7 @@ export default {
         });
       });
       document.querySelector(".page.home")?.classList.add("load");
+      ui.loading.hide();
     }
 
   }

@@ -2,13 +2,6 @@
   <div class="container home">
     <main class="contents">
 
-
-      <div class="ui-loading-dot">
-        <div class="bx">
-          <em><i></i></em>
-        </div>
-      </div>
-
       <swiper class="slide"
         :modules="modules"
         :auto-height="true" :slides-per-view="1" 
@@ -112,6 +105,7 @@ export default {
   },
   created(){
     ui.init();
+    ui.loading.show();
     console.log("home created");
   },
   mounted() {

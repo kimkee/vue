@@ -3,11 +3,6 @@
     <main class="contents">
       <h1>{{ msg }}</h1> 
       <div class="board-list">
-        <div class="ui-loading-dot">
-          <div class="bx">
-            <em><i></i></em>
-          </div>
-        </div>
         <div v-if="Boards.length == 0" class="nodata">
           <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
         </div>
@@ -71,6 +66,7 @@ export default {
   },
   created(){
     ui.init();
+    ui.loading.show();
     console.log("list created");
     this.read();
     // console.log(db);
@@ -105,7 +101,7 @@ export default {
         });
       });
       document.querySelector(".board-list").classList.add("load");
-      document.querySelector(".ui-loading-dot").classList.add("load");
+      ui.loading.hide();
     }
   }
 }

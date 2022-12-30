@@ -67,13 +67,14 @@ export default {
       const email = this.userEmail;
       const password = this.userPassword;  
       const auth = getAuth();
+      ui.loading.show();
       await signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
           console.log(user.email);
           const gourl = localStorage.getItem("preurl").replace("#","");
-          
+          ui.loading.hide();
           ui.alert(""+user.email+ "\n 로그인 성공!",{
             ycb: ()=>{
               console.log("알럿 확인");
@@ -85,13 +86,14 @@ export default {
         })
         .catch((error) => {
           console.log( error.code);
-          const emsg = this.erMsg[error.code] 
+          const emsg = this.erMsg[error.code]
+          ui.loading.hide();
           ui.alert(  emsg ,{tit:"로그인 실패"});
           // alert( error.code , error.message);
           // const errorCode = error.code;
           // const errorMessage = error.message;
         });
-
+        
         // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
         setPersistence(auth, browserSessionPersistence)
         .then(() => {
