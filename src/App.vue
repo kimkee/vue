@@ -1,8 +1,8 @@
 <template>
-  
+
   <router-view  name="Header" ></router-view>
   <router-view  name="HeaderSub" ></router-view>
-  <router-view v-slot="{ Component }" class="page" @load="makeSomeStuff">
+  <router-view v-slot="{ Component }" class="page">
     <transition name="fade" mode="out-in">
       <component :is="Component" />
     </transition>
@@ -36,7 +36,7 @@ export default {
   },
   data() {
       return {
-        
+
       }
   },
   beforeCreate(){
@@ -55,7 +55,7 @@ export default {
     this.authState();
   },
   watch(){
-    
+
   },
   mounted(){
     console.log(store.state.userInfo);
@@ -63,7 +63,7 @@ export default {
   unmounted(){
   },
   updated(){
-    console.log("updated");  
+    console.log("updated");
   },
   methods:{
     makeSomeStuff(){
@@ -74,14 +74,14 @@ export default {
       onAuthStateChanged(auth, (user) => {
         console.log("authState" , user);
         if (user) {
-          this.getUser(user);   
+          this.getUser(user);
           return;
         }
         store.state.userInfo = {};
         store.state.userInfo.stat = false;
         console.log('logout 된 상태' , store.state.userInfo);
         console.table(store.state.userInfo);
-        
+
       });
     },
     async getUser(user){

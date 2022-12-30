@@ -19,7 +19,7 @@ const router = createRouter({
     routes: [
         // {
             // path: "/",
-            // redirect: '/home' 
+            // redirect: '/home'
         // },
         {
             path: '/',
@@ -99,7 +99,7 @@ const router = createRouter({
             components: {
                 default: View,
                 HeaderSub,
-                
+
             }
         },
         {
@@ -131,15 +131,15 @@ const router = createRouter({
                 ui.confirm("로그아웃 하시겠습니까?",{
                     ycb:()=>{
                         localStorage.setItem("preurl", location.hash);
-                        return next();  
+                        return next();
                     },
-                    ccb:()=>{ },
+                    ccb:()=>{ from(); },
                     ybt:"예",
                     nbt:"아니오",
                 });
                 // if(confirm("로그아웃 하시겠습니까?")){
                 //     localStorage.setItem("preurl", location.hash);
-                //     return next();      
+                //     return next();
                 // }
             },
             components: {
