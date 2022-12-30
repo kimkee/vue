@@ -1,7 +1,7 @@
 <template>
   <div class="container sign in">
     <main class="contents">
-      <div class="sign-form">
+      <form class="sign-form"  @submit="login">
         <!-- <h1 class="hdt">회원가입</h1>  -->
         <ul class="list">
           <li>
@@ -18,12 +18,12 @@
           </li>
         </ul>
         <div class="btsbox btn-set">
-            <button type="button" class="btn" @click="login"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
+            <button type="submit" class="btn"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
         </div>
         <div class="link">
             <router-link class="bt" to="/signup">회원가입하러 가기 <i class="fa-solid fa-chevron-right"></i></router-link>
         </div>
-      </div>
+      </form>
     </main>
 
   </div>
@@ -62,50 +62,49 @@ export default {
     document.querySelector(".header .htit").textContent = '로그인';
   },
   methods: {
-   
     async login(){
       const email = this.userEmail;
       const password = this.userPassword;  
       const auth = getAuth();
       ui.loading.show();
       await signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          // Signed in 
-          const user = userCredential.user;
-          console.log(user.email);
-          const gourl = localStorage.getItem("preurl").replace("#","");
-          ui.loading.hide();
-          ui.alert(""+user.email+ "\n 로그인 성공!",{
-            ycb: ()=>{
-              console.log("알럿 확인");
-              this.$router.push(gourl);
-            }
-          });
-          // alert(user.email + "\n 로그인 성공!");
-
-        })
-        .catch((error) => {
-          console.log( error.code);
-          const emsg = this.erMsg[error.code]
-          ui.loading.hide();
-          ui.alert(  emsg ,{tit:"로그인 실패"});
-          // alert( error.code , error.message);
-          // const errorCode = error.code;
-          // const errorMessage = error.message;
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        console.log(user.email);
+        const gourl = localStorage.getItem("preurl").replace("#","");
+        ui.loading.hide();
+        ui.alert(""+user.email+ "<br> 로그인 성공!",{
+          ycb: ()=>{
+            console.log("알럿 확인");
+            this.$router.push(gourl);
+          }
         });
-        
-        // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
-        setPersistence(auth, browserSessionPersistence)
-        .then(() => {
-          return signInWithEmailAndPassword(auth, email, password);
-        })
-        .catch((error) => {
-          // Handle Errors here.
-          const errorCode = error.code;
-          const errorMessage = error.message;
-          console.log(errorCode,"====",errorMessage);
-        });
-
+        return false;
+        // alert(user.email + "\n 로그인 성공!");
+      })
+      .catch((error) => {
+        console.log( error.code);
+        const emsg = this.erMsg[error.code]
+        ui.loading.hide();
+        ui.alert(  emsg ,{tit:"로그인 실패"});
+        // alert( error.code , error.message);
+        // const errorCode = error.code;
+        // const errorMessage = error.message;
+      });
+      
+      // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
+      setPersistence(auth, browserSessionPersistence)
+      .then(() => {
+        return signInWithEmailAndPassword(auth, email, password);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorCode,"====",errorMessage);
+      });
+      
     }     
     
   }

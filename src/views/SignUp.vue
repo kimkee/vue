@@ -36,7 +36,7 @@
         </ul>
         <div class="btsbox btn-set">
             <!-- <router-link class="btn" to="/signin">로그인</router-link> -->
-          <button type="button" class="btn" @click="join"><i class="fa-solid fa-right-to-bracket"></i><em>회원가입</em></button>
+          <button type="button" class="btn" :disabled="isBtnJoin ? false : true" @click="join"><i class="fa-solid fa-right-to-bracket"></i><em>회원가입</em></button>
         </div>
         <div class="link">
           이미 회원이신가요? <router-link class="bt" to="/signin">로그인 하러가기 <i class="fa-solid fa-chevron-right"></i></router-link>
@@ -61,9 +61,10 @@ export default {
   data() {
     return {
       avatarVal:0,
-      userEmail:null,
-      userPwd:null,
-      userNick:null,
+      userEmail:"",
+      userPwd:"",
+      userNick:"",
+      isBtnJoin:false,
       erMsg : {
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -85,8 +86,27 @@ export default {
     document.querySelector(".header .htit").textContent = '회원가입';
     // document.querySelectorAll('input[name="avatar"]')[0].checked = true;
   },
+  watch:{
+    userEmail(){
+      this.valCheck();
+    },
+    userPwd(){
+      this.valCheck();
+    },
+    userNick(){
+      this.valCheck();
+    }
+  },
   methods: {
+    valCheck(){
+      if (this.userNick.length > 0 && this.userPwd.length >= 6) {
+        this.isBtnJoin = true;
+      }else{
+        this.isBtnJoin = false;
+      }
+    },
     async join () {
+      ui.loading.show();
       const email = this.userEmail;
       const password = this.userPwd;
       const auth = getAuth();
@@ -97,70 +117,35 @@ export default {
         console.log(user  );
         console.log("uid : "+user.uid );
         console.log("액세스토큰: "+ user.accessToken);
-
-        this.addMember(user)
+        const gourl = localStorage.getItem("preurl").replace("#","");
+        this.addMember(user , gourl)
 
       })
       .catch((error) => {
         console.log( error.code);
         const emsg = this.erMsg[error.code] 
         ui.alert( emsg );
-        // ..
       });
       
     },
-    async addMember(user){
+    async addMember(user,gourl){
       await setDoc(doc(db, "member" ,user.uid), {
         id: user.uid,
         email: user.email,
         nick : this.userNick,
         avatar: this.avatarVal,
+        liked: [],
         date: new Date(),
-      }).then((user)=>{
-        ui.alert("가입되었습니다."  );
-        console.log("멤버 생성: "+user);
-        this.$router.push('/');
+      }).then(()=>{
+        console.log("멤버 생성: ");
+        ui.alert("가입되었습니다." ,{
+          ycb:()=>{this.$router.push(gourl);}
+        });
       }).catch (e =>{
         console.error("멤버 생성 Error : ", e);
       });
     }
-    
-
-
-
-
-
-
-    // async join () {
-    //   const email = document.querySelector("input#email").value;
-    //   const password = document.querySelector("input#password").value;
-      
-    //   console.log(email, password);
-    //   try {
-    //     const auth = getAuth();
-    //     const { user } = await createUserWithEmailAndPassword(auth, email, password);
-    //     const { stsTokenManager, uid  } = user;
-    //     console.log(user.email  );
-    //     console.log("uid : "+uid );
-    //     console.log("액세스토큰: "+stsTokenManager.accessToken);
         
-    //     alert("가입되었습니다.\n" + user.email +"\n "+ uid  );
-    //     this.$router.push('/');
-    //   } catch ({ code, message }) {
-    //     console.log({ code, message });
-    //     // alert(errorMessage[code]);
-    //     if (code == 'auth/invalid-email') {
-    //       alert("이메일 형식이 아닙니다.")
-    //     }
-    //     if (code == 'auth/email-already-in-use') {
-    //       alert("이미 가입된 메일입니다.")
-    //     }
-    //   }
-    // }
-      
-
-      
-    
   }
 }
 </script>

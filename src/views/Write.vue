@@ -137,6 +137,7 @@ export default {
         date: this.dateForm( today ),
         count: 0,
         coments:[],
+        likes:0,
         img: this.files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
