@@ -46,12 +46,12 @@
             </div>
             <div class="form">
               <textarea data-ui="autoheight" class="ment" v-model="inputReply" 
-              @focus="comtWrite"
+              @focus="comFocus"
               :placeholder="$store.state.userInfo.stat ? '댓글을 입력해주세요' : '로그인해주세요'"
               
               spellcheck="false"></textarea>
             </div>
-            <div class="bts"><button type="button" class="btsend" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
+            <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
           </div>
         </div>
       </div>
@@ -108,34 +108,30 @@ export default {
       }
       console.log(this.Coments);
     },
-    
+    comFocus(){
+      if (!store.state.userInfo.uid ) { 
+        ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+              ycb:()=>{ this.$router.push('/signin'); return; },
+              ccb:()=>{ return;},
+              ybt:"예",
+              nbt:"아니오",
+        });
+        return;
+      }
+    },
     comtWrite(){
       console.log(this.inputReply );
 
       const $textarea =  document.querySelector('[data-ui="autoheight"]');
 
       console.log(store.state.userInfo.uid);
-      if (!store.state.userInfo.uid ) { 
 
-
-        ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
-            ycb:()=>{ this.$router.push('/signin'); return; },
-            ccb:()=>{ return;},
-            ybt:"예",
-            nbt:"아니오",
-        });
-        /* 
-        if(confirm("로그인이 필요합니다.")){
-          this.$router.push('/signin');
-          return;
-        }else{
-          return;
-        }
-         */
-         return;
-      }
       if (this.inputReply == '') {
-        ui.alert("댓글을 입력하세요");
+        ui.alert("댓글을 입력하세요",{
+          ycb:()=>{
+            document.querySelector('[data-ui="autoheight"].ment').focus();
+          }
+        });
         return;
       }
       const today = new Date() ;
@@ -199,24 +195,6 @@ export default {
           ybt:"예",
           nbt:"아니오",
       });
-
-      // if (confirm("댓글을 삭제하시겠습니까?")) {
-      //   this.Coments.forEach( (e,i)=>{ 
-      //       if( e.idx == cmtIdx ){
-      //           console.log(i)
-      //           this.Coments.splice(i, 1);
-      //       }
-      //   })
-  
-      //   const docRef = doc(db, this.dbTable.id, this.postId );
-      //   await updateDoc(docRef, {
-      //     coments:this.Coments
-      //   }).then(()=>{
-      //     console.log("댓글삭제 됨");
-      //   }).catch (e =>{
-      //     console.error("댓글삭제 Error " ,e);
-      //   });
-      // }
 
     },
     autoHeight(){ // 댓글에 자동높이 기능

@@ -602,6 +602,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-rpwrite .rwset .form .ment{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 77px;-webkit-appearance: none;outline: none;word-break: break-all;height: 24px;background: transparent;color: #999;}
 .ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 7px;}
 .ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 30px;height: 30px;border-radius: 100px;/* font-size:0rem; */color: #fff;text-align: center;}
+.ut-rpwrite .rwset .bts .btsend:disabled{background-color: #55af8691; color:#74b59e;}
 .ut-rpwrite .rwset .bts .btsend em{font-size:0rem;}
 
 .ui-loading-dot{    position: fixed; left: 0; top: 0; bottom: 0; right: 0; z-index: 1200; }
