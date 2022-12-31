@@ -19,7 +19,7 @@
                  </div>
                 <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
               </div>
-            </div>
+            </div> 
           </div>
           <dd class="cdt">
             <div class="cont">

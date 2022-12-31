@@ -46,8 +46,9 @@
             </div>
             <div class="form">
               <textarea data-ui="autoheight" class="ment" v-model="inputReply" 
+              @focus="comtWrite"
               :placeholder="$store.state.userInfo.stat ? '댓글을 입력해주세요' : '로그인해주세요'"
-              :disabled="$store.state.userInfo.stat ? false : true"
+              
               spellcheck="false"></textarea>
             </div>
             <div class="bts"><button type="button" class="btsend" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>

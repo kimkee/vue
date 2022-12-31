@@ -1,4 +1,5 @@
-const ui = {
+window.ui = new Object;
+ui = {
     init:function(){
         console.log("ui.init();");
         // this.gnb.init();
