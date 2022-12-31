@@ -76,12 +76,9 @@ export default {
         ui.loading.hide();
         ui.alert(""+user.email+ "<br> 로그인 성공!",{
           ycb: ()=>{
-            console.log("알럿 확인");
             this.$router.push(gourl);
           }
         });
-        return false;
-        // alert(user.email + "\n 로그인 성공!");
       })
       .catch((error) => {
         console.log( error.code);
