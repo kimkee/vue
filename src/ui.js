@@ -65,6 +65,10 @@ ui = {
         // 모든 단위가 맞지 않을 시
         return "방금 전";
     },
+    dateForm(d, opt){
+        opt == undefined ? opt = 'medium' : opt;
+        return new Intl.DateTimeFormat('ko-KR',{ dateStyle: opt, timeStyle: opt}).format( d )
+    },
     loading:{ // 로딩중..
         show: function () {
             if( !document.querySelectorAll("body>.ui-loading-dot").length ) {

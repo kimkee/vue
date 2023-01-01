@@ -112,9 +112,6 @@ export default {
         ui.alert("내용의 글자수는 "+this.contentMax+"자 까지 입니다.");
       }
     },
-    dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
-    },
     async write(){
       console.log("쓰기");
       const $title = this.title;
@@ -134,7 +131,7 @@ export default {
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
-        date: this.dateForm( today ),
+        date: ui.dateForm( today ),
         count: 0,
         coments:[],
         likes:0,

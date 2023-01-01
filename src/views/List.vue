@@ -76,9 +76,6 @@ export default {
     document.querySelector(".header .htit").textContent = 'Board';
   },
   methods:{
-    dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
-    },
     async read(){
       const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(), limitToLast() );
       const querySnapshot = await getDocs(q);
@@ -96,7 +93,6 @@ export default {
           count: doc.data().count,
           likes: doc.data().likes,
           img: doc.data().img,
-          // date: this.dateForm(doc.data().timestamp.toDate() )
           date: ui.timeForm( doc.data().timestamp.toDate()  )
         });
       });

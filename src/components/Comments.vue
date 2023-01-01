@@ -89,9 +89,6 @@ export default {
     this.autoHeight();
   },
   methods:{
-    dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
-    },
     async comtList(ids){
       const docRef = doc(db, this.dbTable.id , ids);
       try {
@@ -100,7 +97,7 @@ export default {
           this.Coments = docSnap.data().coments || [] ;
           this.Coments.forEach((c, i) => {         
             this.Coments[i] = ( c );
-            this.Coments[i].date = this.dateForm(this.Coments[i].timestamp.toDate() )
+            this.Coments[i].date = ui.dateForm(this.Coments[i].timestamp.toDate(),"short" )
           });
           console.log(  `댓글 수 = ${ this.Coments.length }` );
       }catch(error) {
@@ -146,7 +143,7 @@ export default {
         email : store.state.userInfo.email,
         reply: this.inputReply.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         timestamp: today,
-        date: this.dateForm( today )
+        date: ui.dateForm( today , "short")
       });
 
       this.inputReply = "";

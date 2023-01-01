@@ -131,9 +131,6 @@ export default {
     document.querySelector(".header .htit").textContent = '';
   },
   methods:{
-    dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'medium', timeStyle: 'medium'}).format( d )
-    },
     async view(ids){
 
 
@@ -159,7 +156,7 @@ export default {
         this.Views.author = docSnap.data().author || "익명";
         this.Views.avatar = docSnap.data().avatar || 0;
         this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
-        this.Views.timestamp = this.dateForm( docSnap.data().timestamp.toDate() ) ;
+        this.Views.timestamp = ui.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
         this.Views.count = docSnap.data().count ;

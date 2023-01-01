@@ -72,9 +72,6 @@ export default {
         }
       });
     },
-    dateForm(d){
-      return new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'short', timeStyle: 'short'}).format( d )
-    },
     async read(){
       console.log("dbTable ======================= " +  this.dbTable['id']  );
       const q = query(collection(db, this.dbTable.id), orderBy("timestamp", "desc") , limit(this.dbTable.num) );
