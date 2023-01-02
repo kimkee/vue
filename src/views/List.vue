@@ -1,7 +1,6 @@
 <template>
   <div class="container board list">
     <main class="contents">
-      <h1>{{ msg }}</h1> 
       <div class="board-list">
         <div v-if="Boards.length == 0" class="nodata">
           <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
@@ -57,7 +56,7 @@ import ui from '../ui.js';
 export default {
   name: 'ListItem',
   props: {
-    msg: String
+    
   },
   data() {
       return {

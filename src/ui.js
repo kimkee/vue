@@ -18,7 +18,6 @@ ui = {
         using:function(target){
             console.log(target.tagName);
             target.classList.toggle('d');
-            
         }
     },
     gnb: { // GNB 

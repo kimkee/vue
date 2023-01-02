@@ -128,7 +128,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .htit").textContent = '';
+    document.querySelector(".header .htit").textContent = 'Board';
   },
   methods:{
     async view(ids){

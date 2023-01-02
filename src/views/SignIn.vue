@@ -42,7 +42,7 @@ export default {
     return {
       userEmail:null,
       userPassword:null,
-      erMsg : {
+      erMsg : { //https://firebase.google.com/docs/auth/admin/errors?hl=ko&authuser=0
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
         "auth/too-many-requests" : "연속된 로그인 요청이 여러 번 감지되어 로그인 요청이 금지됨",
