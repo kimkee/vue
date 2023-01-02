@@ -73,6 +73,28 @@ export default {
         max:5,
       }
   },
+  beforeRouteEnter: (to, from, next) => {
+      console.log(store.state.userInfo.stat);
+      if (store.state.userInfo.stat == true) {
+          return next();
+      }else{
+
+          ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+              ycb:()=>{ next('/signin'); },
+              ccb:()=>{ },
+              ybt:"예",
+              nbt:"아니오",
+          });
+
+          /*
+          if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
+              next('/signin');
+          }else{
+              next('/list');
+          }
+          */
+      }
+  },
   watch:{
     title(){
       this.valCheck();

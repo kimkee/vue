@@ -31,6 +31,7 @@
 
 <script>
 import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence} from 'firebase/auth';
+import store from '@/store';
 import ui from '../ui.js';
 export default {
   name: 'LoginItem',
@@ -52,6 +53,16 @@ export default {
         "auth/invalid-phone-number" : "잘못된 포맷의 핸드폰 번호를 입력한 경우 발생",
         "auth/internal-error" : "비밀번호를 입력하세요.",
       }
+    }
+  },
+  beforeRouteEnter: (to, from, next) => {
+    console.log(store.state.userInfo.stat);
+    console.log(to, from.fullPath);
+    if(store.state.userInfo.stat == true) {
+      next(from.fullPath)
+    }else{
+      localStorage.setItem("preurl", location.hash);
+      return next();
     }
   },
   created(){

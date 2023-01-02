@@ -12,14 +12,14 @@ import View from "./views/View.vue";
 import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
-import store from "./store";
-import ui from './ui.js';
+// import store from "./store";
+// import ui from './ui.js';
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
         // {
-            // path: "/",
-            // redirect: '/home'
+        // path: "/",
+        // redirect: '/home'
         // },
         {
             path: '/',
@@ -57,28 +57,7 @@ const router = createRouter({
         },
         {
             path: "/write",
-            beforeEnter: (to, from, next) => {
-                console.log(store.state.userInfo.stat);
-                if (store.state.userInfo.stat == true) {
-                    return next();
-                }else{
 
-                    ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
-                        ycb:()=>{ next('/signin'); },
-                        ccb:()=>{ },
-                        ybt:"예",
-                        nbt:"아니오",
-                    });
-
-                    /*
-                    if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
-                        next('/signin');
-                    }else{
-                        next('/list');
-                    }
-                    */
-                }
-            },
             components: {
                 default: Write,
                 HeaderSub,
@@ -114,9 +93,9 @@ const router = createRouter({
         {
             path: "/signin/",
             name: "signin",
-            beforeEnter: () => {
-                localStorage.setItem("preurl", location.hash);
-            },
+            // beforeEnter: () => {
+            //     localStorage.setItem("preurl", location.hash);
+            // },
             components: {
                 default: SignIn,
                 HeaderSub,
@@ -126,22 +105,22 @@ const router = createRouter({
         {
             path: "/signout/",
             name: "signout",
-            beforeEnter: (to, from, next) => {
-                console.table(store.state.userInfo);
-                ui.confirm("로그아웃 하시겠습니까?",{
-                    ycb:()=>{
-                        localStorage.setItem("preurl", location.hash);
-                        return next();
-                    },
-                    ccb:()=>{ from(); },
-                    ybt:"예",
-                    nbt:"아니오",
-                });
-                // if(confirm("로그아웃 하시겠습니까?")){
-                //     localStorage.setItem("preurl", location.hash);
-                //     return next();
-                // }
-            },
+            // beforeEnter: (to, from, next) => {
+            //     console.table(store.state.userInfo);
+            //     ui.confirm("로그아웃 하시겠습니까?", {
+            //         ycb: () => {
+            //             localStorage.setItem("preurl", location.hash);
+            //             return next();
+            //         },
+            //         ccb: () => { from(); },
+            //         ybt: "예",
+            //         nbt: "아니오",
+            //     });
+            //     // if(confirm("로그아웃 하시겠습니까?")){
+            //     //     localStorage.setItem("preurl", location.hash);
+            //     //     return next();
+            //     // }
+            // },
             components: {
                 default: SignOut,
             }

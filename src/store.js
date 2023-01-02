@@ -1,8 +1,7 @@
 
 import { createStore } from 'vuex'
 
-
-export default createStore({
+const store = createStore({
   state: {
     userInfo:{
       stat: null,
@@ -43,3 +42,5 @@ export default createStore({
     }
   }
 });
+
+export default store;

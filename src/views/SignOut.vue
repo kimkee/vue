@@ -11,6 +11,7 @@
 
 <script>
 import { getAuth, signOut } from 'firebase/auth';
+import store from "../store";
 import ui from '../ui.js';
 export default {
   name: 'SingOut',
@@ -21,6 +22,22 @@ export default {
       return {
          
       }
+  },
+  beforeRouteEnter: (to, from, next) => {
+    if(store.state.userInfo.stat == true) {
+      console.table(store.state.userInfo);
+      ui.confirm("로그아웃 하시겠습니까?", {
+          ycb: () => {
+              localStorage.setItem("preurl", location.hash);
+              return next();
+          },
+          ccb: () => { from(); },
+          ybt: "예",
+          nbt: "아니오",
+      });
+    }else{
+      next(from.fullPath);
+    }
   },
   created(){
     ui.init();
