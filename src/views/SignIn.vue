@@ -1,7 +1,7 @@
 <template>
   <div class="container sign in">
     <main class="contents">
-      <form class="sign-form"  @submit="login">
+      <div class="sign-form">
         <!-- <h1 class="hdt">회원가입</h1>  -->
         <ul class="list">
           <li>
@@ -18,12 +18,12 @@
           </li>
         </ul>
         <div class="btsbox btn-set">
-            <button type="submit" class="btn"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
+            <button type="button" class="btn" @click="login"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
         </div>
         <div class="link">
             <router-link class="bt" to="/signup">회원가입하러 가기 <i class="fa-solid fa-chevron-right"></i></router-link>
         </div>
-      </form>
+      </div>
     </main>
 
   </div>
