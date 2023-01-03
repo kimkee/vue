@@ -1,7 +1,6 @@
 <template>
   <div class="container board write">
     <main class="contents">
-      <h1>{{ msg }}</h1> 
       <div class="board-write">
         <ul class="list">
           <li>
@@ -46,9 +45,9 @@
 
 <script>
 import db  from '../../firebaseConfig.js';
-import { collection, addDoc } from "firebase/firestore";
-import Files from '../../components/Files.vue';
+import { getDoc, doc, setDoc } from "firebase/firestore";
 import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
+import Files from '../../components/Files.vue';
 import store from '@/store';
 import ui from '../../ui.js';
 
@@ -134,6 +133,7 @@ export default {
         ui.alert("내용의 글자수는 "+this.contentMax+"자 까지 입니다.");
       }
     },
+    
     async write(){
       console.log("쓰기");
       const $title = this.title;
@@ -146,7 +146,7 @@ export default {
       
       // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       // const docRef = await setDoc(doc(db, "bbs"), {
-      const docRef = await addDoc(collection(db, "bbs"), {
+      /* const docRef = await addDoc(collection(db, "bbs"), {
         title: $title,
         content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         timestamp: today,
@@ -164,8 +164,33 @@ export default {
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
-      docRef
+      docRef */
+
+      const docRef = doc(db, "bbs" , "count");
+      const docSnap = await getDoc(docRef);
       
+      if (!docSnap.exists()) return;
+      const postNum = docSnap.data().post + 1;
+      console.log( postNum );
+      setDoc(doc(db, "bbs" , ""+postNum), {
+        title: $title,
+        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
+        timestamp: today,
+        uid: store.state.userInfo.uid,
+        author: store.state.userInfo.nick,
+        avatar: store.state.userInfo.avatar,
+        date: ui.dateForm( today ),
+        count: 0,
+        coments:[],
+        likes:0,
+        img: this.files || []
+      }).then(()=>{
+        console.log("쓰기 성공: ");
+        setDoc(doc(db, "bbs" , "count"), { post: postNum }).then( ()=> { });  // count + 1
+        this.$router.push('/bbs');
+      }).catch (e =>{
+        console.error("Error adding document: ", e);
+      });
     },
     async fileAdd(){
       const $fileInput = document.querySelector("input#fileInput");
@@ -208,19 +233,6 @@ export default {
         ybt:"예",
         nbt:"아니오"
       });
-      // if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
-      //   const storage = getStorage();
-      //   console.log(this.files[index]);
-      //   const desertRef = ref(storage, this.files[index]);
-        
-      //   await deleteObject(desertRef).then(() => {
-      //     console.log("파일삭제 성공 ");
-      //     this.files.splice(index, 1);
-      //     this.$refs.files.itemSet(this.files);
-      //   }).catch((error) => { console.log(error); });
-      // }else{
-      //   return
-      // }
     },
   }
 }

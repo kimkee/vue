@@ -43,8 +43,8 @@ export default {
       this.Files = files;
       console.log(!!this.Files);
       this.btnDis =  this.Files.length >= this.MaxItem ? "off" : "on";
-  },
-  numCheck(){
+    },
+    numCheck(){
       ui.alert(`최대 ${this.MaxItem} 개 까지 가능합니다.`);
     }
   }
