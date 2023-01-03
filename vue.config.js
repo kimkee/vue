@@ -4,6 +4,9 @@ const tit = "쀼:VUE";
 const d = new Date();
 const ver = (d.getMonth()+1) +""+ d.getDate() +""+ d.getHours() +""+ d.getMinutes() +""+ d.getSeconds();
 module.exports = defineConfig({
+  devServer: {
+    // historyApiFallback: true,
+  },
   transpileDependencies: true,
   lintOnSave:false,
   outputDir: path.resolve(__dirname, "./app/") ,
