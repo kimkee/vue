@@ -5,7 +5,7 @@
       <div class="board-list">
         <div class="bbs-opt">
           <div class="tots" @click="testConfirm"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
-          <div class="more"><router-link class="bt" to="/list">더보기 <i class="fa-solid fa-chevron-right"></i></router-link></div>
+          <div class="more"><router-link class="bt" to="/bbs">더보기 <i class="fa-solid fa-chevron-right"></i></router-link></div>
         </div>
         <ul class="list">
           <li v-for="recent in Recents" :key="recent.key">

@@ -39,7 +39,7 @@
       </div>
 
       <div class="floatnav">
-        <router-link class="bt reg" to="/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
+        <router-link class="bt reg" to="/bbs/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
       </div>
 
     </main>
@@ -47,10 +47,10 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
-import store from '../store';
+import db  from '../../firebaseConfig.js';
+import store from '../../store';
 import { collection, query, getDocs, orderBy, limit , limitToLast } from "firebase/firestore";
-import ui from '../ui.js';
+import ui from '../../ui.js';
 
 
 export default {

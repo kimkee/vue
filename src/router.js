@@ -5,10 +5,12 @@ import HeaderSub from "./components/HeaderSub.vue";
 import Home from "./views/Home.vue";
 import Photo from "./views/Photo.vue";
 import Works from "./views/Works.vue";
-import List from "./views/List.vue";
-import Write from "./views/Write.vue";
-import Modify from "./views/Modify.vue";
-import View from "./views/View.vue";
+
+import List from "./views/bbs/List.vue";
+import Write from "./views/bbs/Write.vue";
+import Modify from "./views/bbs/Modify.vue";
+import View from "./views/bbs/View.vue";
+
 import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
@@ -48,7 +50,7 @@ const router = createRouter({
             }
         },
         {
-            path: "/list",
+            path: "/bbs",
             components: {
                 default: List,
                 HeaderSub,
@@ -56,7 +58,7 @@ const router = createRouter({
             }
         },
         {
-            path: "/write",
+            path: "/bbs/write",
 
             components: {
                 default: Write,
@@ -65,7 +67,7 @@ const router = createRouter({
             }
         },
         {
-            path: "/modify/:id",
+            path: "/bbs/:id/modify",
             components: {
                 default: Modify,
                 HeaderSub,
@@ -73,7 +75,7 @@ const router = createRouter({
             }
         },
         {
-            path: "/view/:id",
+            path: "/bbs/:id",
             name: "view",
             components: {
                 default: View,

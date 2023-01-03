@@ -53,8 +53,8 @@
             </div>
           
             <div class="btsbox btn-set">
-              <router-link class="btn sm" to="/list"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/modify/${this.pram}`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+              <router-link class="btn sm" to="/bbs"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/bbs/${this.pram}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
               <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
             </div>
 
@@ -73,11 +73,11 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
-import Comments from '../components/Comments.vue'
+import db  from '../../firebaseConfig.js';
+import Comments from '../../components/Comments.vue'
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
-import store from '../store';
+import store from '../../store';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
@@ -85,7 +85,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import ui from '../ui.js';
+import ui from '../../ui.js';
 export default {
   name: 'ViewItem',
   props: {
@@ -180,7 +180,7 @@ export default {
         ycb:()=>{
           deleteDoc(doc(db, "bbs",  this.pram ));
           console.log("삭제 성공: ");
-          this.$router.push('/list');
+          this.$router.push('/bbs');
         },
         ncb:()=>{
           console.log("안지움 ㄷㄷㄷ");
@@ -192,7 +192,7 @@ export default {
       // if (confirm("이 글을 삭제하시겠습니까?")) {
       //   await deleteDoc(doc(db, "bbs",  this.pram ));
       //   console.log("삭제 성공: ");
-      //   this.$router.push('/list');
+      //   this.$router.push('/bbs');
       // }else{
       //   console.log("안지움 ㄷㄷㄷ");
       // }

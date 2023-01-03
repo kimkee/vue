@@ -44,13 +44,13 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
+import db  from '../../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
-import Files from '../components/Files.vue';
+import Files from '../../components/Files.vue';
 import { useRoute } from 'vue-router';
 import { getStorage, ref,uploadBytes ,getDownloadURL, deleteObject   } from "firebase/storage";
 import store from '@/store';
-import ui from '../ui.js';
+import ui from '../../ui.js';
 
 export default {
   name: 'ModifyItem',
@@ -246,7 +246,7 @@ export default {
         img: imgUrl || this.Views.img
       }).then(()=>{
         console.log("수정 성공: ");
-        this.$router.push('/view/'+this.pram);
+        this.$router.push('/bbs/'+this.pram);
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });

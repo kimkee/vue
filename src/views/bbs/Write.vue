@@ -45,12 +45,12 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
+import db  from '../../firebaseConfig.js';
 import { collection, addDoc } from "firebase/firestore";
-import Files from '../components/Files.vue';
+import Files from '../../components/Files.vue';
 import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
 import store from '@/store';
-import ui from '../ui.js';
+import ui from '../../ui.js';
 
 
 export default {
@@ -90,7 +90,7 @@ export default {
           if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
               next('/signin');
           }else{
-              next('/list');
+              next('/bbs');
           }
           */
       }
@@ -160,7 +160,7 @@ export default {
         img: this.files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
-        this.$router.push('/list');
+        this.$router.push('/bbs');
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });

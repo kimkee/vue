@@ -5,7 +5,7 @@
     <div class="inr">
       <ul class="menu">
         <li><router-link class="bt" to="/"><i class="fa-solid fa-house"></i> <em>Home</em></router-link></li>
-        <li><router-link class="bt" to="/list"><i class="fa-solid fa-list"></i> <em>Board</em></router-link></li>
+        <li><router-link class="bt" to="/bbs"><i class="fa-solid fa-list"></i> <em>Board</em></router-link></li>
         <li><router-link class="bt" to="/photo"><i class="fa-solid fa-camera"></i> <em>Photo</em></router-link></li>
         <li><router-link class="bt" to="/works"><i class="fa-solid fa-briefcase"></i> <em>Works</em></router-link></li>
         <!-- <li><a href="javascript:;" class="bt">Contact</a></li>
