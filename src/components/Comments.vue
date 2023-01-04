@@ -107,7 +107,7 @@ export default {
     },
     comFocus(){
       if (!store.state.userInfo.uid ) { 
-        ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+        ui.confirm("로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
               ycb:()=>{ this.$router.push('/signin'); return; },
               ccb:()=>{ return;},
               ybt:"예",
@@ -132,11 +132,8 @@ export default {
         return;
       }
       const today = new Date() ;
-      const random = (length = 6) => { // 댓글마다 유니크한 아이디 정하기
-        return Math.random().toString(16).substr(2, length);
-      };
       this.comtSed({
-        idx: this.postId+"_comt_"+random(),
+        idx: this.postId+"_comt_"+ui.randomStr(),
         author : store.state.userInfo.nick,
         avatar : store.state.userInfo.avatar,
         uid : store.state.userInfo.uid,
@@ -160,7 +157,7 @@ export default {
       await updateDoc ( thisDoc, {
         coments : this.Coments
       }).then(()=>{
-        const li = document.querySelector('li[data-coment-idx='+opt.idx+']');
+        const li = document.querySelector("li[data-coment-idx='"+opt.idx+"']");
         const liTop = li.offsetTop;
         console.log(liTop);
         window.scrollTo(0,liTop);

@@ -3,7 +3,10 @@ import Nav from "./components/Nav.vue";
 import Header from "./components/Header.vue";
 import HeaderSub from "./components/HeaderSub.vue";
 import Home from "./views/Home.vue";
-import Photo from "./views/Photo.vue";
+import Photo from "./views/photo/Photo.vue";
+import PhotoWrite from "./views/photo/Write.vue";
+import PhotoModify from "./views/photo/Modify.vue";
+import PhotoView from "./views/photo/View.vue";
 import Works from "./views/Works.vue";
 
 import List from "./views/bbs/List.vue";
@@ -45,6 +48,31 @@ const router = createRouter({
             path: "/photo",
             components: {
                 default: Photo,
+                HeaderSub,
+                Nav
+            }
+        },
+        {
+            path: "/photo/:id",
+            name: "photoView",
+            components: {
+                default: PhotoView,
+                HeaderSub,
+                Nav,
+            }
+        },
+        {
+            path: "/photo/write",
+            components: {
+                default: PhotoWrite,
+                HeaderSub,
+                Nav
+            }
+        },
+        {
+            path: "/photo/:id/modify",
+            components: {
+                default: PhotoModify,
                 HeaderSub,
                 Nav
             }

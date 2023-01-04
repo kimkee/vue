@@ -67,6 +67,9 @@ ui = {
         const d = new Date();
         return d.getFullYear()+""+(d.getMonth()+1) +""+ d.getDate() +""+ d.getHours() +""+ d.getMinutes() +""+ d.getSeconds();
     },
+    randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
+        return Math.random().toString(16).substr(2, length);
+    },
     loading:{ // 로딩중..
         show: function () {
             if( !document.querySelectorAll("body>.ui-loading-dot").length ) {

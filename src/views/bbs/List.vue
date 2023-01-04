@@ -59,9 +59,9 @@ export default {
     
   },
   data() {
-      return {
-          Boards: []
-      }
+    return {
+        Boards: []
+    }
   },
   created(){
     ui.init();

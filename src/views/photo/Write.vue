@@ -1,33 +1,18 @@
 <template>
-  <div class="container board write">
+  <div class="container photo write">
     <main class="contents">
       <div class="board-write">
         <ul class="list">
           <li>
-            <label class="dt">닉네임</label>
-            <div class="dd">
-              <span class="input"><input type="text"  :value="$store.state.userInfo.nick" spellcheck="false" readonly placeholder="입력하세요"></span>
-            </div>
+            <Files ref="FileItem" :opts="{mode:'write', page:'photo', max:5}"/>
           </li>
           <li>
-            <label class="dt">제목</label>
-            <div class="dd">
-              <span class="input"><input type="text" v-model="title" spellcheck="false" :placeholder="'입력하세요(최대'+titleMax+'글자)'"></span>
-            </div>
-          </li>
-          <li>
-            <label class="dt">내용</label>
             <div class="dd">
               <span class="textarea">
                 <textarea class="reply" spellcheck="false" v-model="content" data-ui="autoheight" :placeholder="'입력하세요(최대'+contentMax+'글자)'"></textarea>
                 <span class="num"><i class="i">{{contentNow}}</i>/<b class="n">{{contentMax}}</b></span>
               </span>
             </div>
-          </li>
-          <li>
-            <label class="dt">사진</label>
-            <Files ref="FileItem" :opts="{mode:'write', page:'bbs', max:5}"/>
-            
           </li>
         </ul>
       </div>
@@ -61,11 +46,9 @@ export default {
   },
   data() {
     return {
-      title:'',
-      titleMax: 50,
       content:'',
       contentNow: 0,
-      contentMax: new Intl.NumberFormat().format(1000),
+      contentMax: new Intl.NumberFormat().format(500),
       isBtnSave: false,
       files:[],
     }
@@ -84,7 +67,7 @@ export default {
       }
   },
   watch:{
-    title(){
+    files(){
       this.valCheck();
     },
     content(){
@@ -106,15 +89,11 @@ export default {
 			return parseInt(str.replace(/,/g , ''));
 		},
     valCheck(){
-      if (this.title.length > 0 && this.content.length > 0) {
+      console.log(this.files);
+      if (this.files.length > 0 && this.content.length > 0) {
         this.isBtnSave = true;
       }else{
         this.isBtnSave = false;
-      }
-      if(this.title.length > this.titleMax ){
-        console.log("내용 글자수 맥스");
-        this.title = this.title.slice(0, this.titleMax);
-        ui.alert("제목의 글자수는 "+this.titleMax+"자 까지 입니다.");
       }
       if(this.content.length > this.commasDel(this.contentMax) ){
         console.log("내용 글자수 맥스");
@@ -125,18 +104,16 @@ export default {
     
     async write(){
       console.log("쓰기" , this.$refs.FileItem.Files );
-      const $title = this.title;
       const $content = this.content;
       const today = new Date();
       
-      const docRef = doc(db, "bbs" , "count");
+      const docRef = doc(db, "photo" , "count");
       const docSnap = await getDoc(docRef);
       
       if (!docSnap.exists()) return;
       const postNum = docSnap.data().post + 1;
       console.log( postNum );
-      setDoc(doc(db, "bbs" , ""+postNum), {
-        title: $title,
+      setDoc(doc(db, "photo" , ""+postNum), {
         content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         timestamp: today,
         uid: store.state.userInfo.uid,
@@ -149,8 +126,8 @@ export default {
         img: this.$refs.FileItem.Files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
-        setDoc(doc(db, "bbs" , "count"), { post: postNum }).then( ()=> { });  // count + 1
-        this.$router.push('/bbs');
+        setDoc(doc(db, "photo" , "count"), { post: postNum }).then( ()=> { });  // count + 1
+        this.$router.push('/photo');
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
