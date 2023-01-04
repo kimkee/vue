@@ -26,7 +26,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <Files ref="files" :items="this.files" :max="this.max"/>
+            <Files ref="FileItem" :opts="{mode:'write', page:'bbs', max:5}"/>
             
           </li>
         </ul>
@@ -46,7 +46,6 @@
 <script>
 import db  from '../../firebaseConfig.js';
 import { getDoc, doc, setDoc } from "firebase/firestore";
-import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
 import Files from '../../components/Files.vue';
 import store from '@/store';
 import ui from '../../ui.js';
@@ -55,43 +54,33 @@ import ui from '../../ui.js';
 export default {
   name: 'WriteItem',
   props: {
-    msg: String
+    
   },
   components: {
     Files
   },
   data() {
-      return {
-        title:'',
-        titleMax: 50,
-        content:'',
-        contentNow: 0,
-        contentMax: new Intl.NumberFormat().format(1000),
-        isBtnSave: false,
-        files:[],
-        max:5,
-      }
+    return {
+      title:'',
+      titleMax: 50,
+      content:'',
+      contentNow: 0,
+      contentMax: new Intl.NumberFormat().format(1000),
+      isBtnSave: false,
+      files:[],
+    }
   },
   beforeRouteEnter: (to, from, next) => {
       console.log(store.state.userInfo.stat);
-      if (store.state.userInfo.stat == true) {
-          return next();
+      if(store.state.userInfo.stat == true) {
+        return next();
       }else{
-
-          ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
-              ycb:()=>{ next('/signin'); },
-              ccb:()=>{ },
-              ybt:"예",
-              nbt:"아니오",
-          });
-
-          /*
-          if(confirm("로그인 필요합니다.\n로그인페이지로 이동하시겠습니까?")){
-              next('/signin');
-          }else{
-              next('/bbs');
-          }
-          */
+        ui.confirm("로그인 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
+          ycb:()=>{ next('/signin'); },
+          ccb:()=>{ },
+          ybt:"예",
+          nbt:"아니오",
+        });
       }
   },
   watch:{
@@ -135,37 +124,11 @@ export default {
     },
     
     async write(){
-      console.log("쓰기");
+      console.log("쓰기" , this.$refs.FileItem.Files );
       const $title = this.title;
       const $content = this.content;
-      // const $fileInput = document.querySelector("input#fileInput");
       const today = new Date();
       
-      // console.log(this.Views.title.trim().length);
-     
-      
-      // https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
-      // const docRef = await setDoc(doc(db, "bbs"), {
-      /* const docRef = await addDoc(collection(db, "bbs"), {
-        title: $title,
-        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
-        timestamp: today,
-        uid: store.state.userInfo.uid,
-        author: store.state.userInfo.nick,
-        avatar: store.state.userInfo.avatar,
-        date: ui.dateForm( today ),
-        count: 0,
-        coments:[],
-        likes:0,
-        img: this.files || []
-      }).then(()=>{
-        console.log("쓰기 성공: ");
-        this.$router.push('/bbs');
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
-      docRef */
-
       const docRef = doc(db, "bbs" , "count");
       const docSnap = await getDoc(docRef);
       
@@ -183,7 +146,7 @@ export default {
         count: 0,
         coments:[],
         likes:0,
-        img: this.files || []
+        img: this.$refs.FileItem.Files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
         setDoc(doc(db, "bbs" , "count"), { post: postNum }).then( ()=> { });  // count + 1
@@ -192,48 +155,7 @@ export default {
         console.error("Error adding document: ", e);
       });
     },
-    async fileAdd(){
-      const $fileInput = document.querySelector("input#fileInput");
-      /* 업로드  */
-      // let imgUrl = [];
-      const storage = getStorage();
-      console.log($fileInput.files[0]);
-      if ($fileInput.files[0]) {
-        const filename = $fileInput.files[0].name;
-        const storageRef = ref(storage, "images/"+filename);
-        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
-          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
 
-        });
-        await getDownloadURL(ref(storage, "images/"+filename))
-        .then((url) => {
-          this.files.push(url);
-          console.log(this.files , this.$refs);
-          this.$refs.files.itemSet(this.files);
-          $fileInput.value = '';
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-    },
-    async fileDel(index){
-      console.log(this.files[index]);
-      ui.confirm("첨부한 파일을 삭제하시겠습니까?",{
-        ycb: ()=>{
-          const storage = getStorage();
-          console.log(this.files[index]);
-          const desertRef = ref(storage, this.files[index]);
-          deleteObject(desertRef).then(() => {
-            console.log("파일삭제 성공 ");
-            this.files.splice(index, 1);
-            this.$refs.files.itemSet(this.files);
-          }).catch((error) => { console.log(error); });
-        },
-        ybt:"예",
-        nbt:"아니오"
-      });
-    },
   }
 }
 </script>

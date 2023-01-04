@@ -1,7 +1,6 @@
 <template>
   <div class="container board modify">
     <main class="contents">
-      <h1>{{ msg }}</h1> 
       <div class="board-write">
         <ul class="list">
           <li>
@@ -27,7 +26,7 @@
           </li>
           <li>
             <label class="dt">사진</label>
-            <Files ref="files" :max="this.max"/>
+            <Files ref="FileItem" :opts="{mode:'modify', page:'bbs', param:param, max:5}"/>
           </li>
         </ul>
       </div>
@@ -48,14 +47,13 @@ import db  from '../../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
 import Files from '../../components/Files.vue';
 import { useRoute } from 'vue-router';
-import { getStorage, ref,uploadBytes ,getDownloadURL, deleteObject   } from "firebase/storage";
 import store from '@/store';
 import ui from '../../ui.js';
 
 export default {
   name: 'ModifyItem',
   props: {
-    msg: String
+    
   },
   components: {
     Files
@@ -70,7 +68,6 @@ export default {
       isBtnSave: false,
       Views: {},
       files:[],
-      max:5,
     }
   },
   watch:{
@@ -87,7 +84,7 @@ export default {
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.read(ids);
-    this.pram = ids;
+    this.param = ids;
   },
   mounted(){
     document.querySelector(".header .htit").textContent = '글 수정';
@@ -128,8 +125,7 @@ export default {
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
         this.files = this.Views.img;
         console.log(this.files);
-        // this.$refs.files.items = this.files;
-        this.$refs.files.itemSet(this.files);
+        this.$refs.FileItem.itemSet(this.files);
     
         console.log(this.Views.uid , store.state.userInfo.uid);
         if(this.Views.uid != store.state.userInfo.uid){
@@ -142,111 +138,24 @@ export default {
         console.log("No such document!");
       }
     },
-    async fileAdd(){
-      const $fileInput = document.querySelector("input#fileInput");
-      /* 업로드  */
-      // let imgUrl = [];
-      if (this.files.length > this.max) {
-        alert("d")
-      }
-      let fileList = "";
-      const storage = getStorage();
-      console.log($fileInput.files[0]);
-      if ($fileInput.files[0]) {
-        const filename = $fileInput.files[0].name;
-        const storageRef = ref(storage, "images/"+filename);
-        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
-          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
-        });
-        await getDownloadURL(ref(storage, "images/"+filename))
-        .then((url) => {
-          this.files.push(url);
-          console.log(this.files , this.$refs);
-          this.$refs.files.itemSet(this.files);
-          const docRef = doc(db, "bbs", this.pram );
-          updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
-          this.fileList = fileList;
-          $fileInput.value = '';
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-    },
-    async fileDel(index){
-      console.log(this.files[index]);
-      ui.confirm("첨부한 파일을 삭제하시겠습니까?",{
-        ycb: ()=>{
-          const storage = getStorage();
-          console.log(this.files[index]);
-          const desertRef = ref(storage, this.files[index]);
-          const docRef = doc(db, "bbs", this.pram );
-          deleteObject(desertRef).then(() => {
-            console.log("파일삭제 성공 ");
-            this.files.splice(index, 1);
-            this.$refs.files.itemSet(this.files);
-            updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
-          }).catch((error) => { console.log(error); });
-        },
-        ybt:"예",
-        nbt:"아니오",
-      });
-
-/*       if ( confirm("첨부한 파일을 삭제하시겠습니까?") ) {
-        const storage = getStorage();
-        console.log(this.files[index]);
-        const desertRef = ref(storage, this.files[index]);
-        const docRef = doc(db, "bbs", this.pram );
-        await deleteObject(desertRef).then(() => {
-          console.log("파일삭제 성공 ");
-          this.files.splice(index, 1);
-          this.$refs.files.itemSet(this.files);
-          updateDoc(docRef, { img: this.files }).then(()=>{ this.Views.img = this.files }).catch (e =>{ console.error(e); });
-        }).catch((error) => { console.log(error); });
-      }else{
-        return
-      } */
-    },
-    
     async modify(){
       const $title = this.title;
       const $content = this.content
-      const $fileInput = document.querySelector("input#fileInput");
-      console.log("수정" + this.pram);
-      
-      /* 업로드  */
-      const storage = getStorage();
-      console.log($fileInput.files[0]);
-      let imgUrl = "";
-      if ($fileInput.files[0] != undefined) {
-        const filename = $fileInput.files[0].name;
-        const storageRef = ref(storage, "images/"+filename);
-        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
-          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
-        });
-        await getDownloadURL(ref(storage, "images/"+filename))
-        .then((url) => {
-          imgUrl = url;
-          console.log(imgUrl);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      }
-
+      console.log("수정" + this.param);
+     
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
 
-      const docRef = doc(db, "bbs", this.pram );
+      const docRef = doc(db, "bbs", this.param );
       await updateDoc(docRef, {
         title: $title,
         content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,
-        img: imgUrl || this.Views.img
+        img: this.$refs.FileItem.Files
       }).then(()=>{
         console.log("수정 성공: ");
-        this.$router.push('/bbs/'+this.pram);
+        this.$router.push('/bbs/'+this.param);
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
