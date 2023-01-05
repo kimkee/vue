@@ -120,15 +120,11 @@ export default {
       }
     },
     async modify(){
-      const $title = this.title;
       const $content = this.content
       console.log("수정" + this.param);
-     
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
-
       const docRef = doc(db, "photo", this.param );
       await updateDoc(docRef, {
-        title: $title,
         content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
