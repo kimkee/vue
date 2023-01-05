@@ -1,8 +1,8 @@
 <template>
-  <div class="container board view">
+  <div class="container photo view">
     <main class="contents">
       <!-- {{$route.params.id}} -->
-      <div class="board-view">
+      <div class="photo-view">
         <div class="vcont">
           <div class="hdt">
             <div class="info">
@@ -125,7 +125,7 @@ export default {
     this.pram = ids;
   },
   mounted(){
-    document.querySelector(".header .htit").textContent = 'Board';
+    document.querySelector(".header .htit").textContent = 'Photo';
   },
   methods:{
     async view(ids){
@@ -158,7 +158,7 @@ export default {
         this.Views.coments = docSnap.data().coments ;
         this.Views.count = docSnap.data().count ;
         this.Views.likes = docSnap.data().likes || 0 ;
-        document.querySelector(".page.board.view").classList.add("load");
+        document.querySelector(".page.photo.view").classList.add("load");
         const newHits = this.Views.count + 1;
         this.hits( newHits );
         setTimeout(() => {
