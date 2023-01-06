@@ -34,26 +34,13 @@
                 </swiper-slide>
               </swiper>
 
-              <!-- <div class="photo" v-if="typeof Views.img == 'object'">
-                <div v-for="image,index in Views.img" :key="index" class="pics"><img :src="image" alt="" onerror="this.src='./img/noimage.png';"></div>
-              </div>
-
-              <div v-else>
-                <div v-if="Views.img" class="pics"><img :src="Views.img" alt="" onerror="this.src='./img/noimage.png';"></div>
-              </div> -->
               
               <div class="text" v-html="Views.content"></div>
 
             </div>
-            
 
-           <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
-            <!-- <div class="vote">
-              <button type="button" class="bt-vote" :class="likeOn" @click="likeTog" v-show="likeShow" :disabled="likeShow?false:true">
-                <i class="fa-solid fa-heart"></i>
-                <p>{{ Views.likes }}</p>
-              </button>
-            </div> -->
+
+            <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/bbs"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
@@ -98,7 +85,6 @@ export default {
     return {
       Views: {},
       Coments: [],
-      likeShow: false,
       dbTable: "bbs",
     }
   },

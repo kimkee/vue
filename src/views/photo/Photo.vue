@@ -12,10 +12,11 @@
             <div class="box">
               <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
                 <div class="pic" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                <div class="nums" v-if="board.img.length > 1"><em><i class="fa-solid fa-images"></i></em></div>
                 <div class="info">
-                  <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                  <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
-                  <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                  <em v-if="board.comtNum > 0"><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                  <!-- <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em> -->
+                  <em v-if="board.likes > 0"><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
                 </div>
               </router-link>
             </div>
