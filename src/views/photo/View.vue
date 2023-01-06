@@ -37,7 +37,7 @@
 
             </div>
 
-            <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
+            <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
@@ -49,7 +49,7 @@
         </div>
       </div>
       
-      <Comments :opts="{dbTable:this.dbTable}"/>
+      <Comments :opts="{dbTable:dbTable}"/>
 
 
     </main>
@@ -125,13 +125,15 @@ export default {
 
       const userPatterns = {
         'email' : /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g,
-        'url'   : /(?:(?:(https?|ftp|telnet):\/\/|[\s\t\r\n\[\]\`\<\>\"\'])((?:[\w$\-_\.+!*\'\(\),]|%[0-9a-f][0-9a-f])*\:(?:[\w$\-_\.+!*\'\(\),;\?&=]|%[0-9a-f][0-9a-f])+\@)?(?:((?:(?:[a-z0-9\-가-힣]+\.)+[a-z0-9\-]{2,})|(?:[\d]{1,3}\.){3}[\d]{1,3})|localhost)(?:\:([0-9]+))?((?:\/(?:[\w$\-_\.+!*\'\(\),;:@&=ㄱ-ㅎㅏ-ㅣ가-힣]|%[0-9a-f][0-9a-f])+)*)(?:\/([^\s\/\?\.:<>|#]*(?:\.[^\s\/\?:<>|#]+)*))?(\/?[\?;](?:[a-z0-9\-]+(?:=[^\s:&<>]*)?\&)*[a-z0-9\-]+(?:=[^\s:&<>]*)?)?(#[\w\-]+)?)/gmi
+        'url'   : /(?:(?:(https?|ftp|telnet):\/\/|[\s\t\r\n\[\]\`\<\>\"\'])((?:[\w$\-_\.+!*\'\(\),]|%[0-9a-f][0-9a-f])*\:(?:[\w$\-_\.+!*\'\(\),;\?&=]|%[0-9a-f][0-9a-f])+\@)?(?:((?:(?:[a-z0-9\-가-힣]+\.)+[a-z0-9\-]{2,})|(?:[\d]{1,3}\.){3}[\d]{1,3})|localhost)(?:\:([0-9]+))?((?:\/(?:[\w$\-_\.+!*\'\(\),;:@&=ㄱ-ㅎㅏ-ㅣ가-힣]|%[0-9a-f][0-9a-f])+)*)(?:\/([^\s\/\?\.:<>|#]*(?:\.[^\s\/\?:<>|#]+)*))?(\/?[\?;](?:[a-z0-9\-]+(?:=[^\s:&<>]*)?\&)*[a-z0-9\-]+(?:=[^\s:&<>]*)?)?(#[\w\-]+)?)/gmi,
+        'hash'   :  /#([0-9a-zA-Z가-힣]*)/g
       }
       // userPatterns
 
       var userReplaceFunctions = {
         'email': function(_email){return '<a href="mailto:' + _email + '">'+ _email +'</a>'},
-        'url'  : function(_url){return '<a href="' + _url + '" target="_blank">'+ _url +'</a>'}
+        'url'  : function(_url){return '<a href="' + _url + '" target="_blank">'+ _url +'</a>'},
+        'hash'  : function(_hash){return '<a class="hash" href="javascript:;">'+ _hash +'</a>'}
       }
       // userReplaceFunctions
 
@@ -144,7 +146,7 @@ export default {
         this.Views.title = docSnap.data().title;
         this.Views.author = docSnap.data().author || "익명";
         this.Views.avatar = docSnap.data().avatar || 0;
-        this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']);
+        this.Views.content = docSnap.data().content.replace(userPatterns['url'], userReplaceFunctions['url']).replace(userPatterns['hash'], userReplaceFunctions['hash']);
         this.Views.timestamp = ui.dateForm( docSnap.data().timestamp.toDate() ) ;
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
