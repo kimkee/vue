@@ -335,7 +335,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 /* swiper */
-.swiper .swiper-wrapper {padding-bottom: 12rem;}
+.swiper .swiper-wrapper {padding-bottom: 20rem;}
 .swiper .swiper-pagination-bullets.swiper-pagination{display: flex; justify-content: center; bottom: 0;}
 .swiper [class^='swiper-button']{color: #ffffff; display: none;}
 .swiper .swiper-pagination-bullet{transform: scale(0.5);opacity: 0.5; margin: 0rem 1rem !important;background-color: #dddddd;}
