@@ -89,7 +89,7 @@ export default {
       // document.querySelector(".bt-vote").disabled = false;
       this.likeShow = true;
     },
-    async likeMem (likeID, opt){ // userInfo 에 좋아요 누른 정보 저장
+    async likeMem (likeID, addrem){ // userInfo 에 좋아요 누른 정보 저장
       const docID = this.opts.param;
       console.log(this.opts.dbTable);
       const memRef = doc(db, "member", likeID );
@@ -98,22 +98,18 @@ export default {
       const item = `{\"${this.opts.dbTable}\":\"${docID}\"}`
       console.log(item);
       let NarrLike;
-      if (opt == "add") {
+      if (addrem == "add") {
         arrLike.push(item);
         NarrLike = [...new Set(arrLike)];
         console.log(NarrLike);
-      }else{
+      }
+      if (addrem == "rem") {
         NarrLike = arrLike.filter( data => data != item );
         console.log(NarrLike);
       }
-      updateDoc(memRef, {
-        liked:NarrLike
-      }).then(()=>{
-        console.log("좋아요: ",likeID );
-        
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
+      updateDoc(memRef, { liked:NarrLike })
+      .then(()=>{ console.log("좋아요: ",likeID ); })
+      .catch (e =>{ console.error("Error adding document: ", e); });
     }
   }
 }

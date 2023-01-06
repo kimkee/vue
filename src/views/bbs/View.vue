@@ -51,7 +51,7 @@
           </dd>
         </div>
       </div>
-      <Comments :dbTable="{id:this.dbTable,num:3}"/>
+      <Comments :opts="{dbTable:this.dbTable}"/>
 
 
     </main>

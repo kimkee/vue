@@ -24,10 +24,12 @@
               <swiper class="photo" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
                 :auto-height="true" :slides-per-view="1" 
-                :space-between="10" navigation :pagination="{ clickable: true }"
+                :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
-                <swiper-slide v-for="image,index in Views.img" :key="index" class="pics">
-                  <img :src="image" alt="" onerror="this.src='./img/noimage.png';">
+                <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
+                  <div class="pic">
+                    <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';">
+                  </div>
                 </swiper-slide>
               </swiper>
               
@@ -47,7 +49,7 @@
         </div>
       </div>
       
-      <Comments :dbTable="{id:'photo'}"/>
+      <Comments :opts="{dbTable:this.dbTable}"/>
 
 
     </main>

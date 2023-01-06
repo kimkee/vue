@@ -70,7 +70,7 @@ export default {
   name: 'CommentsItem',
   props: {
     msg: String,
-    dbTable: Object,
+    opts: Object,
   },
   data() {
     return {
@@ -90,7 +90,8 @@ export default {
   },
   methods:{
     async comtList(ids){
-      const docRef = doc(db, this.dbTable.id , ids);
+      console.log(this.opts.dbTable , ids);
+      const docRef = doc(db, this.opts.dbTable , ids);
       try {
         console.log("글 id === " + ids);
           const docSnap = await getDoc(docRef);
@@ -153,7 +154,7 @@ export default {
       console.table(opt);
 
       this.Coments.push(opt)
-      const thisDoc = doc(db, this.dbTable.id, this.postId);
+      const thisDoc = doc(db, this.opts.dbTable, this.postId);
       await updateDoc ( thisDoc, {
         coments : this.Coments
       }).then(()=>{
@@ -176,7 +177,7 @@ export default {
                     this.Coments.splice(i, 1);
                 }
             })
-            const docRef = doc(db, this.dbTable.id, this.postId );
+            const docRef = doc(db, this.opts.dbTable, this.postId );
             updateDoc(docRef, {
               coments:this.Coments
             }).then(()=>{
