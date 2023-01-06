@@ -45,12 +45,15 @@
               <div class="text" v-html="Views.content"></div>
 
             </div>
-            <div class="vote">
+            
+
+           <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
+            <!-- <div class="vote">
               <button type="button" class="bt-vote" :class="likeOn" @click="likeTog" v-show="likeShow" :disabled="likeShow?false:true">
                 <i class="fa-solid fa-heart"></i>
                 <p>{{ Views.likes }}</p>
               </button>
-            </div>
+            </div> -->
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/bbs"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
@@ -61,7 +64,6 @@
           </dd>
         </div>
       </div>
-      
       <Comments :dbTable="{id:this.dbTable,num:3}"/>
 
 
@@ -74,7 +76,8 @@
 
 <script>
 import db  from '../../firebaseConfig.js';
-import Comments from '../../components/Comments.vue'
+import Comments from '../../components/Comments.vue';
+import Vote from '../../components/Vote.vue';
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 import store from '../../store';
@@ -96,12 +99,12 @@ export default {
       Views: {},
       Coments: [],
       likeShow: false,
-      likeOn: "",
       dbTable: "bbs",
     }
   },
   components:{
     Comments,
+    Vote,
     Swiper,
     SwiperSlide,
   },
@@ -172,7 +175,7 @@ export default {
       } catch(error) {
         console.log(error)
       }
-      this.getUser();
+      this.$refs.VoteItem.getUser();
 
       ui.loading.hide();
     },
@@ -192,7 +195,7 @@ export default {
       });
 
     },
-    async hits(newHits){
+    async hits(newHits){ // 조회수
       console.log(newHits);
       const docRef = doc(db, this.dbTable, this.param );
       this.Views.count = newHits;
@@ -204,87 +207,6 @@ export default {
         console.error("Error adding document: ", e);
       });
     },
-    async likeTog(e){
-      if(!store.state.userInfo.stat) {
-        ui.confirm("로그인 하시겠습니까?.",{
-          ycb:()=>{
-            this.$router.push("/signin");
-          },
-          ybt:"예",
-          nbt:"아니오",
-        });
-        return;
-      }
-      const btlike = e.currentTarget;
-      console.log(btlike);
-      const isLiked = btlike.classList.contains("on");
-      let nLike = this.Views.likes;
-      if (isLiked) {
-        btlike.classList.remove("on");
-        nLike--;
-        this.likeAct(nLike);
-        this.likeMem(store.state.userInfo.uid,"rem");
-      }else{
-        btlike.classList.add("on");
-        nLike++;
-        this.likeAct(nLike);
-        this.likeMem(store.state.userInfo.uid,"add");
-      }
-    },
-    likeAct (n){ // 좋아요 +- 
-      const  docRef = doc(db, this.dbTable, this.param );
-      this.Views.likes = n;
-      updateDoc(docRef, {
-        likes: n,
-      }).then(()=>{
-        console.log("좋아요: ",this.param , n);
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
-    },
-    async getUser(){
-      console.log(store.state.userInfo.uid);
-      if( store.state.userInfo.uid ){
-        const memRef = doc(db, "member", store.state.userInfo.uid );
-        const memSnap = await getDoc(memRef);
-        // console.log( memSnap.data().liked);
-        memSnap.data().liked.map( lk => { 
-          lk = JSON.parse(lk);
-          console.log(lk[this.dbTable] , this.param);
-          if( lk[this.dbTable] == this.param ){
-            // document.querySelector(".bt-vote").classList.add("on");
-            this.likeOn = "on";
-          }
-        });
-      }
-      // document.querySelector(".bt-vote").disabled = false;
-      this.likeShow = true;
-    },
-    async likeMem (likeID, opt){ // userInfo 에 좋아요 누른 정보 저장
-      const docID = this.param;
-      console.log(this.dbTable);
-      const memRef = doc(db, "member", likeID );
-      const memSnap = await getDoc(memRef);
-      const arrLike = memSnap.data().liked || [];
-      const item = `{\"${this.dbTable}\":\"${docID}\"}`
-      let NarrLike;
-      if (opt == "add") {
-        arrLike.push(item);
-        NarrLike = [...new Set(arrLike)];
-        console.log(NarrLike);
-      }else{
-        NarrLike = arrLike.filter( data => data != item );
-        console.log(NarrLike);
-      }
-      updateDoc(memRef, {
-        liked:NarrLike
-      }).then(()=>{
-        console.log("좋아요: ",likeID );
-        
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
-    }
   }
 }
 </script>

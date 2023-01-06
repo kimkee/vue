@@ -42,16 +42,11 @@
               <div class="text" v-html="Views.content"></div>
 
             </div>
-            <div class="vote">
-              <button type="button" class="bt-vote" @click="likeTog" v-show="likeOn" disabled>
-                <i class="fa-solid fa-heart"></i>
-                <p>{{ Views.likes }}</p>
-              </button>
-            </div>
+            <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.pram}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
               <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
             </div>
 
@@ -71,7 +66,8 @@
 
 <script>
 import db  from '../../firebaseConfig.js';
-import Comments from '../../components/Comments.vue'
+import Comments from '../../components/Comments.vue';
+import Vote from '../../components/Vote.vue';
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
 import { useRoute } from 'vue-router';
 import store from '../../store';
@@ -89,14 +85,16 @@ export default {
 
   },
   data() {
-      return {
-          Views: {},
-          Coments: [],
-          likeOn:''
-      }
+    return {
+      Views: {},
+      Coments: [],
+      likeShow: false,
+      dbTable: "photo",
+    }
   },
   components:{
     Comments,
+    Vote,
     Swiper,
     SwiperSlide,
   },
@@ -122,7 +120,7 @@ export default {
     const route = useRoute();  
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.view(ids);
-    this.pram = ids;
+    this.param = ids;
   },
   mounted(){
     document.querySelector(".header .htit").textContent = 'Photo';
@@ -167,7 +165,7 @@ export default {
       } catch(error) {
         console.log(error)
       }
-      this.getUser();
+      this.$refs.VoteItem.getUser();
 
       ui.loading.hide();
     },
@@ -175,7 +173,7 @@ export default {
 
       ui.confirm("이 글을 삭제하시겠습니까?",{
         ycb:()=>{
-          deleteDoc(doc(db, "photo",  this.pram ));
+          deleteDoc(doc(db, this.dbTable, this.param ));
           console.log("삭제 성공: ");
           this.$router.push('/bbs');
         },
@@ -186,17 +184,10 @@ export default {
         nbt:"아니오",
       });
 
-      // if (confirm("이 글을 삭제하시겠습니까?")) {
-      //   await deleteDoc(doc(db, "photo",  this.pram ));
-      //   console.log("삭제 성공: ");
-      //   this.$router.push('/bbs');
-      // }else{
-      //   console.log("안지움 ㄷㄷㄷ");
-      // }
     },
     async hits(newHits){
       console.log(newHits);
-      const docRef = doc(db, "photo", this.pram );
+      const docRef = doc(db, this.dbTable, this.param );
       this.Views.count = newHits;
       await updateDoc(docRef, {
         count: newHits,
@@ -206,88 +197,6 @@ export default {
         console.error("Error adding document: ", e);
       });
     },
-    async likeTog(e){
-      if(!store.state.userInfo.stat) {
-        ui.confirm("로그인 하시겠습니까?.",{
-          ycb:()=>{
-            this.$router.push("/signin");
-          },
-          ybt:"예",
-          nbt:"아니오",
-        });
-        return;
-        /* if(confirm("로그인 하시겠습니까?.")) {
-          this.$router.push("/signin");
-          return;
-        }else{
-          return;
-        } */ 
-      }
-      const btlike = e.currentTarget;
-      console.log(btlike);
-      const isLiked = btlike.classList.contains("on");
-      let nLike = this.Views.likes;
-      if (isLiked) {
-        btlike.classList.remove("on");
-        nLike--;
-        this.likeAct(nLike);
-        this.likeMem(store.state.userInfo.uid,"rem");
-      }else{
-        btlike.classList.add("on");
-        nLike++;
-        this.likeAct(nLike);
-        this.likeMem(store.state.userInfo.uid,"add");
-      }
-    },
-    likeAct (n){ // 좋아요 +- 
-      const  docRef = doc(db, "photo", this.pram );
-      this.Views.likes = n;
-      updateDoc(docRef, {
-        likes: n,
-      }).then(()=>{
-        console.log("좋아요: ",this.pram , n);
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
-    },
-    async getUser(){
-      console.log(store.state.userInfo.uid);
-      if( store.state.userInfo.uid ){
-        const memRef = doc(db, "member", store.state.userInfo.uid );
-        const memSnap = await getDoc(memRef);
-        // console.log( memSnap.data().liked);
-        memSnap.data().liked.map( lk => { 
-          if( lk == this.pram ){
-            document.querySelector(".bt-vote").classList.add("on");
-          }
-        });
-      }
-      document.querySelector(".bt-vote").disabled = false;
-      this.likeOn = true;
-    },
-    async likeMem (likeID, opt){ // userInfo 에 좋아요 누른 정보 저장
-      const docID = this.pram;
-      const memRef = doc(db, "member", likeID );
-      const memSnap = await getDoc(memRef);
-      const arrLike = memSnap.data().liked || [];
-      let NarrLike;
-      if (opt == "add") {
-        arrLike.push(docID);
-        NarrLike = [...new Set(arrLike)];
-      }else{
-        NarrLike = arrLike.filter( data => data != docID );
-      }
-      
-      console.log(NarrLike);
-      updateDoc(memRef, {
-        liked:NarrLike
-      }).then(()=>{
-        console.log("좋아요: ",likeID );
-        
-      }).catch (e =>{
-        console.error("Error adding document: ", e);
-      });
-    }
   }
 }
 </script>
