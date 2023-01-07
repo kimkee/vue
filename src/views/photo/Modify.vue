@@ -33,7 +33,7 @@
 <script>
 import db  from '../../firebaseConfig.js';
 import { getDoc, doc , updateDoc } from "firebase/firestore";
-import Files from '../../components/Files.vue';
+import Files from '../../components/Files.bak.vue';
 import { useRoute } from 'vue-router';
 import store from '@/store';
 import ui from '../../ui.js';

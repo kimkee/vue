@@ -66,6 +66,7 @@ import db  from '../../firebaseConfig.js';
 import Comments from '../../components/Comments.vue';
 import Vote from '../../components/Vote.vue';
 import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
+import { getStorage, ref, deleteObject } from "firebase/storage";
 import { useRoute } from 'vue-router';
 import store from '../../store';
 
@@ -169,9 +170,17 @@ export default {
 
       ui.confirm("이 글을 삭제하시겠습니까?",{
         ycb:()=>{
-          deleteDoc(doc(db, this.dbTable,  this.param ));
+          this.Views.img.forEach( imgUrl =>{
+            console.log(imgUrl);
+            const storage = getStorage();
+            const desertRef = ref(storage, imgUrl);
+            deleteObject(desertRef).then(() => {
+              console.log("파일삭제 성공 ");
+            }).catch((error) => { console.log(error); });
+          });
+          deleteDoc(doc(db, this.dbTable, this.param ));
           console.log("삭제 성공: ");
-          this.$router.push('/bbs');
+          this.$router.push('/'+this.dbTable);
         },
         ncb:()=>{
           console.log("안지움 ㄷㄷㄷ");

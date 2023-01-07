@@ -3,7 +3,7 @@
 <div class="ut-attfiles">
   <div class="attach">
     <div class="adbts">
-      <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*" multiple>
+      <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*">
       <span class="btfiles" @click="numCheck" :class="this.btnDis">
         <i class="fa-solid fa-camera"></i>
         <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{this.opts.max}}</b></span>
@@ -29,7 +29,7 @@ export default {
     // items: Array,
     // max: Number,
     opts: Object,
-  },
+ },
   data() {
       return {
         Files: [],
@@ -58,37 +58,29 @@ export default {
       const storage = getStorage();
       console.log($fileInput.files[0]);
       
-      const filename = $fileInput.files[0].name;
-      const uptime = ui.timeVer();
-
-      if ($fileInput.value) {
-        console.log($fileInput.files);
-        for (var i = 0; i < $fileInput.files.length; i++) {
-          var imageFile = $fileInput.files[i];
-          console.log(imageFile.name);
-          
-          const storageRef = ref(storage, this.opts.page+"/"+uptime+"_"+filename);
-          await uploadBytes( storageRef , imageFile ).then((snapshot) => {
-            console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
-          });
-          
-          await getDownloadURL(ref(storage, this.opts.page+"/"+uptime+"_"+imageFile.name))
-          .then((url) => {
-            this.Files.push(url);
-            console.log(this.Files , this.$refs );
-            this.itemSet(this.Files);
-            if(this.opts.mode == "modify"){
-              const docRef = doc(db, this.opts.page, this.opts.param );
-              updateDoc(docRef, { img: this.Files }).then(()=>{ this.$parent.Views.img = this.Files }).catch (e =>{ console.error(e); });
-            }
-            // this.$parent.files = this.Files;
-            // this.$parent.valCheck();
-            // $fileInput.value = '';
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-        }
+      if ($fileInput.files[0]) {
+        const filename = $fileInput.files[0].name;
+        const uptime = ui.timeVer();
+        const storageRef = ref(storage, this.opts.page+"/"+uptime+"_"+filename);
+        await uploadBytes( storageRef , $fileInput.files[0] ).then((snapshot) => {
+          console.log('Uploaded a blob or file!',storageRef.fullPath , snapshot);
+        });
+        await getDownloadURL(ref(storage, this.opts.page+"/"+uptime+"_"+filename))
+        .then((url) => {
+          this.Files.push(url);
+          console.log(this.Files , this.$refs );
+          this.itemSet(this.Files);
+          if(this.opts.mode == "modify"){
+            const docRef = doc(db, this.opts.page, this.opts.param );
+            updateDoc(docRef, { img: this.Files }).then(()=>{ this.$parent.Views.img = this.Files }).catch (e =>{ console.error(e); });
+          }
+          this.$parent.files = this.Files;
+          this.$parent.valCheck();
+          $fileInput.value = '';
+        })
+        .catch((error) => {
+          console.log(error);
+        });
       }
     },
     async fileDel(index){ // 파일 삭제
