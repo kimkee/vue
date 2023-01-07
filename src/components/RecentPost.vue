@@ -1,7 +1,7 @@
 <template>
   
     <div class="recent">
-      <!-- <h1>{{ this.dbTable.id }}</h1>  -->
+      <!-- <h1>{{ this.opts.id }}</h1>  -->
       <div class="board-list">
         <div class="bbs-opt">
           <div class="tots" @click="testConfirm"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
@@ -10,10 +10,12 @@
         <ul class="list">
           <li v-for="recent in Recents" :key="recent.key">
               <router-link class="box" :to="{ name: 'view', params: { id: recent.key }}">
-                <h4 class="tits">{{ recent.title }}</h4>
                 <div class="cont">
-                  <div class="text" v-html="recent.content"></div>
                   <div class="pics" v-if="recent.img.length"><img class="img" :src="recent.img" onerror="this.src='./img/noimage.png';"></div>
+                  <div class="desc">
+                    <h4 class="tits">{{ recent.title }}</h4>
+                    <div class="text" v-html="recent.content"></div>
+                  </div>
                 </div>
                 <div class="info">
                   <div class="dd">
@@ -46,7 +48,7 @@ import ui from '../ui.js';
 export default {
   name: 'ListItem',
   props: {
-    dbTable: Object
+    opts: Object
   },
   data() {
       return {
@@ -73,8 +75,8 @@ export default {
       });
     },
     async read(){
-      console.log("dbTable ======================= " +  this.dbTable['id']  );
-      const q = query(collection(db, this.dbTable.id), orderBy("timestamp", "desc") , limit(this.dbTable.num) );
+      console.log("dbTable ======================= " +  this.opts['dbTable']  );
+      const q = query(collection(db, this.opts.dbTable), orderBy("timestamp", "desc") , limit(this.opts.num) );
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {

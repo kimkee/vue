@@ -35,7 +35,7 @@
       </swiper>
 
 
-      <RecentPost :dbTable="{id:'bbs',num:3}"/>
+      <RecentPost :opts="{dbTable:'bbs',num:5}"/>
       
       
     </main>

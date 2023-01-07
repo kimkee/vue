@@ -13,10 +13,12 @@
           <ul class="list">
             <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
                 <router-link class="box" :to="{ name: 'view', params: { id: board.id }}">
-                  <h4 class="tits">{{ board.title }}</h4>
                   <div class="cont">
-                    <div class="text" v-html="board.content"></div>
                     <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                    <div class="desc">
+                      <h4 class="tits">{{ board.title }}</h4>
+                      <div class="text" v-html="board.content"></div>
+                    </div>
                   </div>
                   <div class="info">
                     <div class="dd">
