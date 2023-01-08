@@ -143,7 +143,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 /* 플로팅 탑버튼 글쓰기버튼 */
 .floatnav{position:fixed;right: 20px;z-index: 500;transition: all 0.3s;min-width: 55px;bottom: 82px;bottom: calc(82px + env(safe-area-inset-bottom));}
 .floatnav.is-top{bottom: 20px;bottom: calc(20px + env(safe-area-inset-bottom));transition: none;}
-.floatnav .bt{font-size: 0px;width: 52px;height: 52px;display:block;background: no-repeat #555555;background-size: 100% auto;margin: 10px auto 0 auto;border-radius: 35px;}
+.floatnav .bt{font-size: 0px;width: 52px;height: 52px;display:block;background: no-repeat #555555;background-size: 100% auto;margin: 10px auto 0 auto;border-radius: 35px;/* text-shadow: 0px 0px 6px #0000007d; */box-shadow: 0px 0px 6px #0000007d;}
 .floatnav .bt::before{width:16px;height:16px;background: center no-repeat;background-size: 16px auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';}
 .floatnav .bt.top{display: none;background: rgb(255 255 255 / 80%);border: solid rgba(0, 0, 0, 0.1) 1px;text-align: center;width: 45px;height: 45px;}
 .floatnav .bt.top::before{background-image: url();background-size: 32px auto;margin: -1px 0px 0px 0px;}

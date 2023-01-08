@@ -36,7 +36,7 @@
       
     </main>
     <div class="floatnav">
-      <router-link class="bt reg" to="/photo/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
+      <router-link class="bt reg" to="/photo/write"><i class="fa-solid fa-camera"></i><em>사진동록</em></router-link>
     </div>
   </div>
 </template>
