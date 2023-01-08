@@ -17,6 +17,7 @@
             </div>
           </li>
         </ul>
+        <div class="savelogin"><label class="checkbox"><input type="checkbox" ref="saveLogin"><span class="txt">로그인 정보저장</span></label></div>
         <div class="btsbox btn-set">
             <button type="button" class="btn" @click="login"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
         </div>
@@ -30,7 +31,7 @@
 </template>
 
 <script>
-import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence} from 'firebase/auth';
+import { getAuth, setPersistence, signInWithEmailAndPassword, browserSessionPersistence } from 'firebase/auth'; //inMemoryPersistence
 import store from '@/store';
 import ui from '../ui.js';
 export default {
@@ -42,6 +43,7 @@ export default {
     return {
       userEmail:null,
       userPassword:null,
+      saveLogin:false,
       erMsg : { //https://firebase.google.com/docs/auth/admin/errors?hl=ko&authuser=0
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -71,6 +73,7 @@ export default {
   },
   mounted(){
     document.querySelector(".header .htit").textContent = '로그인';
+    console.log( this.$refs.saveLogin.checked );
   },
   methods: {
     async login(){
@@ -101,18 +104,19 @@ export default {
         // const errorMessage = error.message;
       });
       
-      // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
-      setPersistence(auth, browserSessionPersistence)
-      .then(() => {
-        return signInWithEmailAndPassword(auth, email, password);
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode,"====",errorMessage);
-      });
-      
+      if(this.$refs.saveLogin.checked == false) {
+        // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
+        setPersistence(auth, browserSessionPersistence) // browserSessionPersistence , inMemoryPersistence
+        .then(() => {
+          return signInWithEmailAndPassword(auth, email, password);
+        })
+        .catch((error) => {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          console.log(errorCode,"====",errorMessage);
+        });
+      }
     }     
     
   }

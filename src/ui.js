@@ -63,9 +63,18 @@ ui = {
         opt == undefined ? opt = 'medium' : opt;
         return new Intl.DateTimeFormat('ko-KR',{ dateStyle: opt, timeStyle: opt}).format( d )
     },
-    timeVer: function(){
+    timeVer: function(params){
         const d = new Date();
-        return d.getFullYear()+""+(d.getMonth()+1) +""+ d.getDate() +""+ d.getHours() +""+ d.getMinutes() +""+ d.getSeconds();
+        let opt = Object.assign({
+            YY: d.getFullYear(),
+            MM: d.getMonth()+1,
+            DD: d.getDate(),
+            HH: d.getHours(),
+            MN: d.getMinutes(),
+            SC: d.getSeconds(),
+        }, params);
+
+        return opt.YY+""+opt.MM+""+ opt.DD +""+ opt.HH +""+ opt.MN +""+ opt.SC;
     },
     randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
         return Math.random().toString(16).substr(2, length);

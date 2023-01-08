@@ -505,6 +505,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .sign-form .list>li+li{margin-top: 10rem;}
 .sign-form .list>li .dt{display: block; margin-bottom: 10rem;}
 .sign-form .list>li .dd{display: block;}
+.sign-form .savelogin{margin-top: 10px; text-align: right;}
 .sign-form .btn-set{margin-top: 20rem;}
 .sign-form .link{margin-top: 20rem; font-size:12rem;}
 .sign-form .link a{color: #d5d5d5;}
