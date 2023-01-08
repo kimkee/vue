@@ -79,6 +79,18 @@ ui = {
     randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
         return Math.random().toString(16).substr(2, length);
     },
+    rex:{
+        pattern : {
+            'email' : /(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))/g,
+            'url'   : /(?:(?:(https?|ftp|telnet):\/\/|[\s\t\r\n\[\]\`\<\>\"\'])((?:[\w$\-_\.+!*\'\(\),]|%[0-9a-f][0-9a-f])*\:(?:[\w$\-_\.+!*\'\(\),;\?&=]|%[0-9a-f][0-9a-f])+\@)?(?:((?:(?:[a-z0-9\-가-힣]+\.)+[a-z0-9\-]{2,})|(?:[\d]{1,3}\.){3}[\d]{1,3})|localhost)(?:\:([0-9]+))?((?:\/(?:[\w$\-_\.+!*\'\(\),;:@&=ㄱ-ㅎㅏ-ㅣ가-힣]|%[0-9a-f][0-9a-f])+)*)(?:\/([^\s\/\?\.:<>|#]*(?:\.[^\s\/\?:<>|#]+)*))?(\/?[\?;](?:[a-z0-9\-]+(?:=[^\s:&<>]*)?\&)*[a-z0-9\-]+(?:=[^\s:&<>]*)?)?(#[\w\-]+)?)/gmi,
+            'hash'   :  /#([0-9a-zA-Z가-힣]*)/g
+        },
+        replace: {
+            'email': function(_email){return '<a href="mailto:' + _email + '">'+ _email +'</a>'},
+            'url'  : function(_url){return '<a href="' + _url + '" target="_blank">'+ _url +'</a>'},
+            'hash'  : function(_hash){return '<a class="ui-hash" href="javascript:;">'+ _hash +'</a>'}
+        },
+    },
     loading:{ // 로딩중..
         show: function () {
             if( !document.querySelectorAll("body>.ui-loading-dot").length ) {
