@@ -22,12 +22,6 @@
             </div>
           </li>
         </ul>
-
-      </div>
-
-
-      <div class="ut-tblist">
-        <ul class="list" id="dp_list"></ul>
         <div class="ui-loadmore">
           <em></em>
           <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
@@ -59,6 +53,7 @@ export default {
     return {
       Photos:[],
       callStat:true,
+      countItem:0,
       Boards: []
     }
   },
@@ -71,7 +66,7 @@ export default {
   },
   mounted() {
     console.table(store.state.userInfo);
-    // window.addEventListener("scroll", this.scrollEvent);
+    window.addEventListener("scroll", this.scrollEvent);
     this.callStat = true;
     // this.addItem();
     console.log("================================");
@@ -111,7 +106,16 @@ export default {
       fetch("./js/photo.json").then( res => res.ok && res.text() ).then( res => { 
         const result = JSON.parse( res);
         result.forEach( (data) =>{
-          pHtml += `<li><div class="box"><a href="javascript:;"><div class="pic"><img class="img"  src="${data.urls}" alt=""></div></a></div></li>`
+          pHtml += `
+            <li>
+              <div class="box">
+                <a href="javascript:;" class="lk">
+                  <div class="pic"><img class="img"  src="${data.urls}" alt=""></div>
+                  <div class="nums"><em><i class="fa-solid fa-images"></i></em></div>
+                  <div class="info"><em><i class="fa-solid fa-comment-dots"></i> <b>1</b></em><em><i class="fa-solid fa-heart"></i> <b>2</b></em></div>
+                </a>
+              </div>
+            </li>`
         });
 
         setTimeout(() => {
@@ -122,6 +126,11 @@ export default {
           this.Photos = [...this.Photos, ...(result)]
           console.log(  this.Photos.length );
           ui.loading.hide();
+          if(this.countItem >= 2){
+            document.querySelector('.ui-loadmore').classList.add("hide");
+            this.callStat = false;
+          }
+
         }, 1000);
       }).catch( e=>{
         console.log("오프라인");
@@ -138,6 +147,7 @@ export default {
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
         this.addItem();
+        this.countItem ++;
       }
     }
   }
