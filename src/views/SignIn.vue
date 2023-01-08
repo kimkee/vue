@@ -17,7 +17,7 @@
             </div>
           </li>
         </ul>
-        <div class="savelogin"><label class="checkbox"><input type="checkbox" ref="saveLogin"><span class="txt">로그인 정보저장</span></label></div>
+        <div class="savelogin"><label class="checkbox"><input type="checkbox" ref="autoLogin" @click="saveSheck"><span class="txt">자동 로그인</span></label></div>
         <div class="btsbox btn-set">
             <button type="button" class="btn" @click="login"><i class="fa-solid fa-right-to-bracket"></i><em>로그인</em> </button>
         </div>
@@ -43,7 +43,7 @@ export default {
     return {
       userEmail:null,
       userPassword:null,
-      saveLogin:false,
+      saveLogin: false,
       erMsg : { //https://firebase.google.com/docs/auth/admin/errors?hl=ko&authuser=0
         "auth/user-not-found" :	"존재하지 않는 사용자 정보로 로그인을 시도한 경우 발생",
         "auth/wrong-password" :	"비밀번호가 잘못된 경우 발생",
@@ -73,7 +73,7 @@ export default {
   },
   mounted(){
     document.querySelector(".header .htit").textContent = '로그인';
-    console.log( this.$refs.saveLogin.checked );
+    console.log( this.$refs.autoLogin.checked );
   },
   methods: {
     async login(){
@@ -104,7 +104,7 @@ export default {
         // const errorMessage = error.message;
       });
       
-      if(this.$refs.saveLogin.checked == false) {
+      if(this.saveLogin == false) {
         // 로그인 세션 저장 https://firebase.google.com/docs/auth/web/auth-state-persistence?hl=ko&authuser=0
         setPersistence(auth, browserSessionPersistence) // browserSessionPersistence , inMemoryPersistence
         .then(() => {
@@ -117,8 +117,30 @@ export default {
           console.log(errorCode,"====",errorMessage);
         });
       }
-    }     
-    
+    },  
+    saveSheck(){
+      this.saveLogin = this.$refs.autoLogin.checked;
+      if (this.saveLogin) {
+        const msg = `
+          자동로그인을 사용하시면<br> 
+          다음부터 회원아이디와 비밀번호를<br>
+          입력하실 필요가 없습니다.<br><br>
+          공공장소에서는 개인정보가 유출될 수 있으니 사용을 자제하여 주십시오.<br><br>
+          자동로그인을 사용하시겠습니까?
+        `;
+        ui.confirm( msg, {
+          tit: "로그인 설정",
+          ycb:()=>{
+            this.$refs.autoLogin.checked = true;
+          },
+          ncb:()=>{
+            this.$refs.autoLogin.checked = false;
+          },
+          ybt:"예",
+          nbt:"아니오",
+        });
+      }
+    }
   }
 }
 </script>
