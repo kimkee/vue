@@ -102,7 +102,7 @@
           const file = files[i];
           const filename = files[i].name;
           if (file !== null) {
-            const storageRef = ref(storage, this.opts.page+"/N/"+uptime+"_"+filename);
+            const storageRef = ref(storage, this.opts.page+"/"+uptime+"_"+filename);
             promises.push(uploadBytes(storageRef, file).then(uploadResult => {
               return getDownloadURL(uploadResult.ref).then((url)=>{this.Files.push(url);})
             }))
