@@ -6,8 +6,8 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 const store = createStore({
   state: {
     userInfo:{
-      stat: null,
-      uid: null,
+      stat: false,
+      uid: false,
       email: null,
       nick: null,
       avatar: null,
