@@ -100,10 +100,11 @@ nav.gnb .menu>li:last-child{border-bottom: #3b516c solid 1px;}
 nav.gnb .menu>li>.bt{display:block;padding: 15px 20px 15px 1px;font-size: 15px;font-weight: 400;position: relative;}
 nav.gnb .menu>li>.bt::before{content:"";position: absolute;left: 1px;top: 13px;}
 nav.gnb .menu>li>.bt.router-link-active{color: #ffffff;}
+nav.gnb .menu>li>.bt i{margin-right:5px;}
 nav.gnb .sign{text-align: right;position: absolute;bottom: 20px;left: 20rem;right: 20rem;padding: 10px 0;}
 nav.gnb .sign .bts{display: flex;align-items: center;justify-content: flex-end;margin-top: 20rem;}
 nav.gnb .sign .bt{padding: 5px 0;color: #ffffff;}
-nav.gnb .sign .bt+.bt{margin-left:0rem;}
+nav.gnb .sign .bt+.bt{margin-left:30rem;}
 nav.gnb .sign .bt i{margin-right:6rem}
 nav.gnb .sign .bt.email{color: #e1e1e1;}
 nav.gnb .sign .user{text-align: right;}

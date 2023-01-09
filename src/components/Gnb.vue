@@ -24,10 +24,10 @@
         </div>
         
         <div class="bts">
-          <router-link v-if="$store.state.userInfo.stat == false" class="bt" to="/signin"><i class="fa-solid fa-right-to-bracket"></i><em> Login</em></router-link>
-          <router-link v-if="$store.state.userInfo.stat == false" class="bt" to="/signup"><i class="fa-solid fa-user-plus"></i><em> Join</em></router-link>
+          <router-link v-if="!$store.state.userInfo.stat" class="bt" to="/signin"><i class="fa-solid fa-right-to-bracket"></i><em> Login</em></router-link>
+          <router-link v-if="!$store.state.userInfo.stat" class="bt" to="/signup"><i class="fa-solid fa-user-plus"></i><em> Join</em></router-link>
           
-          <router-link v-if="$store.state.userInfo.stat == true" class="bt" to="/signout"><i class="fa-solid fa-right-from-bracket"></i><em>Logout</em></router-link>
+          <router-link v-if="!!$store.state.userInfo.stat" class="bt" to="/signout"><i class="fa-solid fa-right-from-bracket"></i><em>Logout</em></router-link>
         </div>
 
       </div>

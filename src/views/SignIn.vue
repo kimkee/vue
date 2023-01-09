@@ -63,7 +63,9 @@ export default {
     if(store.state.userInfo.stat == true) {
       next(from.fullPath)
     }else{
-      localStorage.setItem("preurl", location.hash);
+      if(location.hash != "#/signin") {
+        localStorage.setItem("preurl", location.hash);
+      }
       return next();
     }
   },
