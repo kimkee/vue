@@ -147,7 +147,7 @@ export default {
       } catch(error) {
         console.log(error)
       }
-
+      this.$refs.VoteItem.getUser();
       ui.loading.hide();
     },
     async delpost(){
@@ -184,7 +184,6 @@ export default {
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
-      this.$refs.VoteItem.getUser();
     },
   }
 }

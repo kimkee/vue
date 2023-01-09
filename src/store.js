@@ -1,6 +1,8 @@
 
 import { createStore } from 'vuex'
-
+import db  from './firebaseConfig.js';
+import { getDoc, doc } from "firebase/firestore";
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 const store = createStore({
   state: {
     userInfo:{
@@ -32,6 +34,37 @@ const store = createStore({
     count: 0,
   },
   mutations: {
+    authState(){
+      const auth = getAuth();
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          getUser(user);
+          sessionStorage.setItem("user",JSON.stringify(user));
+          return;
+        }
+        sessionStorage.removeItem("user");
+        store.state.userInfo = {};
+        store.state.userInfo.stat = false;
+        console.log('logout 된 상태' , store.state.userInfo);
+        console.table(store.state.userInfo);
+
+      });
+      const getUser = async (user)=>{
+        const docRef =  doc(db, "member" , user.uid);
+        try {
+          const docSnap = await getDoc(docRef);
+          store.state.userInfo.stat = true;
+          store.state.userInfo.email = docSnap.data().email;
+          store.state.userInfo.avatar = docSnap.data().avatar;
+          store.state.userInfo.nick = docSnap.data().nick;
+          store.state.userInfo.uid = user.uid;
+          store.state.userInfo.liked = docSnap.data().liked;
+          console.table(store.state.userInfo);
+        } catch(error) {
+          console.log(error)
+        }
+      }
+    },
     increment (state) {
       state.count++
     }
@@ -39,8 +72,11 @@ const store = createStore({
   actions: {
     increment (context) {
       context.commit('increment')
+    },
+    authState (context) {
+      context.commit('authState')
     }
   }
 });
-
+store.dispatch('authState');
 export default store;

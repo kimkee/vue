@@ -41,18 +41,16 @@ export default {
   },
   beforeCreate(){
     console.log("beforCreate" );
-    const apiKey =  db._app._options.apiKey;
-    const info = JSON.parse(  sessionStorage.getItem("firebase:authUser:"+apiKey+":[DEFAULT]") )
-    if(apiKey){
+    const info = JSON.parse(  sessionStorage.getItem("user") )
+    if(info){
+      store.state.userInfo.stat = true;
       store.state.userInfo.uid = info?.uid;
       store.state.userInfo.email = info?.email;
     }
   },
   created(){
     ui.init();
-
-
-    this.authState();
+    
   },
   watch(){
 
@@ -69,7 +67,7 @@ export default {
     makeSomeStuff(){
       console.log("makeSomeStuff");
     },
-    authState(){
+    /* authState(){
       const auth = getAuth();
       onAuthStateChanged(auth, (user) => {
         console.log("authState" , user);
@@ -98,7 +96,7 @@ export default {
       } catch(error) {
         console.log(error)
       }
-    }
+    } */
   }
 }
 </script>
