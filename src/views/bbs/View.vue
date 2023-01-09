@@ -149,7 +149,6 @@ export default {
       } catch(error) {
         console.log(error)
       }
-      this.$refs.VoteItem.getUser();
 
       ui.loading.hide();
     },
@@ -185,6 +184,7 @@ export default {
         count: newHits,
       }).then(()=>{
         console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
+        this.$refs.VoteItem.getUser();
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });

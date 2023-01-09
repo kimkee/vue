@@ -72,7 +72,7 @@ export default {
     console.log("================================");
   },
   unmounted(){
-    // window.removeEventListener("scroll", this.scrollEvent);
+    window.removeEventListener("scroll", this.scrollEvent);
   },
   methods:{
     async read(){
