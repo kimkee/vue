@@ -29,18 +29,18 @@
                 :auto-height="true" :slides-per-view="1" 
                 :space-between="10" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
-                <swiper-slide v-for="image,index in Views.img" :key="index" class="pics">
-                  <img :src="image" alt="" onerror="this.src='./img/noimage.png';">
+                <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
+                  <div class="pic">
+                    <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';">
+                  </div>
                 </swiper-slide>
               </swiper>
 
-              
               <div class="text" v-html="Views.content"></div>
 
             </div>
 
-
-            <Vote ref="VoteItem" :opts="{dbTable:this.dbTable, param:param}"/>
+            <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
           
             <div class="btsbox btn-set">
               <router-link class="btn sm" to="/bbs"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
@@ -51,12 +51,9 @@
           </dd>
         </div>
       </div>
-      <Comments :opts="{dbTable:this.dbTable}"/>
-
+      <Comments :opts="{dbTable:dbTable}"/>
 
     </main>
-
-
     
   </div>
 </template>
@@ -113,8 +110,8 @@ export default {
   created(){
     ui.init();
     ui.loading.show();
+    console.log("view created");
     const route = useRoute();  
-    console.log("view created" , route.name);
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.view(ids);
     this.param = ids;
@@ -124,11 +121,9 @@ export default {
   },
   methods:{
     async view(ids){
-
       const docRef = doc(db, this.dbTable , ids);
-      try {
-        const docSnap = await getDoc(docRef);
-
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
         this.Views.id = docSnap.id;
         this.Views.uid = docSnap.data().uid;
         this.Views.title = docSnap.data().title;
@@ -144,16 +139,14 @@ export default {
         document.querySelector(".page.view").classList.add("load");
         const newHits = this.Views.count + 1;
         this.hits( newHits );
-
-        console.table(this.Views);
-      } catch(error) {
-        console.log(error)
+      }else{
+        console.log("No such document!");
       }
+      console.table(this.Views);
       this.$refs.VoteItem.getUser();
       ui.loading.hide();
     },
     async delpost(){
-
       ui.confirm("이 글을 삭제하시겠습니까?",{
         ycb:()=>{
           this.Views.img.forEach( imgUrl =>{
@@ -174,7 +167,6 @@ export default {
         ybt:"예",
         nbt:"아니오",
       });
-
     },
     async hits(newHits){ // 조회수
       console.log(newHits);

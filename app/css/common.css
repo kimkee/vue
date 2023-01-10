@@ -419,9 +419,10 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .hits em b{ margin-left: 5rem; }
 .board-view .cdt .cont{min-height: 160rem;}
 .board-view .cdt .cont .photo{margin-top: 15rem;}
-.board-view .cdt .cont .pics{padding: 0px 0px; text-align: center;  margin: 0rem auto;}
-.board-view .cdt .cont .pics img[src*="noimage.png"]{max-width:180rem}
-.board-view .cdt .cont .pics img{max-width: 100%;}
+.board-view .cdt .cont .box{}
+.board-view .cdt .cont .pic{padding: 0px 0px; text-align: center;  margin: 0rem auto;}
+.board-view .cdt .cont .pic img[src*="noimage.png"]{max-width:180rem}
+.board-view .cdt .cont .pic img{max-width: 100%;}
 .board-view .cdt .cont .text{padding: 10px 0px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
 .board-view .cdt .vote{text-align: center;margin-bottom: 20rem;margin-top: 10rem;min-height:50rem;}
 .board-view .cdt .vote .bt-vote{border: #30363d solid 1rem;padding: 5rem 8rem 5rem 8rem;border-radius: 6rem;min-width: 50rem; min-height: 50rem;}

@@ -51,10 +51,7 @@
       
       <Comments :opts="{dbTable:dbTable}"/>
 
-
     </main>
-
-
     
   </div>
 </template>
@@ -122,11 +119,9 @@ export default {
   },
   methods:{
     async view(ids){
-
-      const docRef = doc(db, "photo" , ids);
-      try {
-        const docSnap = await getDoc(docRef);
-
+      const docRef = doc(db, this.dbTable , ids);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
         this.Views.id = docSnap.id;
         this.Views.uid = docSnap.data().uid;
         this.Views.title = docSnap.data().title;
@@ -142,11 +137,10 @@ export default {
         document.querySelector(".page.view").classList.add("load");
         const newHits = this.Views.count + 1;
         this.hits( newHits );
-
-        console.table(this.Views);
-      } catch(error) {
-        console.log(error)
+      }else{
+        console.log("No such document!");
       }
+      console.table(this.Views);
       this.$refs.VoteItem.getUser();
       ui.loading.hide();
     },
@@ -171,9 +165,8 @@ export default {
         ybt:"예",
         nbt:"아니오",
       });
-
     },
-    async hits(newHits){
+    async hits(newHits){ // 조회수
       console.log(newHits);
       const docRef = doc(db, this.dbTable, this.param );
       this.Views.count = newHits;
