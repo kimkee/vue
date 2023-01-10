@@ -137,8 +137,8 @@ export default {
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
         this.Views.count = docSnap.data().count ;
-        this.Views.likeUsr = docSnap.data().likeUsr || [] ;
-        this.Views.likes = docSnap.data().likeUsr?.length || 0 ;
+        this.Views.likeUsr = [...new Set( docSnap.data().likeUsr || []  )] ;
+        this.Views.likes = this.Views.likeUsr.length || 0 ;
         document.querySelector(".page.view").classList.add("load");
         const newHits = this.Views.count + 1;
         this.hits( newHits );
