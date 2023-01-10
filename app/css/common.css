@@ -16,7 +16,7 @@ html, body {font-size: 1400%;line-height: 1.6;font-family: 'Roboto',"Noto Sans K
 input , textarea{font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
 html{font-size: 1px;}
 body{overflow-y: scroll;background-color: #0d1117;color: #999999;}
-body:not(.is-dark){/* background-color: var(--bgs_1); */}
+body:not(.is-dark){}
 a{color: #999999;text-decoration: none;}
 button{cursor:pointer;background: none;border: none;padding: 0; color: #aaaaaa;}
 select::-ms-expand {display:none;}
@@ -423,18 +423,19 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .cont .pics img[src*="noimage.png"]{max-width:180rem}
 .board-view .cdt .cont .pics img{max-width: 100%;}
 .board-view .cdt .cont .text{padding: 10px 0px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
-.board-view .cdt .vote{text-align: center;margin-bottom: 20rem; margin-top: 10rem; min-height:50rem;}
+.board-view .cdt .vote{text-align: center;margin-bottom: 10rem; margin-top: 10rem; min-height:50rem;}
 .board-view .cdt .vote .bt-vote{border: #30363d solid 1rem;padding: 5rem 8rem 5rem 8rem;border-radius: 6rem;min-width: 50rem; min-height: 50rem;}
 .board-view .cdt .vote .bt-vote i{ font-size: 18rem; }
 .board-view .cdt .vote .bt-vote p{ font-size: 12rem; margin-top: 5rem; }
 .board-view .cdt .vote .bt-vote.on{color: #41b883;}
-.board-view .cdt .vmem{display: flex; font-size:12rem;}
-.board-view .cdt .vmem .usr{color: #d3c6c6;}
+.board-view .cdt .vote+.vmem{margin-bottom: 20rem;}
+.board-view .cdt .vmem{display: flex; flex-wrap:wrap; font-size:12rem; margin:0rem 0rem 20rem 0rem}
+.board-view .cdt .vmem .usr{color: #dddddd;}
 .board-view .cdt .vmem .usr+.usr{}
 .board-view .cdt .vmem .usr::before{content:", ";}
 .board-view .cdt .vmem .usr:first-child:before{content:"";}
 .board-view .cdt .vmem .txt{margin-left: 5rem;}
-.board-view .btn-set{margin-top: 10rem;}
+.board-view .btn-set{margin-top: 30rem;}
 
 .board-write{margin-top: 10rem;}
 .board-write .list{}
@@ -478,12 +479,12 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-view .cdt .vote .bt-vote p{ font-size: 12rem; margin-top: 3rem; }
 .photo-view .cdt .vote .bt-vote.on{/* border-color: #41b883; */color: #41b883;}
 .photo-view .cdt .vmem{display: flex; font-size:12rem; margin: 0rem 20rem;}
-.photo-view .cdt .vmem .usr{color: #d3c6c6;}
+.photo-view .cdt .vmem .usr{color: #dddddd;}
 .photo-view .cdt .vmem .usr+.usr{}
 .photo-view .cdt .vmem .usr::before{content:", ";}
 .photo-view .cdt .vmem .usr:first-child:before{content:"";}
 .photo-view .cdt .vmem .txt{margin-left: 5rem;}
-.photo-view .btn-set{margin-top: 10rem;margin: 10px 15px 0px 15px;/* margin: 0; */}
+.photo-view .btn-set{margin: 30px 15px 0px 15px;/* margin: 0; */}
 
 
 
