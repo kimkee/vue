@@ -58,7 +58,7 @@ const store = createStore({
           store.state.userInfo.avatar = docSnap.data().avatar;
           store.state.userInfo.nick = docSnap.data().nick;
           store.state.userInfo.uid = user.uid;
-          store.state.userInfo.liked = docSnap.data().liked;
+          store.state.userInfo.liked = docSnap.data().liked || [];
           console.table(store.state.userInfo);
         } catch(error) {
           console.log(error)

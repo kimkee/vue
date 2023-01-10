@@ -6,7 +6,10 @@
       <p v-if="$parent.Views.likes>0">{{ $parent.Views.likes }}</p>
     </button>
   </div>
-
+  <div class="vmem" v-if="likeUsr.length > 0">
+    <div class="usr" v-for="user,i in likeUsr" :key="user">{{ JSON.parse(likeUsr[i])[1] }}</div>
+    <div class="txt">님이 좋아합니다</div>
+  </div>
 </template>
 
 <script>
@@ -22,7 +25,8 @@ export default {
   data() {
     return {
       likeShow: false,
-      likeOn: "",      
+      likeOn: "",
+      likeUsr: [],
     }
   },
   created(){ 
@@ -48,25 +52,40 @@ export default {
       console.log(btlike);
       const isLiked = btlike.classList.contains("on");
       let nLike = this.$parent.Views.likes;
+      let lkUsr = this.$parent.Views.likeUsr;
       if (isLiked) {
         btlike.classList.remove("on");
         nLike--;
-        this.likeAct(nLike);
+        lkUsr.forEach( (e,i)=>{ 
+          console.log(JSON.parse(e));
+          const u = JSON.parse(e);
+          if( u[0] == store.state.userInfo.uid ){
+            lkUsr.splice(i, 1);
+          }
+        });
+        this.likeAct(nLike,lkUsr);
         this.likeMem(store.state.userInfo.uid,"rem");
       }else{
         btlike.classList.add("on");
         nLike++;
-        this.likeAct(nLike);
+        
+        lkUsr.push(JSON.stringify([store.state.userInfo.uid,store.state.userInfo.nick])); // 좋아요 유저 추가
+        this.likeAct(nLike,lkUsr);
         this.likeMem(store.state.userInfo.uid,"add");
       }
+      console.log("좋아요 유저");
+      
+      console.table(lkUsr);
     },
-    likeAct (n){ // 좋아요 +- 
+    likeAct (nLike,lkUsr){ // 좋아요 +- 
       const  docRef = doc(db, this.opts.dbTable, this.opts.param );
-      this.$parent.Views.likes = n;
+      this.$parent.Views.likes = this.$parent.Views.likeUsr.length;
+      this.$parent.Views.likeUsr = lkUsr;
       updateDoc(docRef, {
-        likes: n,
+        likes: this.$parent.Views.likeUsr.length,
+        likeUsr: lkUsr,
       }).then(()=>{
-        console.log("좋아요: ",this.opts.param , n);
+        console.log("좋아요: ",this.opts.param , nLike);
       }).catch (e =>{
         console.error("Error adding document: ", e);
       });
@@ -76,8 +95,9 @@ export default {
       if( store.state.userInfo.uid ){
         const memRef = doc(db, "member", store.state.userInfo.uid );
         const memSnap = await getDoc(memRef);
-        console.log( memSnap.data().liked);
-        memSnap.data().liked.map( lk => { 
+        const memLiked = memSnap.data().liked || [];
+        console.log( memLiked);
+        memLiked.map( lk => { 
           lk = JSON.parse(lk);
           console.log(lk[this.opts.dbTable] , this.opts.param);
           if( lk[this.opts.dbTable] == this.opts.param ){
@@ -86,6 +106,7 @@ export default {
           }
         });
       }
+      this.likeUsr = this.$parent.Views.likeUsr;
       // document.querySelector(".bt-vote").disabled = false;
       this.likeShow = true;
     },

@@ -137,12 +137,12 @@ export default {
         this.Views.img = docSnap.data().img;
         this.Views.coments = docSnap.data().coments ;
         this.Views.count = docSnap.data().count ;
-        this.Views.likes = docSnap.data().likes || 0 ;
-        document.querySelector(".page.photo.view").classList.add("load");
+        this.Views.likeUsr = docSnap.data().likeUsr || [] ;
+        this.Views.likes = docSnap.data().likeUsr?.length || 0 ;
+        document.querySelector(".page.view").classList.add("load");
         const newHits = this.Views.count + 1;
         this.hits( newHits );
-        setTimeout(() => {
-        }, 10);
+
         console.table(this.Views);
       } catch(error) {
         console.log(error)

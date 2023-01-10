@@ -146,6 +146,7 @@ export default {
         count: 0,
         coments:[],
         likes:0,
+        likeUsr: [],
         img: this.$refs.FileItem.Files || []
       }).then(()=>{
         console.log("쓰기 성공: ");
