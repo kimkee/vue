@@ -37,7 +37,7 @@ ui = {
             }
         }
     },
-    timeForm: function(date) {
+    timeForm: function(date,opt) {
         const start = new Date(date);
         const end = new Date(); // 현재 날짜
         const diff = (end - start) / 1000; // 경과 시간
@@ -53,7 +53,11 @@ ui = {
             const betweenTime = Math.floor(diff / value.milliSeconds);
             // 큰 단위는 0보다 작은 소수 단위 나옴
             if (betweenTime > 0) {
-                return `${value.icon} <b>${betweenTime}${value.name} 전</b>`;
+                if(opt == true){
+                    return `${betweenTime}${value.name} 전`;
+                }else{
+                    return `${value.icon} <b>${betweenTime}${value.name} 전</b>`;
+                }
             }
         }
         // 모든 단위가 맞지 않을 시

@@ -10,7 +10,7 @@ const firebaseConfig = {
     storageBucket: "mybbs-5642f.appspot.com",
     messagingSenderId: "210742350834",
     appId: "1:210742350834:web:a65b2a1d7d470593a3516b",
-    databaseURL: "mybbs-5642f.asia-southeast1.firebasedatabase.app",
+    databaseURL: "https://mybbs-5642f-default-rtdb.asia-southeast1.firebasedatabase.app/",
     measurementId: "G-SZ9V5BHSER"
 };
 /* const firebaseConfig = {

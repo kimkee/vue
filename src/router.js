@@ -17,6 +17,7 @@ import View from "./views/bbs/View.vue";
 import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
+import Chat from "./views/chat/Chat.vue";
 // import store from "./store";
 // import ui from './ui.js';
 const router = createRouter({
@@ -26,6 +27,16 @@ const router = createRouter({
         // path: "/",
         // redirect: '/home'
         // },
+        {
+            path: '/chat',
+            name: "Chat",
+            // components: ()=> import ("./views/Home.vue")
+            components: {
+                default: Chat,
+                HeaderSub,
+                Nav
+            }
+        },
         {
             path: '/',
             name: "home",
