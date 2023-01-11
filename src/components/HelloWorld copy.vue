@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
-import { collection, onSnapshot } from "firebase/firestore";
+import {db} from '@/firebaseConfig.js';
+import { collection, onSnapshot } from 'firebase/firestore';
 export default {
   name: 'HelloWorld',
   props: {

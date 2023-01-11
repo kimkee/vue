@@ -61,11 +61,11 @@
 </template>
 
 <script>
-import db  from '../firebaseConfig.js';
-import { getDoc, doc , updateDoc } from "firebase/firestore";
+import {db} from '@/firebaseConfig.js';
+import { getDoc, doc , updateDoc } from 'firebase/firestore';
 import { useRoute } from 'vue-router';
 import store from '@/store';
-import ui from '../ui.js';
+import ui from '@/ui.js';
 export default {
   name: 'CommentsItem',
   props: {

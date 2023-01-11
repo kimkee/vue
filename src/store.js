@@ -1,7 +1,7 @@
 
 import { createStore } from 'vuex'
-import db  from './firebaseConfig.js';
-import { getDoc, doc } from "firebase/firestore";
+import {db} from '@/firebaseConfig.js';
+import { getDoc, doc } from 'firebase/firestore';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 const store = createStore({
   state: {

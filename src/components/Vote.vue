@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import db  from '@/firebaseConfig.js';
-import { getDoc, doc ,updateDoc} from "firebase/firestore";
+import {db} from '@/firebaseConfig.js';
+import { getDoc, doc ,updateDoc} from 'firebase/firestore';
 import store from '@/store';
 import ui from '@/ui.js';
 export default {

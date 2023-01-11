@@ -43,10 +43,10 @@
 </template>
 
 <script>
-import RecentPost from '../components/RecentPost.vue'
-import Clock from '../components/Clock.vue'
-import store from '../store';
-import ui from '../ui.js';
+import RecentPost from '@/components/RecentPost.vue'
+import Clock from '@/components/Clock.vue'
+import store from '@/store';
+import ui from '@/ui.js';
 import { EffectFade, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
 import 'swiper/css';

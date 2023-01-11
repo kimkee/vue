@@ -44,11 +44,11 @@
 </template>
 
 <script>
-import db  from '../../firebaseConfig.js';
-import { getDoc, doc, setDoc } from "firebase/firestore";
-import Files from '../../components/Files.vue';
+import {db} from '@/firebaseConfig.js';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
+import Files from '@/components/Files.vue';
 import store from '@/store';
-import ui from '../../ui.js';
+import ui from '@/ui.js';
 
 
 export default {

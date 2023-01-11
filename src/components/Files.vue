@@ -19,10 +19,10 @@
   </template>
   
   <script>
-  import db  from '../firebaseConfig.js';
-  import { doc , updateDoc } from "firebase/firestore";
-  import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from "firebase/storage";
-  import ui from '../ui.js';
+  import {db} from '@/firebaseConfig.js';
+  import { doc , updateDoc } from 'firebase/firestore';
+  import { getStorage, ref,uploadBytes ,getDownloadURL ,deleteObject } from 'firebase/storage';
+  import ui from '@/ui.js';
   export default {
     name: 'FilseItem',
     props: {

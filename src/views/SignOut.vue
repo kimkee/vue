@@ -11,8 +11,8 @@
 
 <script>
 import { getAuth, signOut } from 'firebase/auth';
-import store from "../store";
-import ui from '../ui.js';
+import store from '@/store';
+import ui from '@/ui.js';
 export default {
   name: 'SingOut',
   props: {

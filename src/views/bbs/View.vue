@@ -59,13 +59,13 @@
 </template>
 
 <script>
-import db  from '../../firebaseConfig.js';
-import Comments from '../../components/Comments.vue';
-import Vote from '../../components/Vote.vue';
-import { getDoc, doc ,deleteDoc ,updateDoc} from "firebase/firestore";
-import { getStorage, ref, deleteObject } from "firebase/storage";
+import {db} from '@/firebaseConfig.js';
+import Comments from '@/components/Comments.vue';
+import Vote from '@/components/Vote.vue';
+import { getDoc, doc ,deleteDoc ,updateDoc} from 'firebase/firestore';
+import { getStorage, ref, deleteObject } from 'firebase/storage';
 import { useRoute } from 'vue-router';
-import store from '../../store';
+import store from '@/store';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
@@ -73,7 +73,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import ui from '../../ui.js';
+import ui from '@/ui.js';
 export default {
   name: 'ViewItem',
   props: {

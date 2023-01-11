@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import ui from '../ui.js';
-import store from '../store';
+import ui from '@/ui.js';
+import store from '@/store';
 export default {
   name: 'GnbItem',
   props: {

@@ -1,6 +1,6 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import { getFirestore} from 'firebase/firestore';
-
+import { getDatabase } from 'firebase/database';
 
 
 const firebaseConfig = {
@@ -10,6 +10,7 @@ const firebaseConfig = {
     storageBucket: "mybbs-5642f.appspot.com",
     messagingSenderId: "210742350834",
     appId: "1:210742350834:web:a65b2a1d7d470593a3516b",
+    databaseURL: "mybbs-5642f.asia-southeast1.firebasedatabase.app",
     measurementId: "G-SZ9V5BHSER"
 };
 /* const firebaseConfig = {
@@ -23,8 +24,9 @@ const firebaseConfig = {
 }; */
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-const data = getFirestore(firebaseApp);
-// console.log(data);
+const db = getFirestore(firebaseApp);
+const database = getDatabase(firebaseApp);
+console.log(database);
 
 
-export default data;
+export {db,database};
