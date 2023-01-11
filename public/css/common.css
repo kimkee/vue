@@ -655,8 +655,8 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-rpwrite .rwset .user .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #000000;}
 .ut-rpwrite .rwset .form{position: relative;border: 1px solid #28364a;border-radius: 4px;min-height: 40px;padding: 9px 10px 0px 10px;}
 .ut-rpwrite .rwset .form .ment{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 77px;-webkit-appearance: none;outline: none;word-break: break-all;height: 24px;background: transparent;color: #999;}
-.ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 7px;}
-.ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 30px;height: 30px;border-radius: 100px;/* font-size:0rem; */color: #fff;text-align: center;}
+.ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 6px;}
+.ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 32px;height: 32px;border-radius: 100px;/* font-size:0rem; */color: #fff;text-align: center;}
 .ut-rpwrite .rwset .bts .btsend:disabled{background-color: #55af8691; color:#74b59e;}
 .ut-rpwrite .rwset .bts .btsend em{font-size:0rem;}
 
@@ -842,7 +842,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 /* 내 메시지 */
 .chat-view .chmsg.me{justify-content: flex-end;padding-right: 40rem;}
 .chat-view .chmsg.me .usr{left: auto; right: 0px; }
-.chat-view .chmsg.me .msg{max-width: calc(100vw - 18	0px);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
+.chat-view .chmsg.me .msg{max-width: calc(100vw - 180px);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
 .chat-view .chmsg.me .msg a{color:#ffffff;}
 .chat-view .chmsg.me + .chmsg.me.same{margin-top: 5px;}
 .chat-view .chmsg.me + .chmsg.me .msg{}
