@@ -90,7 +90,7 @@ export default {
     this.chatRoomName = 'room2023111153510'
     // console.log(db);
     const dbRef = ref(getDatabase());
-    get(child(dbRef, 'DB_CHAT/room2023111153510')).then((snapshot) => {
+    get(child(dbRef, 'DB_CHAT/'+this.chatRoomName)).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot);
       } else {
@@ -104,7 +104,7 @@ export default {
     this.chatRead();
     document.querySelector(".header .htit").textContent = 'Chat';
     const db = getDatabase();
-    const commentsRef = ref(db, 'DB_CHAT/room2023111153510');
+    const commentsRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
     onChildAdded(commentsRef, () => {
       this.chatRead();
       // addCommentElement(postElement, data.key, data.val().text, data.val().author);
@@ -126,7 +126,7 @@ export default {
       console.log("chatRead");
       const dbRef = ref(getDatabase());
       const chats = {};
-      await get(child(dbRef, 'DB_CHAT/room2023111153510')).then((snapshot) => {
+      await get(child(dbRef, 'DB_CHAT/'+this.chatRoomName)).then((snapshot) => {
         if (snapshot.exists()) {
           Object.keys(snapshot.val()).forEach( (key) => {
             // console.log(snapshot.val()[key]);
@@ -153,10 +153,10 @@ export default {
     comFocus(){
       if (!store.state.userInfo.uid ) { 
         ui.confirm("로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
-              ycb:()=>{ this.$router.push('/signin'); return; },
-              ccb:()=>{ return;},
-              ybt:"예",
-              nbt:"아니오",
+          ycb:()=>{ this.$router.push('/signin'); return; },
+          ccb:()=>{ return;},
+          ybt:"예",
+          nbt:"아니오",
         });
         return;
       }
@@ -165,7 +165,7 @@ export default {
       if (this.inputReply == '') {
         ui.alert("댓글을 입력하세요",{
           ycb:()=>{
-            document.querySelector('[data-ui="autoheight"].ment').focus();
+            this.$refs.msgbox.focus();
           }
         });
         return;
@@ -180,7 +180,7 @@ export default {
       };
 
       const db = getDatabase();
-      const postListRef = ref(db, 'DB_CHAT/room2023111153510');
+      const postListRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
       const newPostRef = push(postListRef);
       set(newPostRef, chatOpts);
       this.chatRead();
@@ -188,15 +188,11 @@ export default {
       this.$refs.msgbox.style.height ="";
     },
     autoHeight(){ // 댓글에 자동높이 기능
-      // document.querySelector('[data-ui="autoheight"]').addEventListener("input",e =>{
-        // console.log(e.currentTarget.value);
-        const $els = this.$refs.msgbox;
-        let tboxS;
-        $els.style.height = "1px";
-        tboxS = $els.scrollHeight ;
-        // console.log(  tboxS);
-        $els.style.height = tboxS+"px";
-      // });
+      const $els = this.$refs.msgbox;
+      let tboxS;
+      $els.style.height = "1px";
+      tboxS = $els.scrollHeight ;
+      $els.style.height = tboxS+"px";
     }
   }
 }

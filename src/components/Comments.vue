@@ -45,7 +45,8 @@
               </a>
             </div>
             <div class="form">
-              <textarea data-ui="autoheight" class="ment" v-model="inputReply" 
+              <textarea data-ui="autoheight" ref="msgbox" class="ment" v-model="inputReply" 
+              @input="autoHeight"
               @focus="comFocus"
               :placeholder="$store.state.userInfo.stat ? '댓글을 입력해주세요' : '로그인해주세요'"
               
@@ -86,7 +87,7 @@ export default {
     this.comtList(ids);
   },
   mounted(){
-    this.autoHeight();
+    
   },
   methods:{
     async comtList(ids){
@@ -119,15 +120,12 @@ export default {
     },
     comtWrite(){
       console.log(this.inputReply );
-
-      const $textarea =  document.querySelector('[data-ui="autoheight"]');
-
       console.log(store.state.userInfo.uid);
 
       if (this.inputReply == '') {
         ui.alert("댓글을 입력하세요",{
           ycb:()=>{
-            document.querySelector('[data-ui="autoheight"].ment').focus();
+            this.$refs.msgbox.focus();
           }
         });
         return;
@@ -145,8 +143,7 @@ export default {
       });
 
       this.inputReply = "";
-      // $textarea.dispatchEvent(new Event('input'));
-      $textarea.style.height ="";
+      this.$refs.msgbox.style.height ="";
     },
     async comtSed(opt){
 
@@ -170,38 +167,34 @@ export default {
       console.log(cmtIdx);
 
       ui.confirm("댓글을 삭제하시겠습니까?",{
-          ycb:()=>{ 
-            this.Coments.forEach( (e,i)=>{ 
-                if( e.idx == cmtIdx ){
-                    console.log(i)
-                    this.Coments.splice(i, 1);
-                }
-            })
-            const docRef = doc(db, this.opts.dbTable, this.postId );
-            updateDoc(docRef, {
-              coments:this.Coments
-            }).then(()=>{
-              console.log("댓글삭제 됨");
-            }).catch (e =>{
-              console.error("댓글삭제 Error " ,e);
-            });
-          },
-          ncb:()=>{ },
-          ybt:"예",
-          nbt:"아니오",
+        ycb:()=>{ 
+          this.Coments.forEach( (e,i)=>{ 
+            if( e.idx == cmtIdx ){
+              console.log(i)
+              this.Coments.splice(i, 1);
+            }
+          })
+          const docRef = doc(db, this.opts.dbTable, this.postId );
+          updateDoc(docRef, {
+            coments:this.Coments
+          }).then(()=>{
+            console.log("댓글삭제 됨");
+          }).catch (e =>{
+            console.error("댓글삭제 Error " ,e);
+          });
+        },
+        ncb:()=>{ },
+        ybt:"예",
+        nbt:"아니오",
       });
 
     },
     autoHeight(){ // 댓글에 자동높이 기능
-      document.querySelector('[data-ui="autoheight"]').addEventListener("input",e =>{
-        // console.log(e.currentTarget.value);
-        const $els = e.currentTarget;
-        let tboxS;
-        $els.style.height = "1px";
-        tboxS = $els.scrollHeight ;
-        // console.log(  tboxS);
-        $els.style.height = tboxS+"px";
-      });
+      const $els = this.$refs.msgbox;
+      let tboxS;
+      $els.style.height = "1px";
+      tboxS = $els.scrollHeight ;
+      $els.style.height = tboxS+"px";
     }
   }
 }

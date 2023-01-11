@@ -19,6 +19,7 @@
               <p>댓글: [읽기,쓰기, 삭제]</p>
               <p>게시글:[읽기, 쓰기, 수정, 삭제, 글자수제한]</p>
               <p>조회수, 좋아요 , 시간</p>
+              <p>챗팅</p>
             </div>
             <div class="icos">
               <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
