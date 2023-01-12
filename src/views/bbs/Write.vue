@@ -125,8 +125,6 @@ export default {
     
     async write(){
       console.log("쓰기" , this.$refs.FileItem.Files );
-      const $title = this.title;
-      const $content = this.content;
       const today = new Date();
       
       const docRef = doc(db, "bbs" , "count");
@@ -136,8 +134,8 @@ export default {
       const postNum = docSnap.data().post + 1;
       console.log( postNum );
       setDoc(doc(db, "bbs" , ""+postNum), {
-        title: $title,
-        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
+        title: this.title,
+        content: ui.textHtml(this.content,"incode"),
         timestamp: today,
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,

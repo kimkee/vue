@@ -137,7 +137,7 @@ export default {
         avatar : store.state.userInfo.avatar,
         uid : store.state.userInfo.uid,
         email : store.state.userInfo.email,
-        reply: this.inputReply.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
+        reply: ui.textHtml(this.inputReply,"incode"),
         timestamp: today,
         date: ui.dateForm( today , "short")
       });

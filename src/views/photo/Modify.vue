@@ -102,7 +102,7 @@ export default {
         this.Views.uid = docSnap.data().uid;
         this.title = docSnap.data().title;
         this.Views.img = docSnap.data().img;
-        this.content = docSnap.data().content.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020');
+        this.content = ui.textHtml(docSnap.data().content,"decode");
         this.Views.timestamp = new Intl.DateTimeFormat('ko-KR',{ dateStyle: 'full', timeStyle: 'medium'}).format( docSnap.data().timestamp.toDate() ) ;
         this.files = this.Views.img;
         console.log(this.files);
@@ -111,7 +111,6 @@ export default {
         console.log(this.Views.uid , store.state.userInfo.uid);
         if(this.Views.uid != store.state.userInfo.uid){
           console.log("내글 아님");
-          // alert("내글 아님")
           this.$router.push('/');
           return
         }
@@ -120,12 +119,11 @@ export default {
       }
     },
     async modify(){
-      const $content = this.content
       console.log("수정" + this.param);
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       const docRef = doc(db, "photo", this.param );
       await updateDoc(docRef, {
-        content: $content.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
+        content: ui.textHtml(this.content,"incode"),
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,
         avatar: store.state.userInfo.avatar,

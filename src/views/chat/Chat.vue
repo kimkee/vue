@@ -45,10 +45,10 @@
           <div class="ut-rpwrite">
             <div class="rwset">
               <div class="user">
-                <a href="javascript:;" class="pic">
-                  <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" onerror="this.src='./img/user.png';" class="img">
-                  <img v-if="!$store.state.userInfo.stat" :src="'./img/user.png'" class="img" onerror="this.src='./img/user.png';">
+                <a v-if="$store.state.userInfo.stat" href="javascript:;" class="pic">
+                  <img :src="$store.state.avatar[$store.state.userInfo.avatar]" onerror="this.src='./img/user.png';" class="img">
                 </a>
+                <span v-else class="pic"> <img src="'./img/user.png'" class="img" onerror="this.src='./img/user.png';"> </span>
               </div>
               <div class="form">
                 <textarea data-ui="autoheight" ref="msgbox" class="ment" v-model="inputReply" 
@@ -164,20 +164,14 @@ export default {
       const arChatOp = document.querySelectorAll("article.chmsg.op");
       arChatOp.forEach( (el)=>{
         const prevId = el.getAttribute("data-uid");
-        console.log(prevId);
         const nextId = el.nextElementSibling?.getAttribute("data-uid");
-        console.log(nextId);
-        console.log(prevId ==nextId);
-        (prevId ==nextId) ? el.nextElementSibling.classList.add("same") : null;
+        (prevId == nextId) ? el.nextElementSibling.classList.add("same") : null;
       });
       const arChatMe = document.querySelectorAll("article.chmsg.me");
       arChatMe.forEach( (el)=>{
         const prevId = el.getAttribute("data-uid");
-        console.log(prevId);
         const nextId = el.nextElementSibling?.getAttribute("data-uid");
-        console.log(nextId);
-        console.log(prevId ==nextId);
-        (prevId ==nextId) ? el.nextElementSibling.classList.add("same") : null;
+        (prevId == nextId) ? el.nextElementSibling.classList.add("same") : null;
       });
     },
     comFocus(){
@@ -205,7 +199,7 @@ export default {
         userId : store.state.userInfo.uid,
         userName : store.state.userInfo.nick,
         avatar : store.state.userInfo.avatar,
-        msg : this.inputReply.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'),
+        msg : ui.textHtml(this.inputReply,"incode"),
         time: Date.now(),
       };
 

@@ -95,6 +95,11 @@ ui = {
             'hash'  : function(_hash){return '<a class="ui-hash" href="javascript:;">'+ _hash +'</a>'}
         },
     },
+    textHtml:(text,opt)=>{
+        // console.log(text,opt);
+        if(opt == 'incode'){ return text.replace(/\u0020/g,'&nbsp;').replace(/\n/g,'<br>'); }
+        if(opt == 'decode'){ return text.replace(/<br>/ig, '\n').replace(/&nbsp;/g,'\u0020'); }
+    },
     loading:{ // 로딩중..
         show: function () {
             if( !document.querySelectorAll("body>.ui-loading-dot").length ) {
