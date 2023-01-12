@@ -5,7 +5,7 @@
         <!-- <div>{{ chatMsgList }}</div> -->
         
         <article v-for="chmsg,idx in chatMsgList" :key="idx" class="chmsg" 
-          :data-uid="chmsg.userId" :data-idx="idx"
+          :data-secs="chmsg.secs" :data-uid="chmsg.userId" :data-idx="idx"
           :class="$store.state.userInfo.uid == chmsg.userId ? 'me' : 'op'" >
           <div class="name">{{ chmsg.userName }}</div>
           <div class="usr">
@@ -140,6 +140,7 @@ export default {
               msg: snapshot.val()[key].msg,
               avatar: snapshot.val()[key].avatar,
               time: ui.timeForm(snapshot.val()[key].time),
+              secs: snapshot.val()[key].time,
             }
             chats[key] =  kkk ;
           });
@@ -153,6 +154,27 @@ export default {
       // console.log(this.chatMsgList);
       window.scrollTo(0,ui.viewport.docHeight());
       ui.loading.hide();
+      this.sameStat();
+    },
+    sameStat(){
+      const arChatOp = document.querySelectorAll("article.chmsg.op");
+      arChatOp.forEach( (el)=>{
+        const prevId = el.getAttribute("data-uid");
+        console.log(prevId);
+        const nextId = el.nextElementSibling?.getAttribute("data-uid");
+        console.log(nextId);
+        console.log(prevId ==nextId);
+        (prevId ==nextId) ? el.nextElementSibling.classList.add("same") : null;
+      });
+      const arChatMe = document.querySelectorAll("article.chmsg.me");
+      arChatMe.forEach( (el)=>{
+        const prevId = el.getAttribute("data-uid");
+        console.log(prevId);
+        const nextId = el.nextElementSibling?.getAttribute("data-uid");
+        console.log(nextId);
+        console.log(prevId ==nextId);
+        (prevId ==nextId) ? el.nextElementSibling.classList.add("same") : null;
+      });
     },
     comFocus(){
       if (!store.state.userInfo.uid ) { 

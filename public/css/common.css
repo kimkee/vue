@@ -769,8 +769,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .ctimes .time{background: #ebebf3;display: inline-block;vertical-align: middle;position: relative;padding: 0px 10px;}
 .chat-view .chmsg{position: relative;min-height: 40px;display: flex;}
 .chat-view .chmsg+.chmsg{margin-top: 18rem;}
-.chat-view .chmsg+.chmsg.same{margin-top: 5px;}
-.chat-view .chmsg.same .usr{display: none;}
+
 .chat-view .chmsg .usr{width: 35px;height: 35px;padding-bottom: 35px;position: absolute;left: 0px;top: 0;}
 .chat-view .chmsg .usr img{ display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%; background-color: #000000; border-radius: 40px; }
 .chat-view .chmsg .name{color: #5b749b;position: absolute;left: 44rem;top: -5rem;line-height: 1;font-size:11rem;}
@@ -853,6 +852,13 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .chmsg .tm.loading{ font-size: 0; }
 .chat-view .chmsg .tm.loading:after{content:"";display:inline-block;vertical-align: middle;background: url(../img/ch/loader01@2x.png) no-repeat;width: 20px;height: 20px;background-size:100% auto;margin: 0px 0px 0px 0px;top: -1px;position: relative;}
 .chat-view .chmsg .tm.loading:after{	animation:chmsgloading 1s infinite steps(12);}
+
+.chat-view .chmsg+.chmsg.same{margin-top: 5px;}
+.chat-view .chmsg.same .name{display: none;}
+.chat-view .chmsg.same .usr{display: none;}
+.chat-view .chmsg.same .msg{margin-top: 1rem;}
+
+
 @keyframes chmsgloading {
     from { transform: rotate(0deg); }
     to   { transform: rotate(360deg); }
