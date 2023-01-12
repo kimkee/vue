@@ -190,6 +190,7 @@ export default {
       this.chatRead();
       this.inputReply = '';
       this.$refs.msgbox.style.height ="";
+      this.$refs.msgbox.focus();
     },
     autoHeight(){ // 댓글에 자동높이 기능
       const $els = this.$refs.msgbox;
