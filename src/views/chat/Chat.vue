@@ -185,7 +185,7 @@ export default {
         return;
       }
     },
-    chatWrite(){
+    async chatWrite(){
       if (this.inputReply == '') {
         ui.alert("댓글을 입력하세요",{
           ycb:()=>{
@@ -207,10 +207,11 @@ export default {
       const postListRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
       const newPostRef = push(postListRef);
       set(newPostRef, chatOpts);
-      this.chatRead();
+      await this.chatRead();
       this.inputReply = '';
       this.$refs.msgbox.style.height ="";
       this.$refs.msgbox.focus();
+      window.scrollTo(0,ui.viewport.docHeight());
     },
     autoHeight(){ // 댓글에 자동높이 기능
       const $els = this.$refs.msgbox;

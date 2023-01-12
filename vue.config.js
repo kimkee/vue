@@ -5,7 +5,7 @@ const d = new Date();
 const ver = (d.getMonth()+1) +""+ d.getDate() +""+ d.getHours() +""+ d.getMinutes() +""+ d.getSeconds();
 module.exports = defineConfig({
   devServer: {
-    // historyApiFallback: true,
+    historyApiFallback: true,
   },
   transpileDependencies: true,
   lintOnSave:false,
