@@ -101,8 +101,9 @@ export default {
       console.error(error);
     });
   },
-  mounted(){
-    this.chatRead();
+  async mounted(){
+    await this.chatRead();
+    window.scrollTo(0,ui.viewport.docHeight());
     document.querySelector(".header .htit").textContent = 'Chat';
     const db = getDatabase();
     const commentsRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
@@ -110,17 +111,18 @@ export default {
       this.chatRead();
       // addCommentElement(postElement, data.key, data.val().text, data.val().author);
     });
-
+    
     onChildChanged(commentsRef, () => {
       this.chatRead();
       // setCommentValues(postElement, data.key, data.val().text, data.val().author);
     });
-
+    
     onChildRemoved(commentsRef, () => {
       this.chatRead();
       // deleteComment(postElement, data.key);
     });
-    this.reflesh = setInterval(() => this.chatRead(), 60000);
+    this.reflesh = setInterval(() => this.chatRead(), 5000);
+    
   },
   unmounted(){
     clearInterval(this.reflesh);
@@ -152,7 +154,9 @@ export default {
         console.error(error);
       });
       // console.log(this.chatMsgList);
-      window.scrollTo(0,ui.viewport.docHeight());
+      if(ui.viewport.docHeight() < ui.viewport.height() + ui.viewport.scrollTop() + 20 ){
+        window.scrollTo(0,ui.viewport.docHeight());
+      }
       ui.loading.hide();
       this.sameStat();
     },
