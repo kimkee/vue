@@ -768,12 +768,13 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .ctimes::before{content:"";height: 1px;width: 100%;position: absolute;background: #dedede;left: 0;top: 50%;}
 .chat-view .ctimes .time{background: #ebebf3;display: inline-block;vertical-align: middle;position: relative;padding: 0px 10px;}
 .chat-view .chmsg{position: relative;min-height: 40px;display: flex;}
-.chat-view .chmsg+.chmsg{margin-top: 15px;}
+.chat-view .chmsg+.chmsg{margin-top: 18rem;}
 .chat-view .chmsg+.chmsg.same{margin-top: 5px;}
 .chat-view .chmsg.same .usr{display: none;}
 .chat-view .chmsg .usr{width: 35px;height: 35px;padding-bottom: 35px;position: absolute;left: 0px;top: 0;}
 .chat-view .chmsg .usr img{ display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%; background-color: #000000; border-radius: 40px; }
-.chat-view .chmsg .msg{padding: 11px 15px 10px 15px;background: #1d2736;color: #dddddd;font-size: 15rem;border-radius: 20px;line-height: 1.33;word-break: break-all;position: relative;}
+.chat-view .chmsg .name{color: #455c7e;position: absolute;left: 44rem;top: -5rem;line-height: 1;font-size:11rem;}
+.chat-view .chmsg .msg{margin-top:10rem; padding: 11px 15px 10px 15px;background: #1d2736;color: #dddddd;font-size: 15rem;border-radius: 20px;line-height: 1.33;word-break: break-all;position: relative;}
 .chat-view .chmsg .msg a{text-decoration: underline;}
 .chat-view .chmsg .tm{position: absolute;color: #999999;font-size: 12rem;white-space: nowrap;bottom: 0;}
 .chat-view .chmsg .msg.link{ border-radius: 20px !important; }
@@ -833,7 +834,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 /* 상대편 메시지 */
 .chat-view .chmsg.op{ padding-left: 45px; }
 .chat-view .chmsg.op + .chmsg.op.same .usr{}
-.chat-view .chmsg.op + .chmsg.op{margin-top: 15px;}
+.chat-view .chmsg.op + .chmsg.op{margin-top: 18px;}
 .chat-view .chmsg.op + .chmsg.op.same{margin-top: 5px;}
 .chat-view .chmsg.op + .chmsg.op .msg{}
 .chat-view .chmsg.op .usr{display: block;}
@@ -842,7 +843,8 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 /* 내 메시지 */
 .chat-view .chmsg.me{justify-content: flex-end;padding-right: 40rem;}
 .chat-view .chmsg.me .usr{left: auto; right: 0px; }
-.chat-view .chmsg.me .msg{max-width: calc(100vw - 180px);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
+.chat-view .chmsg.me .name{display:none;}
+.chat-view .chmsg.me .msg{margin-top:0rem; max-width: calc(100vw - 180px);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
 .chat-view .chmsg.me .msg a{color:#ffffff;}
 .chat-view .chmsg.me + .chmsg.me.same{margin-top: 5px;}
 .chat-view .chmsg.me + .chmsg.me .msg{}

@@ -7,6 +7,7 @@
         <article v-for="chmsg,idx in chatMsgList" :key="idx" class="chmsg" 
           :data-uid="chmsg.userId" :data-idx="idx"
           :class="$store.state.userInfo.uid == chmsg.userId ? 'me' : 'op'" >
+          <div class="name">{{ chmsg.userName }}</div>
           <div class="usr">
             <img v-if="$store.state.userInfo.uid == chmsg.userId" :src="$store.state.avatar[$store.state.userInfo.avatar]" class="img">
             <img v-else :src="$store.state.avatar[chmsg.avatar]" class="img dsfsd">
