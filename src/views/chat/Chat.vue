@@ -120,7 +120,10 @@ export default {
       this.chatRead();
       // deleteComment(postElement, data.key);
     });
-
+    this.reflesh = setInterval(() => this.chatRead(), 60000);
+  },
+  unmounted(){
+    clearInterval(this.reflesh);
   },
   methods:{
     async chatRead(){
@@ -148,7 +151,7 @@ export default {
         console.error(error);
       });
       // console.log(this.chatMsgList);
-      window.scrollTo(0,99999);
+      window.scrollTo(0,ui.viewport.docHeight());
       ui.loading.hide();
     },
     comFocus(){
