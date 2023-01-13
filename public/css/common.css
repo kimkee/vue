@@ -139,7 +139,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 .menubar .menu>li .bt em{display:block;font-size: 11rem;margin-top: 4rem;}
 .menubar .menu>li .bt i{font-size:18rem;}
 .menubar .menu>li .bt.router-link-active,
-.menubar .menu>li .bt:hover{ color: #fff;}
+.menubar .menu>li .bt:active{ color: #fff;}
 
 /* 플로팅 탑버튼 글쓰기버튼 */
 .floatnav{position:fixed;right: 20px;z-index: 500;transition: all 0.3s;min-width: 55px;bottom: 82px;bottom: calc(82px + env(safe-area-inset-bottom));}
