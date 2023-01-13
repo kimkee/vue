@@ -13,8 +13,8 @@
 </template>
 
 <script>
-import {db} from '@/firebaseConfig.js';
-import { getDoc, doc ,updateDoc} from 'firebase/firestore';
+import { db } from '@/firebaseConfig.js';
+import { getDoc, doc, updateDoc } from 'firebase/firestore';
 import store from '@/store';
 import ui from '@/ui.js';
 export default {
@@ -29,22 +29,22 @@ export default {
       likeUsr: [],
     }
   },
-  created(){ 
+  created() {
     console.log(this.opts);
   },
-  updated(){
+  updated() {
     // ui.gnb.using("close");
 
   },
-  methods:{
-    async likeTog(e){
-      if(!store.state.userInfo.stat) {
-        ui.confirm("로그인 하시겠습니까?.",{
-          ycb:()=>{
+  methods: {
+    async likeTog(e) {
+      if (!store.state.userInfo.stat) {
+        ui.confirm("로그인 하시겠습니까?.", {
+          ycb: () => {
             this.$router.push("/signin");
           },
-          ybt:"예",
-          nbt:"아니오",
+          ybt: "예",
+          nbt: "아니오",
         });
         return;
       }
@@ -56,51 +56,51 @@ export default {
       if (isLiked) {
         btlike.classList.remove("on");
         nLike--;
-        lkUsr.forEach( (e,i)=>{ 
+        lkUsr.forEach((e, i) => {
           console.log(JSON.parse(e));
           const u = JSON.parse(e);
-          if( u[0] == store.state.userInfo.uid ){
+          if (u[0] == store.state.userInfo.uid) {
             lkUsr.splice(i, 1);
           }
         });
-        this.likeAct(nLike,lkUsr);
-        this.likeMem(store.state.userInfo.uid,"rem");
-      }else{
+        this.likeAct(nLike, lkUsr);
+        this.likeMem(store.state.userInfo.uid, "rem");
+      } else {
         btlike.classList.add("on");
         nLike++;
-        
-        lkUsr.push(JSON.stringify([store.state.userInfo.uid,store.state.userInfo.nick])); // 좋아요 유저 추가
-        this.likeAct(nLike,lkUsr);
-        this.likeMem(store.state.userInfo.uid,"add");
+
+        lkUsr.push(JSON.stringify([store.state.userInfo.uid, store.state.userInfo.nick])); // 좋아요 유저 추가
+        this.likeAct(nLike, lkUsr);
+        this.likeMem(store.state.userInfo.uid, "add");
       }
       console.log("좋아요 유저");
-      
+
       console.table(lkUsr);
     },
-    likeAct (nLike,lkUsr){ // 좋아요 +- 
-      const  docRef = doc(db, this.opts.dbTable, this.opts.param );
+    likeAct(nLike, lkUsr) { // 좋아요 +- 
+      const docRef = doc(db, this.opts.dbTable, this.opts.param);
       this.$parent.Views.likes = this.$parent.Views.likeUsr.length;
       this.$parent.Views.likeUsr = lkUsr;
       updateDoc(docRef, {
         likes: this.$parent.Views.likeUsr.length,
         likeUsr: lkUsr,
-      }).then(()=>{
-        console.log("좋아요: ",this.opts.param , nLike);
-      }).catch (e =>{
+      }).then(() => {
+        console.log("좋아요: ", this.opts.param, nLike);
+      }).catch(e => {
         console.error("Error adding document: ", e);
       });
     },
-    async getUser(){
+    async getUser() {
       console.log(store.state.userInfo.uid);
-      if( store.state.userInfo.uid ){
-        const memRef = doc(db, "member", store.state.userInfo.uid );
+      if (store.state.userInfo.uid) {
+        const memRef = doc(db, "member", store.state.userInfo.uid);
         const memSnap = await getDoc(memRef);
         const memLiked = memSnap.data().liked || [];
-        console.log( memLiked);
-        memLiked.map( lk => { 
+        console.log(memLiked);
+        memLiked.map(lk => {
           lk = JSON.parse(lk);
-          console.log(lk[this.opts.dbTable] , this.opts.param);
-          if( lk[this.opts.dbTable] == this.opts.param ){
+          console.log(lk[this.opts.dbTable], this.opts.param);
+          if (lk[this.opts.dbTable] == this.opts.param) {
             // document.querySelector(".bt-vote").classList.add("on");
             this.likeOn = "on";
           }
@@ -110,10 +110,10 @@ export default {
       // document.querySelector(".bt-vote").disabled = false;
       this.likeShow = true;
     },
-    async likeMem (likeID, addrem){ // userInfo 에 좋아요 누른 정보 저장
+    async likeMem(likeID, addrem) { // userInfo 에 좋아요 누른 정보 저장
       const docID = this.opts.param;
       console.log(this.opts.dbTable);
-      const memRef = doc(db, "member", likeID );
+      const memRef = doc(db, "member", likeID);
       const memSnap = await getDoc(memRef);
       const arrLike = memSnap.data().liked || [];
       const item = `{\"${this.opts.dbTable}\":\"${docID}\"}`
@@ -125,12 +125,12 @@ export default {
         console.log(NarrLike);
       }
       if (addrem == "rem") {
-        NarrLike = arrLike.filter( data => data != item );
+        NarrLike = arrLike.filter(data => data != item);
         console.log(NarrLike);
       }
-      updateDoc(memRef, { liked:NarrLike })
-      .then(()=>{ console.log("좋아요: ",likeID ); })
-      .catch (e =>{ console.error("Error adding document: ", e); });
+      updateDoc(memRef, { liked: NarrLike })
+        .then(() => { console.log("좋아요: ", likeID); })
+        .catch(e => { console.error("Error adding document: ", e); });
     }
   }
 }

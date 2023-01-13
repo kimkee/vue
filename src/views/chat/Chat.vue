@@ -59,20 +59,20 @@ export default {
     msg: String
   },
   data() {
-      return {
-        chatRoomName:null,
-        chatMsgList: {},
-        inputReply:'',
-      }
+    return {
+      chatRoomName: null,
+      chatMsgList: {},
+      inputReply: '',
+    }
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     console.log("created");
     this.chatRoomName = 'room2023111153510'
     // console.log(db);
     const dbRef = ref(getDatabase());
-    get(child(dbRef, 'DB_CHAT/'+this.chatRoomName)).then((snapshot) => {
+    get(child(dbRef, 'DB_CHAT/' + this.chatRoomName)).then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot);
       } else {
@@ -82,30 +82,30 @@ export default {
       console.error(error);
     });
   },
-  async mounted(){
+  async mounted() {
     await this.chatRead();
-    window.scrollTo(0,ui.viewport.docHeight());
+    window.scrollTo(0, ui.viewport.docHeight());
     document.querySelector(".header .htit").textContent = 'Chat';
     const db = getDatabase();
-    const commentsRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
-    onChildAdded(commentsRef, () => this.chatRead());
-    onChildChanged(commentsRef, () => this.chatRead());
-    onChildRemoved(commentsRef, () => this.chatRead());
+    const chatRoomRef = ref(db, 'DB_CHAT/' + this.chatRoomName);
+    onChildAdded(chatRoomRef, () => this.chatRead());
+    onChildChanged(chatRoomRef, () => this.chatRead());
+    onChildRemoved(chatRoomRef, () => this.chatRead());
     this.reflesh = setInterval(() => this.chatRead(), 30000);
   },
-  unmounted(){
+  unmounted() {
     clearInterval(this.reflesh);
   },
-  methods:{
-    async chatRead(){
+  methods: {
+    async chatRead() {
       console.log("chatRead");
       const dbRef = ref(getDatabase());
       const chats = {};
-      await get(child(dbRef, 'DB_CHAT/'+this.chatRoomName)).then((snapshot) => {
+      await get(child(dbRef, 'DB_CHAT/' + this.chatRoomName)).then((snapshot) => {
         if (snapshot.exists()) {
-          Object.keys(snapshot.val()).forEach( (key) => {
+          Object.keys(snapshot.val()).forEach((key) => {
             // console.log(snapshot.val()[key]);
-            const kkk =  {
+            const kkk = {
               userName: snapshot.val()[key].userName,
               userId: snapshot.val()[key].userId,
               msg: snapshot.val()[key].msg,
@@ -113,7 +113,7 @@ export default {
               time: ui.timeForm(snapshot.val()[key].time),
               secs: snapshot.val()[key].time,
             }
-            chats[key] =  kkk ;
+            chats[key] = kkk;
           });
           this.chatMsgList = chats;
         } else {
@@ -123,71 +123,71 @@ export default {
         console.error(error);
       });
       // console.log(this.chatMsgList);
-      if(ui.viewport.docHeight() < ui.viewport.height() + ui.viewport.scrollTop() + 20 ){
-        window.scrollTo(0,ui.viewport.docHeight());
+      if (ui.viewport.docHeight() < ui.viewport.height() + ui.viewport.scrollTop() + 20) {
+        window.scrollTo(0, ui.viewport.docHeight());
       }
       ui.loading.hide();
       this.sameStat();
     },
-    sameStat(){
+    sameStat() {
       const arChatOp = document.querySelectorAll("article.chmsg.op");
-      arChatOp.forEach( (el)=>{
+      arChatOp.forEach((el) => {
         const prevId = el.getAttribute("data-uid");
         const nextId = el.nextElementSibling?.getAttribute("data-uid");
         (prevId == nextId) ? el.nextElementSibling.classList.add("same") : null;
       });
       const arChatMe = document.querySelectorAll("article.chmsg.me");
-      arChatMe.forEach( (el)=>{
+      arChatMe.forEach((el) => {
         const prevId = el.getAttribute("data-uid");
         const nextId = el.nextElementSibling?.getAttribute("data-uid");
         (prevId == nextId) ? el.nextElementSibling.classList.add("same") : null;
       });
     },
-    comFocus(){
-      if (!store.state.userInfo.uid ) { 
-        ui.confirm("로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까?",{
-          ycb:()=>{ this.$router.push('/signin'); return; },
-          ccb:()=>{ return;},
-          ybt:"예",
-          nbt:"아니오",
+    comFocus() {
+      if (!store.state.userInfo.uid) {
+        ui.confirm("로그인이 필요합니다.<br>로그인페이지로 이동하시겠습니까?", {
+          ycb: () => { this.$router.push('/signin'); return; },
+          ccb: () => { return; },
+          ybt: "예",
+          nbt: "아니오",
         });
         return;
       }
     },
-    async chatWrite(){
+    async chatWrite() {
       if (this.inputReply == '') {
-        ui.alert("댓글을 입력하세요",{
-          ycb:()=>{
+        ui.alert("댓글을 입력하세요", {
+          ycb: () => {
             this.$refs.msgbox.focus();
           }
         });
         return;
       }
       const chatOpts = {
-        roomName : this.chatRoomName,
-        userId : store.state.userInfo.uid,
-        userName : store.state.userInfo.nick,
-        avatar : store.state.userInfo.avatar,
-        msg : ui.textHtml(this.inputReply,"incode"),
+        roomName: this.chatRoomName,
+        userId: store.state.userInfo.uid,
+        userName: store.state.userInfo.nick,
+        avatar: store.state.userInfo.avatar,
+        msg: ui.textHtml(this.inputReply, "incode"),
         time: Date.now(),
       };
 
       const db = getDatabase();
-      const postListRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
+      const postListRef = ref(db, 'DB_CHAT/' + this.chatRoomName);
       const newPostRef = push(postListRef);
       set(newPostRef, chatOpts);
       await this.chatRead();
       this.inputReply = '';
-      this.$refs.msgbox.style.height ="";
+      this.$refs.msgbox.style.height = "";
       this.$refs.msgbox.focus();
-      window.scrollTo(0,ui.viewport.docHeight());
+      window.scrollTo(0, ui.viewport.docHeight());
     },
-    autoHeight(){ // 댓글에 자동높이 기능
+    autoHeight() { // 댓글에 자동높이 기능
       const $els = this.$refs.msgbox;
       let tboxS;
       $els.style.height = "1px";
-      tboxS = $els.scrollHeight ;
-      $els.style.height = tboxS+"px";
+      tboxS = $els.scrollHeight;
+      $els.style.height = tboxS + "px";
     }
   }
 }

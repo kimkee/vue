@@ -57,16 +57,16 @@
 </template>
 
 <script>
-import {db} from '@/firebaseConfig.js';
+import { db } from '@/firebaseConfig.js';
 import Comments from '@/components/Comments.vue';
 import Vote from '@/components/Vote.vue';
-import { getDoc, doc ,deleteDoc ,updateDoc} from 'firebase/firestore';
+import { getDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from 'firebase/storage';
 import { useRoute } from 'vue-router';
 import store from '@/store';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -84,7 +84,7 @@ export default {
       dbTable: "photo",
     }
   },
-  components:{
+  components: {
     Comments,
     Vote,
     Swiper,
@@ -95,7 +95,7 @@ export default {
       console.log(swiper);
     };
     const onSlideChange = (swiper) => {
-      console.log('slide change'+ swiper + this);
+      console.log('slide change' + swiper + this);
     };
     const swiper = useSwiper();
     return {
@@ -105,21 +105,21 @@ export default {
       modules: [Navigation, Pagination, Scrollbar, A11y],
     };
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     console.log("view created");
-    const route = useRoute();  
+    const route = useRoute();
     const ids = route.params.id; // read parameter id (it is reactive) 
     this.view(ids);
     this.param = ids;
   },
-  mounted(){
+  mounted() {
     document.querySelector(".header .htit").textContent = 'Photo';
   },
-  methods:{
-    async view(ids){
-      const docRef = doc(db, this.dbTable , ids);
+  methods: {
+    async view(ids) {
+      const docRef = doc(db, this.dbTable, ids);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.Views.id = docSnap.id;
@@ -128,26 +128,26 @@ export default {
         this.Views.author = docSnap.data().author || "익명";
         this.Views.avatar = docSnap.data().avatar || 0;
         this.Views.content = docSnap.data().content.replace(ui.rex.pattern['url'], ui.rex.replace['url']).replace(ui.rex.pattern['hash'], ui.rex.replace['hash']);
-        this.Views.timestamp = ui.dateForm( docSnap.data().timestamp.toDate() ) ;
+        this.Views.timestamp = ui.dateForm(docSnap.data().timestamp.toDate());
         this.Views.img = docSnap.data().img;
-        this.Views.coments = docSnap.data().coments ;
-        this.Views.count = docSnap.data().count ;
-        this.Views.likeUsr = [...new Set( docSnap.data().likeUsr || []  )] ;
-        this.Views.likes = this.Views.likeUsr.length || 0 ;
+        this.Views.coments = docSnap.data().coments;
+        this.Views.count = docSnap.data().count;
+        this.Views.likeUsr = [...new Set(docSnap.data().likeUsr || [])];
+        this.Views.likes = this.Views.likeUsr.length || 0;
         document.querySelector(".page.view").classList.add("load");
         const newHits = this.Views.count + 1;
-        this.hits( newHits );
-      }else{
+        this.hits(newHits);
+      } else {
         console.log("No such document!");
       }
       console.table(this.Views);
       this.$refs.VoteItem.getUser();
       ui.loading.hide();
     },
-    async delpost(){
-      ui.confirm("이 글을 삭제하시겠습니까?",{
-        ycb:()=>{
-          this.Views.img.forEach( imgUrl =>{
+    async delpost() {
+      ui.confirm("이 글을 삭제하시겠습니까?", {
+        ycb: () => {
+          this.Views.img.forEach(imgUrl => {
             console.log(imgUrl);
             const storage = getStorage();
             const desertRef = ref(storage, imgUrl);
@@ -155,26 +155,26 @@ export default {
               console.log("파일삭제 성공 ");
             }).catch((error) => { console.log(error); });
           });
-          deleteDoc(doc(db, this.dbTable, this.param ));
+          deleteDoc(doc(db, this.dbTable, this.param));
           console.log("삭제 성공: ");
-          this.$router.push('/'+this.dbTable);
+          this.$router.push('/' + this.dbTable);
         },
-        ncb:()=>{
+        ncb: () => {
           console.log("안지움 ㄷㄷㄷ");
         },
-        ybt:"예",
-        nbt:"아니오",
+        ybt: "예",
+        nbt: "아니오",
       });
     },
-    async hits(newHits){ // 조회수
+    async hits(newHits) { // 조회수
       console.log(newHits);
-      const docRef = doc(db, this.dbTable, this.param );
+      const docRef = doc(db, this.dbTable, this.param);
       this.Views.count = newHits;
       await updateDoc(docRef, {
         count: newHits,
-      }).then(()=>{
-        console.log("조회수 UP: ",newHits , store.state.userInfo.liked );
-      }).catch (e =>{
+      }).then(() => {
+        console.log("조회수 UP: ", newHits, store.state.userInfo.liked);
+      }).catch(e => {
         console.error("Error adding document: ", e);
       });
     },

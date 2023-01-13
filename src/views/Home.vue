@@ -49,7 +49,7 @@ import Clock from '@/components/Clock.vue'
 import store from '@/store';
 import ui from '@/ui.js';
 import { EffectFade, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import { Swiper, SwiperSlide ,useSwiper } from 'swiper/vue';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
@@ -66,34 +66,34 @@ export default {
     SwiperSlide,
   },
   props: {
-    
+
   },
   data() {
-      return {
-          
-      }
+    return {
+
+    }
   },
   setup() {
     const onSwiper = (swiper) => {
       console.log(swiper);
     };
     const onSlideChange = (swiper) => {
-      console.log('slide change  '+ swiper.$el);
+      console.log('slide change  ' + swiper.$el);
       swiper.$el.forEach(element => {
         console.log(swiper.activeIndex);
         element.querySelector(".swiper-slide-active").classList.add("dfsaaaaa")
       });
     };
     const swiper = useSwiper();
-    const kkk = ()=> console.log("KKK")
-    onMounted(()=>{
+    const kkk = () => console.log("KKK")
+    onMounted(() => {
       console.log("onMounted");
       kkk();
     });
-    const fff = ()=>{
+    const fff = () => {
       store.dispatch('increment')
       // store.state.count ++
-      console.log("Fff",store.state.count);
+      console.log("Fff", store.state.count);
     }
     return {
       fff,
@@ -104,17 +104,17 @@ export default {
       modules: [Navigation, Pagination, Scrollbar, A11y],
     };
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     console.log("home created");
   },
   mounted() {
-   console.table( store.state.userInfo);
+    console.table(store.state.userInfo);
   },
-  methods:{
-    
-    sss(){
+  methods: {
+
+    sss() {
       console.log(store.state.todos);
       store.state.todos = "1111111111111111111111111111"
     }

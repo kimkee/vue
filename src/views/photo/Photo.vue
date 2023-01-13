@@ -36,28 +36,28 @@
 </template>
 
 <script>
-import {db} from '@/firebaseConfig.js';
+import { db } from '@/firebaseConfig.js';
 import store from '@/store';
-import { collection, query, getDocs, orderBy, limit , limitToLast } from 'firebase/firestore';
+import { collection, query, getDocs, orderBy, limit, limitToLast } from 'firebase/firestore';
 import ui from '@/ui.js';
 
 export default {
   name: 'PhotoItem',
   components: {
-    
+
   },
   props: {
     userstate: String
   },
   data() {
     return {
-      Photos:[],
-      callStat:true,
-      countItem:0,
+      Photos: [],
+      callStat: true,
+      countItem: 0,
       Boards: []
     }
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     document.querySelector(".header .htit").textContent = 'Photo';
@@ -71,12 +71,12 @@ export default {
     // this.addItem();
     console.log("================================");
   },
-  unmounted(){
+  unmounted() {
     window.removeEventListener("scroll", this.scrollEvent);
   },
-  methods:{
-    async read(){
-      const q = query(collection(db, "photo"), orderBy("timestamp", "desc") , limit(), limitToLast() );
+  methods: {
+    async read() {
+      const q = query(collection(db, "photo"), orderBy("timestamp", "desc"), limit(), limitToLast());
       const querySnapshot = await getDocs(q);
       this.Boards = [];
       querySnapshot.forEach((doc) => {
@@ -92,20 +92,20 @@ export default {
           count: doc.data().count,
           likes: doc.data().likes,
           img: doc.data().img,
-          date: ui.timeForm( doc.data().timestamp.toDate()  )
+          date: ui.timeForm(doc.data().timestamp.toDate())
         });
       });
       // document.querySelector(".board-list").classList.add("load");
       ui.loading.hide();
     },
 
-    addItem(){
+    addItem() {
       let pHtml = "";
       document.querySelector('.ui-loadmore').classList.add("active");
       this.callStat = false;
-      fetch("./js/photo.json").then( res => res.ok && res.text() ).then( res => { 
-        const result = JSON.parse( res);
-        result.forEach( (data) =>{
+      fetch("./js/photo.json").then(res => res.ok && res.text()).then(res => {
+        const result = JSON.parse(res);
+        result.forEach((data) => {
           pHtml += `
             <li>
               <div class="box">
@@ -119,35 +119,35 @@ export default {
         });
 
         setTimeout(() => {
-          document.querySelector("#dp_list").insertAdjacentHTML("beforeend",pHtml);
+          document.querySelector("#dp_list").insertAdjacentHTML("beforeend", pHtml);
           document.querySelector('.ui-loadmore').classList.remove("active");
           document.querySelector(".page.photo").classList.add("load");
           this.callStat = true;
           this.Photos = [...this.Photos, ...(result)]
-          console.log(  this.Photos.length );
+          console.log(this.Photos.length);
           ui.loading.hide();
-          if(this.countItem >= 2){
+          if (this.countItem >= 2) {
             document.querySelector('.ui-loadmore').classList.add("hide");
             this.callStat = false;
           }
 
         }, 1000);
-      }).catch( e=>{
+      }).catch(e => {
         console.log("오프라인");
         document.querySelector('.ui-loadmore').classList.remove("active");
         document.querySelector('.ui-loadmore').classList.add("error");
         console.log(e);
       });
     },
-    scrollEvent(){
+    scrollEvent() {
       // console.log(this.callStat,  ui.viewport.height() ,ui.viewport.scrollTop() , ui.viewport.docHeight() );
-      const wHt = ui.viewport.height() ;
-      const docH =  ui.viewport.docHeight();
-      const scr = ui.viewport.scrollTop() + wHt + 10; 
+      const wHt = ui.viewport.height();
+      const docH = ui.viewport.docHeight();
+      const scr = ui.viewport.scrollTop() + wHt + 10;
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
         this.addItem();
-        this.countItem ++;
+        this.countItem++;
       }
     }
   }

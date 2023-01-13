@@ -19,46 +19,46 @@ export default {
     msg: String
   },
   data() {
-      return {
-         
-      }
+    return {
+
+    }
   },
   beforeRouteEnter: (to, from, next) => {
-    if(store.state.userInfo.stat == true) {
+    if (store.state.userInfo.stat == true) {
       console.table(store.state.userInfo);
       ui.confirm("로그아웃 하시겠습니까?", {
-          ycb: () => {
-              localStorage.setItem("preurl", location.hash);
-              return next();
-          },
-          ccb: () => { from(); },
-          ybt: "예",
-          nbt: "아니오",
+        ycb: () => {
+          localStorage.setItem("preurl", location.hash);
+          return next();
+        },
+        ccb: () => { from(); },
+        ybt: "예",
+        nbt: "아니오",
       });
-    }else{
+    } else {
       next(from.fullPath);
     }
   },
-  created(){
+  created() {
     ui.init();
-    
+
   },
-  mounted(){
+  mounted() {
     this.logout();
   },
   methods: {
-    logout(){
+    logout() {
       const auth = getAuth();
       signOut(auth).then(() => {
         // Sign-out successful.
         // alert("로그아웃 성공!!");
-        const gourl = localStorage.getItem("preurl").replace("#","");
+        const gourl = localStorage.getItem("preurl").replace("#", "");
         this.$router.push(gourl);
       }).catch((error) => {
         console.log(error);
         // An error happened.
       });
-    },   
+    },
   }
 }
 </script>

@@ -85,29 +85,29 @@ export default {
     userstate: String
   },
   data() {
-      return {
-        workData:{}
-      }
+    return {
+      workData: {}
+    }
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     // this.workData = data;
     // console.log(this.workData);
-    
+
     document.querySelector(".header .htit").textContent = 'Works';
   },
   async mounted() {
-    await fetch('https://kimkee.github.io/js/data.json').then( res => res.ok && res.text() ).then( res => { 
-      
-      this.workData = JSON.parse( res);
-      console.log(  this.workData  );
+    await fetch('https://kimkee.github.io/js/data.json').then(res => res.ok && res.text()).then(res => {
+
+      this.workData = JSON.parse(res);
+      console.log(this.workData);
       ui.loading.hide();
     });
     document.querySelector(".page.work").classList.add("load");
-    
+
   },
-  methods:{
+  methods: {
 
   }
 }

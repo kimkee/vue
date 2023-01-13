@@ -40,8 +40,8 @@
 </template>
 
 <script>
-import {db} from '@/firebaseConfig.js';
-import { collection, query, getDocs, orderBy, limit  } from 'firebase/firestore';
+import { db } from '@/firebaseConfig.js';
+import { collection, query, getDocs, orderBy, limit } from 'firebase/firestore';
 import ui from '@/ui.js';
 
 
@@ -51,32 +51,32 @@ export default {
     opts: Object
   },
   data() {
-      return {
-          Recents: []
-      }
+    return {
+      Recents: []
+    }
   },
-  created(){
+  created() {
     this.read();
     // console.log(db);
   },
-  mounted(){
-    
+  mounted() {
+
   },
-  methods:{
-    testConfirm(){
-      ui.confirm('컨펌 메시지입니다.',{
-        'tit':'타이틀',
-        'ycb': ()=> {
+  methods: {
+    testConfirm() {
+      ui.confirm('컨펌 메시지입니다.', {
+        'tit': '타이틀',
+        'ycb': () => {
           console.log("확인");
         },
-        'ncb': ()=> {
+        'ncb': () => {
           console.log("취소");
         }
       });
     },
-    async read(){
-      console.log("dbTable ======================= " +  this.opts['dbTable']  );
-      const q = query(collection(db, this.opts.dbTable), orderBy("timestamp", "desc") , limit(this.opts.num) );
+    async read() {
+      console.log("dbTable ======================= " + this.opts['dbTable']);
+      const q = query(collection(db, this.opts.dbTable), orderBy("timestamp", "desc"), limit(this.opts.num));
       const querySnapshot = await getDocs(q);
       this.Recents = [];
       querySnapshot.forEach((doc) => {
@@ -91,7 +91,7 @@ export default {
           count: doc.data().count,
           likes: doc.data().likes,
           img: doc.data().img,
-          date: ui.timeForm( doc.data().timestamp.toDate()  )
+          date: ui.timeForm(doc.data().timestamp.toDate())
         });
       });
       document.querySelector(".page.home")?.classList.add("load");

@@ -49,36 +49,36 @@
 </template>
 
 <script>
-import {db} from '@/firebaseConfig.js';
+import { db } from '@/firebaseConfig.js';
 import store from '@/store';
-import { collection, query, getDocs, orderBy, limit , limitToLast } from 'firebase/firestore';
+import { collection, query, getDocs, orderBy, limit, limitToLast } from 'firebase/firestore';
 import ui from '@/ui.js';
 
 
 export default {
   name: 'ListItem',
   props: {
-    
+
   },
   data() {
     return {
-        Boards: []
+      Boards: []
     }
   },
-  created(){
+  created() {
     ui.init();
     ui.loading.show();
     console.log("list created");
     this.read();
     // console.log(db);
   },
-  mounted(){
+  mounted() {
     console.table(store.state.userInfo);
     document.querySelector(".header .htit").textContent = 'Board';
   },
-  methods:{
-    async read(){
-      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc") , limit(), limitToLast() );
+  methods: {
+    async read() {
+      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc"), limit(), limitToLast());
       const querySnapshot = await getDocs(q);
       this.Boards = [];
       querySnapshot.forEach((doc) => {
@@ -94,7 +94,7 @@ export default {
           count: doc.data().count,
           likes: doc.data().likes,
           img: doc.data().img,
-          date: ui.timeForm( doc.data().timestamp.toDate()  )
+          date: ui.timeForm(doc.data().timestamp.toDate())
         });
       });
       document.querySelector(".board-list").classList.add("load");
