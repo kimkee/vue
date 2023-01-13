@@ -5,13 +5,13 @@
         <!-- <h1 class="hdt">회원가입</h1>  -->
         <ul class="list">
           <li>
-            <label class="dt">이메일</label>
+            <label class="dt">이메일 (user@test.com) </label>
             <div class="dd">
               <span class="input"><input type="email" id="email" placeholder="입력하세요" v-model="userEmail"></span>
             </div>
           </li>
           <li>
-            <label class="dt">비밀번호</label>
+            <label class="dt">비밀번호 (123456) </label>
             <div class="dd">
               <span class="input"><input type="password" id="password" v-model="userPassword" placeholder="입력하세요"></span>
             </div>
