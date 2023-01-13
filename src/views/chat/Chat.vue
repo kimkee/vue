@@ -2,7 +2,6 @@
   <div class="container home">
     <main class="contents">
       <div class="chat-view">
-        <!-- <div>{{ chatMsgList }}</div> -->
         
         <article v-for="chmsg,idx in chatMsgList" :key="idx" class="chmsg" 
           :data-secs="chmsg.secs" :data-uid="chmsg.userId" :data-idx="idx"
@@ -17,26 +16,6 @@
             <time class="tm" v-html="chmsg.time"></time>
           </div>
         </article>
-        
-        <!-- <article class="chmsg me same">
-          <div class="usr">
-            <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" class="img">
-          </div>
-          <div class="msg">
-            <p class="txt">대화 케이스</p> 
-            <time class="tm">오후 12:26</time>
-          </div>
-        </article>
-
-        <article class="chmsg op same">
-          <div class="usr">
-            <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" class="img">
-          </div>
-          <div class="msg">
-            <p class="txt">대화 케이스</p> 
-            <time class="tm">오후 12:26</time>
-          </div>
-        </article> -->
 
       </div>
 
@@ -48,21 +27,23 @@
                 <a v-if="$store.state.userInfo.stat" href="javascript:;" class="pic">
                   <img :src="$store.state.avatar[$store.state.userInfo.avatar]" onerror="this.src='./img/user.png';" class="img">
                 </a>
-                <span v-else class="pic"> <img src="'./img/user.png'" class="img" onerror="this.src='./img/user.png';"> </span>
+                <span v-else class="pic"> <img src="" class="img" onerror="this.src='./img/user.png';"> </span>
               </div>
               <div class="form">
-                <textarea data-ui="autoheight" ref="msgbox" class="ment" v-model="inputReply" 
-                @input="autoHeight"
-                @focus="comFocus"
-                :placeholder="$store.state.userInfo.stat ? '메시지를 입력해주세요' : '로그인해주세요'"
-                
-                spellcheck="false"></textarea>
+                <textarea data-ui="autoheight" ref="msgbox" class="ment" 
+                  v-model="inputReply" 
+                  @input="autoHeight"
+                  @focus="comFocus"
+                  :placeholder="$store.state.userInfo.stat ? '메시지를 입력해주세요' : '로그인해주세요'"
+                  spellcheck="false">
+                </textarea>
               </div>
               <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="chatWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
             </div>
           </div>
         </div>
       </nav>
+
     </main>
   </div>
 </template>
@@ -107,22 +88,10 @@ export default {
     document.querySelector(".header .htit").textContent = 'Chat';
     const db = getDatabase();
     const commentsRef = ref(db, 'DB_CHAT/'+this.chatRoomName);
-    onChildAdded(commentsRef, () => {
-      this.chatRead();
-      // addCommentElement(postElement, data.key, data.val().text, data.val().author);
-    });
-    
-    onChildChanged(commentsRef, () => {
-      this.chatRead();
-      // setCommentValues(postElement, data.key, data.val().text, data.val().author);
-    });
-    
-    onChildRemoved(commentsRef, () => {
-      this.chatRead();
-      // deleteComment(postElement, data.key);
-    });
-    this.reflesh = setInterval(() => this.chatRead(), 5000);
-    
+    onChildAdded(commentsRef, () => this.chatRead());
+    onChildChanged(commentsRef, () => this.chatRead());
+    onChildRemoved(commentsRef, () => this.chatRead());
+    this.reflesh = setInterval(() => this.chatRead(), 30000);
   },
   unmounted(){
     clearInterval(this.reflesh);

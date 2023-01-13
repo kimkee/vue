@@ -11,7 +11,7 @@ table { border-collapse: collapse; border-spacing: 0; }
 em {font-style: normal;}
 img, a, input, select, textarea, label, button, span, em, strong { vertical-align: baseline; }
 hr { display: none; }
- 
+
 html, body {font-size: 1400%;line-height: 1.6;font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
 input , textarea{font-family: 'Roboto',"Noto Sans KR",Arial,"Malgun Gothic",sans-serif;}
 html{font-size: 1px;}
@@ -652,7 +652,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-rpwrite .rwset{ position: relative; padding: 0px 48px 0px 40px; }
 .ut-rpwrite .rwset .user{position: absolute;left: 0px;bottom: 6px;}
 .ut-rpwrite .rwset .user .pic{width: 32px;min-width: 32px;height: 32px;padding-bottom: 32px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
-.ut-rpwrite .rwset .user .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #000000;}
+.ut-rpwrite .rwset .user .pic .img{font-size:0; display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #000000;}
 .ut-rpwrite .rwset .form{position: relative;border: 1px solid #28364a;border-radius: 4px;min-height: 40px;padding: 9px 10px 0px 10px;}
 .ut-rpwrite .rwset .form .ment{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 77px;-webkit-appearance: none;outline: none;word-break: break-all;height: 24px;background: transparent;color: #999;}
 .ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 6px;}
