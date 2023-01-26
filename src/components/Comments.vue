@@ -13,7 +13,9 @@
         <ul class="rlist a">
           <li v-for="cmt in Coments" :key="cmt.key" :data-coment-idx="cmt.idx">
             <div class="rpset">
-              <div class="user"><a href="javascript:;" class="pic"><img :src="$store.state.avatar[cmt.avatar]" alt="사진"  class="img"></a></div>
+              <div class="user">
+                <router-link class="pic" :to="`/user/${cmt.uid}`"><img :src="$store.state.avatar[cmt.avatar]" alt="사진"  class="img"></router-link>
+              </div>
               <div class="infs">
                 <div class="name">
                   <em class="nm">{{cmt.author}}</em>

@@ -18,6 +18,7 @@ import SignUp from "./views/SignUp.vue";
 import SignIn from "./views/SignIn.vue";
 import SignOut from "./views/SignOut.vue";
 import Chat from "./views/chat/Chat.vue";
+import User from "./views/user/User.vue";
 // import store from "./store";
 // import ui from './ui.js';
 const router = createRouter({
@@ -166,6 +167,16 @@ const router = createRouter({
                 default: SignOut,
             }
         }
+        ,
+        {
+            path: "/user/:id",
+            name: "user",
+            components: {
+                default: User,
+                HeaderSub,
+                Nav
+            }
+        },
     ],
 });
 

@@ -407,7 +407,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .hdt .tits .tit{}
 .board-view .hdt .info{padding: 7px 1px;font-size:12rem;color: #626b7a;display: flex; align-items: center; justify-content: space-between;}
 .board-view .hdt .info .dd{display: flex; align-items: center;}
-.board-view .hdt .user{word-break: break-all;margin-top: 0rem;text-align: right;}
+.board-view .hdt .user{word-break: break-all;margin-top: 0rem;text-align: right;display: flex; gap: 5rem; align-items: center;}
 .board-view .hdt .user .pic{display: inline-block;}
 .board-view .hdt .user .pic .img{width: 18rem;height: 18rem;vertical-align: middle;background-color: #666; border-radius:20rem;}
 .board-view .hdt .user .txt{display: inline-block;vertical-align: middle;}
@@ -457,7 +457,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-view .hdt .tits .tit{}
 .photo-view .hdt .info{padding: 15px 20px;font-size:12rem;color: #626b7a;display: flex; align-items: center; justify-content: space-between;}
 .photo-view .hdt .info .dd{display: flex; align-items: center;}
-.photo-view .hdt .user{word-break: break-all;margin-top: 0rem;text-align: right;}
+.photo-view .hdt .user{word-break: break-all;margin-top: 0rem;text-align: right; display: flex; gap: 5rem; align-items: center;}
 .photo-view .hdt .user .pic{display: inline-block;}
 .photo-view .hdt .user .pic .img{width: 18rem;height: 18rem;vertical-align: middle;background-color: #666; border-radius:20rem;}
 .photo-view .hdt .user .txt{display: inline-block;vertical-align: middle;}
@@ -589,8 +589,17 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .work-list .wlst>li .box .cdt .tech .ico{display: inline-flex;justify-content: center;border-radius: 10rem;padding: 1rem 3rem 2rem 3rem;padding: 3rem 5rem 3rem 5rem;margin: 1rem 3rem 1rem 0rem;color: #7d95b9;font-size: 9rem;line-height: 8rem;font-family: 'Tahoma';background: transparent; border: #2c2c2c solid 1rem;cursor: default;font-family: Consolas;}
 
 
-
-
+.page.user.view{}
+.page.user.view .user{}
+.page.user.view .user{display: flex; width:100%; align-items: center;margin-right: 14rem;}
+.page.user.view .user .pic{width: 80rem;min-width: 80rem;height: 80rem;padding-bottom: 80rem;display: block;position: relative;border-radius: 100px;overflow: hidden;}
+.page.user.view .user .pic .img{position: absolute; width: 100%; left: 0; top: 0;}
+.page.user.view .user .info{display: flex; width:100%;}
+.page.user.view .user .info .post{text-align: center; width: 100%;}
+.page.user.view .user .info .post .n{}
+.page.user.view .user .info .post .t{}
+.page.user.view .user .txt{color: #e1e1e1;margin-left: 4rem;margin-top: 4rem;line-height: 1.2;}
+.page.user.view .desc{display: flex; margin-top: 10rem;}
 
 @keyframes loading-rotate {
     from { transform: rotate(0deg); }

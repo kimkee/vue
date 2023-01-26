@@ -5,10 +5,10 @@
         <h1 class="logo" @click="testAlert"><router-link class="btlogo" to="/">Home</router-link></h1>
       </div>
       <div class="rdt">
-        <div class="user">
+        <router-link class="user" :to="`/user/${$store.state.userInfo.uid}`">
           <span class="pic"><img :src="$store.state.avatar[$store.state.userInfo.avatar]" alt="" class="img"></span>
           <span class="txt">{{$store.state.userInfo.nick}}</span>
-        </div>
+        </router-link>
         <button type="button" class="bt gnb" id="btn-gnb" @click="gnbOpen"><i class="fa-solid fa-bars"></i><b>메뉴</b></button>
       </div>
     </div>

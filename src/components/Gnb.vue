@@ -11,10 +11,10 @@
         <li><router-link class="bt" to="/works"><i class="fa-solid fa-briefcase"></i> <em>Works</em></router-link></li>
       </ul>
       <div class="sign">
-        <div class="user">
+        <router-link class="user" :to="`/user/${$store.state.userInfo.uid}`">
           <span class="pic"><img :src="$store.state.avatar[$store.state.userInfo.avatar]" alt="" class="img"></span>
           <span class="txt">{{$store.state.userInfo.nick}}</span>
-        </div>
+        </router-link>
         <div v-if="$store.state.userInfo.stat == true" class="bt email">
           <i class="fa-solid fa-envelope"></i>
           <em>{{$store.state.userInfo.email}}</em>
