@@ -8,6 +8,7 @@
       <div class="cdt"></div>
       <div class="rdt">
         <router-link class="user" :to="`/user/${$store.state.userInfo.uid}`">
+        <!-- <router-link class="user" :to="{ name: 'user', params: { id: $store.state.userInfo.uid }}"> -->
           <span class="pic"><img :src="$store.state.avatar[$store.state.userInfo.avatar]" alt="" class="img"></span>
           <span class="txt">{{$store.state.userInfo.nick}}</span>
         </router-link>
