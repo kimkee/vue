@@ -6,14 +6,16 @@
       <div class="user">
         <span class="pic"><img :src="$store.state.avatar[uInfo.avatar]" class="img"></span>
         <div class="info">
-          <div class="post b"><b class="n">0</b><p class="t">게시글</p></div>    
-          <div class="post p"><b class="n">0</b><p class="t">사진</p></div>    
-          <div class="post l"><b class="n">0</b><p class="t">좋아요</p></div>    
+          <div class="post b"><b class="n">{{uInfo.bbsNum}}</b><p class="t">게시글</p></div>    
+          <div class="post p"><b class="n">{{uInfo.photoNum}}</b><p class="t">사진</p></div>    
+          <div class="post l"><b class="n">{{uInfo.liked}}</b><p class="t">좋아요</p></div>    
         </div>
       </div>
       <div class="desc">
         <span class="txt">{{uInfo.nick}}</span>
         <span class="txt">{{uInfo.email}}</span>
+        <span class="txt">{{uInfo.bbsNum}}</span>
+        <span class="txt">{{uInfo.photoNum}}</span>
       </div>
       
       
@@ -98,6 +100,7 @@ export default {
         this.uInfo.nick = docSnap.data().nick;
         this.uInfo.avatar = docSnap.data().avatar;
         this.uInfo.email = docSnap.data().email;
+        this.uInfo.liked = docSnap.data().liked.length ;
         document.querySelector(".page.user").classList.add("load");
         document.querySelector(".header .htit").textContent = this.uInfo.nick;
         
@@ -105,7 +108,12 @@ export default {
         console.log("No such document!");
       }
       const bbs = query(collection(db, "bbs"), where("uid", "==", docSnap.id));
+      const photo = query(collection(db, "photo"), where("uid", "==", docSnap.id));
       const bbsSnap = await getDocs(bbs);
+      const photoSnap = await getDocs(photo);
+      console.log(bbsSnap.size);
+      this.uInfo.bbsNum = bbsSnap.size;
+      this.uInfo.photoNum = photoSnap.size;
       bbsSnap.forEach( (doc) => {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
