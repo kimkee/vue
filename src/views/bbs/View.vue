@@ -116,6 +116,11 @@ export default {
     console.log("view created");
     const route = useRoute();
     const ids = route.params.id; // read parameter id (it is reactive) 
+    this.$watch( () => this.$route.params, (toParams, previousParams) => {
+      // 라우트 변경에 대응...
+      console.log(toParams, previousParams);
+      (route.name == "bbsView") ? this.view(toParams.id) : null;
+    });
     this.view(ids);
     this.param = ids;
   },

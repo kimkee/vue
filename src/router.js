@@ -116,7 +116,7 @@ const router = createRouter({
         },
         {
             path: "/bbs/:id",
-            name: "view",
+            name: "bbsView",
             components: {
                 default: View,
                 HeaderSub,

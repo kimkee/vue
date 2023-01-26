@@ -12,7 +12,7 @@
           </div>
           <ul class="list">
             <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
-                <router-link class="box" :to="{ name: 'view', params: { id: board.id }}">
+                <router-link class="box" :to="{ name: 'bbsView', params: { id: board.id }}">
                   <div class="cont">
                     <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
                     <div class="desc">
