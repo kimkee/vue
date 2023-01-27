@@ -2,23 +2,24 @@
   <div class="container user view">
     <main class="contents">
       <!-- {{$route.params.id}} -->
-      
-      <div class="user">
-        <span class="pic"><img :src="$store.state.avatar[uInfo.avatar]" class="img"></span>
-        <div class="info">
-          <div class="num b"><b class="n">{{uInfo.bbsNum}}</b><p class="t">게시글</p></div>    
-          <div class="num p"><b class="n">{{uInfo.photoNum}}</b><p class="t">사진</p></div>    
-          <div class="num l"><b class="n">{{uInfo.liked}}</b><p class="t">좋아요</p></div>    
+      <div class="profile">
+        <div class="user">
+          <span class="pic"><img :src="$store.state.avatar[uInfo.avatar]" class="img"></span>
+          <div class="info">
+            <div class="num b"><b class="n">{{uInfo.bbsNum}}</b><p class="t">게시글</p></div>    
+            <div class="num p"><b class="n">{{uInfo.photoNum}}</b><p class="t">사진</p></div>    
+            <div class="num l"><b class="n">{{uInfo.liked}}</b><p class="t">좋아요</p></div>    
+          </div>
         </div>
-      </div>
-      <div class="desc">
-        <span class="txt"><i class="fa-solid fa-calendar-days"></i> 가입 : {{uInfo.date}}</span>
-        <span class="txt"><i class="fa-solid fa-envelope"></i> {{uInfo.email}}</span>
+        <div class="desc">
+          <span class="txt"><i class="fa-solid fa-calendar-days"></i> 가입 : {{uInfo.date}}</span>
+          <span class="txt"><i class="fa-solid fa-envelope"></i> {{uInfo.email}}</span>
+        </div>
       </div>
       
       <div class="post">
         <ul class="menu" ref="menuSlide">
-          <li class="active">
+          <li class="">
             <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-solid fa-list"></i></span></a>
           </li>
           <li>
@@ -32,14 +33,69 @@
           ref="swiperRef"
           :modules="modules"
           :auto-height="true" :slides-per-view="1" 
-          :space-between="0" navigation 
+          :space-between="20" navigation 
           
-          @swiper="onSwiper" @slideChange="onSlideChange" @slideChangeTransitionEnd="onSlideChangeTransitionEnd">
+          @swiper="onSwiper" 
+          @init="onInit" 
+          @slideChange="onSlideChange">
           <swiper-slide class="ctn b" data-val="tab_a_1">
-            BBS
+            <div class="board-list">
+              <ul class="list">
+                
+                <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
+                  <router-link class="box" :to="{ name: 'bbsView', params: { id: board.id }}">
+                    <div class="cont">
+                      <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                      <div class="desc">
+                        <h4 class="tits">{{ board.title }}</h4>
+                        <div class="text" v-html="board.content"></div>
+                      </div>
+                    </div>
+                    <div class="info">
+                      <div class="dd">
+                        <div class="user"><span class="pic"><img :src="$store.state.avatar[board.avatar]" alt="" class="img"></span> <span class="txt">{{board.author}}</span></div>
+                        <div class="keys">{{ board.id }}</div>
+                      </div>
+                      <div class="dd">
+                        <div class="hits">
+                          <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                          <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
+                          <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                        </div>
+                        <div class="date" v-html="board.date"></div>
+                      </div>
+                    </div>
+                  </router-link>
+                </li>
+              </ul>
+            </div>
           </swiper-slide>
           <swiper-slide class="ctn p" data-val="tab_a_2">
-            PHOTO
+            <div class="ut-tblist">
+              <div v-if="Photos.length == 0" class="nodata">
+                <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+              </div>
+              <ul v-else class="list" id="dp_list">
+                <!-- {{Photos}} -->
+                <li v-for="board in Photos" :key="board.id" :data-id="board.id" :data-uid="board.uid">
+                  <div class="box">
+                    <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
+                      <div class="pic" v-if="board.img.length"><img class="img" loading="lazy" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                      <div class="nums" v-if="board.img.length > 1"><em><i class="fa-solid fa-images"></i></em></div>
+                      <div class="info">
+                        <em v-if="board.comtNum > 0"><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                        <!-- <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em> -->
+                        <em v-if="board.likes > 0"><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                      </div>
+                    </router-link>
+                  </div>
+                </li>
+              </ul>
+              <div class="ui-loadmore">
+                <em></em>
+                <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
+              </div>
+            </div>
           </swiper-slide>
           <swiper-slide class="ctn l" data-val="tab_a_3">
             LIKE
@@ -79,6 +135,8 @@ export default {
     return {
       uid: String,
       uInfo:{},
+      Boards:[],
+      Photos:[],
       dbTable: 'member',
     }
   },
@@ -126,22 +184,24 @@ export default {
   },
   mounted() {
     // document.querySelector(".header .htit").textContent = this.uInfo.nick;
+    this.gotoSlide(0);
   },
   methods: {
     onSwiper(swiper) {
       this.swiper = swiper;
-      this.swiper.slideTo(0);
     },
     gotoSlide(i) {
+      console.log('slide change' + i);
       this.swiper.slideTo(i);
-    },
-    onSlideChangeTransitionEnd() {
-      console.log('slide change' + this.swiper.realIndex);
-      console.log(this.swiper.realIndex, this.swiper.$el[0].querySelector(".swiper-slide-active").getAttribute("data-val") );
-      const idx = this.swiper.realIndex + 1;
+      const idx = i + 1;
       this.$refs.menuSlide.querySelectorAll("li").forEach(li => li.classList.remove("active"));
       this.$refs.menuSlide.querySelector('[data-val="tab_a_'+idx+'"]').closest("li").classList.add("active");
-
+    },
+    onInit() {
+      console.log('onSlideInit');
+    },
+    onSlideChange() {
+      this.gotoSlide(this.swiper.realIndex);
     },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
@@ -156,7 +216,6 @@ export default {
         this.uInfo.liked = docSnap.data().liked.length ;
         
         document.querySelector(".header .htit").textContent = this.uInfo.nick;
-        
       } else {
         console.log("No such document!");
       }
@@ -167,9 +226,36 @@ export default {
       console.log(bbsSnap.size);
       this.uInfo.bbsNum = bbsSnap.size;
       this.uInfo.photoNum = photoSnap.size;
-      bbsSnap.forEach( (doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
+      
+      bbsSnap.forEach( (doc) => { 
+        this.Boards.push({
+          id: doc.id,
+          uid: doc.data().uid,
+          author: doc.data().author || "익명",
+          avatar: doc.data().avatar || 0,
+          title: doc.data().title,
+          content: doc.data().content,
+          comtNum: doc.data().coments.length,
+          count: doc.data().count,
+          likes: doc.data().likes,
+          img: doc.data().img,
+          date: ui.timeForm(doc.data().timestamp.toDate())
+        });
+      });
+      photoSnap.forEach( (doc) => { 
+        this.Photos.push({
+          id: doc.id,
+          uid: doc.data().uid,
+          author: doc.data().author || "익명",
+          avatar: doc.data().avatar || 0,
+          title: doc.data().title,
+          content: doc.data().content,
+          comtNum: doc.data().coments.length,
+          count: doc.data().count,
+          likes: doc.data().likes,
+          img: doc.data().img,
+          date: ui.timeForm(doc.data().timestamp.toDate())
+        });
       });
       document.querySelector(".page.user").classList.add("load");
       ui.loading.hide();

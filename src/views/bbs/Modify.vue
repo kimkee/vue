@@ -142,6 +142,7 @@ export default {
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       const docRef = doc(db, "bbs", this.param);
       await updateDoc(docRef, {
+        id:this.param,
         title: this.title,
         content: ui.textHtml(this.content, "incode"),
         uid: store.state.userInfo.uid,

@@ -113,6 +113,7 @@ export default {
       const postNum = docSnap.data().post + 1;
       console.log(postNum);
       setDoc(doc(db, "photo", "" + postNum), {
+        id:"" + postNum,
         content: ui.textHtml(this.content, "incode"),
         timestamp: today,
         uid: store.state.userInfo.uid,

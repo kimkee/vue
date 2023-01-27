@@ -134,6 +134,7 @@ export default {
       const postNum = docSnap.data().post + 1;
       console.log(postNum);
       setDoc(doc(db, "bbs", "" + postNum), {
+        id:"" + postNum,
         title: this.title,
         content: ui.textHtml(this.content, "incode"),
         timestamp: today,

@@ -123,6 +123,7 @@ export default {
       // 데이터 수정 https://firebase.google.com/docs/firestore/manage-data/add-data?hl=ko&authuser=0
       const docRef = doc(db, "photo", this.param);
       await updateDoc(docRef, {
+        id:this.param,
         content: ui.textHtml(this.content, "incode"),
         uid: store.state.userInfo.uid,
         author: store.state.userInfo.nick,

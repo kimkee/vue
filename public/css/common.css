@@ -592,20 +592,18 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.user.view{}
 .page.user.view .contents{display:none;}
 .page.user.view.load .contents{display:block;}
-.page.user.view .user{display: flex; width:100%; align-items: center;margin-right: 14rem;}
-.page.user.view .user .pic{width: 80rem;min-width: 80rem;height: 80rem;padding-bottom: 80rem;display: block;position: relative;border-radius: 100px;overflow: hidden;}
-.page.user.view .user .pic .img{position: absolute; width: 100%; left: 0; top: 0;}
-.page.user.view .user .info{display: flex; width:100%;}
-.page.user.view .user .info .num{text-align: center; width: 100%;}
-.page.user.view .user .info .num .n{}
-.page.user.view .user .info .num .t{}
-.page.user.view .user .txt{color: #e1e1e1;margin-left: 4rem;margin-top: 4rem;line-height: 1.2;}
-.page.user.view .desc{display: flex; margin-top: 10rem;}
-.page.user.view .desc .txt{font-size:12rem;}
-.page.user.view .desc .txt+.txt{margin-left: 20rem;}
-.page.user.view .post{
-    margin: 20px 0px 0px 0px;
-}
+.page.user.view .profile .user{display: flex; width:100%; align-items: center;margin-right: 14rem;}
+.page.user.view .profile .user .pic{width: 80rem;min-width: 80rem;height: 80rem;padding-bottom: 80rem;display: block;position: relative;border-radius: 100px;overflow: hidden;}
+.page.user.view .profile .user .pic .img{position: absolute; width: 100%; left: 0; top: 0;}
+.page.user.view .profile .user .info{display: flex; width:100%;}
+.page.user.view .profile .user .info .num{text-align: center; width: 100%;}
+.page.user.view .profile .user .info .num .n{}
+.page.user.view .profile .user .info .num .t{}
+.page.user.view .profile .user .txt{color: #e1e1e1;margin-left: 4rem;margin-top: 4rem;line-height: 1.2;}
+.page.user.view .profile .desc{display: flex; margin-top: 10rem;}
+.page.user.view .profile .desc .txt{font-size:12rem;}
+.page.user.view .profile .desc .txt+.txt{margin-left: 20rem;}
+.page.user.view .post{ margin: 20px 0px 0px 0px; }
 .page.user.view .post .menu{position:relative;height: 50px;text-align: center;/* background: #ffffff; */display: flex;justify-content: start;padding: 0px 0px;border-bottom: #565656 solid 1px;}
 .page.user.view .post .menu:after{clear:both;content:"";display:block;font-size:0;height:0;line-height:0;visibility:hidden}
 .page.user.view .post .menu>li{position:relative;width: 100%;}
@@ -616,8 +614,11 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.user.view .post .menu>li.active>.bt{color: #87bbe1;font-weight: 700;}
 .page.user.view .post .menu>li.active>.bt::after{position:absolute;left:0px;bottom: 0px;right: 0px;height: 2.5px;background-color: #7b9fd5;border-radius: 0px;display:block;content:"";}
 .page.user.view .post .pctn{}
-.page.user.view .post .pctn .ctn{min-height: 200rem;padding: 60rem 0rem;text-align: center;}
-
+.page.user.view .post .pctn .ctn{min-height: calc(100vh - 370rem);}
+.page.user.view .post .pctn .ctn.b{padding-top:20rem;}
+.page.user.view .post .pctn .ctn.p{padding-top:20rem;}
+.page.user.view .post .pctn .ctn.l{padding-top:20rem;}
+.page.user.view .swiper-wrapper{padding-bottom: 0;}
 
 
 
