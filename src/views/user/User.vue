@@ -6,18 +6,46 @@
       <div class="user">
         <span class="pic"><img :src="$store.state.avatar[uInfo.avatar]" class="img"></span>
         <div class="info">
-          <div class="post b"><b class="n">{{uInfo.bbsNum}}</b><p class="t">게시글</p></div>    
-          <div class="post p"><b class="n">{{uInfo.photoNum}}</b><p class="t">사진</p></div>    
-          <div class="post l"><b class="n">{{uInfo.liked}}</b><p class="t">좋아요</p></div>    
+          <div class="num b"><b class="n">{{uInfo.bbsNum}}</b><p class="t">게시글</p></div>    
+          <div class="num p"><b class="n">{{uInfo.photoNum}}</b><p class="t">사진</p></div>    
+          <div class="num l"><b class="n">{{uInfo.liked}}</b><p class="t">좋아요</p></div>    
         </div>
       </div>
       <div class="desc">
-        <span class="txt">{{uInfo.nick}}</span>
-        <span class="txt">{{uInfo.email}}</span>
-        <span class="txt">{{uInfo.bbsNum}}</span>
-        <span class="txt">{{uInfo.photoNum}}</span>
+        <span class="txt"><i class="fa-solid fa-calendar-days"></i> 가입 : {{uInfo.date}}</span>
+        <span class="txt"><i class="fa-solid fa-envelope"></i> {{uInfo.email}}</span>
       </div>
       
+      <div class="post">
+        <ul class="menu" ref="menuSlide">
+          <li class="active">
+            <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-solid fa-list"></i></span></a>
+          </li>
+          <li>
+            <a class="bt" @click="gotoSlide(1)" data-val="tab_a_2" href="javascript:;"><span><i class="fa-solid fa-camera"></i></span></a>
+          </li>
+          <li>
+            <a class="bt" @click="gotoSlide(2)" data-val="tab_a_3" href="javascript:;"><span><i class="fa-solid fa-heart"></i></span></a>
+          </li>
+        </ul>
+        <swiper class="pctn"
+          ref="swiperRef"
+          :modules="modules"
+          :auto-height="true" :slides-per-view="1" 
+          :space-between="0" navigation 
+          
+          @swiper="onSwiper" @slideChange="onSlideChange" @slideChangeTransitionEnd="onSlideChangeTransitionEnd">
+          <swiper-slide class="ctn b" data-val="tab_a_1">
+            BBS
+          </swiper-slide>
+          <swiper-slide class="ctn p" data-val="tab_a_2">
+            PHOTO
+          </swiper-slide>
+          <swiper-slide class="ctn l" data-val="tab_a_3">
+            LIKE
+          </swiper-slide>
+        </swiper>
+      </div>
       
 
     </main>
@@ -34,12 +62,12 @@ import { collection, query, getDocs, getDoc, doc, where } from 'firebase/firesto
 import { useRoute } from 'vue-router';
 // import store from '@/store';
 
-// import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-// import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
-// import 'swiper/css/scrollbar';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Swiper, SwiperSlide } from 'swiper/vue';  //, useSwiper
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 import ui from '@/ui.js';
 export default {
@@ -55,23 +83,32 @@ export default {
     }
   },
   components: {
-    // Swiper,
-    // SwiperSlide,
+    Swiper,
+    SwiperSlide,
   },
   setup() {
     // const onSwiper = (swiper) => {
     //   console.log(swiper);
     // };
     // const onSlideChange = (swiper) => {
-    //   console.log('slide change' + swiper + this);
+    //   console.log('slide change' + swiper.realIndex);
+    //   console.log(swiper.realIndex, swiper.$el[0].querySelector(".swiper-slide-active").getAttribute("data-val") );
     // };
     // const swiper = useSwiper();
-    // return {
-    //   swiper,
-    //   onSwiper,
-    //   onSlideChange,
-    //   modules: [Navigation, Pagination, Scrollbar, A11y],
-    // };
+    // const gotoSlide = (index , swiper)=>{
+    //   const swiperRef = ref();
+    //   const slides = this.$refs.swiperRef.value.swiper
+    //   console.log(slides);
+    //   console.log( index ,  event.currentTarget );
+    //   swiper.slideTo(index);
+    // }
+    return {
+      // swiper,
+      // onSwiper,
+      // onSlideChange,
+      modules: [Navigation, Pagination, Scrollbar, A11y],
+      // gotoSlide,
+    };
   },
   created() {
     ui.init();
@@ -91,6 +128,21 @@ export default {
     // document.querySelector(".header .htit").textContent = this.uInfo.nick;
   },
   methods: {
+    onSwiper(swiper) {
+      this.swiper = swiper;
+      this.swiper.slideTo(0);
+    },
+    gotoSlide(i) {
+      this.swiper.slideTo(i);
+    },
+    onSlideChangeTransitionEnd() {
+      console.log('slide change' + this.swiper.realIndex);
+      console.log(this.swiper.realIndex, this.swiper.$el[0].querySelector(".swiper-slide-active").getAttribute("data-val") );
+      const idx = this.swiper.realIndex + 1;
+      this.$refs.menuSlide.querySelectorAll("li").forEach(li => li.classList.remove("active"));
+      this.$refs.menuSlide.querySelector('[data-val="tab_a_'+idx+'"]').closest("li").classList.add("active");
+
+    },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
       const docSnap = await getDoc(docRef);
@@ -100,8 +152,9 @@ export default {
         this.uInfo.nick = docSnap.data().nick;
         this.uInfo.avatar = docSnap.data().avatar;
         this.uInfo.email = docSnap.data().email;
+        this.uInfo.date = ui.dateForm( docSnap.data().date.toDate() );
         this.uInfo.liked = docSnap.data().liked.length ;
-        document.querySelector(".page.user").classList.add("load");
+        
         document.querySelector(".header .htit").textContent = this.uInfo.nick;
         
       } else {
@@ -118,7 +171,7 @@ export default {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
       });
-      
+      document.querySelector(".page.user").classList.add("load");
       ui.loading.hide();
     }
   }
