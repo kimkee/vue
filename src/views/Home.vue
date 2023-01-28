@@ -5,6 +5,9 @@
       <swiper class="slide"
         :modules="modules"
         :auto-height="true" :slides-per-view="1" 
+        :observer="true"
+        :observeParents="true"
+        :watchOverflow="true"
         :loop="false" 
         :space-between="10" navigation :pagination="{ clickable: true }"
         @swiper="onSwiper" @slideChangeTransitionEnd="onSlideChange">
