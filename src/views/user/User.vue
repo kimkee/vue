@@ -117,7 +117,7 @@
 import { db } from '@/firebaseConfig.js';
 // import Comments from '@/components/Comments.vue';
 // import Vote from '@/components/Vote.vue';
-import { collection, query, getDocs, getDoc, doc, where } from 'firebase/firestore';
+import { collection, query, getDocs, orderBy, getDoc, doc, where } from 'firebase/firestore';
 // import { getStorage, ref, deleteObject } from 'firebase/storage';
 import { useRoute } from 'vue-router';
 // import store from '@/store';
@@ -223,8 +223,8 @@ export default {
       } else {
         console.log("No such document!");
       }
-      const bbs = query(collection(db, "bbs"), where("uid", "==", docSnap.id));
-      const photo = query(collection(db, "photo"), where("uid", "==", docSnap.id));
+      const bbs = query(collection(db, "bbs"), where("uid", "==", docSnap.id), orderBy("timestamp", "desc"));
+      const photo = query(collection(db, "photo"), where("uid", "==", docSnap.id), orderBy("timestamp", "desc"));
       const bbsSnap = await getDocs(bbs);
       const photoSnap = await getDocs(photo);
       this.uInfo.bbsNum = bbsSnap.size;
