@@ -34,7 +34,9 @@
           :modules="modules"
           :auto-height="true" :slides-per-view="1" 
           :space-between="20" navigation 
-          
+          :observer="true"
+          :observeParents="true"
+          :watchOverflow="true"
           @swiper="onSwiper" 
           @init="onInit" 
           @slideChange="onSlideChange">
@@ -182,6 +184,7 @@ export default {
       // 라우트 변경에 대응...
       console.log(toParams, previousParams);
       (route.name == "user") ? this.view(toParams.id) : null;
+      this.swiper.update();
     });
     this.view(ids);
     this.uid = ids;
@@ -194,9 +197,9 @@ export default {
     onSwiper(swiper) {
       this.swiper = swiper;
     },
-    gotoSlide(i) {
+    gotoSlide(i,s) {
       // console.log('slide change' + i);
-      this.swiper.slideTo(i);
+      this.swiper.slideTo(i,s);
       const idx = i + 1;
       this.$refs.menuSlide.querySelectorAll("li").forEach(li => li.classList.remove("active"));
       this.$refs.menuSlide.querySelector('[data-val="tab_a_'+idx+'"]').closest("li").classList.add("active");
@@ -223,15 +226,23 @@ export default {
       } else {
         console.log("No such document!");
       }
+      
       const bbs = query(collection(db, "bbs"), where("uid", "==", docSnap.id), orderBy("timestamp", "desc"));
-      const photo = query(collection(db, "photo"), where("uid", "==", docSnap.id), orderBy("timestamp", "desc"));
+      const pto = query(collection(db, "photo"), where("uid", "==", docSnap.id), orderBy("timestamp", "desc"));
       const bbsSnap = await getDocs(bbs);
-      const photoSnap = await getDocs(photo);
+      const ptoSnap = await getDocs(pto);
       this.uInfo.bbsNum = bbsSnap.size;
-      this.uInfo.photoNum = photoSnap.size;
-      bbsSnap.forEach( (doc) => { this.Boards.push(doc.data()); });
-      photoSnap.forEach( (doc) => { this.Photos.push(doc.data()); });
+      this.uInfo.photoNum = ptoSnap.size;
+      
+      const nBbs = [];
+      bbsSnap.forEach( (doc) => nBbs.push(doc.data()) );
+      this.Boards = nBbs;
 
+      const nPto = [];
+      ptoSnap.forEach( (doc) => nPto.push(doc.data()) );
+      this.Photos = nPto;
+
+      this.gotoSlide(0,0);
       document.querySelector(".page.user").classList.add("load");
       ui.loading.hide();
     }

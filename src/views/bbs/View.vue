@@ -31,6 +31,9 @@
                 :modules="modules"
                 :auto-height="true" :slides-per-view="1" 
                 :space-between="10" navigation :pagination="{ clickable: true }"
+                :observer="true"
+                :observeParents="true"
+                :watchOverflow="true"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
                   <div class="pic">

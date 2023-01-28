@@ -27,6 +27,9 @@
               <swiper class="photo" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
                 :auto-height="true" :slides-per-view="1" 
+                :observer="true"
+                :observeParents="true"
+                :watchOverflow="true"
                 :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
