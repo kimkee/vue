@@ -13,7 +13,7 @@
       <b>{{ index }}</b>
       <img class="img" :src="image" alt="">
       <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
-      <input type="radio" name="rdFIle" :data-index="index" class="rdo" :checked=" index == 0 ? true : false">
+      <input type="radio" name="rdFIle" @change="rodPos" :data-index="index" class="rdo" :checked=" index == 0 ? true : false">
       <div class="rbt" v-if="Files.length > 1">
         <button @click="fMove('prev')" :data-index="index-1" class="mbt"><i class="fa-solid fa-angle-left"></i></button>
         <button @click="fMove('next')" :data-index="index+1" class="mbt"><i class="fa-solid fa-angle-right"></i></button>
@@ -60,6 +60,13 @@ export default {
       this.Files[target] = tmp;
       console.log(target , this.$refs.attach.querySelector(".pic[data-index='"+target+"'] .rdo"));
       this.$refs.attach.querySelector(".pic[data-index='"+target+"'] .rdo").checked  = true;
+      this.rodPos();
+    },
+    rodPos(){ // 선택한 이미지위치로 스크롤
+      const pic = this.$refs.attach.querySelector(".rdo:checked").closest(".pic");
+      const left = pic.offsetLeft - pic.offsetWidth;
+      console.log(left);
+      this.$refs.attach.scrollTo(left,0)
     },
     itemSet(files) {
       console.log("itemSet()" + this.Files.length);
