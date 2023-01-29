@@ -1,20 +1,25 @@
 <template>
 <!-- {{opts.mode}} {{opts.page}}  {{opts.param}} -->
 <div class="ut-attfiles">
-  <div class="attach">
-    <div class="adbts">
-      <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*" multiple maxlength="5">
-      <span class="btfiles" @click="numCheck" :class="this.btnDis">
-        <i class="fa-solid fa-camera"></i>
-        <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{this.opts.max}}</b></span>
-      </span>
-    </div>
+  <div class="adbts">
+    <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*" multiple maxlength="5">
+    <span class="btfiles" @click="numCheck" :class="this.btnDis">
+      <i class="fa-solid fa-camera"></i>
+      <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{this.opts.max}}</b></span>
+    </span>
+  </div>
+  <div class="attach" ref="attach">
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
+      <b>{{ index }}</b>
       <img class="img" :src="image" alt="">
       <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
+      <input type="radio" name="rdFIle" :data-index="index" class="rdo" :checked=" index == 0 ? true : false">
+      <div class="rbt" v-if="Files.length > 1">
+        <button @click="fMove('prev')" :data-index="index-1" class="mbt"><i class="fa-solid fa-angle-left"></i></button>
+        <button @click="fMove('next')" :data-index="index+1" class="mbt"><i class="fa-solid fa-angle-right"></i></button>
+      </div>
     </div>
   </div>
-  
 </div>
 </template>
 
@@ -43,16 +48,24 @@ export default {
     console.log(this.Files[0]);
   },
   methods: {
+    fMove(opt){
+      let target = event.currentTarget.dataset.index;
+      let ptarget = event.currentTarget.closest(".pic").dataset.index;
+      console.log(opt, ptarget , target , 0);
+      if(target < 0){ target = this.Files.length-1 }
+      if(target >= this.Files.length){ target = 0 }
+
+      let tmp = this.Files[ptarget];
+      this.Files[ptarget] = this.Files[target];
+      this.Files[target] = tmp;
+      console.log(target , this.$refs.attach.querySelector(".pic[data-index='"+target+"'] .rdo"));
+      this.$refs.attach.querySelector(".pic[data-index='"+target+"'] .rdo").checked  = true;
+    },
     itemSet(files) {
       console.log("itemSet()" + this.Files.length);
       this.Files = files;
       // console.log(!!this.Files);
       this.btnDis = this.Files.length >= this.opts.max ? "off" : "on";
-
-
-
-
-
     },
     numCheck() {
       ui.alert(`최대 ${this.opts.max} 개 까지 가능합니다.`);
@@ -108,19 +121,21 @@ export default {
           }))
         }
       }
-
-      // Get all the downloadURLs
-      const photos = await Promise.all(promises);
+      // Get all the downloadURLs   // 파일 다올릴때 까지 기다리기..
+      const photos = await Promise.all(promises);      
+      
+      console.log(this.opts.page, this.opts.param , this.FIles , photos , promises);
       if (this.opts.mode == "modify") {
+        const docRef = doc(db, this.opts.page, this.opts.param );
         await updateDoc(docRef, {
-          img: photos
-        }, { merge: true }).then(() => {
+          img: this.Files
+        }).then(() => {
           this.itemSet(this.Files);
         }).catch((error) => {
           console.log(error);
         })
       }
-      console.log(this.Files, photos);
+      console.log(this.Files);
 
       // 파일 갯수가 넘으면 삭제 시키기
       console.log(this.Files.length, " = ", this.opts.max);
