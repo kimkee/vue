@@ -5,21 +5,7 @@
       <div class="photo-view">
         <div class="vcont">
           <div class="hdt">
-            <div class="info">
-              <div class="dd">
-                <router-link class="user" :to="`/user/${Views.uid}`">
-                  <span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span>
-                  <span class="txt"> {{Views.author}}</span>
-                </router-link>
-              </div>
-              <div class="dd">
-                <div class="hits">
-                    <em><i class="fa-solid fa-eye"></i> <b>{{ Views.count }}</b></em>
-                    <em><i class="fa-solid fa-heart"></i> <b>{{Views.likes}}</b></em>
-                 </div>
-                <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
-              </div>
-            </div> 
+            
           </div>
           <dd class="cdt">
             <div class="cont">
@@ -39,19 +25,34 @@
                 </swiper-slide>
               </swiper>
               
-              <div class="text" v-html="Views.content"></div>
-
+            </div> 
+            <div class="info">
+              <div class="dd">
+                <router-link class="user" :to="`/user/${Views.uid}`">
+                  <span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span>
+                  <span class="txt"> {{Views.author}}</span>
+                </router-link>
+              </div>
+              <div class="dd">
+                <div class="hits">
+                    <em><i class="fa-solid fa-eye"></i> <b>{{ Views.count }}</b></em>
+                    <em><i class="fa-solid fa-heart"></i> <b>{{Views.likes}}</b></em>
+                </div>
+                <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
+              </div>
+              
             </div>
+            <div class="text" v-html="Views.content"></div>
 
-            <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
-          
-            <div class="btsbox btn-set">
-              <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-              <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
-            </div>
-
+            
           </dd>
+          <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
+        
+          <div class="btsbox btn-set">
+            <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
+            <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
+            <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+          </div>
         </div>
       </div>
       
