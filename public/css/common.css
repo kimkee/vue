@@ -491,7 +491,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 
-.ut-attfiles{display: flex; position: relative; padding: 0rem 0rem 0rem 0rem;}
+.ut-attfiles{display: flex;position: relative;padding: 0rem 0rem 0rem 0rem;}
 .ut-attfiles .attach{ margin: 0rem 0rem 0rem 10rem;display: flex;gap: 10rem;align-items: center;flex-wrap: wrap;}
 .ut-attfiles .attach .pic{}
 .ut-attfiles .attach .checkbox{}

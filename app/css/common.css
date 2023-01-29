@@ -492,7 +492,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .ut-attfiles{display: flex; position: relative; padding: 0rem 0rem 0rem 0rem;}
-.ut-attfiles .attach{ margin: 0rem 10rem 0rem 0rem;display: flex;gap: 10rem;align-items: center;flex-wrap: wrap;}
+.ut-attfiles .attach{ margin: 0rem 0rem 0rem 10rem;display: flex;gap: 10rem;align-items: center;flex-wrap: wrap;}
 .ut-attfiles .attach .pic{}
 .ut-attfiles .attach .checkbox{}
 .ut-attfiles .adbts{}
@@ -504,12 +504,14 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-attfiles .adbts .btfiles .num .i{color: #68c391;font-weight: 700;}
 .ut-attfiles .adbts .btfiles .num .n{ color: #bbbbbb; }
 
-.ut-attfiles .pic{position: relative;border: #30363d solid 1px;background: #191e24; min-width:80rem;width: 80rem;height: 80rem;border-radius:4rem;overflow:hidden;}
+.ut-attfiles .pic{position: relative;border: #30363d solid 1px;background: #191e24;min-width:80rem;width: 80rem;height: 80rem;border-radius:4rem;/* overflow:hidden; */}
 .ut-attfiles .pic .img{display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%;}
-.ut-attfiles .pic .del{position: absolute; right: 3rem; top: 3rem; z-index: 10; width: 20rem; height: 20rem;border: #000 solid 1rem; border-radius: 30rem; background-color: #ffffff75; color: #000;}
-
-
-
+.ut-attfiles .pic .del{position: absolute;right: 5rem;top: 5rem;z-index: 10;width: 20rem;height: 20rem;border: #000 solid 1rem;border-radius: 30rem;background-color: rgb(255 255 255 / 60%);color: #000;}
+.ut-attfiles .pic .rdo{opacity: 0;position:relative;z-index: 9;width: 100%;height: 100%;}
+.ut-attfiles .pic .rbt{position: absolute;z-index: 12;bottom: 0;left: 0;right: 0;padding: 6rem 7rem;display: flex;display: none;justify-content: space-between;}
+.ut-attfiles .pic .rdo:checked + .rbt{display: flex;}
+.ut-attfiles .pic .mbt{font-size: 16rem;display: flex;width: 20rem;height: 20rem;background-color: rgb(255 255 255 / 60%);border: #000 solid 1rem;color: #000;border-radius: 4rem;justify-content: center;align-items: center;}
+.ut-attfiles .pic b{position: absolute;top:-20rem;display: none;}
 
 
 .page.sign{}
