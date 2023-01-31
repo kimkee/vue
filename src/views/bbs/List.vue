@@ -1,5 +1,5 @@
 <template>
-  <div class="container board list">
+  <div class="container board list" ref="page">
     <main class="contents">
       <div class="board-list">
         <div v-if="Boards.length == 0" class="nodata">
@@ -37,7 +37,7 @@
                 </router-link>
             </li>
           </ul>
-          <div class="ui-loadmore">
+          <div class="ui-loadmore" ref="uiLoadmore">
             <em></em>
             <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
           </div>
@@ -116,12 +116,12 @@ export default {
       });
       this.loadItem = this.loadItem + this.countItem;
       if( this.loadItem >= this.postTotal) {
-        document.querySelector('.ui-loadmore').classList.add("hide");
+        this.$refs.uiLoadmore.classList.add("hide");
         this.callStat = false;
       }else{
         this.callStat = true;
       }
-      document.querySelector(".board-list").classList.add("load");
+      this.$refs.page.classList.add("load");
       ui.loading.hide();
     },
     async postNum(){
@@ -137,7 +137,7 @@ export default {
       const scr = ui.viewport.scrollTop() + wHt + 10;
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
-        document.querySelector('.ui-loadmore').classList.add("active");
+        this.$refs.uiLoadmore.classList.add("active");
         this.callStat = false;
         setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
       }

@@ -1,12 +1,12 @@
 <template>
-  <div class="container photo">
+  <div class="container photo" ref="page">
     <main class="contents">
       
-      <div class="ut-tblist">
-        <div v-if="Boards.length == 0" class="nodata">
-          <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
-        </div>
-        <ul v-else class="list" id="dp_list">
+      <div v-if="Boards.length == 0" class="nodata">
+        <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+      </div>
+      <div  v-else class="ut-tblist">
+        <ul class="list" id="dp_list">
           <!-- {{Boards}} -->
           <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
             <div class="box">
@@ -22,7 +22,7 @@
             </div>
           </li>
         </ul>
-        <div class="ui-loadmore">
+        <div class="ui-loadmore" ref="uiLoadmore">
           <em></em>
           <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
         </div>
@@ -103,12 +103,12 @@ export default {
       });
       this.loadItem = this.loadItem + this.countItem;
       if( this.loadItem >= this.postTotal) {
-        document.querySelector('.ui-loadmore').classList.add("hide");
+        this.$refs.uiLoadmore.classList.add("hide");
         this.callStat = false;
       }else{
         this.callStat = true;
       }
-      document.querySelector(".ut-tblist").classList.add("load");
+      this.$refs.page.classList.add("load");
       ui.loading.hide();
     },
     async postNum(){
@@ -124,14 +124,14 @@ export default {
       const scr = ui.viewport.scrollTop() + wHt + 10;
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
-        document.querySelector('.ui-loadmore').classList.add("active");
+        this.$refs.uiLoadmore.classList.add("active");
         this.callStat = false;
         setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
       }
     },
     addItem() {
       let pHtml = "";
-      document.querySelector('.ui-loadmore').classList.add("active");
+      this.$refs.uiLoadmore.classList.add("active");
       this.callStat = false;
       fetch("./js/photo.json").then(res => res.ok && res.text()).then(res => {
         const result = JSON.parse(res);
@@ -150,14 +150,14 @@ export default {
 
         setTimeout(() => {
           document.querySelector("#dp_list").insertAdjacentHTML("beforeend", pHtml);
-          document.querySelector('.ui-loadmore').classList.remove("active");
+          this.$refs.uiLoadmore.classList.remove("active");
           document.querySelector(".page.photo").classList.add("load");
           this.callStat = true;
           this.Photos = [...this.Photos, ...(result)]
           console.log(this.Photos.length);
           ui.loading.hide();
           if (this.countItem >= 2) {
-            document.querySelector('.ui-loadmore').classList.add("hide");
+            this.$refs.uiLoadmore.classList.add("hide");
             this.callStat = false;
           }
 

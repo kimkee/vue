@@ -92,31 +92,31 @@ export default {
             const tits = document.querySelector(".tit");
             const test = document.querySelector(".test");
         
-            navigator.geolocation.getCurrentPosition( posit => { /* 위도,경도 가져오기 */
-              let myLat = posit.coords.latitude;
-              let myLon = posit.coords.longitude;
-              test.innerHTML = "현재 사용자는 위도 " + myLat + ", 경도 " + myLon + "에 위치하고 있습니다.";
-              getCity(myLat,myLon);
-            },(err)=>{
-              console.log(err.message);
-              // let myLat = "35.6895";
-              // let myLon = "139.6917";
-              let myCity = "seoul";
-              setCity(myCity,0);
-              test.innerHTML = err.message;
-            });
-        
+            /* 위도,경도 가져오기 */
+            // navigator.geolocation.getCurrentPosition( posit => { 
+            //   let myLat = posit.coords.latitude;
+            //   let myLon = posit.coords.longitude;
+            //   test.innerHTML = "현재 사용자는 위도 " + myLat + ", 경도 " + myLon + "에 위치하고 있습니다.";
+            //   getCity(myLat,myLon);
+            // },(err)=>{
+            //   console.log(err.message);
+            //   let myCity = "seoul";
+            //   setCity(myCity,0);
+            //   test.innerHTML = err.message;
+            // });
+            
             const appid = "65580fe0755188a571a8abece81b2ad2"; /* api.openweathermap.org */
-        
-            const getCity = (myLat,myLon) => { /* 위도,경도로 도시이름 가져오기 */
-              fetch('//api.openweathermap.org/geo/1.0/reverse?lat='+myLat+'&lon='+myLon+'&appid='+appid+'')
-              .then( rest => rest.ok ? rest.json() : null )
-              .then( data => {
-                let myCity = data[0].local_names.en;
-                setCity(myCity,0);
-                console.log( data , myCity);
-              });
-            };
+            
+            /* 위도,경도로 도시이름 가져오기 */
+            // const getCity = (myLat,myLon) => { 
+            //   fetch('//api.openweathermap.org/geo/1.0/reverse?lat='+myLat+'&lon='+myLon+'&appid='+appid+'')
+            //   .then( rest => rest.ok ? rest.json() : null )
+            //   .then( data => {
+            //     let myCity = data[0].local_names.en;
+            //     setCity(myCity,0);
+            //     console.log( data , myCity);
+            //   });
+            // };
         
             const setCity = (myCity,gap) => {  /* 도시이름으로 날씨,온도,아이콘 가져오기 */
               fetch('//api.openweathermap.org/data/2.5/weather?q='+myCity+'&appid='+appid+'&units=metric')
@@ -132,6 +132,7 @@ export default {
                 _this.draw( _this.tgap );
               });
             };
+            setCity("Seoul",0);
         
             const bts = document.querySelectorAll(".clocksvg .selt .bt:not(.my)");
             bts.forEach( bt => bt.addEventListener("click", () => setCity(bt.value, Number(bt.getAttribute("data-tm")) )));
