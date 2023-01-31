@@ -37,6 +37,10 @@
                 </router-link>
             </li>
           </ul>
+          <div class="ui-loadmore">
+            <em></em>
+            <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
+          </div>
         </div>
       </div>
 
@@ -51,7 +55,7 @@
 <script>
 import { db } from '@/firebaseConfig.js';
 import store from '@/store';
-import { collection, query, getDocs, orderBy, limit, limitToLast } from 'firebase/firestore';
+import { collection, query, doc, getDoc, getDocs, orderBy, limit } from 'firebase/firestore'; //limitToLast
 import ui from '@/ui.js';
 
 
@@ -62,23 +66,36 @@ export default {
   },
   data() {
     return {
-      Boards: []
+      Boards: [],
+      callStat: false,
+      countItem: 5, // 한번에 로드할 아이템 갯수
+      loadItem: 0, // 로드한 아이템 갯수
+      postTotal:0, // 전체 개시물 숫자
+      dbTable:'bbs',
     }
   },
   created() {
     ui.init();
     ui.loading.show();
     console.log("list created");
-    this.read();
+    this.postNum();
+    this.read(this.countItem);
     // console.log(db);
   },
   mounted() {
     console.table(store.state.userInfo);
+    window.addEventListener("scroll", this.scrollEvent);
     document.querySelector(".header .htit").textContent = 'Board';
+    this.callStat = true;
+  },
+  unmounted() {
+    window.removeEventListener("scroll", this.scrollEvent);
   },
   methods: {
-    async read() {
-      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc"), limit(), limitToLast());
+    async read(nums) {
+      console.log(nums);
+      this.callStat = false;
+      const q = query(collection(db, "bbs"), orderBy("timestamp", "desc"), limit(nums));
       const querySnapshot = await getDocs(q);
       this.Boards = [];
       querySnapshot.forEach((doc) => {
@@ -97,8 +114,33 @@ export default {
           date: ui.timeForm(doc.data().timestamp.toDate())
         });
       });
+      this.loadItem = this.loadItem + this.countItem;
+      if( this.loadItem >= this.postTotal) {
+        document.querySelector('.ui-loadmore').classList.add("hide");
+        this.callStat = false;
+      }else{
+        this.callStat = true;
+      }
       document.querySelector(".board-list").classList.add("load");
       ui.loading.hide();
+    },
+    async postNum(){
+      const docRef = doc(db, this.dbTable, "count");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+          this.postTotal = docSnap.data().post;
+      }      
+    },
+    scrollEvent() {
+      const wHt = ui.viewport.height();
+      const docH = ui.viewport.docHeight();
+      const scr = ui.viewport.scrollTop() + wHt + 10;
+      if (docH <= scr && this.callStat == true) {
+        console.log("바닥도착");
+        document.querySelector('.ui-loadmore').classList.add("active");
+        this.callStat = false;
+        setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
+      }
     }
   }
 }

@@ -11,7 +11,7 @@
   <div class="attach" ref="attach">
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
       <b>{{ index }}</b>
-      <img class="img" :src="image" alt="">
+      <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';">
       <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
       <input type="radio" name="rdFIle" @change="rodPos" :data-index="index" class="rdo" :checked=" index == 0 ? true : false">
       <div class="rbt" v-if="Files.length > 1">

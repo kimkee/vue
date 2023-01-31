@@ -168,6 +168,7 @@ export default {
             }).catch((error) => { console.log(error); });
           });
           deleteDoc(doc(db, this.dbTable, this.param));
+          this.postMinus();
           console.log("삭제 성공: ");
           this.$router.push('/' + this.dbTable);
         },
@@ -177,6 +178,22 @@ export default {
         ybt: "예",
         nbt: "아니오",
       });
+
+    },
+    async postMinus (){
+      // 게시글 숫자 내리기
+      const docRef = doc(db, this.dbTable, "count");
+      const docSnap = await getDoc(docRef);
+      if (!docSnap.exists()) return;
+      const postNum = docSnap.data().post - 1;
+      updateDoc(docRef, {
+        post: postNum,
+      }).then(() => {
+        console.log("조회수 UP: ");
+      }).catch(e => {
+        console.error("Error adding document: ", e);
+      });
+      // 게시글 숫자 내리기
     },
     async hits(newHits) { // 조회수
       console.log(newHits);

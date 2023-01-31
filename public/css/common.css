@@ -342,9 +342,9 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .swiper .swiper-pagination-bullet-active{background-color: #41b883;opacity: 1.7;transform: scale(0.8);margin: 0rem 1.5rem !important;}
 
 .page.board.list{}
-.page.board.list .contents{padding: 0rem 0rem  30rem 0rem;margin: 0rem;}
+.page.board.list .contents{padding: 0rem 0rem  0rem 0rem;margin: 0rem;}
 
-.board-list {}
+.board-list {min-height:calc(100vh - 100rem);}
 .board-list .ui-loading-dot{padding-top: calc(40vh - 60rem);}
 .board-list .bbs-opt{display: flex;align-items: center;justify-content: space-between;padding: 10px 20px;border-bottom: 1px solid #242b36;}
 .board-list .bbs-opt .tots{font-size:12rem;color: #afafaf;}
@@ -561,7 +561,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 .page.photo{}
 .page.photo .ui-loading-dot{padding-top: calc(40vh - 60rem); display: block;}
-.page.photo .ut-tblist{}
+.page.photo .ut-tblist{min-height:calc(100vh - 100rem);}
 .page.photo.load .ui-loading-dot{display: none;}
 .page.photo.load .ut-tblist{display: block;}
 .page.photo:not(.write , .modify) .contents{margin: 0; padding: 0;}
@@ -765,7 +765,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ui-loadmore.active .btn-load{ position:relative; left:auto;}
 .ui-loadmore.active>em{ overflow:visible; display:block; }
 .ui-loadmore.error .btn-load{ position:relative; left:auto; width:100%; height: 56rem; }
-.ui-loadmore.hide{display:none;}
+.ui-loadmore.hide{opacity: 0; display:none;}
 
 
 
