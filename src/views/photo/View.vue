@@ -16,11 +16,14 @@
                 :observer="true"
                 :observeParents="true"
                 :watchOverflow="true"
+                :preloadImages="false"
+                :lazy="true"
                 :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
                   <div class="pic">
-                    <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                    <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                    <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
                   </div>
                 </swiper-slide>
               </swiper> 

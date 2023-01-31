@@ -29,15 +29,20 @@
 
               <swiper class="photo" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
-                :auto-height="true" :slides-per-view="1" 
-                :space-between="10" navigation :pagination="{ clickable: true }"
+                :slides-per-view="auto" 
                 :observer="true"
                 :observeParents="true"
                 :watchOverflow="true"
+                :watchSlidesProgress="true"
+                :auto-height="true"
+                :preloadImages="true"
+                :lazy="{ loadPrevNext: true }"
+                :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
                   <div class="pic">
-                    <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                    <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                    <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
                   </div>
                 </swiper-slide>
               </swiper>
@@ -103,7 +108,7 @@ export default {
       console.log(swiper);
     };
     const onSlideChange = (swiper) => {
-      console.log('slide change' + swiper + this);
+      console.log('slide change' + swiper );
     };
     const swiper = useSwiper();
     return {
