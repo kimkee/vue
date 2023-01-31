@@ -7,7 +7,7 @@
         </div>
         <div v-else>
           <div class="bbs-opt">
-            <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{Boards.length}} 개</div>
+            <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{postTotal}} 개</div>
             <div class="more"></div>
           </div>
           <ul class="list">
@@ -68,7 +68,7 @@ export default {
     return {
       Boards: [],
       callStat: false,
-      countItem: 5, // 한번에 로드할 아이템 갯수
+      countItem: 10, // 한번에 로드할 아이템 갯수
       loadItem: 0, // 로드한 아이템 갯수
       postTotal:0, // 전체 개시물 숫자
       dbTable:'bbs',
@@ -137,7 +137,7 @@ export default {
       const scr = ui.viewport.scrollTop() + wHt + 10;
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
-        this.$refs.uiLoadmore.classList.add("active");
+        this.$refs.uiLoadmore?.classList.add("active");
         this.callStat = false;
         setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
       }

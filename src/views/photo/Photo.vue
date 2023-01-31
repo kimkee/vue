@@ -54,7 +54,7 @@ export default {
       // Photos: [],
       Boards: [],
       callStat: true,
-      countItem: 12, // 한번에 로드할 아이템 갯수
+      countItem: 15, // 한번에 로드할 아이템 갯수
       loadItem: 0, // 로드한 아이템 갯수
       postTotal:0, // 전체 개시물 숫자
       dbTable:'photo',
@@ -124,7 +124,7 @@ export default {
       const scr = ui.viewport.scrollTop() + wHt + 10;
       if (docH <= scr && this.callStat == true) {
         console.log("바닥도착");
-        this.$refs.uiLoadmore.classList.add("active");
+        this.$refs.uiLoadmore?.classList.add("active");
         this.callStat = false;
         setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
       }
