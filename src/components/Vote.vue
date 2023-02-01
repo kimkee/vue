@@ -67,6 +67,7 @@ export default {
         this.likeMem(store.state.userInfo.uid, "rem");
       } else {
         btlike.classList.add("on");
+        btlike.classList.add("ani");
         nLike++;
 
         lkUsr.push(JSON.stringify([store.state.userInfo.uid, store.state.userInfo.nick])); // 좋아요 유저 추가

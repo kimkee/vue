@@ -439,7 +439,8 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .vote .bt-vote i{ font-size: 18rem; font-weight: normal;}
 .board-view .cdt .vote .bt-vote p{ font-size: 12rem; margin-top: 5rem; }
 .board-view .cdt .vote .bt-vote.on{color: #41b883; }
-.board-view .cdt .vote .bt-vote.on i{font-weight: 900; animation: anilike 0.3s alternate 1;}
+.board-view .cdt .vote .bt-vote.on i{font-weight: 900;}
+.board-view .cdt .vote .bt-vote.ani i{ animation: anilike 0.3s alternate 1;}
 .board-view .cdt .vote+.vmem{margin-bottom: 20rem;}
 .board-view .cdt .vmem{display: flex; flex-wrap:wrap; font-size:12rem; margin:0rem 0rem 20rem 0rem}
 .board-view .cdt .vmem .usr{color: #dddddd; margin-right:0rem;}
@@ -492,7 +493,8 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-view .vote .bt-vote i{ font-size: 18rem; font-weight:normal;}
 .photo-view .vote .bt-vote p{ font-size: 12rem; margin-top: 3rem; }
 .photo-view .vote .bt-vote.on{color: #41b883;}
-.photo-view .vote .bt-vote.on i{font-weight:900; animation: anilike 0.3s alternate 1;}
+.photo-view .vote .bt-vote.on i{font-weight:900;}
+.photo-view .vote .bt-vote.ani i{ animation: anilike 0.3s alternate 1;}
 .photo-view .vmem{display: flex; flex-wrap:wrap; font-size:12rem; margin: 0rem 20rem;}
 .photo-view .vmem .usr{color: #dddddd; margin-right:0rem;}
 .photo-view .vmem .usr+.usr{}
