@@ -121,14 +121,17 @@ export default {
       for (var i = 0; i < files.length; i++) {
         const file = files[i];
         const filename = files[i].name;
-        var newMetadata = {
+        const metadata = {
           cacheControl: 'public,max-age=31536000',
         }
         if (file !== null) {
           const storageRef = ref(storage, this.opts.page + "/" + uptime + "_" + filename);
-          promises.push(uploadBytes(storageRef, file, newMetadata).then(uploadResult => {
+          promises.push(uploadBytes(storageRef, file, metadata).then(uploadResult => {
             return getDownloadURL(uploadResult.ref).then((url) => { this.Files.push(url); })
-          }))
+          }).catch( (error)=> {
+            console.log(error);
+            ui.alert("업로드파일 1개의 용량제한은 <br> 1M이하 입니다.");
+          } ));
         }
       }
       // Get all the downloadURLs   // 파일 다올릴때 까지 기다리기..
