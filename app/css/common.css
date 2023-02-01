@@ -55,6 +55,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 .header .bt.gnb::before{top: 8px;}
 .header .bt.gnb>b{top: 16px;}
 .header .bt.gnb::after{top: 24px;}
+.header i {font-weight:normal;}
 
 .header .user{display: flex;align-items: center;margin-right: 14rem;}
 .header .user .pic{margin-left: auto; width: 26px;min-width: 26px;height: 26px;padding-bottom: 26px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
@@ -81,7 +82,7 @@ nav.gnb{position:fixed;width: 70%;height: 100%;z-index: 900;top: 0px;right: -100
 
 nav.gnb::after{left: -100%;width: 100%;height:100%; content:"";display:block;position: fixed;top: 0; }
 nav.gnb .bt.close{display:block;position:absolute;right: 20px;top: 11px;z-index: 1900;width: 36px;height: 36px;}
-nav.gnb .bt.close i{font-size: 28rem;}
+nav.gnb .bt.close i{font-size: 28rem; font-weight:normal;}
 nav.gnb>.inr{padding: 55px 30px 0px 30px;height: 100vh;background-color: #26384e;}
 nav.gnb .menu{margin-top: 20px; overflow-y: auto;}
 nav.gnb .menu .mCustomScrollBox{background-color: transparent;border-top:1px solid #ddd;outline: initial;}
@@ -103,7 +104,7 @@ nav.gnb .sign{text-align: right;position: absolute;bottom: 20px;left: 20rem;righ
 nav.gnb .sign .bts{display: flex;align-items: center;justify-content: flex-end;margin-top: 20rem;}
 nav.gnb .sign .bts .bt+.bt{margin-left:30rem;}
 nav.gnb .sign .bt{padding: 5px 0;color: #ffffff;}
-nav.gnb .sign .bt i{margin-right:6rem}
+nav.gnb .bt i{margin-right:6rem; font-weight:normal}
 nav.gnb .sign .bt.email{color: #e1e1e1;}
 nav.gnb .sign .user{text-align: right;}
 nav.gnb .sign .user .pic{margin-left: auto; width: 32px;min-width: 32px;height: 32px;padding-bottom: 32px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
@@ -179,7 +180,7 @@ a.btn.disabled{ pointer-events: none; }
 .btn.d.disabled{border-color: #dddddd;background-color: #ffffff;color: #dddddd;}
 
 .btn.e{border-color:#646464; background-color:#646464; color:#ffffff;}
-.btn>i{margin: 0rem 5rem 0rem -8rem;}
+.btn>i{margin: 0rem 5rem 0rem -8rem;font-weight: normal;}
 
 .btn-set{position:relative;display:flex;margin-left: -5px;margin-right: -5px;}
 .btn-set .btn{width:100%;margin: 0 5px;}
@@ -422,9 +423,9 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .hdt .hits{margin-right: 7rem;}
 .board-view .hdt .hits>em+em{margin-left: 9rem;}
 .board-view .hdt .dd .date{word-break: break-all;margin-top: 0rem;text-align: right;margin-left: 10rem;}
-.board-view .cdt .hits em{margin-left: 7rem;display: inline-flex;line-height: 1.2;}
-.board-view .cdt .hits em i{} 
-.board-view .cdt .hits em b{ margin-left: 5rem; }
+.board-view .hdt .hits em{margin-left: 7rem;display: inline-flex;line-height: 1.2;}
+.board-view .hdt .hits em i{font-weight:normal;} 
+.board-view .hdt .hits em b{ margin-left: 5rem; }
 .board-view .cdt .cont{min-height: 160rem;}
 .board-view .cdt .cont .photo{margin-top: 15rem;}
 .board-view .cdt .cont .swiper-autoheight .swiper-wrapper{ }
@@ -435,9 +436,10 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .cont .text{padding: 10px 0px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
 .board-view .cdt .vote{text-align: center;margin-bottom: 20rem;margin-top: 10rem;min-height:50rem;}
 .board-view .cdt .vote .bt-vote{border: #30363d solid 1rem;padding: 5rem 8rem 5rem 8rem;border-radius: 6rem;min-width: 50rem; min-height: 50rem;}
-.board-view .cdt .vote .bt-vote i{ font-size: 18rem; }
+.board-view .cdt .vote .bt-vote i{ font-size: 18rem; font-weight: normal;}
 .board-view .cdt .vote .bt-vote p{ font-size: 12rem; margin-top: 5rem; }
-.board-view .cdt .vote .bt-vote.on{color: #41b883;}
+.board-view .cdt .vote .bt-vote.on{color: #41b883; }
+.board-view .cdt .vote .bt-vote.on i{font-weight: 900;}
 .board-view .cdt .vote+.vmem{margin-bottom: 20rem;}
 .board-view .cdt .vmem{display: flex; flex-wrap:wrap; font-size:12rem; margin:0rem 0rem 20rem 0rem}
 .board-view .cdt .vmem .usr{color: #dddddd; margin-right:0rem;}
@@ -482,9 +484,10 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-view .text{padding: 10px 20px;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
 .photo-view .vote{text-align: center;margin:10rem 20rem 20rem 20rem; min-height:50rem;}
 .photo-view .vote .bt-vote{border: #30363d solid 1rem;padding: 7rem 8rem 5rem 8rem;border-radius: 6rem;min-width: 50rem; min-height: 50rem;}
-.photo-view .vote .bt-vote i{ font-size: 18rem; }
+.photo-view .vote .bt-vote i{ font-size: 18rem; font-weight:normal;}
 .photo-view .vote .bt-vote p{ font-size: 12rem; margin-top: 3rem; }
 .photo-view .vote .bt-vote.on{color: #41b883;}
+.photo-view .vote .bt-vote.on i{font-weight:900;}
 .photo-view .vmem{display: flex; flex-wrap:wrap; font-size:12rem; margin: 0rem 20rem;}
 .photo-view .vmem .usr{color: #dddddd; margin-right:0rem;}
 .photo-view .vmem .usr+.usr{}
@@ -614,6 +617,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.user.view .profile .desc{display: flex;margin: 0rem 20rem;flex-direction: column;}
 .page.user.view .profile .desc .txt{font-size:12rem;}
 .page.user.view .profile .desc .txt+.txt{margin-top: 2rem;}
+.page.user.view .profile .desc .txt i{font-weight:normal;}
 .page.user.view .post{margin: 10px 0px 0px 0px;}
 .page.user.view .post .menu{position: sticky;top: 54rem;height: 50px;text-align: center; display: flex;justify-content: start;padding: 0px 0px;border-bottom: #242b36 solid 1px;z-index: 100;background-color: #0d1117;}
 .page.user.view .post .menu:after{clear:both;content:"";display:block;font-size:0;height:0;line-height:0;visibility:hidden}
