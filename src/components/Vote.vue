@@ -55,6 +55,7 @@ export default {
       let lkUsr = this.$parent.Views.likeUsr;
       if (isLiked) {
         btlike.classList.remove("on");
+        btlike.classList.remove("ani");
         nLike--;
         lkUsr.forEach((e, i) => {
           console.log(JSON.parse(e));
