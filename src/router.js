@@ -77,7 +77,6 @@ const router = createRouter({
             components: {
                 default: PhotoWrite,
                 HeaderSub,
-                Nav
             }
         },
         {
@@ -85,7 +84,6 @@ const router = createRouter({
             components: {
                 default: PhotoModify,
                 HeaderSub,
-                Nav
             }
         },
         {
@@ -102,7 +100,6 @@ const router = createRouter({
             components: {
                 default: Write,
                 HeaderSub,
-                Nav
             }
         },
         {
@@ -110,7 +107,6 @@ const router = createRouter({
             components: {
                 default: Modify,
                 HeaderSub,
-                Nav
             }
         },
         {
@@ -119,7 +115,6 @@ const router = createRouter({
             components: {
                 default: View,
                 HeaderSub,
-
             }
         },
         {
