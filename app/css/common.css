@@ -582,7 +582,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.photo.load .ui-loading-dot{display: none;}
 .page.photo.load .photo-list{display: block;}
 .page.photo:not(.write , .modify) .contents{margin: 0; padding: 0;}
-.page.photo.view .contents{margin: 0rem 0rem;padding: 0rem 0rem 30rem 0rem;}
+.page.photo.view .contents{margin: 0rem 0rem;padding: 0rem 0rem 0rem 0rem;}
 
 .page.work{}
 .page.work .contents{padding-top:0rem;}
@@ -709,7 +709,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-reply .rplist ul.rlist>li>ul.rlist>li+li{}
 .ut-reply .rplist ul.rlist>li>ul.rlist>li:first-child{margin-top: 11px;}
 
-.ut-rpwrite{min-height: 60px;padding: 8px 10px 12px 15px;padding-bottom: calc(12px + var(--safe-bottom));}
+.ut-rpwrite{min-height: 60px;padding: 9px 10px 11px 15px;padding-bottom: calc(11px + var(--safe-bottom));}
 .ut-rpwrite .mtion{/* display: none; */background: #eeeeee;font-size:12rem;color: #898c9d;height: 33px;margin: -16px -20px 15px -20px;padding: 10px 20px 10px 20px;border-top: #cccccc solid 1px;}
 .ut-rpwrite .mtion.show{display: block;}
 .ut-rpwrite .mtion .n{font-weight: 700;}
@@ -718,7 +718,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-rpwrite .rwset .user{position: absolute;left: 0px;bottom: 6px;}
 .ut-rpwrite .rwset .user .pic{width: 32px;min-width: 32px;height: 32px;padding-bottom: 32px;display: block;position: relative;border-radius: 100px;overflow: hidden;}
 .ut-rpwrite .rwset .user .pic .img{font-size:0; display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #000000;}
-.ut-rpwrite .rwset .form{position: relative;border: 1px solid #28364a;border-radius: 4px;min-height: 40px;padding: 9px 10px 0px 10px;}
+.ut-rpwrite .rwset .form{position: relative;border: 1px solid #28364a;border-radius: 4px;min-height: 40px;padding: 8px 10px 0px 10px;}
 .ut-rpwrite .rwset .form .ment{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 77px;-webkit-appearance: none;outline: none;word-break: break-all;height: 24px;background: transparent;color: #999;}
 .ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 6px;}
 .ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 32px;height: 32px;border-radius: 100px; color: #fff;text-align: center;}

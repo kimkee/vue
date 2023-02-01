@@ -70,7 +70,6 @@ const router = createRouter({
             components: {
                 default: PhotoView,
                 HeaderSub,
-                Nav,
             }
         },
         {
