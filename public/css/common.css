@@ -394,7 +394,10 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .recent{margin-top: 10rem;}
 .recent.load .ui-loading-dot{display: none	;}
 .recent.load .board-list{display: block	;}
-.recent .board-list{}
+.recent .board-list{min-height: auto;}
+.recent .board-list .list>li .box{padding: 12rem 20rem 11rem 20rem;}
+.recent .board-list .list>li .box .cont .pics{min-width: 40rem; height: 40rem; width: 40rem;}
+.recent .board-list .list>li .box .cont .text{-webkit-line-clamp: 1; max-height: 25rem;}
 .recent .ui-loading-dot{padding-top: calc(20vh - 60rem); display: block;}
 .recent .board-list .list>li+li{}  
 

@@ -54,8 +54,7 @@ export default {
       let nLike = this.$parent.Views.likes;
       let lkUsr = this.$parent.Views.likeUsr;
       if (isLiked) {
-        btlike.classList.remove("on");
-        btlike.classList.remove("ani");
+        btlike.classList.remove("on","ani");
         nLike--;
         lkUsr.forEach((e, i) => {
           console.log(JSON.parse(e));
@@ -67,8 +66,7 @@ export default {
         this.likeAct(nLike, lkUsr);
         this.likeMem(store.state.userInfo.uid, "rem");
       } else {
-        btlike.classList.add("on");
-        btlike.classList.add("ani");
+        btlike.classList.add("on","ani");
         nLike++;
 
         lkUsr.push(JSON.stringify([store.state.userInfo.uid, store.state.userInfo.nick])); // 좋아요 유저 추가

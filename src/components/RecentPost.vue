@@ -17,7 +17,7 @@
                     <div class="text" v-html="recent.content"></div>
                   </div>
                 </div>
-                <div class="info">
+                <!-- <div class="info">
                   <div class="dd">
                     <div class="user"><span class="pic"><img :src="$store.state.avatar[recent.avatar]" alt="" class="img"></span> <span class="txt">{{recent.author}}</span></div>
                     <div class="keys">{{ recent.key }}</div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="date" v-html="recent.date"></div>
                   </div>
-                </div>
+                </div> -->
               </router-link>
           </li>
         </ul>
