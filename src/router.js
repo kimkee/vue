@@ -35,7 +35,7 @@ const router = createRouter({
             components: {
                 default: Chat,
                 HeaderSub,
-                Nav
+                
             }
         },
         {
