@@ -473,7 +473,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-view .hits>em+em{margin-left: 9rem;}
 .photo-view .date{word-break: break-all;margin-top: 0rem;text-align: right;margin-left: 10rem;}
 .photo-view .hits em{margin-left: 7rem;display: inline-flex;line-height: 1.2;font-weight: normal;}
-.photo-view .hits em i{} 
+.photo-view .hits em i{font-weight: normal;} 
 .photo-view .hits em b{ margin-left: 5rem; }
 .photo-view .cdt .cont{min-height: 160rem;}
 .photo-view .cdt .cont .photo{margin-top: 0rem;}
@@ -714,6 +714,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-rpwrite .rwset .form .ment{border: none;resize: none;width: 100%;padding: 1px;line-height: 1.36;max-height: 77px;-webkit-appearance: none;outline: none;word-break: break-all;height: 24px;background: transparent;color: #999;}
 .ut-rpwrite .rwset .bts{position: absolute;right: 5px;bottom: 6px;}
 .ut-rpwrite .rwset .bts .btsend{background: #41b883;display: block;width: 32px;height: 32px;border-radius: 100px; color: #fff;text-align: center;}
+.ut-rpwrite .rwset .bts .btsend i{font-weight: normal;}
 .ut-rpwrite .rwset .bts .btsend:disabled{background-color: #55af8691; color:#74b59e;}
 .ut-rpwrite .rwset .bts .btsend em{font-size:0rem;}
 
@@ -836,6 +837,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .chmsg .msg{margin-top:10rem;padding: 11px 15px 10px 15px;background: #293546;color: #dddddd;font-size: 14rem;border-radius: 20px;line-height: 1.33;word-break: break-all;position: relative;}
 .chat-view .chmsg .msg a{text-decoration: underline;}
 .chat-view .chmsg .tm{position: absolute;color: #999999;font-size: 10rem;white-space: nowrap;bottom: 1px;}
+.chat-view .chmsg .tm i{font-weight: normal;}
 .chat-view .chmsg .tm b{font-weight: normal;}
 .chat-view .chmsg .msg.link{ border-radius: 20px !important; }
 .chat-view .chmsg .msg.file{padding: 0;background-color: transparent !important;}
