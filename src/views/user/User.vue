@@ -77,7 +77,7 @@
             </div>
           </swiper-slide>
           <swiper-slide class="ctn p" data-val="tab_a_2">
-            <div class="ut-tblist">
+            <div class="photo-list">
               <div v-if="Photos.length == 0" class="nodata">
                 <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
               </div>

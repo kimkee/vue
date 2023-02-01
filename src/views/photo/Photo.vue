@@ -5,7 +5,7 @@
       <div v-if="Boards.length == 0" class="nodata">
         <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
       </div>
-      <div  v-else class="ut-tblist">
+      <div  v-else class="photo-list">
         <ul class="list" id="dp_list">
           <!-- {{Boards}} -->
           <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
