@@ -168,7 +168,6 @@ export default {
         });
       }
 
-
       this.$parent.files = this.Files;
       this.$parent.valCheck();
       this.$refs.fileInput.value = '';
@@ -191,7 +190,16 @@ export default {
               updateDoc(docRef, { img: this.Files }).then(() => { this.$parent.Views.img = this.Files }).catch(e => { console.error(e); });
             }
             console.log(this.Files);
-          }).catch((error) => { console.log(error); });
+          }).catch((error) => { 
+            console.log(error.code,  this.Files)
+            console.log(index , this.Files[index])
+            if( error.code == 'storage/object-not-found'){
+              this.Files.splice(index, 1);
+              this.itemSet(this.Files);
+              const docRef = doc(db, this.opts.page, this.opts.param);
+              updateDoc(docRef, { img: this.Files }).then(() => { this.$parent.Views.img = this.Files }).catch(e => { console.error(e); });
+            }
+          });
         },
         ybt: "예",
         nbt: "아니오",
