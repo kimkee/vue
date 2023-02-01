@@ -121,9 +121,12 @@ export default {
       for (var i = 0; i < files.length; i++) {
         const file = files[i];
         const filename = files[i].name;
+        var newMetadata = {
+          cacheControl: 'public,max-age=31536000',
+        }
         if (file !== null) {
           const storageRef = ref(storage, this.opts.page + "/" + uptime + "_" + filename);
-          promises.push(uploadBytes(storageRef, file).then(uploadResult => {
+          promises.push(uploadBytes(storageRef, file, newMetadata).then(uploadResult => {
             return getDownloadURL(uploadResult.ref).then((url) => { this.Files.push(url); })
           }))
         }
