@@ -8,7 +8,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-window-restore"></i> UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.puix" :key="index">
-            <div class="box">
+            <router-link :to="{ name: 'pop', params: { id: 'puix-'+index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -19,7 +19,7 @@
                 </div>
               </div>
               <div class="date">{{item.date}}</div>
-            </div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -28,7 +28,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pdeg" :key="index">
-            <div class="box">
+            <router-link :to="{ name: 'pop', params: { id: 'pdeg-'+index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -39,7 +39,7 @@
                 </div>
               </div>
               <div class="date">{{item.date}}</div>
-            </div>
+            </router-link>
           </li>
         </ul>
       </div>
@@ -48,7 +48,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-bolt-lightning"></i> Flash ActionScript</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pfla" :key="index">
-            <div class="box">
+            <router-link :to="{ name: 'pop', params: { id: 'pfla-'+index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -59,17 +59,16 @@
                 </div>
               </div>
               <div class="date">{{item.date}}</div>
-            </div>
+            </router-link>
           </li>
         </ul>
       </div>
-
-      <!-- <p>{{workData.puix}}</p> -->
-      <!-- <p>{{workData.pdeg}}</p> -->
-      <!-- <p>{{workData.pfla}}</p> -->
-      
-      
     </main>
+    
+    <router-view v-slot="{ Component }">
+      <component :is="Component"/>
+    </router-view>
+
   </div>
 </template>
 
