@@ -12,29 +12,29 @@
           </div>
           <ul class="list">
             <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
-                <router-link class="box" :to="{ name: 'bbsView', params: { id: board.id }}">
-                  <div class="cont">
-                    <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
-                    <div class="desc">
-                      <h4 class="tits">{{ board.title }}</h4>
-                      <div class="text" v-html="board.content"></div>
-                    </div>
+              <router-link class="box" :to="{ name: 'bbsView', params: { id: board.id }}">
+                <div class="cont">
+                  <div class="pics" v-if="board.img.length"><img class="img" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                  <div class="desc">
+                    <h4 class="tits">{{ board.title }}</h4>
+                    <div class="text" v-html="board.content"></div>
                   </div>
-                  <div class="info">
-                    <div class="dd">
-                      <div class="user"><span class="pic"><img :src="$store.state.avatar[board.avatar]" alt="" class="img"></span> <span class="txt">{{board.author}}</span></div>
-                      <div class="keys">{{ board.id }}</div>
-                    </div>
-                    <div class="dd">
-                      <div class="hits">
-                        <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                        <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
-                        <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
-                      </div>
-                      <div class="date" v-html="board.date"></div>
-                    </div>
+                </div>
+                <div class="info">
+                  <div class="dd">
+                    <div class="user"><span class="pic"><img :src="$store.state.avatar[board.avatar]" alt="" class="img"></span> <span class="txt">{{board.author}}</span></div>
+                    <div class="keys">{{ board.id }}</div>
                   </div>
-                </router-link>
+                  <div class="dd">
+                    <div class="hits">
+                      <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                      <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
+                      <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                    </div>
+                    <div class="date" v-html="board.date"></div>
+                  </div>
+                </div>
+              </router-link>
             </li>
           </ul>
           <div class="ui-loadmore" ref="uiLoadmore">

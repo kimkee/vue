@@ -13,26 +13,20 @@
 
 <script>
 
-
-import Home from './views/Home.vue';
-import Nav from './components/Nav.vue';
-import Header from './components/Header.vue';
 import ui from './ui.js';
 import store from './store';
-
 export default {
   name: 'App',
   components: {
-    Header,
-    Nav,
-    Home
+    
+         
   },
   props: {
     // userstate: String
   },
   data() {
       return {
-
+        test:"ddd"
       }
   },
   beforeCreate(){
