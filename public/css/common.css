@@ -376,7 +376,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-list .list>li .box .info .dd{display: flex;color: #707887;align-items: center;}
 .board-list .list>li .box .info .hits{font-size:11rem;}
 .board-list .list>li .box .info .hits{font-size:11rem;}
-.board-list .list>li .box .info .hits em{display: inline-flex;line-height: 1.2;}
+.board-list .list>li .box .info .hits em{display: inline-flex;line-height: 1.1; align-items: center;}
 .board-list .list>li .box .info .hits em+em{margin-left: 9rem;}
 .board-list .list>li .box .info .hits em i{font-weight: normal;} 
 .board-list .list>li .box .info .hits em b{ margin-left: 5rem; font-weight: normal; }
@@ -426,9 +426,9 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .hdt .hits{margin-right: 7rem;}
 .board-view .hdt .hits>em+em{margin-left: 9rem;}
 .board-view .hdt .dd .date{word-break: break-all;margin-top: 0rem;text-align: right;margin-left: 10rem;}
-.board-view .hdt .hits em{margin-left: 7rem;display: inline-flex;line-height: 1.2;}
+.board-view .hdt .hits em{margin-left: 7rem;display: inline-flex;line-height: 1.1; align-items: center;}
 .board-view .hdt .hits em i{font-weight:normal;} 
-.board-view .hdt .hits em b{ margin-left: 5rem; }
+.board-view .hdt .hits em b{font-weight:normal; margin-left: 5rem; }
 .board-view .cdt .cont{min-height: 160rem;}
 .board-view .cdt .cont .photo{margin-top: 15rem;}
 .board-view .cdt .cont .swiper-autoheight .swiper-wrapper{ }
@@ -564,7 +564,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.home.load .clocksvg{visibility: visible;}
 .page.home .ui-loading-dot{padding-top: calc(40vh - 60rem); }
 .page.home.load .ui-loading-dot{display: none;}
-.page.home {/* text-align: center; */min-height: calc(100vh - 100rem);/* display: flex; */align-items: center;justify-content: center;}
+.page.home { align-items: center;justify-content: center;}
 .page.home .mn-box{display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center; padding: 20rem 0rem; min-height: 230rem;}
 .page.home .mn-box .top{width: 110rem; display: none;}
 .page.home .mn-box .top a{display:block;}
