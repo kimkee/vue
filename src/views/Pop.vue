@@ -21,9 +21,9 @@
             <!-- <div class="name">{{popData.tits}}</div> -->
             <div class="info"><span class="date">{{popData.date}}</span> <span class="place">{{ popData.plce }}</span></div>
           </div>
-					<div class="btn-set">
+					<!-- <div class="btn-set">
 						<button type="button" class="btn lg a" @click="$router.go(-1);">닫기</button>
-					</div>
+					</div> -->
 				</main>
 			</div>
 		</div>
