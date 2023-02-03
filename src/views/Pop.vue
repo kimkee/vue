@@ -12,7 +12,7 @@
           <div class="pbox">
             <div class="ss">
               <div class="pic">
-                <img class="img" :src="'//kimkee.github.io/'+popData.imgs" alt="SS" loading="lazy">
+                <img class="img" :src="'//kimkee.github.io/'+popData.imgs" :alt="popData.tits+'의 스크린샷 이미지'" loading="lazy">
               </div>
               <div class="pack">
                 <span :class="skill[ico]" v-for="ico in popData.tech" :key="ico">{{ico}}</span>
