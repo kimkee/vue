@@ -1,5 +1,11 @@
 <template>
   <div class="container work">
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" ref="popup" :opts="workData"/>
+      </transition>
+    </router-view>
+
     <main class="contents">
 
       <!-- <p>{{workData.update}}</p> -->
@@ -8,7 +14,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-window-restore"></i> UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.puix" :key="index">
-            <router-link :to="{ name: 'pop', params: { id: 'puix-'+index }}" class="box">
+            <router-link :to="{ name: 'pop', params: { cate: 'puix', id :index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -28,7 +34,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pdeg" :key="index">
-            <router-link :to="{ name: 'pop', params: { id: 'pdeg-'+index }}" class="box">
+            <router-link :to="{ name: 'pop', params: { cate: 'pdeg', id :index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -48,7 +54,7 @@
         <div class="hdts"><h3 class="title"><i class="fa-solid fa-bolt-lightning"></i> Flash ActionScript</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pfla" :key="index">
-            <router-link :to="{ name: 'pop', params: { id: 'pfla-'+index }}" class="box">
+            <router-link :to="{ name: 'pop', params: { cate: 'pfla', id :index }}" class="box">
               <div class="hdt">
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
@@ -65,15 +71,12 @@
       </div>
     </main>
     
-    <router-view v-slot="{ Component }">
-      <component :is="Component"/>
-    </router-view>
+
 
   </div>
 </template>
 
 <script>
-
 import ui from '@/ui.js';
 export default {
   name: 'WorksItem',
@@ -85,16 +88,25 @@ export default {
   },
   data() {
     return {
-      workData: {}
+      workData: {},
+      popData:{}
     }
   },
   created() {
     ui.init();
     ui.loading.show();
     // this.workData = data;
-    // console.log(this.workData);
 
     document.querySelector(".header .htit").textContent = 'Works';
+  },
+  watch:{
+    '$route'(to,from){
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      console.log(this.transitionName);
+      // this.$refs.popup.$refs.popLayer.classList.add("ani");
+    }
   },
   async mounted() {
     await fetch('https://kimkee.github.io/js/data.json').then(res => res.ok && res.text()).then(res => {
@@ -102,12 +114,18 @@ export default {
       this.workData = JSON.parse(res);
       console.log(this.workData);
       ui.loading.hide();
+      // this.$refs.popup.view(true);
     });
     document.querySelector(".page.work").classList.add("load");
 
   },
   methods: {
-
+    setOpt(item){
+      console.log(item);
+      this.popData = item;
+    }
   }
 }
 </script>
+<style scoped>
+</style>

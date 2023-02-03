@@ -62,7 +62,7 @@ const router = createRouter({
                     // /user/:id/profile 과 일치 할 때
                     // UserProfile은 User의 <router-view> 내에 렌더링 됩니다.
                     name:'pop',
-                    path: '/works/:id',
+                    path: '/works/:cate/:id',
                     component: Pop
                 }
             ]
