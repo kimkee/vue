@@ -809,7 +809,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 
-.clocksvg{margin: 0 auto;padding: 10rem 17rem 20rem 17rem;display: flex;flex-direction: column;justify-content:center;align-items: center;border-radius: 80rem; }
+.clocksvg{margin: 0 auto;padding: 20rem 17rem 20rem 17rem;display: flex;flex-direction: column;justify-content:center;align-items: center;border-radius: 80rem; }
 .clocksvg .box{}
 .clocksvg .tit{font-weight: 700;margin: 0rem 0 10rem 0;position: relative;color: aliceblue;min-height: 43rem;display: flex;flex-wrap: wrap;align-items: center;width: 100%;justify-content: center;}
 .clocksvg .tit i{font-size: 24rem;display: inline-flex;margin: 0rem 10rem 0rem 0rem;background: linear-gradient(180deg,#ffffff 12.41%,#939393 52.55%,#ffffff 89.95%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;}

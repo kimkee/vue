@@ -17,7 +17,7 @@
         <swiper-slide> 
           <div class="mn-box">
             <div class="msg">
-              <i class="fa-sharp fa-solid fa-cube"></i>
+              <i class="fa-solid fa-cube"></i>
               <p>로그인, 가입 , 파일 업로드</p>
               <p>댓글: [읽기,쓰기, 삭제]</p>
               <p>게시글:[읽기, 쓰기, 수정, 삭제, 글자수제한]</p>
