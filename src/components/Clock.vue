@@ -58,21 +58,7 @@ export default {
             this.weather();
             this.draw(this.tgap);
             ui.clockInterval = setInterval( () => this.draw(this.tgap), 1000);
-            let rate = 1 ;
-            window.innerWidth < 340 && (rate = 0.9);
-            window.innerWidth > 450 && (rate = 1.2);
-            window.innerWidth > 600 && (rate = 1.5);
-            const xyr = 36 * rate; /* 그래프 반지름 */
-            document.querySelectorAll(".circle circle").forEach(
-              circ => {
-                circ.setAttribute("cx", xyr);
-                circ.setAttribute("cy", xyr);
-                circ.setAttribute("r",  xyr);
-                circ.style.height = xyr*2+"rem";
-                circ.style.width  = xyr*2+"rem";
-                circ.style.strokeDasharray = circ.getTotalLength();
-              }
-            );
+
           },
           
           /* 시차 */
@@ -201,6 +187,25 @@ export default {
             dots.ss.style.transform = "rotate("+ tday.ss * 360 / 60 +"deg)";
             
             setTimeout( document.querySelector(".time").classList.add("load") );
+
+
+            let rate = 1 ;
+            window.innerWidth < 340 && (rate = 0.9);
+            window.innerWidth > 450 && (rate = 1.2);
+            window.innerWidth > 600 && (rate = 1.5);
+            const xyr = 36 * rate; /* 그래프 반지름 */
+            document.querySelectorAll(".circle circle").forEach(
+              circ => {
+                circ.setAttribute("cx", xyr);
+                circ.setAttribute("cy", xyr);
+                circ.setAttribute("r",  xyr);
+                circ.style.height = xyr*2+"rem";
+                circ.style.width  = xyr*2+"rem";
+                circ.style.strokeDasharray = circ.getTotalLength();
+              }
+            );
+
+
           },
         
           /* 도시 선택 */
