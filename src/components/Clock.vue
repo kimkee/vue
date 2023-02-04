@@ -58,15 +58,18 @@ export default {
             this.weather();
             this.draw(this.tgap);
             ui.clockInterval = setInterval( () => this.draw(this.tgap), 1000);
-        
-            const xyr = 36; /* 그래프 반지름 */
+            let rate = 1 ;
+            window.innerWidth < 340 && (rate = 0.9);
+            window.innerWidth > 450 && (rate = 1.2);
+            window.innerWidth > 600 && (rate = 1.5);
+            const xyr = 36 * rate; /* 그래프 반지름 */
             document.querySelectorAll(".circle circle").forEach(
               circ => {
                 circ.setAttribute("cx", xyr);
                 circ.setAttribute("cy", xyr);
                 circ.setAttribute("r",  xyr);
-                circ.closest(".circle").style.height = xyr*2+"rem";
-                circ.closest(".circle").style.width = xyr*2+"rem";
+                circ.style.height = xyr*2+"rem";
+                circ.style.width  = xyr*2+"rem";
                 circ.style.strokeDasharray = circ.getTotalLength();
               }
             );
