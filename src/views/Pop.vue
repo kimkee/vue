@@ -4,7 +4,7 @@
       <div class="phd">
         <div class="inr">
           <h1 class="ptit">{{popData.tits}}</h1>
-					<button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-solid fa-xmark"></i></button>
+					<button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
 				</div>
 			</div>
 			<div class="pct">
@@ -14,12 +14,13 @@
               <div class="pic">
                 <img class="img" :src="'//kimkee.github.io/'+popData.imgs" :alt="popData.tits+'의 스크린샷 이미지'" loading="lazy">
               </div>
-              <div class="pack">
-                <span :class="skill[ico]" v-for="ico in popData.tech" :key="ico">{{ico}}</span>
-              </div>
             </div>
             <!-- <div class="name">{{popData.tits}}</div> -->
-            <div class="info"><span class="date">{{popData.date}}</span> <span class="place">{{ popData.plce }}</span></div>
+            <div class="info">
+              <div class="pack"> <span :class="skill[ico]" v-for="ico in popData.tech" :key="ico">{{ico}}</span> </div>
+              <span class="place"><i class="fa-regular fa-building"></i> {{ popData.plce }}</span>
+              <span class="date"><i class="fa-regular fa-calendar-days"></i> {{popData.date}}</span>
+            </div>
           </div>
 					<!-- <div class="btn-set">
 						<button type="button" class="btn lg a" @click="$router.go(-1);">닫기</button>

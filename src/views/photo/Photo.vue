@@ -3,7 +3,7 @@
     <main class="contents">
       
       <div v-if="Boards.length == 0" class="nodata">
-        <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+        <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
       </div>
       <div  v-else class="photo-list">
         <ul class="list" id="dp_list">
@@ -12,25 +12,25 @@
             <div class="box">
               <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
                 <div class="pic" v-if="board.img.length"><img class="img" loading="lazy" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
-                <div class="nums" v-if="board.img.length > 1"><em><i class="fa-solid fa-images"></i></em></div>
+                <div class="nums" v-if="board.img.length > 1"><em><i class="fa-regular fa-images"></i></em></div>
                 <div class="info">
-                  <em v-if="board.comtNum > 0"><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                  <!-- <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em> -->
-                  <em v-if="board.likes > 0"><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                  <em v-if="board.comtNum > 0"><i class="fa-regular fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                  <!-- <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em> -->
+                  <em v-if="board.likes > 0"><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
                 </div>
               </router-link>
             </div>
           </li>
         </ul>
         <div class="ui-loadmore" ref="uiLoadmore">
-          <em></em>
-          <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
+          <em><i class="fa-duotone fa-spinner"></i></em>
+          <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-regular fa-rotate-right"></i></button>
         </div>
       </div>
       
     </main>
     <div class="floatnav">
-      <router-link class="bt reg" to="/photo/write"><i class="fa-solid fa-camera"></i><em>사진동록</em></router-link>
+      <router-link class="bt reg" to="/photo/write"><i class="fa-regular fa-camera"></i><em>사진동록</em></router-link>
     </div>
   </div>
 </template>
@@ -141,8 +141,8 @@ export default {
               <div class="box">
                 <a href="javascript:;" class="lk">
                   <div class="pic"><img class="img"  src="${data.urls}" alt=""></div>
-                  <div class="nums"><em><i class="fa-solid fa-images"></i></em></div>
-                  <div class="info"><em><i class="fa-solid fa-comment-dots"></i> <b>1</b></em><em><i class="fa-solid fa-heart"></i> <b>2</b></em></div>
+                  <div class="nums"><em><i class="fa-regular fa-images"></i></em></div>
+                  <div class="info"><em><i class="fa-regular fa-comment-dots"></i> <b>1</b></em><em><i class="fa-regular fa-heart"></i> <b>2</b></em></div>
                 </a>
               </div>
             </li>`

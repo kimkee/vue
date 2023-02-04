@@ -3,11 +3,11 @@
     <main class="contents">
       <div class="board-list">
         <div v-if="Boards.length == 0" class="nodata">
-          <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+          <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
         </div>
         <div v-else>
           <div class="bbs-opt">
-            <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{postTotal}} 개</div>
+            <div class="tots"><i class="fa-regular fa-square-poll-horizontal"></i> 게시글 : {{postTotal}} 개</div>
             <div class="more"></div>
           </div>
           <ul class="list">
@@ -27,9 +27,9 @@
                   </div>
                   <div class="dd">
                     <div class="hits">
-                      <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                      <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
-                      <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                      <em><i class="fa-regular fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                      <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em>
+                      <em><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
                     </div>
                     <div class="date" v-html="board.date"></div>
                   </div>
@@ -38,14 +38,14 @@
             </li>
           </ul>
           <div class="ui-loadmore" ref="uiLoadmore">
-            <em></em>
-            <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
+            <em><i class="fa-duotone fa-spinner"></i></em>
+            <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-regular fa-rotate-right"></i></button>
           </div>
         </div>
       </div>
 
       <div class="floatnav">
-        <router-link class="bt reg" to="/bbs/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
+        <router-link class="bt reg" to="/bbs/write"><i class="fa-regular fa-pen"></i><em>게시글동록</em></router-link>
       </div>
 
     </main>

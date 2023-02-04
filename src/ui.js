@@ -42,11 +42,11 @@ ui = {
         const end = new Date(); // 현재 날짜
         const diff = (end - start) / 1000; // 경과 시간
         const times = [
-            { name: '년', milliSeconds: 60 * 60 * 24 * 365, icon: '<i class="fa-solid fa-calendar-days"></i>' },
-            { name: '개월', milliSeconds: 60 * 60 * 24 * 30, icon: '<i class="fa-solid fa-calendar-days"></i>' },
-            { name: '일', milliSeconds: 60 * 60 * 24, icon: '<i class="fa-solid fa-calendar-days"></i>' },
-            { name: '시간', milliSeconds: 60 * 60, icon: '<i class="fa-solid fa-clock"></i>' },
-            { name: '분', milliSeconds: 60, icon: '<i class="fa-solid fa-clock"></i>' },
+            { name: '년', milliSeconds: 60 * 60 * 24 * 365, icon: '<i class="fa-regular fa-calendar-days"></i>' },
+            { name: '개월', milliSeconds: 60 * 60 * 24 * 30, icon: '<i class="fa-regular fa-calendar-days"></i>' },
+            { name: '일', milliSeconds: 60 * 60 * 24, icon: '<i class="fa-regular fa-calendar-days"></i>' },
+            { name: '시간', milliSeconds: 60 * 60, icon: '<i class="fa-regular fa-clock"></i>' },
+            { name: '분', milliSeconds: 60, icon: '<i class="fa-regular fa-clock"></i>' },
         ];
         // 년 단위부터 알맞는 단위 찾기
         for (const value of times) {
@@ -140,7 +140,7 @@ ui = {
                 <div class="pbt">
                     <button type="button" class="btn btn-confirm">${opt.ybt}</button>
                 </div>
-                <!-- <button type="button" class="btn-close"><i class="fa-solid fa-xmark"></i></button> -->
+                <!-- <button type="button" class="btn-close"><i class="fa-regular fa-xmark"></i></button> -->
             </div>
         </article>`;
         const body = document.querySelector("body");
@@ -190,7 +190,7 @@ ui = {
                     <button type="button" class="btn btn-cancel">${opt.nbt}</button>
                     <button type="button" class="btn btn-confirm">${opt.ybt}</button>
                 </div>
-                <!-- <button type="button" class="btn-close"><i class="fa-solid fa-xmark"></i></button> -->
+                <!-- <button type="button" class="btn-close"><i class="fa-regular fa-xmark"></i></button> -->
             </div>
         </article>`;
         const body = document.querySelector("body");

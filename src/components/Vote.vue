@@ -2,7 +2,7 @@
   
   <div class="vote">
     <button type="button" class="bt-vote" :class="likeOn" @click="likeTog" v-show="likeShow" :disabled="likeShow?false:true">
-      <i class="fa-solid fa-heart"></i>
+      <i class="fa-regular fa-heart"></i>
       <p v-if="$parent.Views.likes>0">{{ $parent.Views.likes }}</p>
     </button>
   </div>

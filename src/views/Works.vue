@@ -11,7 +11,7 @@
       <!-- <p>{{workData.update}}</p> -->
 
       <div class="work-list">
-        <div class="hdts"><h3 class="title"><i class="fa-solid fa-window-restore"></i> UI/UX Development</h3></div>
+        <div class="hdts"><h3 class="title"><i class="fa-regular fa-window-restore"></i> UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.puix" :key="index">
             <router-link :to="{ name: 'pop', params: { cate: 'puix', id :index }}" class="box">
@@ -24,14 +24,14 @@
                   <span class="ico" v-for="ico in workData.puix[index].tech" :key="ico">{{ico}}</span>
                 </div>
               </div>
-              <div class="date">{{item.date}}</div>
+              <div class="date"><i class="fa-regular fa-calendar-days"></i> <span>{{item.date}}</span></div>
             </router-link>
           </li>
         </ul>
       </div>
 
       <div class="work-list">
-        <div class="hdts"><h3 class="title"><i class="fa-solid fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
+        <div class="hdts"><h3 class="title"><i class="fa-regular fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pdeg" :key="index">
             <router-link :to="{ name: 'pop', params: { cate: 'pdeg', id :index }}" class="box">
@@ -44,14 +44,14 @@
                   <span class="ico" v-for="ico in workData.pdeg[index].tech" :key="ico">{{ico}}</span>
                 </div>
               </div>
-              <div class="date">{{item.date}}</div>
+              <div class="date"><i class="fa-regular fa-calendar-days"></i> <span>{{item.date}}</span></div>
             </router-link>
           </li>
         </ul>
       </div>
 
       <div class="work-list">
-        <div class="hdts"><h3 class="title"><i class="fa-solid fa-bolt-lightning"></i> Flash ActionScript</h3></div>
+        <div class="hdts"><h3 class="title"><i class="fa-regular fa-bolt-lightning"></i> Flash ActionScript</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pfla" :key="index">
             <router-link :to="{ name: 'pop', params: { cate: 'pfla', id :index }}" class="box">
@@ -64,7 +64,7 @@
                   <span class="ico" v-for="ico in workData.pfla[index].tech" :key="ico">{{ico}}</span>
                 </div>
               </div>
-              <div class="date">{{item.date}}</div>
+              <div class="date"><i class="fa-regular fa-calendar-days"></i> <span>{{item.date}}</span></div>
             </router-link>
           </li>
         </ul>

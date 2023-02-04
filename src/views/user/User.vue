@@ -12,21 +12,21 @@
           </div>
         </div>
         <div class="desc">
-          <span class="txt"><i class="fa-solid fa-calendar-days"></i> 가입 : {{uInfo.date}}</span>
-          <span class="txt"><i class="fa-solid fa-envelope"></i> {{uInfo.email}}</span>
+          <span class="txt"><i class="fa-regular fa-calendar-days"></i> 가입 : {{uInfo.date}}</span>
+          <span class="txt"><i class="fa-regular fa-envelope"></i> {{uInfo.email}}</span>
         </div>
       </div>
       
       <div class="post">
         <ul class="menu" ref="menuSlide">
           <li class="">
-            <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-solid fa-list"></i></span></a>
+            <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-regular fa-list"></i></span></a>
           </li>
           <li>
-            <a class="bt" @click="gotoSlide(1)" data-val="tab_a_2" href="javascript:;"><span><i class="fa-solid fa-camera"></i></span></a>
+            <a class="bt" @click="gotoSlide(1)" data-val="tab_a_2" href="javascript:;"><span><i class="fa-regular fa-camera"></i></span></a>
           </li>
           <li>
-            <a class="bt" @click="gotoSlide(2)" data-val="tab_a_3" href="javascript:;"><span><i class="fa-solid fa-heart"></i></span></a>
+            <a class="bt" @click="gotoSlide(2)" data-val="tab_a_3" href="javascript:;"><span><i class="fa-regular fa-heart"></i></span></a>
           </li>
         </ul>
         <swiper class="pctn"
@@ -42,7 +42,7 @@
           @slideChange="onSlideChange">
           <swiper-slide class="ctn b" data-val="tab_a_1">
             <div v-if="Boards.length == 0" class="nodata">
-              <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+              <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
             </div>
             <div v-else class="board-list">
               <ul class="list">
@@ -59,9 +59,9 @@
                     <div class="info">
                       <div class="dd">
                         <div class="hits">
-                          <em><i class="fa-solid fa-comment-dots"></i> <b>{{ board.coments.length }}</b></em>
-                          <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em>
-                          <em><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                          <em><i class="fa-regular fa-comment-dots"></i> <b>{{ board.coments.length }}</b></em>
+                          <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em>
+                          <em><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
                         </div>
                         
                       </div>
@@ -79,7 +79,7 @@
           <swiper-slide class="ctn p" data-val="tab_a_2">
             <div class="photo-list">
               <div v-if="Photos.length == 0" class="nodata">
-                <p><i class="fa-solid fa-message-dots"></i> 게시글이 없습니다.</p>
+                <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
               </div>
               <ul v-else class="list" id="dp_list">
                 <!-- {{Photos}} -->
@@ -87,11 +87,11 @@
                   <div class="box">
                     <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
                       <div class="pic" v-if="board.img.length"><img class="img" loading="lazy" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
-                      <div class="nums" v-if="board.img.length > 1"><em><i class="fa-solid fa-images"></i></em></div>
+                      <div class="nums" v-if="board.img.length > 1"><em><i class="fa-regular fa-images"></i></em></div>
                       <div class="info">
-                        <em v-if="board.comtNum > 0"><i class="fa-solid fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                        <!-- <em><i class="fa-solid fa-eye"></i> <b>{{ board.count }}</b></em> -->
-                        <em v-if="board.likes > 0"><i class="fa-solid fa-heart"></i> <b>{{board.likes}}</b></em>
+                        <em v-if="board.comtNum > 0"><i class="fa-regular fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                        <!-- <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em> -->
+                        <em v-if="board.likes > 0"><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
                       </div>
                     </router-link>
                   </div>
@@ -99,7 +99,7 @@
               </ul>
               <div class="ui-loadmore">
                 <em></em>
-                <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-solid fa-rotate-right"></i></button>
+                <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-regular fa-rotate-right"></i></button>
               </div>
             </div>
           </swiper-slide>

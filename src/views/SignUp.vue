@@ -36,10 +36,10 @@
         </ul>
         <div class="btsbox btn-set">
             <!-- <router-link class="btn" to="/signin">로그인</router-link> -->
-          <button type="button" class="btn" :disabled="isBtnJoin ? false : true" @click="join"><i class="fa-solid fa-right-to-bracket"></i><em>회원가입</em></button>
+          <button type="button" class="btn" :disabled="isBtnJoin ? false : true" @click="join"><i class="fa-regular fa-right-to-bracket"></i><em>회원가입</em></button>
         </div>
         <div class="link">
-          이미 회원이신가요? <router-link class="bt" to="/signin">로그인 하러가기 <i class="fa-solid fa-chevron-right"></i></router-link>
+          이미 회원이신가요? <router-link class="bt" to="/signin">로그인 하러가기 <i class="fa-regular fa-chevron-right"></i></router-link>
         </div>
       </div>
     </main>

@@ -4,7 +4,7 @@
   <div class="adbts">
     <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*" multiple maxlength="5">
     <span class="btfiles" @click="numCheck" :class="this.btnDis">
-      <i class="fa-solid fa-camera"></i>
+      <i class="fa-regular fa-camera"></i>
       <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{this.opts.max}}</b></span>
     </span>
   </div>
@@ -12,11 +12,11 @@
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
       <b>{{ index }}</b>
       <img class="img" :src="image" alt="" onerror="this.src='./img/noimage.png';">
-      <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
+      <button class="del" type="button" @click="fileDel(index)"><i class="fa-regular fa-xmark"></i></button>
       <input type="radio" name="rdFIle" @change="rodPos" :data-index="index" class="rdo" :checked=" index == 0 ? true : false">
       <div class="rbt" v-if="Files.length > 1">
-        <button @click="fMove('prev')" :data-index="index-1" class="mbt"><i class="fa-solid fa-angle-left"></i></button>
-        <button @click="fMove('next')" :data-index="index+1" class="mbt"><i class="fa-solid fa-angle-right"></i></button>
+        <button @click="fMove('prev')" :data-index="index-1" class="mbt"><i class="fa-regular fa-angle-left"></i></button>
+        <button @click="fMove('next')" :data-index="index+1" class="mbt"><i class="fa-regular fa-angle-right"></i></button>
       </div>
     </div>
   </div>

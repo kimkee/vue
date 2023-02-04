@@ -22,8 +22,8 @@
     <nav class="floatbots">
       <div class="inr">
         <div class="btsbox btn-set">
-          <button type="button" class="btn" @click="$router.back()"><i class="fa-solid fa-list"></i><em>취소</em></button>
-          <button type="button" class="btn" :disabled="isBtnSave ? false : true" @click="modify"><i class="fa-solid fa-pen-to-square"></i><em>저장</em></button>
+          <button type="button" class="btn" @click="$router.back()"><i class="fa-regular fa-list"></i><em>취소</em></button>
+          <button type="button" class="btn" :disabled="isBtnSave ? false : true" @click="modify"><i class="fa-regular fa-pen-to-square"></i><em>저장</em></button>
         </div>
       </div>
     </nav>

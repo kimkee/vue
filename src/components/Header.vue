@@ -2,14 +2,14 @@
   <header class="header">
     <div class="inr">
       <div class="ldt">
-        <h1 class="logo" @click="testAlert"><router-link class="btlogo" to="/">Home</router-link></h1>
+        <h1 class="logo" @click="testAlert"><router-link class="btlogo" to="/"><i class="fa-brands fa-vuejs"></i></router-link></h1>
       </div>
       <div class="rdt">
         <router-link class="user" :to="`/user/${$store.state.userInfo.uid}`">
           <span class="pic"><img :src="$store.state.avatar[$store.state.userInfo.avatar]" alt="" class="img"></span>
           <span class="txt">{{$store.state.userInfo.nick}}</span>
         </router-link>
-        <button type="button" class="bt gnb" id="btn-gnb" @click="gnbOpen"><i class="fa-solid fa-bars"></i><b>메뉴</b></button>
+        <button type="button" class="bt gnb" id="btn-gnb" @click="gnbOpen"><i class="fa-regular fa-bars"></i><b>메뉴</b></button>
       </div>
     </div>
   </header>
@@ -40,8 +40,8 @@ export default {
   },
   methods:{
     testAlert(){
-      ui.alert('알럿 메시지입니다.',{
-        'tit':'타이틀',
+      ui.alert('뷰랄~ 뷰랄~!',{
+        'tit':'쀼',
         'ycb': function(){
           console.log("알럿 확인");
         }

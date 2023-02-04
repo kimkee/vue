@@ -38,10 +38,10 @@
               </div>
               <div class="dd">
                 <div class="hits">
-                    <em><i class="fa-solid fa-eye"></i> <b>{{ Views.count }}</b></em>
-                    <em><i class="fa-solid fa-heart"></i> <b>{{Views.likes}}</b></em>
+                    <em><i class="fa-regular fa-eye"></i> <b>{{ Views.count }}</b></em>
+                    <em><i class="fa-regular fa-heart"></i> <b>{{Views.likes}}</b></em>
                 </div>
-                <div class="date"><i class="fa-solid fa-calendar-days"></i> {{ Views.timestamp }}</div>
+                <div class="date"><i class="fa-regular fa-calendar-days"></i> {{ Views.timestamp }}</div>
               </div>
               
             </div>
@@ -52,9 +52,9 @@
           <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
         
           <div class="btsbox btn-set">
-            <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link>
-            <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
-            <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-solid fa-trash"></i><em>삭제</em></button>
+            <router-link class="btn sm" to="/photo"><i class="fa-regular fa-list"></i><em>목록</em></router-link>
+            <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-regular fa-pen-to-square"></i><em>수정</em></router-link>
+            <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-regular fa-trash"></i><em>삭제</em></button>
           </div>
         </div>
       </div>

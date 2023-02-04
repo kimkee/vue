@@ -38,7 +38,7 @@
                   spellcheck="false">
                 </textarea>
               </div>
-              <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="chatWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
+              <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="chatWrite"><i class="fa-regular fa-pen"></i><em>보내기</em></button></div>
             </div>
           </div>
         </div>

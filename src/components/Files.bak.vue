@@ -5,13 +5,13 @@
     <div class="adbts">
       <input type="file" class="file" id="fileInput" ref="fileInput" @change="fileAdd" accept="image/* , video/*">
       <span class="btfiles" @click="numCheck" :class="this.btnDis">
-        <i class="fa-solid fa-camera"></i>
+        <i class="fa-regular fa-camera"></i>
         <span class="num"><b class="i">{{Files.length}}</b>/<b class="n">{{this.opts.max}}</b></span>
       </span>
     </div>
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
       <img class="img" :src="image" alt="">
-      <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
+      <button class="del" type="button" @click="fileDel(index)"><i class="fa-regular fa-xmark"></i></button>
     </div>
   </div>
   
