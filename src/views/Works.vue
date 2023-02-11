@@ -2,7 +2,7 @@
   <div class="container work">
     <router-view v-slot="{ Component }">
       <transition :name="transitionName">
-        <component :is="Component" ref="popup" :opts="workData"/>
+        <component :is="Component" ref="popup" :opts="workData" :baseURL="baseURL"/>
       </transition>
     </router-view>
 
@@ -19,7 +19,7 @@
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
               <div class="cdt">
-                <div class="pics"><img :src="'//kimkee.github.io/'+item.imgs" class="img" alt="" loading="lazy"></div>
+                <div class="pics"><img :src="baseURL+item.imgs" class="img" alt="" loading="lazy"></div>
                 <div class="tech">
                   <span class="ico" v-for="ico in workData.puix[index].tech" :key="ico">{{ico}}</span>
                 </div>
@@ -39,7 +39,7 @@
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
               <div class="cdt">
-                <div class="pics"><img :src="'//kimkee.github.io/'+item.imgs" class="img" alt="" loading="lazy"></div>
+                <div class="pics"><img :src="baseURL+item.imgs" class="img" alt="" loading="lazy"></div>
                 <div class="tech">
                   <span class="ico" v-for="ico in workData.pdeg[index].tech" :key="ico">{{ico}}</span>
                 </div>
@@ -59,7 +59,7 @@
                 <h4 class="tits">{{item.tits}}</h4>
               </div>
               <div class="cdt">
-                <div class="pics"><img :src="'//kimkee.github.io/'+item.imgs" class="img" alt="" loading="lazy"></div>
+                <div class="pics"><img :src="baseURL+item.imgs" class="img" alt="" loading="lazy"></div>
                 <div class="tech">
                   <span class="ico" v-for="ico in workData.pfla[index].tech" :key="ico">{{ico}}</span>
                 </div>
@@ -88,6 +88,7 @@ export default {
   },
   data() {
     return {
+      baseURL:"//kimkee.github.io/app/",
       workData: {},
       popData:{}
     }
@@ -109,7 +110,7 @@ export default {
     }
   },
   async mounted() {
-    await fetch('https://kimkee.github.io/js/data.json').then(res => res.ok && res.text()).then(res => {
+    await fetch('https://kimkee.github.io/app/js/data.json').then(res => res.ok && res.text()).then(res => {
 
       this.workData = JSON.parse(res);
       console.log(this.workData);

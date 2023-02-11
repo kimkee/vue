@@ -74,7 +74,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 
 
 .container{transition: opacity 1.5s;}
-.container .contents{margin: 0rem 20rem; padding: 20rem 0rem 0rem 0rem;}
+.container .contents{margin: 0rem 20rem; padding: 20rem 0rem 20rem 0rem;}
 .pagehead{height: 50rem;}
 .pagehead>.inr{height: 50rem;display: flex;align-items: center;justify-content: space-between;position: fixed;left: 0;right: 0;top: 0;background: #555;padding: 0rem 20rem;z-index: 500;}
 .pagehead .ldt{position: relative;}
@@ -252,8 +252,8 @@ a.btn.disabled{ pointer-events: none; }
 
 
 .floatbots{height: 60rem;height: calc(60rem + var(--safe-bottom) );}
-.floatbots>.inr{position: fixed;bottom: 0;left: 0;right: 0;z-index: 600;background: #141c28;border-top: #1f2b3c solid 1rem;}
-.floatbots .btsbox{padding: 10rem 20rem 12rem 20rem;padding-bottom: calc(12rem + var(--safe-bottom));}
+.floatbots>.inr{height: 60rem;height: calc(60rem + var(--safe-bottom) );position: fixed;bottom: 0;left: 0;right: 0;z-index: 600;background: #141c28;border-top: #1f2b3c solid 1rem;}
+.floatbots .btsbox{padding: 8rem 20rem 10rem 20rem;padding-bottom: calc(12rem + var(--safe-bottom));}
 .floatbots .btsbox .btn{font-size: 13rem;}
 .floatbots .btsbox .btn i{margin:-2rem 6rem 0rem -6rem; display:inline-flex; }
 
@@ -512,7 +512,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .vmem .txt{margin-left: 0rem;}
 .board-view .btn-set{margin-top: 30rem;}
 
-.board-write{margin-top: 10rem;}
+.board-write{margin-top: 0rem;}
 .board-write .list{}
 .board-write .list>li{}
 .board-write .list>li+li{margin-top: 20rem;}

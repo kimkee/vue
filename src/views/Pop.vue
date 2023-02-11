@@ -12,7 +12,7 @@
           <div class="pbox">
             <div class="ss">
               <div class="pic">
-                <img class="img" :src="'//kimkee.github.io/'+popData.imgs" :alt="popData.tits+'의 스크린샷 이미지'" loading="lazy">
+                <img class="img" :src="baseURL+popData.imgs" :alt="popData.tits+'의 스크린샷 이미지'" loading="lazy">
               </div>
             </div>
             <!-- <div class="name">{{popData.tits}}</div> -->
@@ -41,7 +41,7 @@ export default {
   },
   props: {
     opts: Object,
-
+    baseURL:String,
   },
   data() {
     return {
