@@ -1,5 +1,10 @@
 <template>
   <div class="container photo view">
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" ref="popup"  />
+      </transition>
+    </router-view>
     <main class="contents">
       <!-- {{$route.params.id}} -->
       <div class="photo-view">
@@ -20,11 +25,13 @@
                 :lazy="true"
                 :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
-                <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
-                  <div class="pic">
-                    <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                    <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
-                  </div>
+                <swiper-slide v-for="image,index in Views.img" :key="index">
+                  <router-link :to="{ name: 'photoPop', params: { num :index }}" class="box">
+                    <div class="pic">
+                      <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                      <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
+                    </div>
+                  </router-link>
                 </swiper-slide>
               </swiper> 
               
@@ -68,10 +75,10 @@
 
 <script>
 import { db } from '@/firebaseConfig.js';
-import Comments from '@/components/Comments.vue';
-import Vote from '@/components/Vote.vue';
 import { getDoc, doc, deleteDoc, updateDoc } from 'firebase/firestore';
 import { getStorage, ref, deleteObject } from 'firebase/storage';
+import Comments from '@/components/Comments.vue';
+import Vote from '@/components/Vote.vue';
 import { useRoute } from 'vue-router';
 import store from '@/store';
 
@@ -92,6 +99,7 @@ export default {
       Views: {},
       Coments: [],
       dbTable: "photo",
+      transitionName: "",
     }
   },
   components: {
@@ -128,6 +136,15 @@ export default {
     });
     this.view(ids);
     this.param = ids;
+  },
+  watch:{
+    '$route'(to,from){
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      console.log(this.transitionName);
+      // this.$refs.popup.$refs.popLayer.classList.add("ani");
+    }
   },
   mounted() {
     document.querySelector(".header .htit").textContent = 'Photo';
