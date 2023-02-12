@@ -25,7 +25,7 @@
                 :preloadImages="true"
                 :loop="Pic.img.length > 1 ? true : false"
                 :initialSlide="num"
-                :zoom="{ maxRatio: 2}"
+                zoom="{ maxRatio: 2}"
                 :lazy="{ loadPrevNext: true }"
                 :space-between="0" navigation :pagination="{ clickable: true ,type:'fraction'}"
                 @swiper="onSwiper" @slideChange="onSlideChange">
@@ -112,16 +112,18 @@ export default {
   },
   mounted() {
     
-    this.$refs.popLayer.classList.add("ani");
     setTimeout(() => {
+      this.$refs.popLayer.classList.add("ani");
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
+    window.addEventListener("resize",this.size);
     this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted(){
     console.log("unmouted");
+    window.removeEventListener("resize",this.size);
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
@@ -129,6 +131,7 @@ export default {
   methods: {
     size(){
       let $pop =  this.$refs.popLayer;
+      // console.log($pop);
       let pctnH =  $pop.offsetHeight || 0;
       let pbtnH =  $pop.querySelector(".pbt")?.offsetHeight || 0 ;
       let phtnH =  $pop.querySelector(".phd")?.offsetHeight || 0 ;
