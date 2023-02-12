@@ -29,7 +29,7 @@
 
               <swiper class="photo" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
-                :slides-per-view="auto" 
+                :slides-per-view="1" 
                 :observer="true"
                 :observeParents="true"
                 :watchOverflow="true"

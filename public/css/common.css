@@ -639,7 +639,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .ut-photo-slide .slides .swiper-pagination-total{ font-size: 13rem; padding: 0rem 4rem;}
 .ut-photo-slide .slides .swiper-pagination-current{ }
 .ut-photo-slide .slides .swiper-pagination-total{}
-.ut-photo-slide .slides .box{padding: 0rem 0rem;height: auto;}
+.ut-photo-slide .slides .box{padding: 0rem 0rem;height: auto; overflow: visible;}
 .ut-photo-slide .slides .pic{background-color: #050505;}
 .ut-photo-slide .slides .pic .img[src*="noimage.png"]{max-width:180rem}
 .ut-photo-slide .slides .pic .img{z-index: 2;}

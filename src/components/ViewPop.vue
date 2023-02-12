@@ -16,7 +16,7 @@
             <swiper class="slides" v-if="typeof Pic.img == 'object'"
                 wrapperTag="ul"
                 :modules="modules"
-                :slides-per-view="auto" 
+                :slides-per-view="1" 
                 :observer="true"
                 :observeParents="true"
                 :watchOverflow="true"
@@ -24,17 +24,14 @@
                 :auto-height="true"
                 :preloadImages="true"
                 :loop="Pic.img.length > 1 ? true : false"
-                :initialSlide="num"
-                zoom="{ maxRatio: 2}"
+                :zoom="{ maxRatio: 2}"
                 :lazy="{ loadPrevNext: true }"
                 :space-between="0" navigation :pagination="{ clickable: true ,type:'fraction'}"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide  class="box" tag="li" v-for="image,index in Pic.img" :key="index">
-                  <div class="item">
-                    <div class="pic swiper-zoom-container">
-                      <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                      <!-- <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div> -->
-                    </div>
+                  <div class="pic swiper-zoom-container">
+                    <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                    <!-- <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div> -->
                   </div>
                 </swiper-slide>
               </swiper>
@@ -49,7 +46,7 @@
 import { db } from '@/firebaseConfig.js';
 import { getDoc, doc} from 'firebase/firestore';
 import { useRoute } from 'vue-router';
-import { Navigation, Pagination, A11y } from 'swiper';
+import { Navigation, Pagination, A11y, Zoom  } from 'swiper';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/vue';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -92,7 +89,7 @@ export default {
       swiper,
       onSwiper,
       onSlideChange,
-      modules: [Navigation, Pagination, A11y],
+      modules: [Navigation, Pagination, A11y, Zoom ],
     };
   },
   created() {

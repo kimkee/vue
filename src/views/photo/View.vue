@@ -17,7 +17,8 @@
 
               <swiper class="photo" ref="photoSlide" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
-                :auto-height="true" :slides-per-view="1" 
+                :auto-height="true" 
+                :slides-per-view="1" 
                 :observer="true"
                 :observeParents="true"
                 :watchOverflow="true"
