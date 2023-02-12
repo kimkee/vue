@@ -14,6 +14,8 @@
           <div class="ut-photo-slide">
             <!--   -->
             <swiper class="slides" v-if="typeof Pic.img == 'object'"
+                :wrapperTag="ul"
+                :tag="li"
                 :modules="modules"
                 :slides-per-view="auto" 
                 :observer="true"
@@ -22,17 +24,17 @@
                 :watchSlidesProgress="true"
                 :auto-height="true"
                 :preloadImages="true"
-                :loop="Pic.img.length > 1 ? true : false"
+                :loop="Pic.img.length > 1 ? false : false"
                 :initialSlide="num"
-                :zoom="true"
+                :zoom="{ maxRatio: 2}"
                 :lazy="{ loadPrevNext: true }"
-                :space-between="0" navigation :pagination="{ clickable: true }"
+                :space-between="0" navigation :pagination="{ clickable: true ,type:'fraction'}"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide  class="box" v-for="image,index in Pic.img" :key="index">
-                  <div class="swiper-zoom-container">
-                    <div class="pic swiper-zoom-target">
+                  <div class="item">
+                    <div class="pic swiper-zoom-container">
                       <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                      <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
+                      <!-- <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div> -->
                     </div>
                   </div>
                 </swiper-slide>
@@ -71,7 +73,6 @@ export default {
       Pic: {},
       id: "",
       num: "",
-      dbTable: "photo",
     }
   },
   setup() {
@@ -140,7 +141,7 @@ export default {
     },
     async view(id, num){
       console.log(id , num);
-      const docRef = doc(db, this.dbTable, id);
+      const docRef = doc(db, this.opts.dbTable, id);
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
         this.Pic.id = docSnap.id;

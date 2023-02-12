@@ -2,7 +2,7 @@
   <div class="container photo view">
     <router-view v-slot="{ Component }">
       <transition :name="transitionName">
-        <component :is="Component" ref="popup"  />
+        <component :is="Component" ref="popup" :opts="{dbTable}"  />
       </transition>
     </router-view>
     <main class="contents">
