@@ -127,6 +127,7 @@ export default {
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
+    console.log( this.$parent.$refs.photoSlide );
   },
   methods: {
     size(){

@@ -15,7 +15,7 @@
           <dd class="cdt">
             <div class="cont">
 
-              <swiper class="photo" v-if="typeof Views.img == 'object'" 
+              <swiper class="photo" ref="photoSlide" v-if="typeof Views.img == 'object'" 
                 :modules="modules"
                 :auto-height="true" :slides-per-view="1" 
                 :observer="true"
@@ -126,6 +126,8 @@ export default {
   },
   created() {
     ui.init();
+    document.querySelector(".header .htit").textContent = 'Photo';
+    document.querySelector(".header").classList.add('trans');
     ui.loading.show();
     console.log("view created");
     const route = useRoute();
@@ -148,7 +150,10 @@ export default {
     }
   },
   mounted() {
-    document.querySelector(".header .htit").textContent = 'Photo';
+
+  },
+  unmounted(){
+    document.querySelector(".header").classList.remove('trans');
   },
   methods: {
     async view(ids) {
