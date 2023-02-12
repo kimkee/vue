@@ -105,7 +105,7 @@ export default {
     '$route'(to,from){
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
-      this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left';
+      this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
       console.log(this.transitionName);
       // this.$refs.popup.$refs.popLayer.classList.add("ani");
     }

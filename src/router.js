@@ -7,7 +7,7 @@ import Photo from "./views/photo/Photo.vue";
 import PhotoWrite from "./views/photo/Write.vue";
 import PhotoModify from "./views/photo/Modify.vue";
 import PhotoView from "./views/photo/View.vue";
-import PhotoViewPop from "./views/photo/ViewPop.vue";
+import PhotoViewPop from "./components/ViewPop.vue";
 
 import Works from "./views/Works.vue";
 import Pop from "./views/Pop.vue";
