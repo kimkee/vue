@@ -24,7 +24,7 @@
                 :auto-height="true"
                 :preloadImages="true"
                 :loop="Pic.img.length > 1 ? true : false"
-                :zoom="{ maxRatio: 2}"
+                :zoom="{ maxRatio: 3}"
                 :lazy="{ loadPrevNext: true }"
                 :space-between="0" navigation :pagination="{ clickable: true ,type:'fraction'}"
                 @swiper="onSwiper" @slideChange="onSlideChange">

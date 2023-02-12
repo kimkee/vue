@@ -108,7 +108,7 @@ export default {
       }else{
         this.callStat = true;
       }
-      this.$refs.page.classList.add("load");
+      this.$refs.page?.classList.add("load");
       ui.loading.hide();
     },
     async postNum(){

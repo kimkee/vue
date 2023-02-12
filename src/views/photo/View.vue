@@ -24,7 +24,7 @@
                 :watchOverflow="true"
                 :preloadImages="false"
                 :lazy="true"
-                :loop="true"
+                :loop="Views.img.length > 1 ? true : false"
                 :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index">

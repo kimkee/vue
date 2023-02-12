@@ -37,6 +37,7 @@
                 :auto-height="true"
                 :preloadImages="true"
                 :lazy="{ loadPrevNext: true }"
+                :loop="Views.img.length > 1 ? true : false"
                 :space-between="0" navigation :pagination="{ clickable: true }"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
