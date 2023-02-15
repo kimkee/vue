@@ -72,11 +72,10 @@ export default {
     }
   },
   setup() {
+    const route = useRoute();
+    const sidx = parseInt(route.params.num)+1;      
     const onSwiper = (swiper) => {
       console.log(swiper);
-      
-      const route = useRoute();
-      const sidx = parseInt(route.params.num)+1;      
       console.log(sidx);
       swiper.slideTo(sidx,0);
     };
