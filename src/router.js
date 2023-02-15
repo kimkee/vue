@@ -9,8 +9,8 @@ import PhotoModify from "./views/photo/Modify.vue";
 import PhotoView from "./views/photo/View.vue";
 import PhotoViewPop from "./components/ViewPop.vue";
 
-import Works from "./views/Works.vue";
-import Pop from "./views/Pop.vue";
+import Works from "./views/works/Works.vue";
+import WorksPop from "./views/works/WorksPop.vue";
 
 import List from "./views/bbs/List.vue";
 import Write from "./views/bbs/Write.vue";
@@ -62,9 +62,9 @@ const router = createRouter({
                 {
                     // /user/:id/profile 과 일치 할 때
                     // UserProfile은 User의 <router-view> 내에 렌더링 됩니다.
-                    name:'workPop',
+                    name:'worksPop',
                     path: '/works/:cate/:id',
-                    component: Pop
+                    component: WorksPop
                 }
             ]
         },
