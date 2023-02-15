@@ -26,7 +26,8 @@
                 :loop="Pic.img.length > 1 ? true : false"
                 :zoom="{ maxRatio: 3}"
                 :lazy="{ loadPrevNext: true }"
-                :space-between="0" navigation :pagination="{ clickable: true ,type:'fraction'}"
+                :space-between="0" navigation 
+                :pagination="Pic.img.length > 1 ? { clickable: true ,type:'fraction'} : false"
                 @swiper="onSwiper" @slideChange="onSlideChange">
                 <swiper-slide  class="box" tag="li" v-for="image,index in Pic.img" :key="index">
                   <div class="pic swiper-zoom-container">
