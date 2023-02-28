@@ -1,5 +1,4 @@
-window.ui = new Object;
-ui = {
+const ui = {
     init: function () {
         console.log("ui.init();");
         // this.gnb.init();
@@ -246,4 +245,5 @@ ui = {
         }
     },
 };
+window.ui = ui;
 export default ui;
