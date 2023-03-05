@@ -10,11 +10,7 @@
   <link rel="stylesheet" href="<%= BASE_URL %>css/style.css?v=<%= htmlWebpackPlugin.options.version %>">
   <link rel="stylesheet" href="<%= BASE_URL %>css/common.css?v=<%= htmlWebpackPlugin.options.version %>">
   <script>
-    if ("serviceWorker" in navigator) {
-      window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./service-worker.js");
-      });
-    }
+    // if ("serviceWorker" in navigator) { window.addEventListener("load", () => { navigator.serviceWorker.register("./service-worker.js"); }); }
   </script>
 </head>
 <body class="body">
