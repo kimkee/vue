@@ -82,9 +82,9 @@ export default {
   },
   watch:{
     '$route'(to,from){
-      const toDepthA = to.path.split('/').length;
-      const fromDepthA = from.path.split('/').length;
-      this.transitionNameA = toDepthA < fromDepthA ? 'slide-out-A' : 'slide-in-A';
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionNameA = toDepth < fromDepth ? 'slide-out' : 'slide-in';
       console.log(this.transitionNameA);
       // this.$refs.popup.$refs.popLayer.classList.add("ani");
     }
