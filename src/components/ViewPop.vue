@@ -1,5 +1,5 @@
 <template>
-  <article class="pop-layer a bottom popup photo view" ref="popLayer">
+  <article class="pop-layer a bottom popup photo detail" ref="popLayer">
     <div class="pbd">
       <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
       <!--       

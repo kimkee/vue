@@ -74,23 +74,26 @@ const router = createRouter({
                 default: Photo,
                 HeaderSub,
                 Nav
-            }
-        },
-        {
-            path: "/photo/:id",
-            name: "photoView",
-            components: {
-                default: PhotoView,
-                HeaderSub,
             },
             children: [
                 {
-                    name:'photoPop',
-                    path: '/photo/:id/pop/:num',
-                    component: PhotoViewPop
-                }
+                    path: ":id",
+                    name: "photoView",
+                    components: {
+                        default: PhotoView,
+                        HeaderSub,
+                    },
+                    children: [
+                        {
+                            name:'photoPop',
+                            path: 'pop/:num',
+                            component: PhotoViewPop
+                        }
+                    ]
+                }        
             ]
         },
+        
         {
             path: "/photo/write",
             components: {

@@ -1,5 +1,16 @@
 <template>
+
+  
   <div class="container photo" ref="page">
+    
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionNameA">
+        <component :is="Component" ref="popup" :opts="{dbTable}"  />
+      </transition>
+    </router-view>
+
+    
+
     <main class="contents">
       
       <div v-if="Boards.length == 0" class="nodata">
@@ -40,7 +51,6 @@ import { db } from '@/firebaseConfig.js';
 import store from '@/store';
 import { collection, query, doc, getDoc, getDocs, orderBy, limit } from 'firebase/firestore'; //limitToLast
 import ui from '@/ui.js';
-
 export default {
   name: 'PhotoItem',
   components: {
@@ -58,6 +68,7 @@ export default {
       loadItem: 0, // 로드한 아이템 갯수
       postTotal:0, // 전체 개시물 숫자
       dbTable:'photo',
+      transitionNameA: "",
     }
   },
   created() {
@@ -65,8 +76,18 @@ export default {
     ui.loading.show();
     document.querySelector(".header .htit").textContent = 'Photo';
     console.log("photo created");
+    
     this.postNum();
     this.read(this.countItem);
+  },
+  watch:{
+    '$route'(to,from){
+      const toDepthA = to.path.split('/').length;
+      const fromDepthA = from.path.split('/').length;
+      this.transitionNameA = toDepthA < fromDepthA ? 'slide-out-A' : 'slide-in-A';
+      console.log(this.transitionNameA);
+      // this.$refs.popup.$refs.popLayer.classList.add("ani");
+    }
   },
   mounted() {
     console.table(store.state.userInfo);
