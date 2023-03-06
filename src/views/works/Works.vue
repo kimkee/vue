@@ -88,7 +88,7 @@ export default {
   },
   data() {
     return {
-      baseURL:"//kimkee.github.io/app/",
+      baseURL:"//kimkee.github.io/",
       workData: {},
       popData:{},
       transitionName: "",
@@ -111,7 +111,7 @@ export default {
     }
   },
   async mounted() {
-    await fetch('https://kimkee.github.io/app/js/data.json').then(res => res.ok && res.text()).then(res => {
+    await fetch('https://kimkee.github.io/js/data.json').then(res => res.ok && res.text()).then(res => {
 
       this.workData = JSON.parse(res);
       console.log(this.workData);
