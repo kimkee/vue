@@ -1,5 +1,10 @@
 <template>
-  <div class="container home">
+  <div class="container home page">
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" ref="popup" :opts="{dbTable}"  />
+      </transition>
+    </router-view>
     <main class="contents">
 
       <swiper class="slide"
@@ -39,7 +44,7 @@
       </swiper>
 
 
-      <RecentPost :opts="{dbTable:'bbs',num:5}"/>
+      <RecentPost :opts="{dbTable:'bbs',num:7}"/>
       
       
     </main>
@@ -111,6 +116,15 @@ export default {
     ui.init();
     ui.loading.show();
     console.log("home created");
+  },
+  watch:{
+    '$route'(to,from){
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
+      console.log(this.transitionName);
+      // this.$refs.popup.$refs.popLayer.classList.add("ani");
+    }
   },
   mounted() {
     console.table(store.state.userInfo);

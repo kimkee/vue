@@ -49,7 +49,24 @@ const router = createRouter({
                 default: Home,
                 Header,
                 Nav
-            }
+            },
+            children: [
+                {
+                    path: "/:id",
+                    name: "homeBbsView",
+                    components: {
+                        default: View,
+                        HeaderSub,
+                    }
+                    ,children: [
+                        {
+                            name:'photoPop',
+                            path: 'pop/:num',
+                            component: PhotoViewPop
+                        }
+                    ]
+                }        
+            ]
         },
         {
             path: "/works",

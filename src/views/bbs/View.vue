@@ -51,7 +51,7 @@
                     @swiper="onSwiper" @slideChange="onSlideChange">
                     <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
                       <div class="pic">
-                        <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                        <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';">
                         <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
                       </div>
                     </swiper-slide>

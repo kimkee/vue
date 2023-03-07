@@ -9,7 +9,7 @@
         </div>
         <ul class="list">
           <li v-for="recent in Recents" :key="recent.key">
-              <router-link class="box" :to="{ name: 'bbsView', params: { id: recent.key }}">
+              <router-link class="box" :to="{ name: 'homeBbsView', params: { id: recent.key }}">
                 <div class="cont">
                   <div class="pics" v-if="recent.img.length"><img class="img" :src="recent.img" onerror="this.src='./img/noimage.png';"></div>
                   <div class="desc">

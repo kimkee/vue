@@ -554,7 +554,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .hdt .hits em b{font-weight:normal; margin-left: 5rem; }
 .board-view .cdt .cont{min-height: 160rem;}
 .board-view .cdt .cont .photo{margin-top: 15rem;}
-.board-view .cdt .cont .swiper-autoheight .swiper-wrapper{height: ;}
+.board-view .cdt .cont .swiper-autoheight .swiper-wrapper{}
 .board-view .cdt .cont .box{ }
 .board-view .cdt .cont .pic{padding: 0rem 0rem;text-align: center;margin: 0rem auto;position: relative;}
 .board-view .cdt .cont .pic img[src*="noimage.png"]{max-width:180rem}
