@@ -58,13 +58,13 @@ const router = createRouter({
                         default: View,
                         HeaderSub,
                     }
-                    ,children: [
-                        {
-                            name:'photoPop',
-                            path: 'pop/:num',
-                            component: PhotoViewPop
-                        }
-                    ]
+                    // ,children: [
+                    //     {
+                    //         name:'photoPop',
+                    //         path: 'pop/:num',
+                    //         component: PhotoViewPop
+                    //     }
+                    // ]
                 }        
             ]
         },
@@ -139,14 +139,14 @@ const router = createRouter({
                     components: {
                         default: View,
                         HeaderSub,
-                    },
-                    children: [
-                        {
-                            name:'photoPop',
-                            path: 'pop/:num',
-                            component: PhotoViewPop
-                        }
-                    ]
+                    }
+                    // ,children: [
+                    //     {
+                    //         name:'photoPop',
+                    //         path: 'pop/:num',
+                    //         component: PhotoViewPop
+                    //     }
+                    // ]
                 }        
             ]
         },
