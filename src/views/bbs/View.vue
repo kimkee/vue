@@ -1,14 +1,10 @@
 <template>
-  <article class="pop-layer a bottom page board view" ref="popLayer">
+  <article class="pop-layer a bottom popup page board view" ref="popLayer">
     <div class="pbd">
       <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
-            
-      <!-- <div class="phd">
-        <div class="inr">
-          <h1 class="ptit">{{Views.title}}</h1>
-          <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
-        </div>
-      </div> -->
+      <div class="phd">
+        <div class="inr"><div class="ptit">{{Views.title}}</div></div>
+      </div>
       <div class="pct">
         <main class="poptents">
           <div class="board-view">
@@ -150,11 +146,13 @@ export default {
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
+    document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
     window.addEventListener("resize",this.size);
     // this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted() {
+    document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
@@ -169,6 +167,16 @@ export default {
       pctnH = (pctnH - phtnH) || 0 ;
       console.log(pctnH  );
       $pop.querySelector(".pct").style.height = pctnH - pbtnH+"px" ; 
+    },
+    scrollEvent() {
+      const scr = parseInt( document.querySelector(".popup .pct").scrollTop );
+      if( scr > 50){
+        document.querySelector(".popup .phd").classList.add("trans");
+        document.querySelector(".floatpop")?.classList.add("on-top");
+      }else{
+        document.querySelector(".popup .phd").classList.remove("trans");
+        document.querySelector(".floatpop")?.classList.remove("on-top");
+      }
     },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
