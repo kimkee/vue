@@ -43,7 +43,7 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 }
 
 #app{margin: 0rem 0rem;text-align: left;}
-
+a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 
 /* 헤더 */
 .header{height: 54rem;text-align:center;display:block;z-index: 500;position: relative;}
