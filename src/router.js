@@ -114,7 +114,24 @@ const router = createRouter({
                 default: List,
                 HeaderSub,
                 Nav
-            }
+            },
+            children: [
+                {
+                    path: "/bbs/:id",
+                    name: "bbsView",
+                    components: {
+                        default: View,
+                        HeaderSub,
+                    },
+                    children: [
+                        {
+                            name:'photoPop',
+                            path: 'pop/:num',
+                            component: PhotoViewPop
+                        }
+                    ]
+                }        
+            ]
         },
         {
             path: "/bbs/write",
@@ -128,14 +145,6 @@ const router = createRouter({
             path: "/bbs/:id/modify",
             components: {
                 default: Modify,
-                HeaderSub,
-            }
-        },
-        {
-            path: "/bbs/:id",
-            name: "bbsView",
-            components: {
-                default: View,
                 HeaderSub,
             }
         },

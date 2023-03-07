@@ -1,5 +1,10 @@
 <template>
   <div class="container board list" ref="page">
+    <router-view v-slot="{ Component }">
+      <transition :name="transitionName">
+        <component :is="Component" ref="popup" :opts="{dbTable}"  />
+      </transition>
+    </router-view>
     <main class="contents">
       <div class="board-list">
         <div v-if="Boards.length == 0" class="nodata">
@@ -81,6 +86,15 @@ export default {
     this.postNum();
     this.read(this.countItem);
     // console.log(db);
+  },
+  watch:{
+    '$route'(to,from){
+      const toDepth = to.path.split('/').length;
+      const fromDepth = from.path.split('/').length;
+      this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
+      console.log(this.transitionName);
+      // this.$refs.popup.$refs.popLayer.classList.add("ani");
+    }
   },
   mounted() {
     console.table(store.state.userInfo);

@@ -1,73 +1,84 @@
 <template>
-  <div class="container board view">
-    <main class="contents">
-      <!-- {{$route.params.id}} -->
-      <div class="board-view">
-        <div class="vcont">
-          <div class="hdt">
-            <div class="tits">
-              <h4 class="tit">{{ Views.title }}</h4>
-            </div>
-            <div class="info">
-              <div class="dd">
-                <router-link class="user" :to="`/user/${Views.uid}`">
-                  <span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span>
-                  <span class="txt"> {{Views.author}}</span>
-                </router-link>
-              </div>
-              <div class="dd">
-                <div class="hits">
-                    <em><i class="fa-regular fa-eye"></i> <b>{{ Views.count }}</b></em>
-                    <em><i class="fa-regular fa-heart"></i> <b>{{Views.likes}}</b></em>
-                 </div>
-                <div class="date"><i class="fa-regular fa-calendar-days"></i> {{ Views.timestamp }}</div>
-              </div>
-            </div> 
-          </div>
-          <dd class="cdt">
-            <div class="cont">
-
-              <swiper class="photo" v-if="typeof Views.img == 'object'" 
-                :modules="modules"
-                :slides-per-view="1" 
-                :observer="true"
-                :observeParents="true"
-                :watchOverflow="true"
-                :watchSlidesProgress="true"
-                :auto-height="true"
-                :preloadImages="true"
-                :lazy="{ loadPrevNext: true }"
-                :loop="Views.img.length > 1 ? true : false"
-                :space-between="0" navigation :pagination="{ clickable: true }"
-                @swiper="onSwiper" @slideChange="onSlideChange">
-                <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
-                  <div class="pic">
-                    <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                    <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
-                  </div>
-                </swiper-slide>
-              </swiper>
-
-              <div class="text" v-html="Views.content"></div>
-
-            </div>
-
-            <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
-          
-            <div class="btsbox btn-set">
-              <router-link class="btn sm" to="/bbs"><i class="fa-regular fa-list"></i><em>목록</em></router-link>
-              <router-link v-if="Views.uid == $store.state.userInfo.uid" class="btn sm" :to="`/bbs/${this.param}/modify`"><i class="fa-regular fa-pen-to-square"></i><em>수정</em></router-link>
-              <button v-if="Views.uid == $store.state.userInfo.uid" type="button" class="btn sm" @click="delpost"><i class="fa-regular fa-trash"></i><em>삭제</em></button>
-            </div>
-
-          </dd>
+  <article class="pop-layer a bottom page board view" ref="popLayer">
+    <div class="pbd">
+      <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
+            
+      <!-- <div class="phd">
+        <div class="inr">
+          <h1 class="ptit">{{Views.title}}</h1>
+          <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
         </div>
-      </div>
-      <Comments :opts="{dbTable:dbTable}"/>
+      </div> -->
+      <div class="pct">
+        <main class="poptents">
+          <div class="board-view">
+            <div class="vcont">
+              <div class="hdt">
+                <div class="tits">
+                  <h4 class="tit">{{ Views.title }}</h4>
+                </div>
+                <div class="info">
+                  <div class="dd">
+                    <router-link class="user" :to="`/user/${Views.uid}`">
+                      <span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span>
+                      <span class="txt"> {{Views.author}}</span>
+                    </router-link>
+                  </div>
+                  <div class="dd">
+                    <div class="hits">
+                        <em><i class="fa-regular fa-eye"></i> <b>{{ Views.count }}</b></em>
+                        <em><i class="fa-regular fa-heart"></i> <b>{{Views.likes}}</b></em>
+                    </div>
+                    <div class="date"><i class="fa-regular fa-calendar-days"></i> {{ Views.timestamp }}</div>
+                  </div>
+                </div> 
+              </div>
+              <dd class="cdt">
+                <div class="cont">
 
-    </main>
-    
-  </div>
+                  <swiper class="photo" v-if="typeof Views.img == 'object'" 
+                    :modules="modules"
+                    :slides-per-view="1" 
+                    :observer="true"
+                    :observeParents="true"
+                    :watchOverflow="true"
+                    :watchSlidesProgress="true"
+                    :auto-height="true"
+                    :preloadImages="true"
+                    :lazy="{ loadPrevNext: true }"
+                    :loop="Views.img.length > 1 ? true : false"
+                    :space-between="0" navigation :pagination="{ clickable: true }"
+                    @swiper="onSwiper" @slideChange="onSlideChange">
+                    <swiper-slide v-for="image,index in Views.img" :key="index" class="box">
+                      <div class="pic">
+                        <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
+                        <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
+                      </div>
+                    </swiper-slide>
+                  </swiper>
+
+                  <div class="text" v-html="Views.content"></div>
+
+                </div>
+
+                <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
+              
+                <div class="btsbox btn-set" v-if="Views.uid == $store.state.userInfo.uid">
+                  <router-link class="btn sm" to="/bbs"><i class="fa-regular fa-list"></i><em>목록</em></router-link>
+                  <router-link class="btn sm" :to="`/bbs/${this.param}/modify`"><i class="fa-regular fa-pen-to-square"></i><em>수정</em></router-link>
+                  <button type="button" class="btn sm" @click="delpost"><i class="fa-regular fa-trash"></i><em>삭제</em></button>
+                </div>
+
+              </dd>
+            </div>
+          </div>
+          <Comments :opts="{dbTable:dbTable}"/>
+        </main>
+      </div>
+    </div>
+  </article>
+
+ 
 </template>
 
 <script>
@@ -134,9 +145,31 @@ export default {
     this.param = ids;
   },
   mounted() {
-    document.querySelector(".header .htit").textContent = 'Board';
+    setTimeout(() => {
+      this.$refs.popLayer.classList.add("ani");
+      this.$refs.popLayer.classList.add("on");
+      this.size();
+    });
+    window.addEventListener("resize",this.size);
+    // this.view(this.id, this.num) ;
+    ui.lock.using(true);
+  },
+  unmounted() {
+    setTimeout(() => {
+      ui.lock.using(false);
+    }, 500);
   },
   methods: {
+    size(){
+      let $pop =  this.$refs.popLayer;
+      // console.log($pop);
+      let pctnH =  $pop.offsetHeight || 0;
+      let pbtnH =  $pop.querySelector(".pbt")?.offsetHeight || 0 ;
+      let phtnH =  $pop.querySelector(".phd")?.offsetHeight || 0 ;
+      pctnH = (pctnH - phtnH) || 0 ;
+      console.log(pctnH  );
+      $pop.querySelector(".pct").style.height = pctnH - pbtnH+"px" ; 
+    },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
       const docSnap = await getDoc(docRef);
