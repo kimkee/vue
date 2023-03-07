@@ -122,7 +122,7 @@ export default {
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
-      console.log(this.transitionName);
+      console.log(to.path+' = = '+ from.path+' = = '+ toDepth +' = = '+ fromDepth , this.transitionName);
       // this.$refs.popup.$refs.popLayer.classList.add("ani");
     }
   },

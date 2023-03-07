@@ -27,10 +27,10 @@ import User from "./views/user/User.vue";
 const router = createRouter({
     history: createWebHashHistory(),
     routes: [
-        // {
-        // path: "/",
-        // redirect: '/home'
-        // },
+        {
+            path: "/",
+            redirect: '/home'
+        },
         {
             path: '/chat',
             name: "Chat",
@@ -42,7 +42,7 @@ const router = createRouter({
             }
         },
         {
-            path: '/',
+            path: '/home',
             name: "home",
             // components: ()=> import ("./views/Home.vue")
             components: {
@@ -52,7 +52,7 @@ const router = createRouter({
             },
             children: [
                 {
-                    path: "/:id",
+                    path: ":id",
                     name: "homeBbsView",
                     components: {
                         default: View,
