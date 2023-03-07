@@ -1,49 +1,49 @@
 <template>
 
   
-  <div class="container photo" ref="page">
-    
-    <router-view v-slot="{ Component }">
-      <transition :name="transitionNameA">
-        <component :is="Component" ref="popup" :opts="{dbTable}"  />
-      </transition>
-    </router-view>
-
-    
-
-    <main class="contents">
+    <div>
+      <router-view v-slot="{ Component }">
+        <transition :name="transitionName">
+          <component :is="Component" ref="popup" :opts="{dbTable}"  />
+        </transition>
+      </router-view>
+      <div class="container photo page" ref="page">
+        <main class="contents">
       
-      <div v-if="Boards.length == 0" class="nodata">
-        <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
-      </div>
-      <div  v-else class="photo-list">
-        <ul class="list" id="dp_list">
-          <!-- {{Boards}} -->
-          <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
-            <div class="box">
-              <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
-                <div class="pic" v-if="board.img.length"><img class="img" loading="lazy" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
-                <div class="nums" v-if="board.img.length > 1"><em><i class="fa-regular fa-images"></i></em></div>
-                <div class="info">
-                  <em v-if="board.comtNum > 0"><i class="fa-regular fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
-                  <!-- <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em> -->
-                  <em v-if="board.likes > 0"><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
+          <div v-if="Boards.length == 0" class="nodata">
+            <p><i class="fa-regular fa-message-dots"></i> 게시글이 없습니다.</p>
+          </div>
+          <div  v-else class="photo-list">
+            <ul class="list" id="dp_list">
+              <!-- {{Boards}} -->
+              <li v-for="board in Boards" :key="board.id" :data-id="board.id" :data-uid="board.uid">
+                <div class="box">
+                  <router-link class="lk" :to="{ name: 'photoView', params: { id: board.id }}">
+                    <div class="pic" v-if="board.img.length"><img class="img" loading="lazy" :src="board.img" onerror="this.src='./img/noimage.png';"></div>
+                    <div class="nums" v-if="board.img.length > 1"><em><i class="fa-regular fa-images"></i></em></div>
+                    <div class="info">
+                      <em v-if="board.comtNum > 0"><i class="fa-regular fa-comment-dots"></i> <b>{{ board.comtNum }}</b></em>
+                      <!-- <em><i class="fa-regular fa-eye"></i> <b>{{ board.count }}</b></em> -->
+                      <em v-if="board.likes > 0"><i class="fa-regular fa-heart"></i> <b>{{board.likes}}</b></em>
+                    </div>
+                  </router-link>
                 </div>
-              </router-link>
+              </li>
+            </ul>
+            <div class="ui-loadmore" ref="uiLoadmore">
+              <em><i class="fa-duotone fa-spinner"></i></em>
+              <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-regular fa-rotate-right"></i></button>
             </div>
-          </li>
-        </ul>
-        <div class="ui-loadmore" ref="uiLoadmore">
-          <em><i class="fa-duotone fa-spinner"></i></em>
-          <button type="button" class="btn-load" @click="addItem" title="불러오기"><i class="fa-regular fa-rotate-right"></i></button>
+          </div>
+      
+        </main>
+        <div class="floatnav">
+          <router-link class="bt reg" to="/photo/write"><i class="fa-regular fa-camera"></i><em>사진동록</em></router-link>
         </div>
       </div>
-      
-    </main>
-    <div class="floatnav">
-      <router-link class="bt reg" to="/photo/write"><i class="fa-regular fa-camera"></i><em>사진동록</em></router-link>
     </div>
-  </div>
+  
+
 </template>
 
 <script>
@@ -68,7 +68,7 @@ export default {
       loadItem: 0, // 로드한 아이템 갯수
       postTotal:0, // 전체 개시물 숫자
       dbTable:'photo',
-      transitionNameA: "",
+      transitionName: "",
     }
   },
   created() {
@@ -84,8 +84,8 @@ export default {
     '$route'(to,from){
       const toDepth = to.path.split('/').length;
       const fromDepth = from.path.split('/').length;
-      this.transitionNameA = toDepth < fromDepth ? 'slide-out' : 'slide-in';
-      console.log(this.transitionNameA);
+      this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
+      console.log(this.transitionName);
       // this.$refs.popup.$refs.popLayer.classList.add("ani");
     }
   },

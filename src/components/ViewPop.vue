@@ -110,7 +110,7 @@ export default {
   mounted() {
     
     setTimeout(() => {
-      this.$refs.popLayer.classList.add("ani");
+      // this.$refs.popLayer.classList.add("ani");
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
