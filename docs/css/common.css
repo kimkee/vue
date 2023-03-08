@@ -577,7 +577,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .board-view .cdt .cont .photo{margin-top: 15rem;}
 .board-view .cdt .cont .swiper-autoheight .swiper-wrapper{}
 .board-view .cdt .cont .box{ }
-.board-view .cdt .cont .pic{padding: 0rem 0rem;text-align: center;margin: 0rem auto;position: relative;}
+.board-view .cdt .cont .pic{min-height: 200rem; padding: 0rem 0rem;text-align: center;margin: 0rem auto;position: relative;}
 .board-view .cdt .cont .pic img[src*="noimage.png"]{max-width:180rem}
 .board-view .cdt .cont .pic img{max-width: 100%;position: relative;z-index: 2;vertical-align: middle;object-fit: cover;height: 100%;}
 .board-view .cdt .cont .text{padding: 10rem 0rem;word-break: break-all;line-height: 1.9;color: #9fa6b1;}
