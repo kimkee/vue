@@ -113,8 +113,10 @@ export default {
   async mounted() {
     await fetch('https://kimkee.github.io/js/data.json').then(res => res.ok && res.text()).then(res => {
 
-      this.workData = JSON.parse(res);
-      console.log(this.workData);
+      this.workData.puix = JSON.parse(res).puix.filter( pjt => pjt.hide !== true );
+      this.workData.pdeg = JSON.parse(res).pdeg.filter( pjt => pjt.hide !== true );
+      this.workData.pfla = JSON.parse(res).pfla.filter( pjt => pjt.hide !== true );
+      console.log( this.workData );
       ui.loading.hide();
       // this.$refs.popup.view(true);
     });
