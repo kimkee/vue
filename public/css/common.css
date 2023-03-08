@@ -252,7 +252,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 .pop-layer.none.on>.pbd{transform: translateY(0%);}
 
 
-.pop-layer.a.bottom{transition: transform 0.4s;}
+.pop-layer.a.bottom{transition: transform 0.2s;}
 .pop-layer.a.bottom.on{}
 
 .pop-layer.a.bottom.slide-in-enter-active{transform: translateY(110%);}
