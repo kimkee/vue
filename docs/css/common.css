@@ -707,21 +707,22 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .page.home .contents{overflow:hidden;margin: 0;padding-top: 0;}
-.page.home .slide{padding: 0rem 0rem 0rem 0rem;margin: 0rem 0rem 10rem;}
-.page.home .swiper img{max-width: 400rem; width: 100%;}
-.page.home .swiper [class^='swiper-button']{transition: all 0.2s; color: #ffffff66; transform: scale(0.6); display: block; margin-top: -40rem;}
-.page.home .swiper .swiper-slide{ text-align: center; }
-.page.home .swiper .swiper-button-next{right: 10rem;}
-.page.home .swiper .swiper-button-prev{left: 10rem;}
-.page.home .swiper .swiper-pagination-bullet{margin: 0rem 1rem; transition: all 0.2s;}
-.page.home .swiper,
-.page.home .recent,
-.page.home .clocksvg{visibility: hidden;}
-.page.home.load .swiper,
-.page.home.load .recent,
-.page.home.load .clocksvg{visibility: visible;}
+.page.home .sect.tops .slide{padding: 0rem 0rem 0rem 0rem;margin: 0rem 0rem 10rem;}
+.page.home .sect.tops .swiper img{max-width: 400rem; width: 100%;}
+.page.home .sect.tops .swiper [class^='swiper-button']{transition: all 0.2s; color: #ffffff66; transform: scale(0.6); display: block; margin-top: -40rem;}
+.page.home .sect.tops .swiper .swiper-slide{ text-align: center; }
+.page.home .sect.tops .swiper .swiper-button-next{right: 10rem;}
+.page.home .sect.tops .swiper .swiper-button-prev{left: 10rem;}
+.page.home .sect.tops .swiper .swiper-pagination-bullet{margin: 0rem 1rem; transition: all 0.2s;}
+.page.home .sect.tops .swiper,
+.page.home .sect.tops .clocksvg,
+.page.home .sect.rect .recent{visibility: hidden;}
+.page.home.load .sect.tops .swiper,
+.page.home.load .sect.tops .clocksvg,
+.page.home.load .sect.rect .recent{visibility: visible;}
 .page.home .ui-loading-dot{padding-top: calc(40vh - 60rem); }
 .page.home.load .ui-loading-dot{display: none;}
+
 .page.home { align-items: center;justify-content: center;}
 .page.home .mn-box{display: flex;flex-direction: column;justify-content: center;align-items: center;text-align: center; padding: 20rem 0rem; min-height: 230rem;}
 .page.home .mn-box .top{width: 110rem; display: none;}
