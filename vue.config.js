@@ -7,6 +7,7 @@ module.exports = defineConfig({
   devServer: {
     historyApiFallback: true,
   },
+  productionSourceMap: false,
   transpileDependencies: true,
   lintOnSave:false,
   outputDir: path.resolve(__dirname, "./docs/") ,
