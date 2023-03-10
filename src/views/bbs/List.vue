@@ -50,6 +50,7 @@
       </div>
 
       <div class="floatnav">
+        <button type="button" class="bt top" @click="goTop"><i class="fa-solid fa-arrow-up"></i><em>위로</em></button>
         <router-link class="bt reg" to="/bbs/write"><i class="fa-regular fa-pen"></i><em>게시글동록</em></router-link>
       </div>
 
@@ -145,6 +146,9 @@ export default {
           this.postTotal = docSnap.data().post;
       }      
     },
+    goTop (){
+      window.scrollTo(0,0);
+    },
     scrollEvent() {
       const wHt = ui.viewport.height();
       const docH = ui.viewport.docHeight();
@@ -154,6 +158,12 @@ export default {
         this.$refs.uiLoadmore?.classList.add("active");
         this.callStat = false;
         setTimeout( ()=> this.read(this.loadItem + this.countItem) ,1000 );
+      }
+      if ( ui.lock.stat) return;
+      if ( ui.viewport.scrollTop() > 50 ) {
+      document.querySelector(".floatnav")?.classList.add("on-top");
+      }else{
+        document.querySelector(".floatnav")?.classList.remove("on-top");
       }
     }
   }

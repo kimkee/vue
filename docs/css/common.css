@@ -286,11 +286,12 @@ img[src*="noimage.png"]{opacity: 0.25;}
 
 /* 플로팅 탑버튼 글쓰기버튼 */
 .floatnav{position:fixed;right: 20rem;z-index: 500;transition: all 0.3s;min-width: 55rem;bottom: 82rem;bottom: calc(82rem + var(--safe-bottom));}
-.floatnav.is-top{bottom: 20rem;bottom: calc(20rem + var(--safe-bottom));transition: none;}
-.floatnav .bt{font-size: 0rem;width: 52rem;height: 52rem;display:block;background: no-repeat #555555;background-size: 100% auto;margin: 10rem auto 0 auto;border-radius: 35rem; box-shadow: 0rem 0rem 6rem #0000007d;}
-.floatnav .bt::before{width:16rem;height:16rem;background: center no-repeat;background-size: 16rem auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';}
-.floatnav .bt.top{display: none;background: rgb(255 255 255 / 80%);border: solid rgba(0, 0, 0, 0.1) 1rem;text-align: center;width: 45rem;height: 45rem;}
-.floatnav .bt.top::before{background-image: url();background-size: 32rem auto;margin: -1rem 0rem 0rem 0rem;}
+.floatnav.on-top{}
+.floatnav .bt{font-size: 0rem;width: 52rem;height: 52rem;display:flex;background: no-repeat #555555;background-size: 100% auto;margin: 10rem auto 0 auto;border-radius: 35rem; box-shadow: 0rem 0rem 6rem #0000007d; display: flex; justify-content: center; align-items: center;}
+.floatnav .bt i{font-size:19rem;}
+.floatnav .bt.top{background: rgb(255 255 255 / 80%);border: solid rgba(0, 0, 0, 0.1) 1rem;text-align: center;width: 42rem;height: 42rem;transform: translateY(60rem); transition: transform 0.2s;}
+.floatnav .bt.top i{color: #222222;}
+.floatnav.on-top .bt.top{transform: translateY(0rem);}
 .floatnav .bt.reg{background: #35495e;box-shadow: rgb(0 0 0 / 20%) 2rem 2rem 10rem;position: relative;}
 .floatnav .bt.reg i{font-size: 19rem;color: #e9e9e9;display: block;text-align: center;}
 
@@ -947,7 +948,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-list>.list>li .box .info em{text-shadow: 0rem 0rem 6rem #0000007d; font-size:3.4vw; margin-left: 7rem;display: inline-flex;line-height: 1.2;}
 .photo-list>.list>li .box .info em b{ line-height:1; margin-left: 2rem;font-weight:normal; }
 .photo-list>.list>li .box .pic{display:block; position:relative; padding-bottom: 100%;}
-.photo-list>.list>li .box .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #3b516c;}
+.photo-list>.list>li .box .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #222222;}
 .photo-list>.list>li:nth-child(12n+1){}
 .photo-list>.list>li:nth-child(12n+2){}
 .photo-list>.list>li:nth-child(12n+3){}
