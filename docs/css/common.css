@@ -63,8 +63,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .header .bt{width: 24rem;height: 24rem;font-size:0rem;background: no-repeat center;background-size: 24rem auto;color: #eeeeee;text-shadow: 0rem 0rem 2rem rgb(0 0 0 / 50%);}
 .header .bt i{font-size:28rem;text-shadow: 0rem 1rem 3rem rgb(0 0 0 / 36%);}
 .header .bt+.bt{margin-left: 20rem;}
-.header .bt.back{color: #aaaaaa;}
-.header .bt.back{color: #eeeeee; background-size: 24rem auto;}
+.header .bt.back{color: #eeeeee; margin-left: 3rem; margin-top: -1rem;}
 .header .bt.gnb{display:block;position: relative;height: 35rem;width: 35rem; margin-right: -5rem; transition: all 0.2s;font-size:0rem;}
 .header .bt.gnb i{font-size: 28rem;}
 .header .bt.gnb::before{top: 8rem;}
