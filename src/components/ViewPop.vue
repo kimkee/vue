@@ -32,7 +32,7 @@
                 <swiper-slide  class="box" tag="li" v-for="image,index in Pic.img" :key="index">
                   <div class="pic swiper-zoom-container">
                     <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                    <!-- <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div> -->
+                    <div class="swiper-lazy-preloader"><i class="fa-duotone fa-spinner"></i></div>
                   </div>
                 </swiper-slide>
               </swiper>

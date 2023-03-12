@@ -7,6 +7,10 @@
     </router-view>
     <main class="contents">
 
+      <section class="sect rect">
+        <RecentPost :opts="{dbTable:'bbs',num:5}"/>
+      </section>
+      
       <section class="sect tops">
         <swiper class="slide"
             :modules="modules"
@@ -45,10 +49,6 @@
         </swiper>
       </section>
 
-      <section class="sect rect">
-        <RecentPost :opts="{dbTable:'bbs',num:7}"/>
-      </section>
-      
       
     </main>
   </div>

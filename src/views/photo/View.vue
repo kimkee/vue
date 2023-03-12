@@ -46,7 +46,7 @@
                         <router-link :to="{ name: 'photoPop', params: { num :index }}" class="box">
                           <div class="pic">
                             <img class="img swiper-lazy" :src="image" alt="" onerror="this.src='./img/noimage.png';" loading="lazy">
-                            <div class="swiper-lazy-preloader"><i class="fa-regular fa-loader"></i></div>
+                            <div class="swiper-lazy-preloader"><i class="fa-duotone fa-spinner"></i></div>
                           </div>
                         </router-link>
                       </swiper-slide>

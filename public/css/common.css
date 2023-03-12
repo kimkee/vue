@@ -485,7 +485,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .swiper .swiper-slide .pic{}
 .swiper .swiper-slide .pic .swiper-lazy{}
 .swiper .swiper-slide .pic .swiper-lazy-preloader{position: absolute;left: 0;right: 0;bottom: 0;top: 0;display: flex;justify-content: center;align-items: center;z-index: 1;}
-.swiper .swiper-slide .pic .swiper-lazy-preloader i{ font-size: 40rem;  animation:loading-rotate 1s infinite steps(120);}
+.swiper .swiper-slide .pic .swiper-lazy-preloader i{ font-size: 40rem;  animation:loading-rotate 1s infinite steps(8);}
 .swiper .swiper-pagination-bullets.swiper-pagination{display: flex;justify-content: center;bottom: 0;position: relative;left: auto;right: auto;padding: 10rem 0rem;}
 .swiper .swiper-pagination-bullets.swiper-pagination.swiper-pagination-lock{display: none;}
 .swiper [class^='swiper-button']{color: #ffffff; display: none;}
@@ -705,6 +705,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 
 
 .page.home .contents{overflow:hidden;margin: 0;padding-top: 0;}
+.page.home .sect.tops{margin-top: 10rem;}
 .page.home .sect.tops .slide{padding: 0rem 0rem 0rem 0rem;margin: 0rem 0rem 10rem;}
 .page.home .sect.tops .swiper img{max-width: 400rem; width: 100%;}
 .page.home .sect.tops .swiper [class^='swiper-button']{transition: all 0.2s; color: #ffffff66; transform: scale(0.6); display: block; margin-top: -40rem;}
@@ -945,7 +946,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-list>.list>li .box .info em{text-shadow: 0rem 0rem 6rem #0000007d; font-size:3.4vw; margin-left: 7rem;display: inline-flex;line-height: 1.2;}
 .photo-list>.list>li .box .info em b{ line-height:1; margin-left: 2rem;font-weight:normal; }
 .photo-list>.list>li .box .pic{display:block; position:relative; padding-bottom: 100%;}
-.photo-list>.list>li .box .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #222222;}
+.photo-list>.list>li .box .pic .img{display: block;position: absolute;left: 50%;top: 50%;transform: translate(-50% , -50%);width: 100%;object-fit: cover;max-width: inherit;min-width: 100%;height: 100%;background-color: #1c1c1c;}
 .photo-list>.list>li:nth-child(12n+1){}
 .photo-list>.list>li:nth-child(12n+2){}
 .photo-list>.list>li:nth-child(12n+3){}
