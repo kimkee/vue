@@ -40,11 +40,16 @@ export default {
   },
   methods:{
     testAlert(){
-      ui.alert('뷰랄~ 뷰랄~!',{
-        'tit':'쀼',
-        'ycb': function(){
-          console.log("알럿 확인");
-        }
+      ui.confirm("쀼 보다 리액트가 짱입니까?",{
+        ycb:function(){
+          console.log("컴펌 예");
+          window.location.href = "https://kimkee.github.io/react"
+        },
+        ncb:function(){
+          console.log("컴펌 아뇨");
+        },
+        ybt:"마자요!",
+        nbt:"아니오!",
       });
     },
     gnbOpen(){
