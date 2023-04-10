@@ -62,9 +62,9 @@ const ui = {
         // 모든 단위가 맞지 않을 시
         return "방금 전";
     },
-    dateForm: function(d, opt) {
-        opt == undefined ? opt = 'medium' : opt;
-        return new Intl.DateTimeFormat('ko-KR', { dateStyle: opt, timeStyle: opt }).format(d)
+    dateForm: (date, opt)=> {
+        opt = opt === undefined ? opt = 'medium' : null;
+        return new Intl.DateTimeFormat('ko-KR', { dateStyle: opt, timeStyle: opt }).format(date);
     },
     timeVer: function (params) {
         const d = new Date();
