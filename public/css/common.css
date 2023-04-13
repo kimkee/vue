@@ -543,6 +543,11 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .recent .board-list .list{margin-bottom: 0rem;}
 .recent .board-list .list>li+li{}  
 
+
+.photo .recent{padding: 0rem 20rem;}
+.photo .recent  .photo-list>.list>li{ width: calc(20% - 2rem);}
+
+
 .nodata{text-align:center; padding:30vh 10rem; display: none;}
 .nodata p{}
 .load .nodata{display: block;}
