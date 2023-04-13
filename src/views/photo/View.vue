@@ -145,7 +145,7 @@ export default {
   },
   created() {
     ui.init();
-    document.querySelector(".header .htit").textContent = 'Photo';
+    // document.querySelector(".header .htit").textContent = 'Photo';
     // document.querySelector(".header").classList.add('trans');
     ui.loading.show();
     console.log("view created");

@@ -44,11 +44,14 @@
             </swiper-slide>
         </swiper>
       </section>
-      
-      <section class="sect rect">
-        <RecentPost :opts="{dbTable:'bbs',num:5}"/>
+
+      <section class="sect rect photo">
+        <RecentPhoto :opts="{dbTable:'photo',num:10}"/>
       </section>
       
+      <section class="sect rect board">
+        <RecentPost :opts="{dbTable:'bbs',num:5}"/>
+      </section>
 
       
     </main>
@@ -57,6 +60,7 @@
 
 <script>
 import RecentPost from '@/components/RecentPost.vue'
+import RecentPhoto from '@/components/RecentPhoto.vue'
 import Clock from '@/components/Clock.vue'
 import store from '@/store';
 import ui from '@/ui.js';
@@ -73,6 +77,7 @@ export default {
   name: 'HomeItem',
   components: {
     RecentPost,
+    RecentPhoto,
     Clock,
     Swiper,
     SwiperSlide,

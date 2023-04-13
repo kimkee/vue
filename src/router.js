@@ -51,21 +51,29 @@ const router = createRouter({
                 Nav
             },
             children: [
+             
                 {
-                    path: ":id",
+                    path: "bbs/:id",
                     name: "homeBbsView",
                     components: {
                         default: View,
-                        HeaderSub,
                     }
-                    // ,children: [
-                    //     {
-                    //         name:'photoPop',
-                    //         path: 'pop/:num',
-                    //         component: PhotoViewPop
-                    //     }
-                    // ]
-                }        
+                },        
+                {
+                    path: "photo/:id",
+                    name: "homePhotoView",
+                    components: {
+                        default: PhotoView,
+                        // HeaderSub,
+                    },
+                    children: [
+                        {
+                            path: 'pop/:num',
+                            name:'homePhotoPop',
+                            components: { PhotoViewPop}
+                        }
+                    ]
+                }         
             ]
         },
         {
