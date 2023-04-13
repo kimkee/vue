@@ -721,6 +721,9 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.home .sect.tops .swiper,
 .page.home .sect.tops .clocksvg,
 .page.home .sect.rect .recent{visibility: hidden;}
+.page.home .sect.rect.board{}
+.page.home .sect.rect.photo{margin-top: 20rem;}
+
 .page.home.load .sect.tops .swiper,
 .page.home.load .sect.tops .clocksvg,
 .page.home.load .sect.rect .recent{visibility: visible;}
