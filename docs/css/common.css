@@ -723,6 +723,8 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.home .sect.rect .recent{visibility: hidden;}
 .page.home .sect.rect.board{}
 .page.home .sect.rect.photo{margin-top: 20rem;}
+.page.home .sect.rect.photo .photo-list .box  em{font-size: 2.8vw;}
+
 
 .page.home.load .sect.tops .swiper,
 .page.home.load .sect.tops .clocksvg,
