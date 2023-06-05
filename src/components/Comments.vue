@@ -141,7 +141,7 @@ export default {
         email: store.state.userInfo.email,
         reply: ui.textHtml(this.inputReply, "incode"),
         timestamp: today,
-        date: ui.dateForm(today, "short")
+        date: ui.dateForm(today)
       });
 
       this.inputReply = "";
@@ -160,7 +160,9 @@ export default {
         const li = document.querySelector("li[data-coment-idx='" + opt.idx + "']");
         const liTop = li.offsetTop;
         console.log(liTop);
-        window.scrollTo(0, liTop);
+        // window.scrollTo(0, liTop);
+        this.$parent.$refs.popLayer.querySelector(".pct").scrollTo(0,liTop)
+        console.log(this.$parent.$refs.popLayer.querySelector(".pct"));
         li.focus();
         // setTimeout(() => { },100);
       });
