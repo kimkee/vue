@@ -1,3 +1,37 @@
-<script>
-	location.href = "./docs/";
-</script>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, shrink-to-fit=no, viewport-fit=cover">
+
+  <meta property="og:title" content="VGram">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kimkee.github.io/vue/">
+  <meta property="og:image" content="https://kimkee.github.io/vue/img/ogimage.png">
+  <meta property="og:description" content="VUE+Firebase 앱">
+
+  <title>%VITE_APP_TITLE%</title>
+  <link rel="icon" href="%BASE_URL%img/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="%BASE_URL%img/vite.svg">
+  <link rel="manifest" href="%BASE_URL%manifest.json">
+  <link rel="stylesheet" href="%BASE_URL%css/style.css?v=%VITE_APP_VER%">
+  <link rel="stylesheet" href="%BASE_URL%css/common.css?v=%VITE_APP_VER%">
+</head>
+<body class="body">
+
+  <div class="wrap" id="app"></div>
+
+  <script type="module" src="/src/main.js"></script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SZ9V5BHSER"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-SZ9V5BHSER');
+  </script>
+
+</body>
+</html>

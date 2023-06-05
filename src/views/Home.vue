@@ -33,6 +33,8 @@
                 <div class="icos">
                   <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
                   <span class="pls">+</span>
+                  <span class="ico" @click="sss"><img src="../../public/img/ico_vite.svg" alt=""></span>
+                  <span class="pls">+</span>
                   <span class="ico" @click="fff"><img src="../../public/img/ico_firebase.svg" alt=""></span>
                   <!-- <span class="pls">+</span>
                   <span class="ico"><img src="../../public/img/ico_react.svg" alt=""></span> -->
