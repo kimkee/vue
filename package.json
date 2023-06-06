@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host --port 9005",
+    "dev": "vite --host --port 9004",
     "build": "node buildv && vite build --base=./",
     "preview": "vite preview"
   },
