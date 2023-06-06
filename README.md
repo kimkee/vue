@@ -45,20 +45,14 @@
 	- [fontawesome](https://fontawesome.com/icons/house?s=regular&f=classic)
 
 <br><br>
-## Vue setup
-``` 
-npm install -g @vue/cli
-vue create my-project
-```
-
 ## Project setup
-```
-npm install
+``` 
+npm create vite@latest
 ```
 
 ### Compiles and hot-reloads for development
 ```
-npm run serve
+npm run dev
 ```
 
 ### Compiles and minifies for production
@@ -66,16 +60,15 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
-
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 
 
 # Vue 3 + Vite
+
+- https://vitejs.dev/
+
+- https://vitejs-kr.github.io/
 
 This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
