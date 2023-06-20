@@ -31,13 +31,11 @@
                   <p>챗팅</p>
                 </div>
                 <div class="icos">
-                  <span class="ico" @click="sss"><img src="../../public/img/ico_vue.svg" alt=""></span>
+                  <span class="ico vue" @click="sss">VUE</span>
                   <span class="pls">+</span>
-                  <span class="ico" @click="sss"><img src="../../public/img/ico_vite.svg" alt=""></span>
+                  <span class="ico vite" @click="sss">VITE</span>
                   <span class="pls">+</span>
-                  <span class="ico" @click="fff"><img src="../../public/img/ico_firebase.svg" alt=""></span>
-                  <!-- <span class="pls">+</span>
-                  <span class="ico"><img src="../../public/img/ico_react.svg" alt=""></span> -->
+                  <span class="ico fire" @click="fff">FIREBASE</span>
                 </div>
               </div>
             </swiper-slide>

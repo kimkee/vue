@@ -741,7 +741,10 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.home .mn-box .icos{margin-top: 12rem;display: flex; align-items: center;}
 .page.home .mn-box .icos span{}
 .page.home .mn-box .icos span img{display: inline-flex; vertical-align: middle;}
-.page.home .mn-box .icos .ico{display: inline-flex;}
+.page.home .mn-box .icos .ico{display: inline-flex;height: 20rem;width: 50rem;font-size:0rem;background: no-repeat;}
+.page.home .mn-box .icos .ico.vue{background-image: url(../img/ico_vue.svg);}
+.page.home .mn-box .icos .ico.vite{background-image: url(../img/ico_vite.svg);}
+.page.home .mn-box .icos .ico.fire{background-image: url(../img/ico_firebase.svg); width: 75rem;}
 .page.home .mn-box .icos .pls{display: inline-flex; color: #ffffff; margin: 0rem 4rem;}
 
 .page.photo{}
