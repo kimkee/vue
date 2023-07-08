@@ -79,8 +79,17 @@ const ui = {
 
         return opt.YY + "" + opt.MM + "" + opt.DD + "" + opt.HH + "" + opt.MN + "" + opt.SC;
     },
-    randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
+    /* randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
         return Math.random().toString(16).substr(2, length);
+    }, */
+    randomStr: (length = 6 ) => {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let randomString = '';
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomString += characters.charAt(randomIndex);
+        }
+        return randomString;
     },
     rex: {
         pattern: {
