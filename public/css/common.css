@@ -46,8 +46,8 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
 a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 
 /* 헤더 */
-.header{height: 54rem;text-align:center;display:block;z-index: 500;position: relative;}
-.header>.inr{display:flex;height: 54rem;align-items: center;justify-content: space-between;align-items: center;position: fixed;left: 0;right: 0;z-index: 500;top: 0rem;background: #1d2736;border-bottom: #1c232e solid 1rem;padding: 0rem 20rem;touch-action: none;}
+.header{height: calc( 54rem + var(--safe-top) );text-align:center;display:block;z-index: 500;position: relative;}
+.header>.inr{display:flex;height: calc( 54rem + var(--safe-top) );justify-content: space-between;align-items: center;position: fixed;left: 0;right: 0;z-index: 500;top: 0rem;background: #1d2736;border-bottom: #1c232e solid 1rem;padding: 0rem 20rem;touch-action: none;padding-top: calc( 0rem + var(--safe-top) );}
 .header.trans{height: 0rem; }
 .header.trans>.inr{background-color: transparent; border-color: transparent;}
 .header.trans .htit{display: none;}
@@ -95,9 +95,9 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 nav.gnb{position:fixed;width: 70%;height: 100%;z-index: 900;top: 0rem;right: -100%; transition: right 0.4s;}
 
 nav.gnb::after{left: -100%;width: 100%;height:100%; content:"";display:block;position: fixed;top: 0; }
-nav.gnb .bt.close{display:block;position:absolute;right: 20rem;top: 11rem;z-index: 1900;width: 36rem;height: 36rem;}
+nav.gnb .bt.close{display:block;position:absolute;right: 20rem;top: calc( 11rem + var(--safe-top) );z-index: 1900;width: 36rem;height: 36rem;}
 nav.gnb .bt.close i{font-size: 28rem;}
-nav.gnb>.inr{padding: 55rem 30rem 0rem 30rem;height: 100vh;background-color: #26384e;}
+nav.gnb>.inr{padding: calc( 55rem + var(--safe-top) ) 30rem 0rem 30rem;height: 100vh;background-color: #26384e;}
 nav.gnb .menu{margin-top: 20rem; overflow-y: auto;}
 nav.gnb .menu .mCustomScrollBox{background-color: transparent;border-top:1rem solid #ddd;outline: initial;}
 nav.gnb .menu .mCSB_scrollTools .mCSB_draggerRail{}
