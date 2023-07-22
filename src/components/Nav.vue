@@ -24,15 +24,15 @@ export default {
     
   },
   data() {
-      return {
-        isActive : els => location.hash.includes(els) ? "active" : null
-      }
+    return {
+      
+    }
   },
   created(){
 
   },
   methods:{
-    
+    isActive : els => location.hash.includes(els) ? "active" : null
   }
 }
 </script>
