@@ -183,10 +183,11 @@ export default {
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
+    window.removeEventListener("resize",this.size);
   },
   methods: {
     size(){
-      let $pop =  this.$refs.popLayer;
+      let $pop =  this.$refs.popLayer || 0;
       // console.log($pop);
       let pctnH =  $pop.offsetHeight || 0;
       let pbtnH =  $pop.querySelector(".pbt")?.offsetHeight || 0 ;
