@@ -153,6 +153,7 @@ export default {
   },
   unmounted() {
     document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
+    window.removeEventListener("resize",this.size);
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
