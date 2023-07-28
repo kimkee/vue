@@ -18,7 +18,7 @@ html{font-size: 1px;}
 @media screen and ( max-width:340px ) {
     html{font-size: 0.9px;}    
 }
-@media screen and ( min-width:450px ) {
+@media screen and ( min-width:450px ) { 
     html{font-size: 1.2px;}    
 }
 @media screen and ( min-width:600px ) {
@@ -154,7 +154,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 
 
 .pop-layer.a>.pbd .bt.hback{width:24rem;height:24rem;background: url(../img/cm/btn_top_back_B@2x.png) no-repeat;background-size:24rem auto;font-size:0rem;display:inline-block;vertical-align:middle;content:'';font-size:0rem;position: absolute;left: 20rem;top: 13rem;}
-.pop-layer.a>.pbd .btn-pop-close{position: absolute;right: 17rem;top: 13rem;font-size: 28rem;width: 30rem;height: 30rem;color: #ffffff;z-index: 100;text-shadow: 0rem 0rem 2rem rgb(0 0 0 / 50%);}
+.pop-layer.a>.pbd .btn-pop-close{position: absolute;right: 17rem;top: calc( 13rem + var(--safe-top) );font-size: 28rem;width: 30rem;height: 30rem;color: #ffffff;z-index: 100;text-shadow: 0rem 0rem 2rem rgb(0 0 0 / 50%);}
 .pop-layer.a>.pbd .btn-pop-close.back{right: auto; left:20rem;}
 .pop-layer.a>.pbd>.pct{position: relative;}
 .pop-layer.a>.pbd>.pct::-webkit-scrollbar{display: none;}
