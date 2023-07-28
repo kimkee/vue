@@ -147,7 +147,8 @@ export default {
       }      
     },
     goTop (){
-      window.scrollTo(0,0);
+      // window.scrollTo(0,0);
+      ui.scrollTo("body", 0, 200);
     },
     scrollEvent() {
       const wHt = ui.viewport.height();

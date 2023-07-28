@@ -36,6 +36,40 @@ const ui = {
             }
         }
     },
+    scrollTo: (selector, position, duration, callback) => {
+        // ui.scrollTo(boxElement, 100, 200, () => {
+        //     console.log(".box 도착");
+        // });
+        const element = document.querySelector(selector);
+        if (!element) return;
+        console.log(element);
+        const startingYOffset = element.scrollTop || document.documentElement.scrollTop;
+        const targetYOffset = position;
+        const startTime = performance.now();
+
+        const animateScroll = (timestamp) => {
+            const currentTime = timestamp - startTime;
+            const progress = Math.min(currentTime / duration, 1);
+            const easeInOutCubic = progress < 0.5 ? 4 * progress * progress * progress : (progress - 1) * (2 * progress - 2) * (2 * progress - 2) + 1;
+            const yOffset = startingYOffset + (targetYOffset - startingYOffset) * easeInOutCubic;
+
+            if (element === document.body) {
+                window.scrollTo(0, yOffset);
+            }else{
+                element.scrollTop = yOffset;
+            }
+
+            if (currentTime < duration) {
+                requestAnimationFrame(animateScroll);
+            }else{
+                if (typeof callback === 'function') {
+                    callback();
+                }
+            }
+        };
+
+        requestAnimationFrame(animateScroll);
+    },
     timeForm: function (date, opt) {
         const start = new Date(date);
         const end = new Date(); // 현재 날짜
