@@ -55,13 +55,13 @@ const ui = {
 
             if (element === document.body) {
                 window.scrollTo(0, yOffset);
-            }else{
+            } else {
                 element.scrollTop = yOffset;
             }
 
             if (currentTime < duration) {
                 requestAnimationFrame(animateScroll);
-            }else{
+            } else {
                 if (typeof callback === 'function') {
                     callback();
                 }
