@@ -17,12 +17,7 @@ const ui = {
         docHeight: () => parseInt(document.documentElement.scrollHeight || document.body.clientHeight),
         scrollTop: () => parseInt(document.documentElement.scrollTop)
     },
-    test: {
-        using: function (target) {
-            console.log(target.tagName);
-            target.classList.toggle('d');
-        }
-    },
+
     gnb: { // GNB 
         using: function (opt) {
             const gnbScreen = document.querySelector(".gnb-screen");
