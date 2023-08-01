@@ -558,7 +558,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.board.view.load .ui-loading-dot{display: none;}
 .page.board.view.load .board-view{display: block	;}
 .page.board.view.load .comts{display: block	;}
-.page.board.view .pbd>.pct .poptents {padding-top: 50rem;}
+.page.board.view .pbd>.pct .poptents {padding-top: calc(50rem + var(--safe-top) );}
 
 .board-view{ padding-bottom: 11rem; }
 .board-view .hdt{}
