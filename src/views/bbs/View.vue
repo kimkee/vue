@@ -17,7 +17,7 @@
                   <div class="dd">
                     <router-link class="user" :to="`/user/${Views.uid}`">
                       <span class="pic"><img :src="$store.state.avatar[Views.avatar]" alt="" class="img"></span>
-                      <span class="txt"> {{Views.author}}</span>
+                      <span class="txt">{{Views.author}}</span>
                     </router-link>
                   </div>
                   <div class="dd">
