@@ -4,11 +4,11 @@
     <div class="bts"><button class="bt close" tabindex="-1" @click="gnbClose"><i class="fa-regular fa-xmark"></i></button></div>
     <div class="inr">
       <ul class="menu">
-        <li><router-link class="bt" to="/"><i class="fa-regular fa-house"></i> <em>Home</em></router-link></li>
-        <li><router-link class="bt" to="/bbs"><i class="fa-regular fa-list"></i> <em>Board</em></router-link></li>
-        <li><router-link class="bt" to="/photo"><i class="fa-regular fa-camera"></i> <em>Photo</em></router-link></li>
-        <li><router-link class="bt" to="/chat"><i class="fa-regular fa-comments"></i> <em>Chat</em></router-link></li>
-        <li><router-link class="bt" to="/works"><i class="fa-regular fa-briefcase"></i> <em>Works</em></router-link></li>
+        <li :class="isActive('/home')"><router-link class="bt" to="/home"><i class="fa-regular fa-house"></i> <em>Home</em></router-link></li>
+        <li :class="isActive('/bbs')"><router-link class="bt" to="/bbs"><i class="fa-regular fa-list"></i> <em>Board</em></router-link></li>
+        <li :class="isActive('/photo')"><router-link class="bt" to="/photo"><i class="fa-regular fa-camera"></i> <em>Photo</em></router-link></li>
+        <li :class="isActive('/chat')"><router-link class="bt" to="/chat"><i class="fa-regular fa-comments"></i> <em>Chat</em></router-link></li>
+        <li :class="isActive('/works')"><router-link class="bt" to="/works"><i class="fa-regular fa-briefcase"></i> <em>Works</em></router-link></li>
       </ul>
       <div class="sign">
         <router-link class="user" :to="`/user/${$store.state.userInfo.uid}`">
@@ -61,7 +61,8 @@ export default {
   methods:{
     gnbClose(){
       ui.gnb.using("close");
-    }
+    },
+    isActive : els => location.hash.includes(els) ? "active" : null
   }
 }
 </script>
