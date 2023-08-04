@@ -2,6 +2,7 @@ const ui = {
     init: function () {
         console.log("ui.init();");
         // this.gnb.init();
+        this.viewport.init.evt();
         this.update();
     },
     update: function () {
@@ -12,6 +13,13 @@ const ui = {
         bottom: ()=> parseInt(getComputedStyle(document.documentElement).getPropertyValue("--safe-bottom").replace(/[^0-9]/g, "")) || 0
     },
     viewport: {
+        init: {
+            evt: function(){
+                window.addEventListener("load", this.set );
+                window.addEventListener("resize", this.set );
+            },
+            set: ()=> document.documentElement.style.setProperty("--vh", window.innerHeight * 0.01+"px")
+        },
         height: () => parseInt(window.visualViewport ? visualViewport.height : window.innerHeight),
         width: () => parseInt(window.visualViewport ? visualViewport.width : window.innerWidth),
         docHeight: () => parseInt(document.documentElement.scrollHeight || document.body.clientHeight),
