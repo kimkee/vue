@@ -42,7 +42,7 @@
           <div class="rwset">
             <div class="user">
               <a href="javascript:;" class="pic">
-                <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" :alt="this.postId" class="img">
+                <img v-if="$store.state.userInfo.stat" :src="$store.state.avatar[$store.state.userInfo.avatar]" :alt="this.postId" onerror="this.src='./img/user.png';"  class="img">
                 <img v-if="!$store.state.userInfo.stat" src="" onerror="this.src='./img/user.png';" class="img">
               </a>
             </div>
