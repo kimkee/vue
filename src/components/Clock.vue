@@ -190,10 +190,10 @@ export default {
 
 
             let rate = 1 ;
-            const $wrap = document.querySelector(`.body>.wrap`);
-            $wrap.innerWidth < 340 && (rate = 0.9);
-            $wrap.innerWidth > 450 && (rate = 1.2);
-            $wrap.innerWidth > 600 && (rate = 1.5);
+            const wrapWidth = document.querySelector(`.body>.wrap`).innerWidth;
+            wrapWidth < 340 && (rate = 0.9);
+            wrapWidth > 450 && (rate = 1.2);
+            wrapWidth > 600 && (rate = 1.5);
 
             const xyr = 36 * rate; /* 그래프 반지름 */
             document.querySelectorAll(".circle circle").forEach(
