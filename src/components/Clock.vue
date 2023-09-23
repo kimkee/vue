@@ -190,10 +190,11 @@ export default {
 
 
             let rate = 1 ;
-            window.innerWidth < 340 && (rate = 0.9);
-            window.innerWidth > 450 && (rate = 1.2);
-            window.innerWidth > 600 && (rate = 1.5);
-            rate = 1; // 시계 그래프 사이즈 고정/
+            const $wrap = document.querySelector(`.body>.wrap`);
+            $wrap.innerWidth < 340 && (rate = 0.9);
+            $wrap.innerWidth > 450 && (rate = 1.2);
+            $wrap.innerWidth > 600 && (rate = 1.5);
+
             const xyr = 36 * rate; /* 그래프 반지름 */
             document.querySelectorAll(".circle circle").forEach(
               circ => {
