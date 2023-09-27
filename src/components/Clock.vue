@@ -124,7 +124,7 @@ export default {
             setCity("Seoul",0);
         
             const bts = document.querySelectorAll(".clocksvg .selt .bt:not(.my)");
-            bts.forEach( bt => bt.addEventListener("click", () => setCity(bt.value, Number(bt.getAttribute("data-tm")) )));
+            bts.forEach( bt => bt.addEventListener("click", ()=> setCity(bt.value, Number(bt.getAttribute("data-tm")) )));
         
           },
         
@@ -196,40 +196,33 @@ export default {
             wrapWidth > 600 && (rate = 1.5);
 
             const xyr = 36 * rate; /* 그래프 반지름 */
-            document.querySelectorAll(".circle circle").forEach(
-              circ => {
-                circ.setAttribute("cx", xyr);
-                circ.setAttribute("cy", xyr);
-                circ.setAttribute("r",  xyr);
-                circ.style.height = xyr*2+"rem";
-                circ.style.width  = xyr*2+"rem";
-                circ.style.strokeDasharray = circ.getTotalLength();
-              }
-            );
+            document.querySelectorAll(".circle circle").forEach( circle => {
+              circle.setAttribute("cx", xyr);
+              circle.setAttribute("cy", xyr);
+              circle.setAttribute("r",  xyr);
+              circle.style.height = xyr*2+"rem";
+              circle.style.width  = xyr*2+"rem";
+              circle.style.strokeDasharray = circle.getTotalLength();
+            });
 
 
           },
         
           /* 도시 선택 */
           area: function(){
-            const area = {
-              seoul:    { name: "Seoul",     gap: "0"    },
-              jeju:     { name: "Jeju",      gap: "0"    },
-              bangkok:  { name: "Bangkok",   gap: "-2"   },
-              paris:    { name: "Paris",     gap: "-7"   },
-              hawaii:   { name: "Hawaii",    gap: "-19"  },
-              maldives: { name: "Maldives",  gap: "-3.5" },
-              sydney:   { name: "Sydney",    gap: "+1"   },
-              moskva:   { name: "Moskva",    gap: "-6"   },
-              seattle:  { name: "Seattle",   gap: "-16"  },
-            };
+            const area = [
+              { name: "Seoul",     gap: "0"    },
+              { name: "Jeju",      gap: "0"    },
+              { name: "Bangkok",   gap: "-2"   },
+              { name: "Paris",     gap: "-7"   },
+              { name: "Hawaii",    gap: "-19"  },
+              { name: "Maldives",  gap: "-3.5" },
+              { name: "Sydney",    gap: "+1"   },
+              { name: "Moskva",    gap: "-6"   },
+              { name: "Seattle",   gap: "-16"  }
+            ];
             const selt = document.querySelector(".selt");
-            let bts = "";
-            for(let key in area ){
-              let bt = '<button class="bt" value="'+area[key].name+'" data-tm="'+area[key].gap+'">'+area[key].name+'</button>';
-              bts +=  bt;
-            }
-            selt.innerHTML = bts;
+            selt.innerHTML = area.map( a => `<button class="bt" value="${a.name}" data-tm="${a.gap}">${a.name}</button>`).join('');
           }
         }
       }
