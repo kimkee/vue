@@ -2,10 +2,10 @@
   <article class="pop-layer a bottom popup page board view" :kkk="Test(this)" ref="popLayer">
     <div class="pbd">
       <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
-      <div class="phd">
+      <div class="phd" :class="onTrans()">
         <div class="inr"><div class="ptit">{{Views.title}}</div></div>
       </div>
-      <div class="pct">
+      <div class="pct" @scroll="scrollEvent">
         <main class="poptents">
           <div class="board-view">
             <div class="vcont">
@@ -71,6 +71,9 @@
           <Comments :opts="{dbTable:dbTable}"/>
         </main>
       </div>
+      <div class="floatpop" :class="onTop()">
+        <button type="button" class="bt top" @click="goTop"><i class="fa-solid fa-arrow-up"></i><em>위로</em></button>
+      </div>
     </div>
   </article>
 
@@ -105,6 +108,7 @@ export default {
       Test: function(){
         return `TTT`
       },
+      scr: 0,
       dbTable: "bbs",
     }
   },
@@ -149,13 +153,13 @@ export default {
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
-    document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
+    // document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
     window.addEventListener("resize",this.size);
     // this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted() {
-    document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
+    // document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
     window.removeEventListener("resize",this.size);
     setTimeout(() => {
       ui.lock.using(false);
@@ -172,15 +176,17 @@ export default {
       console.log(pctnH  );
       $pop.querySelector(".pct").style.height = pctnH - pbtnH+"px" ; 
     },
-    scrollEvent() {
-      const scr = parseInt( document.querySelector(".popup .pct").scrollTop );
-      if( scr > 50){
-        document.querySelector(".popup .phd").classList.add("trans");
-        document.querySelector(".floatpop")?.classList.add("on-top");
-      }else{
-        document.querySelector(".popup .phd").classList.remove("trans");
-        document.querySelector(".floatpop")?.classList.remove("on-top");
-      }
+    goTop (){
+      ui.scrollTo(".popup .pct", 0, 200);
+    },
+    onTop (){
+      return this.scr > 50 ? 'on-top' : ''; 
+    },
+    onTrans () {
+      return this.scr > 50 ? 'trans' : ''; 
+    },
+    scrollEvent(els) {
+      this.scr = parseInt( els.target.scrollTop );
     },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);

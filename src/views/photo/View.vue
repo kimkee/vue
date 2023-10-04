@@ -1,7 +1,7 @@
 <template>
   
   
-  <article class="pop-layer a bottom page photo view" ref="popLayer">
+  <article class="pop-layer a bottom page popup photo view" ref="popLayer">
       
       <router-view v-slot="{ Component }">
         <transition :name="transitionName">
@@ -18,7 +18,7 @@
             <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
           </div>
         </div> -->
-        <div class="pct">
+        <div class="pct" @scroll="scrollEvent">
     
     
           <main class="poptents">
@@ -86,6 +86,9 @@
           </main>
     
         </div>
+        <div class="floatpop" :class="onTop()">
+          <button type="button" class="bt top" @click="goTop"><i class="fa-solid fa-arrow-up"></i><em>위로</em></button>
+        </div>
       </div>
     </article>
   
@@ -120,6 +123,7 @@ export default {
       Coments: [],
       dbTable: "photo",
       transitionName: "",
+      scr: 0,
     }
   },
   components: {
@@ -174,12 +178,14 @@ export default {
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
+    // document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
     window.addEventListener("resize",this.size);
     // this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted(){
     // document.querySelector(".header").classList.remove('trans');
+    // document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
@@ -197,6 +203,22 @@ export default {
       $pop.querySelector(".pct").style.height = pctnH - pbtnH+"px" ; 
 
       
+    },
+    goTop (){
+      // window.scrollTo(0,0);
+      ui.scrollTo(".popup .pct", 0, 200);
+    },
+    onTop (){
+      return this.scr > 50 ? 'on-top' : ''; 
+    },
+    scrollEvent(els) {
+      console.log(els);
+      this.scr = parseInt( els.target.scrollTop );
+      // if( scr > 50){
+      //   document.querySelector(".floatpop")?.classList.add("on-top");
+      // }else{
+      //   document.querySelector(".floatpop")?.classList.remove("on-top");
+      // }
     },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
