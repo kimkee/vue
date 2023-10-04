@@ -153,13 +153,11 @@ export default {
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
-    // document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
     window.addEventListener("resize",this.size);
     // this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted() {
-    // document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
     window.removeEventListener("resize",this.size);
     setTimeout(() => {
       ui.lock.using(false);

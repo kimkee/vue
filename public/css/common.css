@@ -168,7 +168,7 @@ img[src*="noimage.png"]{opacity: 0.25;}
 .pop-layer.a>.pbd>.pbt{position:relative;width:100%;min-height: 32rem;padding: 0rem 0rem 0rem 0rem;}
 .pop-layer.a>.pbd>.pbt .bts {display: flex;margin: 0rem -5rem;justify-content: center;}
 .pop-layer.a>.pbd>.pbt .bts .btn{width:100%;padding: 19rem 0;margin: 0rem 0rem;border-radius: 0rem;height: 57rem;height: calc(57rem + env(safe-area-inset-bottom));padding-bottom: calc(19rem + env(safe-area-inset-bottom));align-items: flex-start;font-size: 15rem;font-weight: bold;}
-.pop-layer.a .pbd{display:inline-block;width: 100%;vertical-align: bottom;text-align: left;font-size: 14rem;}
+.pop-layer.a .pbd{display:inline-block;width: 100%;vertical-align: bottom;text-align: left;font-size: 14rem;transform: translateY(0);}
 .pop-layer.a::before{content: '';width:0;height:100%;display:inline-block;vertical-align:middle;overflow: hidden;}
 .pop-layer.a>.pbd>.phd>.inr{}
 .pop-layer.a .pct{overflow: auto; -webkit-overflow-scrolling: touch;}

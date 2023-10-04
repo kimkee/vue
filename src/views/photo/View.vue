@@ -169,23 +169,17 @@ export default {
       const fromDepth = from.path.split('/').length;
       this.transitionName = toDepth < fromDepth ? 'slide-out' : 'slide-in';
       console.log(this.transitionName);
-      // this.$refs.popup.$refs.popLayer.classList.add("ani");
     }
   },
   mounted() {
     setTimeout(() => {
-      // this.$refs.popLayer.classList.add("ani");
       this.$refs.popLayer.classList.add("on");
       this.size();
     });
-    // document.querySelector(".popup .pct").addEventListener("scroll", this.scrollEvent);
     window.addEventListener("resize",this.size);
-    // this.view(this.id, this.num) ;
     ui.lock.using(true);
   },
   unmounted(){
-    // document.querySelector(".header").classList.remove('trans');
-    // document.querySelector(".popup .pct").removeEventListener("scroll", this.scrollEvent);
     setTimeout(() => {
       ui.lock.using(false);
     }, 500);
@@ -201,24 +195,15 @@ export default {
       pctnH = (pctnH - phtnH) || 0 ;
       console.log(pctnH  );
       $pop.querySelector(".pct").style.height = pctnH - pbtnH+"px" ; 
-
-      
     },
     goTop (){
-      // window.scrollTo(0,0);
       ui.scrollTo(".popup .pct", 0, 200);
     },
     onTop (){
       return this.scr > 50 ? 'on-top' : ''; 
     },
     scrollEvent(els) {
-      console.log(els);
       this.scr = parseInt( els.target.scrollTop );
-      // if( scr > 50){
-      //   document.querySelector(".floatpop")?.classList.add("on-top");
-      // }else{
-      //   document.querySelector(".floatpop")?.classList.remove("on-top");
-      // }
     },
     async view(ids) {
       const docRef = doc(db, this.dbTable, ids);
