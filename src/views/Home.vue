@@ -72,7 +72,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { onMounted } from 'vue';
 
-
 export default {
   name: 'HomeItem',
   components: {
