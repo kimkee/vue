@@ -57,37 +57,7 @@ export default {
   methods:{
     makeSomeStuff(){
       console.log("makeSomeStuff");
-    },
-    /* authState(){
-      const auth = getAuth();
-      onAuthStateChanged(auth, (user) => {
-        console.log("authState" , user);
-        if (user) {
-          this.getUser(user);
-          return;
-        }
-        store.state.userInfo = {};
-        store.state.userInfo.stat = false;
-        console.log('logout 된 상태' , store.state.userInfo);
-        console.table(store.state.userInfo);
-
-      });
-    },
-    async getUser(user){
-      const docRef =  doc(db, "member" , user.uid);
-      try {
-        const docSnap = await getDoc(docRef);
-        store.state.userInfo.stat = true;
-        store.state.userInfo.email = docSnap.data().email;
-        store.state.userInfo.avatar = docSnap.data().avatar;
-        store.state.userInfo.nick = docSnap.data().nick;
-        store.state.userInfo.uid = user.uid;
-        store.state.userInfo.liked = docSnap.data().liked;
-        console.table(store.state.userInfo);
-      } catch(error) {
-        console.log(error)
-      }
-    } */
+    }
   }
 }
 </script>
