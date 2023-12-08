@@ -738,7 +738,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.home .sect.rect .recent{visibility: hidden;}
 .page.home .sect.rect.board{}
 .page.home .sect.rect.photo{margin-top: 20rem;}
-.page.home .sect.rect.photo .photo-list .box  em{font-size: clamp(10rem,3.4vw,18rem);}
+.page.home .sect.rect.photo .photo-list .box  em{font-size: clamp(10rem,3.4vw,14rem);}
 
 
 .page.home.load .sect.tops .swiper,

@@ -131,7 +131,7 @@ export default {
           /* 시계 렌더링 */
           draw: function(gap){
             const time = { /* 시,분,초 */
-              yymd: document.querySelector(".date"),
+              yymd: document.querySelector(".clocksvg .date"),
               hour: document.querySelector(".circle.hh .nm"),
               mins: document.querySelector(".circle.mm .nm"),
               secs: document.querySelector(".circle.ss .nm"),
