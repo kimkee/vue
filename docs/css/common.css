@@ -967,6 +967,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .photo-list>.list>li .box{position: relative;}
 .photo-list>.list>li .box .lk{display:block;}
 .photo-list>.list>li .box em i{} 
+.photo-list>.list>li .box em i:before{font-weight: 300}
 .photo-list>.list>li .box .nums{position: absolute; right: 7%; top: 7%;font-size: 11rem; color: #ffffff; line-height: 1; opacity: 0.8;}
 .photo-list>.list>li .box .nums em{text-shadow: 0rem 0rem 6rem #0000007d;font-size: clamp(10rem,3.4vw,19rem);margin-left: 7rem;display: inline-flex;line-height: 1.2;color: #ffffff;}
 .photo-list>.list>li .box .info{position: absolute; right: 7%; bottom: 7%; line-height: 1; opacity: 0.8;}
