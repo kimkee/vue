@@ -71,10 +71,10 @@ const store = createStore({
   },
   actions: {
     increment (context) {
-      context.commit('increment')
+      context.commit('increment');
     },
     authState (context) {
-      context.commit('authState')
+      context.commit('authState');
     }
   }
 });
