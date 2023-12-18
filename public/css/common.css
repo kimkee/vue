@@ -43,10 +43,30 @@ textarea:-ms-input-placeholder {color: #444444; font-weight: normal;}
     --mwide: 480px;
     --scrPad: 0rem;
 }
+.body{
+    --color-primary: #7d7aff;
+    --color-gradient-1: #7d7aff;
+    --color-gradient-2: #2121e2;
+    --color-gradient-3: #00fff0;
+    --color-gradient-4: #8785ff;
+}
+.body::before{
+    content:"";
+    position: fixed;
+    opacity: 0.2;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(at 71% 77%,var(--color-gradient-1) 0,transparent 21%),radial-gradient(at 36% 47%,var(--color-gradient-3) 0,transparent 50%),radial-gradient(at 54% 29%,var(--color-gradient-3) 0,transparent 28%),radial-gradient(at 45% 51%,var(--color-gradient-1) 0,transparent 53%),radial-gradient(at 73% 44%,var(--color-gradient-2) 0,transparent 54%),radial-gradient(at 24% 7%,var(--color-gradient-2) 0,transparent 40%),radial-gradient(at 76% 46%,var(--color-gradient-1) 0,transparent 50%);
+    height: 100dvh;
+    max-width: 1400px;
+    width: 100%;
+    filter: blur(44px);
+    z-index: -1;
+    }
 .body>.wrap{
     max-width: var(--mwide);
     margin: auto;
-    background: #0d1117;
+    background: rgb(13 17 23 / 78%);
     min-height: calc(100dvh);
 }
 #app{}
@@ -1020,7 +1040,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .clocksvg .circle.hh .nm::after{content:"Hours";}
 .clocksvg .circle.mm .nm::after{content:"Minutes";}
 .clocksvg .circle.ss .nm::after{content:"Seconds";}
-.clocksvg .circle svg{position: relative;width: 100%;height: 100%;transform: rotate(270deg);box-shadow: #000 0rem -1rem 12rem;border-radius: 300rem;}
+.clocksvg .circle svg{position: relative;width: 100%;height: 100%;transform: rotate(270deg);box-shadow: rgb(0 0 0 / 60%) 0rem -1rem 12rem;border-radius: 300rem;}
 .clocksvg .circle svg circle{width: 100%;height: 100%;fill: #531356;fill: transparent;stroke: rgb(255 255 255 / 30%);stroke-width: 7rem;transform: translate(0rem, 0rem);position: absolute;}
 .clocksvg .circle svg .cr{stroke: var(--clr);stroke-dasharray: 200;stroke-dashoffset: 200;}
 .clocksvg .circle .dot{position: absolute;width: 100%;height: 100%;text-align: center;display: flex;justify-content: center;z-index: 1;}
@@ -1057,7 +1077,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .chmsg .usr{width: 35rem;height: 35rem;padding-bottom: 35rem;position: absolute;left: 0rem;top: 0;}
 .chat-view .chmsg .usr img{ display: block; position: absolute; left: 50%; top: 50%; transform: translate(-50% , -50%); width: 100%; object-fit: cover; max-width: inherit; min-width: 100%; height: 100%; background-color: #000000; border-radius: 40rem; }
 .chat-view .chmsg .name{color: #5b749b;position: absolute;left: 44rem;top: -5rem;line-height: 1;font-size:11rem;}
-.chat-view .chmsg .msg{margin-top:10rem;padding: 11rem 15rem 10rem 15rem;background: #293546;color: #dddddd;font-size: 14rem;border-radius: 20rem;line-height: 1.33;word-break: break-all;position: relative;}
+.chat-view .chmsg .msg{margin-top:10rem;padding: 11rem 15rem 10rem 15rem;background: rgb(41 53 70 / 80%);color: #dddddd;font-size: 14rem;border-radius: 20rem;line-height: 1.33;word-break: break-all;position: relative;}
 .chat-view .chmsg .msg a{text-decoration: underline;}
 .chat-view .chmsg .tm{position: absolute;color: #999999;font-size: 10rem;white-space: nowrap;bottom: 1rem;}
 .chat-view .chmsg .tm i{}
@@ -1129,7 +1149,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .chat-view .chmsg.me{justify-content: flex-end;padding-right: 40rem;}
 .chat-view .chmsg.me .usr{left: auto; right: 0rem; }
 .chat-view .chmsg.me .name{display:none;}
-.chat-view .chmsg.me .msg{margin-top:0rem; max-width: calc(100vw - 180rem);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
+.chat-view .chmsg.me .msg{margin-top:0rem;max-width: calc(100vw - 180rem);background: #41b883;color: #ffffff;border-top-right-radius: 0;}
 .chat-view .chmsg.me .msg a{color:#ffffff;}
 .chat-view .chmsg.me + .chmsg.me.same{margin-top: 5rem;}
 .chat-view .chmsg.me + .chmsg.me .msg{}
