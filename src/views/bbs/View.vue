@@ -2,7 +2,7 @@
   <article class="pop-layer a bottom popup page board view" :kkk="Test(this)" ref="popLayer">
     <div class="pbd">
       <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
-      <div class="phd" :class="onTrans()">
+      <div class="phd" :class="isOnTrans()">
         <div class="inr"><div class="ptit">{{Views.title}}</div></div>
       </div>
       <div class="pct" @scroll="scrollEvent">
@@ -180,7 +180,7 @@ export default {
     isOnTop (){
       return this.scr > 50 ? 'on-top' : ''; 
     },
-    onTrans () {
+    isOnTrans () {
       return this.scr > 50 ? 'trans' : ''; 
     },
     scrollEvent(els) {
