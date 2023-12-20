@@ -797,7 +797,7 @@ html.is-lock {height: 100%;width: 100%;overflow: hidden;position: fixed;}
 .page.work.load .contents .work-list{display: block;}
 .work-list{display: none;}
 .work-list+.work-list{}
-.work-list .hdts{margin-bottom: 0rem;position: sticky;z-index: 50;top: 54rem;padding: 12rem 20rem;background: #111;margin: 0rem -20rem;border: #242424 solid 1rem;border-width: 0rem 0rem 1rem 0rem;}
+.work-list .hdts{margin-bottom: 0rem;position: sticky;z-index: 50;top: calc(54rem + var(--safe-top));padding: 12rem 20rem;background: #111;margin: 0rem -20rem;border: #242424 solid 1rem;border-width: 0rem 0rem 1rem 0rem;}
 .work-list .hdts .title{color: #eeeeee;font-size: 14rem;}
 .work-list .hdts .title i{margin-right: 4rem;}
 .work-list .wlst{display: flex;flex-wrap: wrap;margin: 15rem -6rem 0rem -6rem;padding-bottom: 20rem;}
