@@ -71,7 +71,7 @@
           <Comments :opts="{dbTable:dbTable}"/>
         </main>
       </div>
-      <div class="floatpop" :class="onTop()">
+      <div class="floatpop" :class="isOnTop()">
         <button type="button" class="bt top" @click="goTop"><i class="fa-solid fa-arrow-up"></i><em>위로</em></button>
       </div>
     </div>
@@ -177,7 +177,7 @@ export default {
     goTop (){
       ui.scrollTo(".popup .pct", 0, 200);
     },
-    onTop (){
+    isOnTop (){
       return this.scr > 50 ? 'on-top' : ''; 
     },
     onTrans () {
