@@ -120,11 +120,10 @@ const ui = {
 
         return opt.YY + "" + opt.MM + "" + opt.DD + "" + opt.HH + "" + opt.MN + "" + opt.SC;
     },
-    /*
-    randomStr: (length = 6) => { // 댓글마다 유니크한 아이디 정하기
-        return Math.random().toString(16).substr(2, length);
-    }, 
-    */
+    commas:{
+        add: (str)=> str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') ,
+        del: (str)=> parseInt(str.replace(/,/g , ''))
+    },
     randomStr: (length = 6 ) => {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let randomString = '';
