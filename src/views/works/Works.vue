@@ -31,7 +31,7 @@
       </div>
 
       <div class="work-list">
-        <div class="hdts"><h3 class="title"><i class="fa-regular fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
+        <div class="hdts"><h3 class="title"><i class="fa-solid fa-compass-drafting"></i> Web Design &amp; UI/UX Development</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pdeg" :key="index">
             <router-link :to="{ name: 'worksPop', params: { cate: 'pdeg', id :index }}" class="box">
@@ -51,7 +51,7 @@
       </div>
 
       <div class="work-list">
-        <div class="hdts"><h3 class="title"><i class="fa-regular fa-bolt-lightning"></i> Flash ActionScript</h3></div>
+        <div class="hdts"><h3 class="title"><i class="fa-solid fa-bolt-lightning"></i> Flash ActionScript</h3></div>
         <ul class="wlst">
           <li v-for="(item, index) in workData.pfla" :key="index">
             <router-link :to="{ name: 'worksPop', params: { cate: 'pfla', id :index }}" class="box">

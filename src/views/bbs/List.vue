@@ -12,7 +12,7 @@
         </div>
         <div v-else>
           <div class="bbs-opt">
-            <div class="tots"><i class="fa-regular fa-square-poll-horizontal"></i> 게시글 : {{postTotal}} 개</div>
+            <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 게시글 : {{postTotal}} 개</div>
             <div class="more"></div>
           </div>
           <ul class="list">
@@ -51,7 +51,7 @@
 
       <div class="floatnav">
         <button type="button" class="bt top" @click="goTop"><i class="fa-solid fa-arrow-up"></i><em>위로</em></button>
-        <router-link class="bt reg" to="/bbs/write"><i class="fa-regular fa-pen"></i><em>게시글동록</em></router-link>
+        <router-link class="bt reg" to="/bbs/write"><i class="fa-solid fa-pen"></i><em>게시글동록</em></router-link>
       </div>
 
     </main>

@@ -96,7 +96,7 @@ a, button{-webkit-tap-highlight-color: rgb(0 0 0 / 30%);}
 .header .bt.gnb::before{top: 8rem;}
 .header .bt.gnb>b{top: 16rem;}
 .header .bt.gnb::after{top: 24rem;}
-.header i {font-weight:normal;}
+.header i {/* font-weight:normal; */}
 
 .header .user{display: flex;align-items: center;margin-right: 14rem;}
 .header .user .pic{margin-left: auto; width: 26rem;min-width: 26rem;height: 26rem;padding-bottom: 26rem;display: block;position: relative;border-radius: 100rem;overflow: hidden;}

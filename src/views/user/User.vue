@@ -20,7 +20,7 @@
       <div class="post">
         <ul class="menu" ref="menuSlide">
           <li class="">
-            <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-regular fa-list"></i></span></a>
+            <a class="bt" @click="gotoSlide(0)" data-val="tab_a_1" href="javascript:;"><span><i class="fa-solid fa-list"></i></span></a>
           </li>
           <li>
             <a class="bt" @click="gotoSlide(1)" data-val="tab_a_2" href="javascript:;"><span><i class="fa-regular fa-camera"></i></span></a>

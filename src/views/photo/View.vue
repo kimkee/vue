@@ -10,12 +10,12 @@
       </router-view>
 
       <div class="pbd">
-        <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
+        <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-solid fa-arrow-left"></i></button>
         <!--
         <div class="phd">
           <div class="inr">
             <h1 class="ptit">{{popData.tits}}</h1>
-            <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
+            <button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-solid fa-xmark"></i></button>
           </div>
         </div> -->
         <div class="pct" @scroll="scrollEvent">
@@ -75,8 +75,8 @@
                 <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
     
                 <div class="btsbox btn-set" v-if="Views.uid == $store.state.userInfo.uid">
-                  <!-- <router-link class="btn sm" to="/photo"><i class="fa-regular fa-list"></i><em>목록</em></router-link> -->
-                  <router-link class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-regular fa-pen-to-square"></i><em>수정</em></router-link>
+                  <!-- <router-link class="btn sm" to="/photo"><i class="fa-solid fa-list"></i><em>목록</em></router-link> -->
+                  <router-link class="btn sm" :to="`/photo/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
                   <button type="button" class="btn sm" @click="delpost"><i class="fa-regular fa-trash"></i><em>삭제</em></button>
                 </div>
               </div>

@@ -4,7 +4,7 @@
       <div class="phd">
         <div class="inr">
           <h1 class="ptit">{{popData.tits}}</h1>
-					<button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-regular fa-xmark"></i></button>
+					<button type="button" class="btn-pop-close" @click="$router.go(-1);"><i class="fa-solid fa-xmark"></i></button>
 				</div>
 			</div>
 			<div class="pct">

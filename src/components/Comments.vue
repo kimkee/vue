@@ -22,7 +22,7 @@
                 </div>
                 <div class="desc">
                   <em class="time" v-html="cmt.date"></em>
-                  <button v-if="cmt.uid == $store.state.userInfo.uid" type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-regular fa-xmark"></i></button>
+                  <button v-if="cmt.uid == $store.state.userInfo.uid" type="button" class="bt delt" title="삭제" @click="comtDelete(cmt.idx)"><i class="fa-solid fa-xmark"></i></button>
 
                 </div>
                 <div class="ment" v-html="cmt.reply"></div>
@@ -54,7 +54,7 @@
               
               spellcheck="false"></textarea>
             </div>
-            <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="comtWrite"><i class="fa-regular fa-pen"></i><em>보내기</em></button></div>
+            <div class="bts"><button type="button" class="btsend" :disabled="$store.state.userInfo.stat ? false : true" @click="comtWrite"><i class="fa-solid fa-pen"></i><em>보내기</em></button></div>
           </div>
         </div>
       </div>

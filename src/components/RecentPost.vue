@@ -4,8 +4,8 @@
       <!-- <h1>{{ this.opts.id }}</h1>  -->
       <div class="board-list">
         <div class="bbs-opt">
-          <div class="tots"><i class="fa-regular fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
-          <div class="more"><router-link class="bt" to="/bbs">더보기 <i class="fa-regular fa-chevron-right"></i></router-link></div>
+          <div class="tots"><i class="fa-solid fa-square-poll-horizontal"></i> 최근 게시물 : {{Recents.length}} 개</div>
+          <div class="more"><router-link class="bt" to="/bbs">더보기 <i class="fa-solid fa-chevron-right"></i></router-link></div>
         </div>
         <ul class="list">
           <li v-for="recent in Recents" :key="recent.key">

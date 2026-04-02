@@ -11,7 +11,7 @@
     </div>
     <div v-for="image,index in Files" :key="index" :data-index="index" class="pic">
       <img class="img" :src="image" alt="">
-      <button class="del" type="button" @click="fileDel(index)"><i class="fa-regular fa-xmark"></i></button>
+      <button class="del" type="button" @click="fileDel(index)"><i class="fa-solid fa-xmark"></i></button>
     </div>
   </div>
   

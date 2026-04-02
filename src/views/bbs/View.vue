@@ -1,7 +1,7 @@
 <template>
   <article class="pop-layer a bottom popup page board view" :kkk="Test(this)" ref="popLayer">
     <div class="pbd">
-      <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-regular fa-arrow-left"></i></button>
+      <button type="button" class="btn-pop-close back" @click="$router.go(-1);"><i class="fa-solid fa-arrow-left"></i></button>
       <div class="phd" :class="isOnTrans()">
         <div class="inr"><div class="ptit">{{Views.title}}</div></div>
       </div>
@@ -60,8 +60,8 @@
                 <Vote ref="VoteItem" :opts="{dbTable:dbTable, param:param}"/>
               
                 <div class="btsbox btn-set" v-if="Views.uid == $store.state.userInfo.uid">
-                  <!-- <router-link class="btn sm" to="/bbs"><i class="fa-regular fa-list"></i><em>목록</em></router-link> -->
-                  <router-link class="btn sm" :to="`/bbs/${this.param}/modify`"><i class="fa-regular fa-pen-to-square"></i><em>수정</em></router-link>
+                  <!-- <router-link class="btn sm" to="/bbs"><i class="fa-solid fa-list"></i><em>목록</em></router-link> -->
+                  <router-link class="btn sm" :to="`/bbs/${this.param}/modify`"><i class="fa-solid fa-pen-to-square"></i><em>수정</em></router-link>
                   <button type="button" class="btn sm" @click="delpost"><i class="fa-regular fa-trash"></i><em>삭제</em></button>
                 </div>
 
